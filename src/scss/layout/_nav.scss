@@ -1,1 +1,21 @@
 @use '../utilities/' as *;
+
+.nav {
+        &__list {
+
+        }
+
+        &__item {
+                &-icon {
+
+                }
+
+                &-title {
+
+                }
+                
+                a {
+
+                }
+        }
+}
