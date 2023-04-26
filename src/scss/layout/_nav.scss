@@ -1,21 +1,53 @@
 @use '../utilities/' as *;
 
 .nav {
-        &__list {
+	// display: none;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	font-size: 1.6rem;
+	background-color: royalblue;
+	&__list {
+		li:nth-child(1) {
+			margin-bottom: 2em;
 
-        }
+			.nav__item:hover {
+				background-color: transparent;
+			}
+		}
+	}
 
-        &__item {
-                &-icon {
+	&__item {
+		display: flex;
+		height: 60px;
+		width: 100%;
+		cursor: pointer;
 
-                }
+		&:hover {
+			background-color: rgb(30, 30, 190);
+		}
 
-                &-title {
+		&-icon {
+			color: #fff;
 
-                }
-                
-                a {
+			i {
+				width: 60px;
+				height: 60px;
+				font-size: 2.4rem;
+				text-align: center;
+				line-height: 60px;
+			}
+		}
 
-                }
-        }
+		&-title {
+			color: #fff;
+			font-size: 2.4rem;
+			text-align: center;
+			line-height: 60px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
 }
