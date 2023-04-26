@@ -101,4 +101,15 @@
 			color: rgba(0, 0, 0, 0.2);
 		}
 	}
+
+	&__avatar {
+		position: relative;
+		margin-left: 1em;
+		img {
+			border-radius: 50%;
+			width: 45px;
+			height: 45px;
+			object-fit: cover;
+		}
+	}
 }
