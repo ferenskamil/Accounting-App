@@ -1,3 +1,5 @@
+@use '../utilities' as *;
+
 @media (min-width: 480px) {
 	.nav {
 		width: 300px;
@@ -8,7 +10,7 @@
 			.burger-btn {
 				&--active {
 					position: static;
-					color: #000;
+					color: $black;
 					animation: none;
 					z-index: 0;
 				}
