@@ -3,7 +3,7 @@
 .nav {
 	position: absolute;
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	top: 0;
 	left: -100vw;
 	font-size: 1.6rem;
@@ -131,6 +131,11 @@
 			object-fit: cover;
 		}
 	}
+}
+
+.main {
+	width: 100%;
+	min-height: 100vh;
 }
 
 // This made mild appearance of burger btn
