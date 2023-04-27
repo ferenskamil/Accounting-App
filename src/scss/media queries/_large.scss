@@ -16,10 +16,21 @@
 		}
 	}
 
+	.topbar {
+		width: calc(100% - 60px);
+		left: 60px;
+
+		&--active {
+			width: calc(100% - 300px);
+			left: 300px;
+		}
+	}
+
 	.main {
 		position: relative;
 		width: calc(100% - 60px);
 		left: 60px;
+		transition: all 0.5s;
 
 		&--active {
 			width: calc(100% - 300px);

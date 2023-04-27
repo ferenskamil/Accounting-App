@@ -6,6 +6,16 @@
 	}
 
 	.topbar {
+		position: relative;
+		width: 100%;
+		left: 0;
+		transition: all 0.5s;
+
+		&--active {
+			width: calc(100% - 300px);
+			left: 300px;
+		}
+
 		.burger-btn-container {
 			.burger-btn {
 				&--active {
@@ -15,17 +25,6 @@
 					z-index: 0;
 				}
 			}
-		}
-	}
-
-	.main {
-		position: relative;
-		transition: all 0.5s;
-		left: 0;
-
-		&--active {
-			width: calc(100% - 300px);
-			left: 300px;
 		}
 	}
 }
