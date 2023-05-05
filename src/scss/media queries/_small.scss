@@ -17,14 +17,20 @@
 		}
 
 		.burger-btn-container {
+			z-index: 2;
 			.burger-btn {
 				&--active {
 					position: static;
 					color: $black;
 					animation: none;
-					z-index: 0;
 				}
 			}
+		}
+	}
+
+	.shadow {
+		&--active {
+			display: block;
 		}
 	}
 
@@ -37,13 +43,10 @@
 			left: 300px;
 		}
 	}
-
-	
 }
 
 @media (min-width: 576px) {
 	.summary {
 		grid-template-columns: repeat(2, 1fr);
 	}
-
 }

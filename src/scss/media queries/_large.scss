@@ -26,6 +26,12 @@
 		}
 	}
 
+	.shadow {
+		&--active {
+			display: none;
+		}
+	}
+
 	.main {
 		position: relative;
 		width: calc(100% - 60px);
