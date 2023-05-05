@@ -1,5 +1,11 @@
 @use '../utilities' as *;
 
+@media (min-width: 810px) {
+	.summary {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
 @media (min-width: 992px) {
 	.nav {
 		left: 0;

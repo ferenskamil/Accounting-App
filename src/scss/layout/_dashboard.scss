@@ -2,7 +2,7 @@
 
 .summary {
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-template-rows: auto;
 	gap: 20px;
 	padding: 0 1em;
@@ -13,8 +13,6 @@
 		display: grid;
 		grid-template-columns: 2fr 1fr;
 		grid-template-rows: auto;
-
-		// height: 100px;
 		background-color: $grey-light;
 		border: 1px solid red;
 
