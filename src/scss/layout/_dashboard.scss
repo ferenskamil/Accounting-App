@@ -10,9 +10,55 @@
 	margin-bottom: 20px;
 
 	&__card {
-		height: 100px;
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		grid-template-rows: auto;
+
+		// height: 100px;
 		background-color: $grey-light;
 		border: 1px solid red;
+
+		&-text {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			padding: 1em 1em 1em;
+			border: 1px solid lime;
+
+			&-title {
+				font-size: 2rem;
+				font-weight: 700;
+				padding-bottom: 0.2em;
+			}
+
+			&-value {
+				font-size: 1.8rem;
+				border: 1px solid purple;
+
+				& .income-value {
+					background-color: #fff;
+				}
+
+				& .invoices-amount {
+					background-color: #fff;
+				}
+
+				& .average-value {
+					background-color: #fff;
+				}
+
+				& .after-tax-value {
+					background-color: #fff;
+				}
+			}
+		}
+
+		& i {
+			text-align: center;
+			align-self: center;
+			font-size: 5rem;
+			color: $main-color;
+		}
 	}
 }
 
