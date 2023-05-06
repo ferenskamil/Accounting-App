@@ -70,6 +70,7 @@
 	margin-bottom: 20px;
 
 	&__card {
+		padding: 1em;
 		background-color: $grey-light;
 		border: 1px solid red;
 	}
@@ -78,21 +79,51 @@
 .invoices {
 	// Dzięki temu tabela będzie nam się przesuwała na boki
 	overflow-x: auto;
+
+	h2 {
+		padding-bottom: 0.2em;
+		font-size: 1.8rem;
+		font-weight: 400;
+	}
 	&__table {
+		width: 100%;
+		font-size: 1.4rem;
+		border-collapse: collapse;
+		text-align: center;
+
 		thead {
+			color: $white;
+			background-color: $main-color;
+
 			tr {
 			}
 
 			th {
+				padding: 0.7em;
 			}
 		}
 
 		tbody {
 			tr {
+				border-bottom: 1px solid $black-alpha;
 			}
 
-			th {
+			tr:last-child {
+				border-bottom: none;
 			}
+
+			td {
+				padding: 0.5em;
+			}
+
+			button {
+				padding: 0.2em;
+				margin: 0.2em;
+				cursor: pointer;
+			}
+		}
+
+		&-buttons {
 		}
 	}
 }
