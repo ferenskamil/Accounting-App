@@ -18,7 +18,7 @@
                 <div class="summary">
                         <div class="summary__card">
                                 <div class="summary__card-text">
-                                        <p class="summary__card-text-title">Total income</p>
+                                        <h2 class="summary__card-text-title">Total income</h2>
                                         <p class="summary__card-text-value"><span class="income-value">21 159</span>zł
                                         </p>
                                 </div>
@@ -26,14 +26,14 @@
                         </div>
                         <div class="summary__card">
                                 <div class="summary__card-text">
-                                        <p class="summary__card-text-title">Invoices amount</p>
+                                        <h2 class="summary__card-text-title">Invoices amount</h2>
                                         <p class="summary__card-text-value"><span class="invoices-amount">5</span></p>
                                 </div>
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
                         </div>
                         <div class="summary__card">
                                 <div class="summary__card-text">
-                                        <p class="summary__card-text-title">Average value</p>
+                                        <h2 class="summary__card-text-title">Average value</h2>
                                         <p class="summary__card-text-value"><span class="average-value">4 569</span>zł
                                         </p>
                                 </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="summary__card">
                                 <div class="summary__card-text">
-                                        <p class="summary__card-text-title">After taxes</p>
+                                        <h2 class="summary__card-text-title">After taxes</h2>
                                         <p class="summary__card-text-value"><span class="after-tax-value">16
                                                         546</span>zł</p>
                                 </div>
@@ -49,10 +49,36 @@
                         </div>
                 </div>
                 <div class="details">
-                        <div class="summary__card">
-                                <p>Tabela przedstawiająca szczegółowe informacje dot. każdej faktury</p>
+                        <div class="invoices details__card">
+                                <h2>Invoices</h2>
+                                <table class="invoices__table">
+                                        <thead>
+                                                <tr>
+                                                        <th>Invoice no.</th>
+                                                        <th>Contractor</th>
+                                                        <th>Gross</th>
+                                                        <th>Net</th>
+                                                        <th>Status</th>
+                                                        <th>Other</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>01/04/2023</td>
+                                                        <td>Lorem ipsum dolor es</td>
+                                                        <td><span>11111</span>zł</td>
+                                                        <td><span>9999</span>zł</td>
+                                                        <td>not-send</td>
+                                                        <td>
+                                                                <button>Lupa</button>
+                                                                <button>pdf</button>
+                                                                <button>Wyślij</button>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                </table>
                         </div>
-                        <div class="summary__card">
+                        <div class="details__card">
                                 <p>Wykres z przychodami na skali 12 miesięcznej.</p>
                         </div>
                 </div>

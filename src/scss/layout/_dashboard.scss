@@ -24,8 +24,9 @@
 			border: 1px solid lime;
 
 			&-title {
-				font-size: 1.8rem;
 				padding-bottom: 0.2em;
+				font-size: 1.8rem;
+				font-weight: 400;
 			}
 
 			&-value {
@@ -67,4 +68,31 @@
 	gap: 20px;
 	padding: 0 1em;
 	margin-bottom: 20px;
+
+	&__card {
+		background-color: $grey-light;
+		border: 1px solid red;
+	}
+}
+
+.invoices {
+	// Dzięki temu tabela będzie nam się przesuwała na boki
+	overflow-x: auto;
+	&__table {
+		thead {
+			tr {
+			}
+
+			th {
+			}
+		}
+
+		tbody {
+			tr {
+			}
+
+			th {
+			}
+		}
+	}
 }
