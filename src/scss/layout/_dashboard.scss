@@ -14,14 +14,12 @@
 		grid-template-columns: 2fr 1fr;
 		grid-template-rows: auto;
 		background-color: $grey-light;
-		border: 1px solid red;
 
 		&-text {
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
 			padding: 1em 1em 1em;
-			border: 1px solid lime;
 
 			&-title {
 				padding-bottom: 0.2em;
@@ -32,22 +30,21 @@
 			&-value {
 				font-size: 2rem;
 				font-weight: 700;
-				border: 1px solid purple;
 
 				& .income-value {
-					background-color: #fff;
+					// background-color: #fff;
 				}
 
 				& .invoices-amount {
-					background-color: #fff;
+					// background-color: #fff;
 				}
 
 				& .average-value {
-					background-color: #fff;
+					// background-color: #fff;
 				}
 
 				& .after-tax-value {
-					background-color: #fff;
+					// background-color: #fff;
 				}
 			}
 		}
@@ -69,61 +66,64 @@
 	padding: 0 1em;
 	margin-bottom: 20px;
 
-	&__card {
+	&__invoices {
 		padding: 1em;
 		background-color: $grey-light;
-		border: 1px solid red;
-	}
-}
+		// Dzięki temu tabela będzie nam się przesuwała na boki
+		overflow-x: auto;
 
-.invoices {
-	// Dzięki temu tabela będzie nam się przesuwała na boki
-	overflow-x: auto;
+		&-table {
+			width: 100%;
+			font-size: 1.4rem;
+			border-collapse: collapse;
+			text-align: center;
 
-	h2 {
-		padding-bottom: 0.2em;
-		font-size: 1.8rem;
-		font-weight: 400;
-	}
-	&__table {
-		width: 100%;
-		font-size: 1.4rem;
-		border-collapse: collapse;
-		text-align: center;
+			thead {
+				color: $white;
+				background-color: $main-color;
 
-		thead {
-			color: $white;
-			background-color: $main-color;
+				tr {
+				}
 
-			tr {
+				th {
+					padding: 0.7em;
+				}
 			}
 
-			th {
-				padding: 0.7em;
-			}
-		}
+			tbody {
+				tr {
+					border-bottom: 1px solid $black-alpha;
+				}
 
-		tbody {
-			tr {
-				border-bottom: 1px solid $black-alpha;
-			}
+				tr:last-child {
+					border-bottom: none;
+				}
 
-			tr:last-child {
-				border-bottom: none;
-			}
+				td {
+					padding: 0.5em;
+				}
 
-			td {
-				padding: 0.5em;
-			}
-
-			button {
-				padding: 0.2em;
-				margin: 0.2em;
-				cursor: pointer;
+				button {
+					padding: 0.2em;
+					margin: 0.2em;
+					cursor: pointer;
+				}
 			}
 		}
+	}
 
-		&-buttons {
+	&__results {
+		padding: 1em;
+		background-color: $grey-light;
+
+		// h2 {
+		// 	padding-bottom: 0.2em;
+		// 	font-size: 1.8rem;
+		// 	font-weight: 400;
+		// }
+
+		&-chart {
+			width: 100%;
 		}
 	}
 }
