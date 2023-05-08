@@ -102,11 +102,16 @@
 				td {
 					padding: 0.5em;
 				}
+			}
 
+			&-other {
 				button {
-					padding: 0.2em;
 					margin: 0.2em;
-					cursor: pointer;
+					i {
+						padding: 0.2em 0.4em;
+						background-color: transparent;
+						font-size: 1.5rem;
+					}
 				}
 			}
 		}
