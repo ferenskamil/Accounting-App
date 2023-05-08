@@ -18,7 +18,7 @@ const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 
 const paths = {
-	html: './src/php/**/*.kit',
+	html: './src/html/**/*.kit',
 	sass: './src/scss/**/*.scss',
 	js: './src/js/**/*.js',
 	img: './src/img/**/*',
