@@ -38,7 +38,7 @@ function handleKits(done) {
 		// 		path.extname = '.php';
 		// 	})
 		// )
-		// .pipe(dest('./'));
+		.pipe(dest('./'));
 	done();
 }
 
