@@ -43,6 +43,31 @@
 			left: 300px;
 		}
 	}
+
+	.register {
+		&__top {
+			i {
+				font-size: 3rem;
+			}
+
+			h2 {
+				font-size: 2rem;
+			}
+		}
+
+		&__form {
+			&-box {
+			}
+
+			&-label {
+				font-size: 2rem;
+			}
+
+			&-input {
+				font-size: 1.2rem;
+			}
+		}
+	}
 }
 
 @media (min-width: 576px) {
