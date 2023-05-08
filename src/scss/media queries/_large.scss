@@ -53,6 +53,29 @@
 	.summary {
 		grid-template-columns: repeat(4, 1fr);
 	}
+
+	.register {
+		&__wrapper {
+			max-width: 450px;
+		}
+
+		&__form {
+			&-box {
+			}
+
+			&-label {
+				font-size: 2.3rem;
+			}
+
+			&-input {
+				padding: 0.4rem 0.6rem;
+			}
+
+			&-submit {
+				font-size: 1.6rem;
+			}
+		}
+	}
 }
 @media (min-width: 1200px) {
 	.details {
@@ -72,7 +95,6 @@
 				thead {
 					color: $white;
 					background-color: $main-color;
-
 
 					th {
 						padding: 0.7em;
