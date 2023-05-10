@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <title>Dashboard</title>
+        <title>Invoice (test)</title>
 </head>
 
 <body>
@@ -79,6 +79,54 @@
         </div>
         <div class="shadow"></div>
 </div>
-        
+        <main class="main invoice">
+                <div class="invoice__settings">
+                        <button>Send</button>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                </div>
+                <div class="invoice__container">
+                        <div class="invoice__container-doc">
+                                <img src="./dist/img/logo/test_logo.png" alt="logo firmy wystawiającej fakturę">
+                                <h2>Faktura nr 01/01/2023</h2>
+                                <p>Oryginał</p>
+                                <p><Strong>Data wystawienia:</Strong> 01.01.2198r.</p>
+                                <p><Strong>Miejscowość:</Strong> Wrocław</p>
+                                <p><Strong>Bank</Strong> mBank</p>
+                                <p><Strong>Nr konta: </Strong> 99 0000 1111 2222 3333 4444 5555</p>
+                                <p><Strong>Termin zapłaty: </Strong> 14 dni</p>
+                                <br>
+                                <h3>Sprzedawca</h3>
+                                <p>Pizzeria Roma <br>
+                                        ul. Włoska 99c/12 <br>
+                                        54-061 Wrocław <br>
+                                        NIP: 1234432112</p>
+                                <br>
+                                <h3>Nabywca</h3>
+                                <p>Jan Kowalski <br>
+                                        ul. Miejsca 12 <br>
+                                        54-061 Wrocław <br>
+                                        NIP: 1234432112</p>
+                                <br>
+                                <hr>
+                                <br>
+                                <p>tu jest miejsce na tabelę</p>
+                                <br>
+                                <p><Strong>Do zapłaty: </Strong><span class="invoice__sum-num">9999</span>zł</p>
+                                <input type="text" id="test" placeholder="Wpisz jakiś numer">
+                                <p><Strong>Słownie: </Strong><span class="invoice__sum-word">dziewięć tysięcy
+                                                dziewięćset dziewięćdziesiąt dziewięć złotych</span></p>
+                                <br>
+                                <h3>Informacje dodatkowe</h3>
+                                <p>Zwolnienie podmiotowe - art. 113 ust. 1 ustawy z dnia 11 marca 2004r. O podatku od
+                                        towarów i usług</p>
+                                <p>(1) Wypełnia się w przypadku, gdy do towaru (usługi) stosuje się zwolnienia
+                                        przedmiotowe z podatku</p>
+                                <p>(2) np. potwierdzenie otrzymania towaru</p>
+                        </div>
+                </div>
+        </main>
+        <script src="./dist/js/index.min.js"></script>
 </body>
+
 </html>

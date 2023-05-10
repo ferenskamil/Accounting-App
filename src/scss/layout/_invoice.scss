@@ -1,0 +1,17 @@
+@use '../utilities/' as *;
+
+.invoice {
+	padding: 0 1em;
+
+	&__settings {
+		display: flex;
+		justify-content: end;
+		margin: 1em;
+
+		button {
+			padding: 0.3em 0.5em;
+			margin-left: 0.5em;
+			cursor: pointer;
+		}
+	}
+}
