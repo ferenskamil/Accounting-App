@@ -1,5 +1,84 @@
 @use '../utilities/' as *;
 
 @media (min-width: 768px) {
-	
+	.home {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+
+		&__top {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			height: 60px;
+			background-color: transparent;
+			color: $main-color;
+
+			&-left {
+				&-burger-btn {
+					display: none;
+				}
+
+				a {
+					i {
+						padding: 0.4em 0.5em 0.5em;
+					}
+
+					h2 {
+						border-right: 1px solid $black-alpha;
+						padding-top: 0.15em;
+					}
+				}
+			}
+
+			&-right {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				padding: 0.45em 0em 0em;
+
+				&-btns {
+					margin: 0 1em;
+				}
+
+				&-btn {
+					margin: 0;
+
+					&.login-btn {
+						color: $main-color;
+						background-color: transparent;
+						border: 1px solid $main-color;
+					}
+
+					&.register-btn {
+						color: $white;
+						background-color: $main-color;
+						border: 1px solid transparent;
+
+						&:hover {
+							background-color: $second-color;
+						}
+					}
+				}
+
+				ul {
+					display: flex;
+					align-items: center;
+					flex-direction: row;
+
+					a {
+						li {
+							padding: 0 0.5em;
+							border: none;
+
+							&:hover {
+								background-color: transparent;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
