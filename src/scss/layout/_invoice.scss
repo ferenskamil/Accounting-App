@@ -14,4 +14,33 @@
 			cursor: pointer;
 		}
 	}
+
+	&__container {
+	}
+
+	&__paper {
+		&-logo {
+			width: 200px;
+			max-width: 100vw;
+		}
+
+		&-title {
+		}
+
+		&-content {
+		}
+
+		&-services {
+			overflow-x: auto;
+		}
+
+		p {
+			color: royalblue;
+		}
+
+		table {
+			border: 1px solid red;
+			background-color: aqua;
+		}
+	}
 }
