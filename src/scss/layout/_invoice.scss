@@ -9,9 +9,22 @@
 		margin: 1em;
 
 		button {
+			background-color: $green;
+			color: $white;
+			border-radius: 8px;
+			border: 1px solid transparent;
+			outline: none;
 			padding: 0.3em 0.5em;
 			margin-left: 0.5em;
 			cursor: pointer;
+
+			&:active {
+				background-color: $green-dark;
+			}
+
+			i {
+				margin-right: 0.4em;
+			}
 		}
 	}
 
@@ -35,12 +48,44 @@
 		}
 
 		p {
-			color: royalblue;
 		}
 
 		table {
-			border: 1px solid red;
-			background-color: aqua;
+			// border: 1px solid $black;
+			border-collapse: collapse;
+
+			thead {
+				tr {
+					background-color: $main-color;
+					th {
+						padding: 0.6em 0.8em;
+						color: $white;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					border-left: 1px solid $black;
+					border-right: 1px solid $black;
+					border-bottom: 1px solid $black;
+					td {
+						padding: 0.6em 0.8em;
+
+						text-align: center;
+					}
+				}
+			}
+
+			tfoot {
+				tr {
+					td {
+						padding: 0.6em 0.8em;
+						font-weight: 700;
+						text-align: center;
+					}
+				}
+			}
 		}
 	}
 }
