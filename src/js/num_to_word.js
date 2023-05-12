@@ -1,111 +1,136 @@
-console.log('Test');
+const amountNumSpan = document.querySelector('.invoice__sum-num').textContent;
+const amountWordSpan = document.querySelector('.invoice__sum-word');
 
-const unities = [
-	'zero',
-	'jeden',
-	'dwa',
-	'trzy',
-	'cztery',
-	'pięć',
-	'sześć',
-	'siedem',
-	'osiem',
-	'dziewięć',
-];
+const unities = {
+	1: 'jeden',
+	2: 'dwa',
+	3: 'trzy',
+	4: 'cztery',
+	5: 'pięć',
+	6: 'sześć',
+	7: 'siedem',
+	8: 'osiem',
+	9: 'dziewięć',
+};
 
-const dozens = [
-	'dziesięć',
-	'dwadzieścia',
-	'trzydzieści',
-	'czterdzieści',
-	'pięćdziesiąt',
-	'sześćdziesiąt',
-	'siedemdziesiąt',
-	'osiemdziesiąt',
-	'dziewięćdziesiąt',
-];
+const aboveTen = {
+	10: 'dziesięć',
+	11: 'jedenaście',
+	12: 'dwanaście',
+	13: 'trzynaście',
+	14: 'czternaście',
+	15: 'pietnaście',
+	16: 'szesnaście',
+	17: 'siedemnaście',
+	18: 'osiemnaście',
+	19: 'dziewiętnaście',
+};
 
-const hundreds = [
-	'sto',
-	'dwieście',
-	'trzysta',
-	'czterysta',
-	'pięćset',
-	'sześćset',
-	'siedemset',
-	'osiemset',
-	'dziewięćset',
-];
+const dozens = {
+	2: 'dwadzieścia ',
+	3: 'trzydzieści ',
+	4: 'czterdzieści ',
+	5: 'pięćdziesiąt ',
+	6: 'sześćdziesiąt ',
+	7: 'siedemdziesiąt ',
+	8: 'osiemdziesiąt ',
+	9: 'dziewięćdziesiąt ',
+};
 
-const thousands_1 = 'tysiąc';
-const thousands_234 = 'tysiące';
-const thousands_rest = 'tysięcy';
+const hundreds = {
+	1: 'sto ',
+	2: 'dwieście ',
+	3: 'trzysta ',
+	4: 'czterysta ',
+	5: 'pięćset ',
+	6: 'sześćset ',
+	7: 'siedemset ',
+	8: 'osiemset ',
+	9: 'dziewięćset ',
+};
 
-const numToWord = (num) => {
+const thousands_ends = {
+	0: 'tysięcy',
+	1: 'tysiąc',
+	2: 'tysiące',
+	3: 'tysiące',
+	4: 'tysiące',
+	5: 'tysięcy',
+	6: 'tysięcy',
+	7: 'tysięcy',
+	8: 'tysięcy',
+	9: 'tysięcy',
+};
+
+const threeDigitsToPhrase = (num) => {
+	const numArr = num.split('');
+	const unit = numArr.pop();
+	const dozen = numArr.pop();
+	const hundred = numArr.pop();
+
+	let result = '';
+
+	if (hundred) {
+		result = ''.concat(hundreds[`${hundred}`], result);
+	}
+
+	if (dozen && dozen > '1') {
+		result = ''.concat(result, dozens[`${dozen}`]);
+		result = ''.concat(result, unities[`${unit}`]);
+	} else if (dozen && dozen === '1') {
+		result = ''.concat(result, aboveTen[`${dozen}${unit}`]);
+	}
+
+	if (!dozen && unit) {
+		result = ''.concat(unities[`${unit}`], result);
+	}
+
+	return result;
+};
+
+const changeNum = (num) => {
+	console.log(num);
+	const threeDigitsArr = [];
+	const currency = 'zł';
+	let workNum = num;
+	let restAmount = '00';
+	let wholeAmount;
+
 	// loop that removes zeros from the front of the number (string)
 	while (num[0] === '0') {
 		num = num.substring(1);
 	}
 
-	let restAmount = '00';
 	if (num.includes(',')) {
 		restAmount = num.substring(num.indexOf(',') + 1);
-		// In the future, the notation can be mathematically rounded instead of shortened
 		restAmount = restAmount.substring(0, 2);
-	}
-
-	let wholeAmount;
-	if (num.includes(',')) {
 		wholeAmount = num.substring(0, num.indexOf(','));
 	}
 
-	if (wholeAmount.length === 0) {
-		console.log('Podaj jakąś liczbę, podana liczba jest za krótka');
+	while (workNum.length >= 3) {
+		threeDigitsArr.unshift(workNum.slice(-3));
+		workNum = workNum.slice(0, -3);
 	}
 
-	if (wholeAmount.length === 1) {
-		unitiesNumToWords(wholeAmount);
-	} else if (wholeAmount.length === 2) {
-		dozensNumToWords(wholeAmount);
-	} else if (wholeAmount.length === 3) {
-		hundredsNumToWords(wholeAmount);
-	} else if (wholeAmount.length === 4) {
-		thousandsNumToWords(wholeAmount);
-	} else if (wholeAmount.length === 5) {
-		aboveOntenThousandsToWords(wholeAmount);
-	} else if (wholeAmount.length === 6) {
-		aboveHundredThousandsNumToWords(wholeAmount);
-	} else {
-		console.log('Podana liczba jest za długa - prace trwają.');
+	if (workNum.length < 3 && workNum) {
+		threeDigitsArr.unshift(workNum);
 	}
 
-	// return - To co zwracamy wyświetli się na ekranie
+	if (wholeAmount.length <= 3) {
+		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
+			threeDigitsArr[0]
+		)} ${currency} ${restAmount} gr`);
+	} else if (wholeAmount.length <= 6) {
+		let thousandsForm = threeDigitsArr[0].slice(-1);
+
+		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
+			threeDigitsArr[0]
+		)} ${thousands_ends[`${thousandsForm}`]} ${threeDigitsToPhrase(
+			threeDigitsArr[1]
+		)} ${currency} ${restAmount} gr`);
+	}
+
+	return (amountWordSpan.textContent = 'Za długa liczba');
 };
 
-const unitiesNumToWords = (num) => {
-	console.log('Liczba składa się z jedności');
-};
-
-const dozensNumToWords = (num) => {
-	console.log('Liczba składa się z dziesiątek');
-};
-
-const hundredsNumToWords = (num) => {
-	console.log('Liczba składa się z setek');
-};
-
-const thousandsNumToWords = (num) => {
-	console.log('Liczba składa się z tysięcy');
-};
-
-const aboveOntenThousandsToWords = (num) => {
-	console.log('Liczba składa się z nastu tysięcy');
-};
-
-const aboveHundredThousandsNumToWords = (num) => {
-	console.log('Liczba składa się z ponad stu tysięcy');
-};
-
-numToWord('000000945467,968745');
-
-// http://localhost:3000/invoice.html
+changeNum(amountNumSpan);
