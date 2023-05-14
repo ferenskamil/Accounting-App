@@ -25,30 +25,27 @@
                                 <img class="invoice__paper-logo" src="./dist/img/logo/test_logo.png"
                                         alt="logo firmy wystawiającej fakturę">
                                 <h2 class="invoice__paper-title">Faktura nr 01/01/2023</h2>
-                                <div class="invoice__paper-content">
+                                <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Data wystawienia:</Strong> 01.01.2198r.</p>
                                         <p><Strong>Miejscowość:</Strong> Wrocław</p>
-                                        <p><Strong>Bank</Strong> mBank</p>
+                                        <p><Strong>Bank:</Strong> mBank</p>
                                         <p><Strong>Nr konta: </Strong> 99 0000 1111 2222 3333 4444 5555</p>
                                         <p><Strong>Termin zapłaty: </Strong> 14 dni</p>
                                 </div>
-                                <br>
-                                <div class="invoice__paper-content">
+                                <div class="invoice__paper-content invoice-seller">
                                         <h3>Sprzedawca</h3>
-                                        <p><span>Pizzeria Roma</span></p>
-                                        <p><span>ul. Warszawska 14/3</span></p>
-                                        <p><span>54-123 Wrocław</span></p>
-                                        <p><span>NIP: 1234432112</span></p>
+                                        <p>Pizzeria Roma</p>
+                                        <p>ul. Warszawska 14/3</p>
+                                        <p>54-123 Wrocław</p>
+                                        <p>NIP: 1234432112</p>
                                 </div>
-                                <br>
-                                <div class="invoice__paper-content">
+                                <div class="invoice__paper-content invoice-customer">
                                         <h3>Nabywca</h3>
-                                        <p><span>Jan Kowalski</span></p>
-                                        <p><span>ul. Słoneczna 12c</span></p>
-                                        <p><span>54-123 Wrocław</span></p>
-                                        <p><span>NIP: ----</span></p>
+                                        <p>Jan Kowalski</p>
+                                        <p>ul. Słoneczna 12c</p>
+                                        <p>54-123 Wrocław</p>
+                                        <p>NIP: ----</p>
                                 </div>
-                                <br>
                                 <div class="invoice__paper-content invoice__paper-services">
                                         <table>
                                                 <thead>
@@ -133,24 +130,25 @@
                                                 </tfoot>
                                         </table>
                                 </div>
-                                <br>
-                                <div class="invoice__paper-content">
+                                <div class="invoice__paper-content invoice-sum">
                                         <p><Strong>Do zapłaty: </Strong><span class="invoice__sum-num">7864,23</span>
                                                 zł
                                         </p>
                                         <p><Strong>Słownie: </Strong><span class="invoice__sum-word"></span></p>
                                 </div>
-
-                                <br>
-                                <div class="invoice__paper-content">
+                                <div class="invoice__paper-content invoice-comments">
                                         <h3>Informacje dodatkowe</h3>
-                                        <p>Zwolnienie podmiotowe - art. 113 ust. 1 ustawy z dnia 11 marca 2004r. O
-                                                podatku od
-                                                towarów i usług</p>
-                                        <p>(1) Wypełnia się w przypadku, gdy do towaru (usługi) stosuje się zwolnienia
+                                        <p class="comment">Zwolnienie podmiotowe ust. 123 o sprzedaży czegośtam</p>
+                                        <p class="footnote">(1) Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
+                                                się zwolnienia
                                                 przedmiotowe z podatku</p>
-                                        <p>(2) np. potwierdzenie otrzymania towaru</p>
+                                        <p class="footnote">(2) np. potwierdzenie otrzymania towaru</p>
                                 </div>
+                                <div class="invoice__paper-content invoice-sign">
+                                        <div class="line"></div>
+                                        <p>Podpis osoby upoważnionej do wystawienia faktury</p>
+                                </div>
+
                         </div>
                 </div>
         </main>

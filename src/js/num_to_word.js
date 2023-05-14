@@ -119,7 +119,7 @@ const changeNum = (num) => {
 	if (wholeAmount.length <= 3) {
 		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
 			threeDigitsArr[0]
-		)} ${currency} ${restAmount} gr`);
+		)} ${restAmount}/100 ${currency}`);
 	} else if (wholeAmount.length <= 6) {
 		let thousandsForm = threeDigitsArr[0].slice(-1);
 
@@ -127,7 +127,7 @@ const changeNum = (num) => {
 			threeDigitsArr[0]
 		)} ${thousands_ends[`${thousandsForm}`]} ${threeDigitsToPhrase(
 			threeDigitsArr[1]
-		)} ${currency} ${restAmount} gr`);
+		)} ${restAmount}/100 ${currency}`);
 	}
 
 	return (amountWordSpan.textContent = 'Za długa liczba');
