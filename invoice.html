@@ -82,7 +82,7 @@
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button><i class="fa-solid fa-paper-plane"></i>Send</button>
-                        <button><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                        <button class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         <button><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
@@ -140,40 +140,7 @@
                                                                 <td><span>9999</span>zł</td>
                                                         </tr>
                                                         <tr>
-                                                                <td>2.</td>
-                                                                <td>Nauka pływania</td>
-                                                                <td>84.51.10.0</td>
-                                                                <td>szt.</td>
-                                                                <td>1</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td>zw</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td><span>9999</span>zł</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>3.</td>
-                                                                <td>Nauka pływania</td>
-                                                                <td>84.51.10.0</td>
-                                                                <td>szt.</td>
-                                                                <td>1</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td>zw</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td><span>9999</span>zł</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>4.</td>
-                                                                <td>Nauka pływania</td>
-                                                                <td>84.51.10.0</td>
-                                                                <td>szt.</td>
-                                                                <td>1</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td>zw</td>
-                                                                <td><span>9999</span>zł</td>
-                                                                <td><span>9999</span>zł</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td>5.</td>
+                                                                <td>1.</td>
                                                                 <td>Nauka pływania</td>
                                                                 <td>84.51.10.0</td>
                                                                 <td>szt.</td>
@@ -217,9 +184,76 @@
 
                         </div>
                 </div>
+                <!-- shadow? -->
+                <div class="invoice__edit">
+                        <button class="invoice__edit-back"><i
+                                        class="fa-sharp fa-solid fa-arrow-rotate-left"></i>Powrót</button>
+                        <form action="" method="post" class="invoice__edit-form">
+                                <div class="invoice__edit-form-box invoice__edit-form-box-details ">
+                                        <h2>Szczegóły</h2>
+                                        <label for="invoice-no">Nr faktury</label>
+                                        <input type="text" name="invoice-no" id="invoice-no" value="01/01/2023">
+                                        <label for="date">Data wystawienia: </label>
+                                        <input type="date" name="date" id="date" value="15.05.2023r.">
+                                        <label for="city">Miejscowość: </label>
+                                        <input type="text" name="city" id="city" value="Wrocław">
+                                        <label for="bank">Bank: </label>
+                                        <input type="text" name="bank" id="bank" value="mBank">
+                                        <label for="account-no">Nr konta: </label>
+                                        <input type="text" name="account-no" id="account-no"
+                                                value="99 0000 1111 2222 3333 4444 5555">
+                                        <label for="term">Termin zapłaty: </label>
+                                        <input type="text" name="term" id="term" value="14 dni">
+                                </div>
+                                <div class="invoice__edit-form-box invoice__edit-form-box-seller">
+                                        <h2>Twoje dane</h2>
+                                        <label for="seller-name">Nazwa: </label>
+                                        <input type="text" name="seller-name" id="seller-name" value="Pizzeria Roma">
+                                        <label for="seller-address1">Adres: </label>
+                                        <input type="text" name="seller-address1" id="seller-address1"
+                                                value="ul.Warszawska 14/3">
+                                        <label for="seller-address2">Adres cz.2: </label>
+                                        <input type="text" name="seller-address2" id="seller-address2"
+                                                value="54-123 Wrocław">
+                                        <label for="seller-NIP">NIP: </label>
+                                        <input type="text" name="seller-NIP" id="seller-NIP" value="1234432112">
+                                </div>
+                                <div class="invoice__edit-form-box invoice__edit-form-box-customer">
+                                        <h2>Dane nabywcy</h2>
+                                        <label for="customer-name">Nazwa: </label>
+                                        <input type="text" name="customer-name" id="customer-name" value="Jan Kowalski">
+                                        <label for="customer-address1">Adres: </label>
+                                        <input type="text" name="customer-address1" id="customer-address1"
+                                                value="ul.Słoneczna 12c">
+                                        <label for="customer-address2">Adres cz.2: </label>
+                                        <input type="text" name="customer-address2" id="customer-address2"
+                                                value="54-123 Wrocław">
+                                        <label for="customer-NIP">NIP: </label>
+                                        <input type="text" name="customer-NIP" id="customer-NIP" value="---">
+                                </div>
+                                <div class="invoice__edit-form-box invoice__edit-form-box-services">
+                                        <h2>Usługi</h2>
+                                        <p>Tutaj będzie podgląd usług (do zrobienia na końcu)</p>
+                                        <!-- Podgląd usług -->
+                                </div>
+                                <div class="invoice__edit-form-box invoice__edit-form-box-comments">
+                                        <h2>Dodatkowe informacje</h2>
+                                        <p>(1) Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
+                                                się zwolnienia
+                                                przedmiotowe z podatku</p>
+                                        <p>(2) np. potwierdzenie otrzymania towaru</p>
+                                        <textarea name="" id="" cols="30"
+                                                rows="10">Zwolnienie podiotowe art. 113 ust. o podatku dochodwym Lorem ipsum</textarea>
+                                </div>
+                                <div class="invoice__edit-form-box-submit-btn">
+                                        <button type="submit"><i class="fa-solid fa-floppy-disk "></i>Zapisz</button>
+                                </div>
+                        </form>
+                </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/num_to_word.min.js""></script>
+        <script src="./dist/js/invoice.min.js""></script>
 </body>
 
 </html>
