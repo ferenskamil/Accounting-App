@@ -56,7 +56,6 @@
 		}
 
 		&__form {
-
 			&-label {
 				font-size: 2rem;
 			}
@@ -77,10 +76,6 @@
 				grid-column: 1 / 2;
 				grid-row: 1 / 2;
 
-				// img {
-				// 	// width: 200px;
-				// 	max-width: 100%;
-				// }
 			}
 
 			&-title {
@@ -120,6 +115,47 @@
 
 			& .invoice-sign {
 				display: none;
+			}
+		}
+	}
+
+	.invoice-list {
+		&__table {
+
+			&-thead {
+				tr {
+					display: grid;
+					grid-template-columns: repeat(6, 1fr);
+					grid-template-rows: auto;
+				}
+
+				&--mobile {
+					display: none;
+				}
+
+				&--tablet {
+					display: block;
+				}
+			}
+
+			&-tbody {
+				&-item {
+					display: grid;
+					grid-template-columns: repeat(6, 1fr);
+					grid-template-rows: auto;
+
+					td {
+						text-align: center;
+					}
+
+					&-btns {
+						grid-column: 1 / 7;
+					}
+
+					&--mobile-title {
+						display: none;
+					}
+				}
 			}
 		}
 	}

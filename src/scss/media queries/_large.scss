@@ -83,6 +83,36 @@
 			max-width: 210mm;
 		}
 	}
+
+	.invoice-list {
+		&__table {
+			&-thead {
+				tr {
+					display: grid;
+					grid-template-columns: repeat(6, 1fr) 330px;
+					grid-template-rows: auto;
+				}
+
+				&--PC {
+					display: block;
+				}
+			}
+
+			&-tbody {
+				&-item {
+					display: grid;
+					grid-template-columns: repeat(6, 1fr) 330px;
+					grid-template-rows: 1fr;
+					align-items: center;
+
+					&-btns {
+						grid-column: 7 / 8;
+						justify-content: space-between;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media (min-width: 1200px) {
@@ -143,29 +173,11 @@
 			width: 100%;
 			max-width: 1400px;
 
-			&-back {
-				&:active {
-				}
-
-				&:focus {
-				}
-
-				i {
-				}
-			}
-
 			&-form {
 				grid-template-columns: repeat(3, 1fr);
 				max-width: 1200px;
 
 				&-box {
-
-					h2 {
-					}
-
-					p {
-					}
-
 					label {
 						line-height: auto;
 					}
@@ -173,14 +185,6 @@
 					input {
 						width: fit-content;
 						min-width: 100%;
-
-						&:focus {
-						}
-					}
-
-					textarea {
-						&:focus {
-						}
 					}
 
 					&-details {
@@ -211,17 +215,6 @@
 					&-submit-btn {
 						grid-column: 3 / 4;
 						grid-row: 3 / 4;
-					}
-				}
-
-				button {
-					&:active {
-					}
-
-					&:focus {
-					}
-
-					i {
 					}
 				}
 			}

@@ -10,51 +10,36 @@
 			background-color: $main-color;
 			color: $white;
 			tr {
-				// display: grid;
-				// grid-template-columns: repeat(5, 1fr);
-				// grid-template-rows: repeat(2, 1fr);
-
 				th {
 					font-size: 1.3rem;
 					padding: 0.5em;
 				}
 			}
-			&--mobile {
-				// display: none;
-			}
 
-			&--tablet {
+			&--tablet,
+			&--PC {
 				display: none;
 			}
 		}
 
 		&-tbody {
 			&-item {
-				// display: grid;
-				// grid-template-columns: repeat(5, 1fr);
-				// grid-template-rows: repeat(2, 1fr);
 				display: flex;
 				flex-direction: column;
 				padding: 0.5em;
 				width: 100%;
 				font-size: 1.2rem;
-				// background-color: tomato;
 				border-bottom: 1px solid $grey-dark;
 
 				&:hover {
 					background-color: $grey-light;
 				}
 
-				td {
-				}
-
 				&-btns {
-					// grid-column: 1/ 6;
 					display: flex;
 					flex-wrap: wrap;
 					gap: 0.4em;
 					padding: 0.5em 0;
-					// flex-direction: column;
 					justify-content: end;
 					align-items: end;
 
