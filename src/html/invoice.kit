@@ -24,27 +24,27 @@
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logo/test_logo.png"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Faktura nr 01/01/2023</h2>
+                                <h2 class="invoice__paper-title">Faktura VAT nr <span id="invoice-no-view"></span></h2>
                                 <div class="invoice__paper-content invoice-info">
-                                        <p><Strong>Data wystawienia:</Strong> 01.01.2198r.</p>
-                                        <p><Strong>Miejscowość:</Strong> Wrocław</p>
-                                        <p><Strong>Bank:</Strong> mBank</p>
-                                        <p><Strong>Nr konta: </Strong> 99 0000 1111 2222 3333 4444 5555</p>
-                                        <p><Strong>Termin zapłaty: </Strong> 14 dni</p>
+                                        <p><Strong>Data wystawienia: </Strong><span id="date-view"></span></p>
+                                        <p><Strong>Miejscowość: </Strong><span id="city-view"></span></p>
+                                        <p><Strong>Bank: </Strong><span id="bank-view"></span></p>
+                                        <p><Strong>Nr konta: </Strong><span id="account-no-view"></span></p>
+                                        <p><Strong>Termin zapłaty: </Strong><span id="term-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-seller">
                                         <h3>Sprzedawca</h3>
-                                        <p>Pizzeria Roma</p>
-                                        <p>ul. Warszawska 14/3</p>
-                                        <p>54-123 Wrocław</p>
-                                        <p>NIP: 1234432112</p>
+                                        <p><span id="seller-name-view"></span></p>
+                                        <p><span id="seller-address1-view"></span></p>
+                                        <p><span id="seller-address2-view"></span></p>
+                                        <p><span id="seller-NIP-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-customer">
                                         <h3>Nabywca</h3>
-                                        <p>Jan Kowalski</p>
-                                        <p>ul. Słoneczna 12c</p>
-                                        <p>54-123 Wrocław</p>
-                                        <p>NIP: ----</p>
+                                        <p><span id="customer-name-view"></span></p>
+                                        <p><span id="customer-address1-view"></span></p>
+                                        <p><span id="customer-address2-view"></span></p>
+                                        <p><span id="customer-NIP-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice__paper-services">
                                         <table>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="invoice__paper-content invoice-comments">
                                         <h3>Informacje dodatkowe</h3>
-                                        <p class="comment">Zwolnienie podmiotowe ust. 123 o sprzedaży czegośtam</p>
+                                        <p class="comment"><span id="comment-view"></span></p>
                                         <p class="footnote">*Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
                                                 się zwolnienia przedmiotowe z podatku</p>
                                 </div>
@@ -123,45 +123,53 @@
                         <form action="" method="post" class="invoice__edit-form">
                                 <div class="invoice__edit-form-box invoice__edit-form-box-details ">
                                         <h2>Szczegóły</h2>
-                                        <label for="invoice-no">Nr faktury</label>
-                                        <input type="text" name="invoice-no" id="invoice-no" value="01/01/2023">
-                                        <label for="date">Data wystawienia: </label>
-                                        <input class="test" type="date" name="date" id="date" value="2024-05-18">
-                                        <label for="city">Miejscowość: </label>
-                                        <input type="text" name="city" id="city" value="Wrocław">
-                                        <label for="bank">Bank: </label>
-                                        <input type="text" name="bank" id="bank" value="mBank">
-                                        <label for="account-no">Nr konta: </label>
-                                        <input type="text" name="account-no" id="account-no"
+                                        <label for="invoice-no-edit">Nr faktury</label>
+                                        <input type="text" name="invoice-no" id="invoice-no-edit" value="01/01/2023">
+                                        <label for="date-edit">Data wystawienia: </label>
+                                        <input class="test" type="date" name="date" id="date-edit" value="2024-05-18">
+                                        <label for="city-edit">Miejscowość: </label>
+                                        <input type="text" name="city" id="city-edit" value="Wrocław">
+                                        <label for="bank-edit">Bank: </label>
+                                        <input type="text" name="bank" id="bank-edit" value="mBank">
+                                        <label for="account-no-edit">Nr konta: </label>
+                                        <input type="text" name="account-no" id="account-no-edit"
                                                 value="99 0000 1111 2222 3333 4444 5555">
-                                        <label for="term">Termin zapłaty: </label>
-                                        <input type="text" name="term" id="term" value="14 dni">
+                                        <label for="term-edit">Termin zapłaty: </label>
+                                        <!-- <input type="number" name="term" id="term-edit" value="14"> -->
+                                        <select name="term" id="term-edit">
+                                                <option value="7 dni">7 dni</option>
+                                                <option value="14 dni" selected>14 dni</option>
+                                        </select>
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-seller">
                                         <h2>Twoje dane</h2>
-                                        <label for="seller-name">Nazwa: </label>
-                                        <input type="text" name="seller-name" id="seller-name" value="Pizzeria Roma">
-                                        <label for="seller-address1">Adres: </label>
-                                        <input type="text" name="seller-address1" id="seller-address1"
+                                        <label for="seller-name-edit">Nazwa: </label>
+                                        <input type="text" name="seller-name" id="seller-name-edit"
+                                                value="Pizzeria Roma">
+                                        <label for="seller-address1-edit">Adres: </label>
+                                        <input type="text" name="seller-address1" id="seller-address1-edit"
                                                 value="ul.Warszawska 14/3">
-                                        <label for="seller-address2">Adres cz.2: </label>
-                                        <input type="text" name="seller-address2" id="seller-address2"
+                                        <label for="seller-address2-edit">Adres cz.2: </label>
+                                        <input type="text" name="seller-address2" id="seller-address2-edit"
                                                 value="54-123 Wrocław">
-                                        <label for="seller-NIP">NIP: </label>
-                                        <input type="text" name="seller-NIP" id="seller-NIP" value="1234432112">
+                                        <label for="seller-NIP-edit">NIP: </label>
+                                        <input type="text" name="seller-NIP" id="seller-NIP-edit" value="1234432112"
+                                                placeholder="jeżeli brak wpisz '---'">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-customer">
                                         <h2>Dane nabywcy</h2>
-                                        <label for="customer-name">Nazwa: </label>
-                                        <input type="text" name="customer-name" id="customer-name" value="Jan Kowalski">
-                                        <label for="customer-address1">Adres: </label>
-                                        <input type="text" name="customer-address1" id="customer-address1"
+                                        <label for="customer-name-edit">Nazwa: </label>
+                                        <input type="text" name="customer-name" id="customer-name-edit"
+                                                value="Jan Kowalski">
+                                        <label for="customer-address1-edit">Adres: </label>
+                                        <input type="text" name="customer-address1" id="customer-address1-edit"
                                                 value="ul.Słoneczna 12c">
-                                        <label for="customer-address2">Adres cz.2: </label>
-                                        <input type="text" name="customer-address2" id="customer-address2"
+                                        <label for="customer-address2-edit">Adres cz.2: </label>
+                                        <input type="text" name="customer-address2" id="customer-address2-edit"
                                                 value="54-123 Wrocław">
-                                        <label for="customer-NIP">NIP: </label>
-                                        <input type="text" name="customer-NIP" id="customer-NIP" value="---">
+                                        <label for="customer-NIP-edit">NIP: </label>
+                                        <input type="text" name="customer-NIP" id="customer-NIP-edit" value="---"
+                                                placeholder="jeżeli brak wpisz '---'">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-services">
                                         <h2>Usługi</h2>
@@ -172,7 +180,7 @@
                                         <h2>Dodatkowe informacje</h2>
                                         <p>*Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
                                                 się zwolnienia przedmiotowe z podatku</p>
-                                        <textarea name="" id="" cols="30"
+                                        <textarea name="comment" id="comment-edit" cols="30"
                                                 rows="10">Zwolnienie podmiotowe art. 113 ust. o podatku dochodwym Lorem ipsum</textarea>
                                 </div>
                                 <div class="invoice__edit-form-box-submit-btn">
