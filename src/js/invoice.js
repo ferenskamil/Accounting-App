@@ -44,9 +44,21 @@ const validationInvoiceEditForm = (e) => {
 
 	return isOK;
 };
+
 submitBtnEditForm.addEventListener('click', (e) =>
-validationInvoiceEditForm(e)
+	validationInvoiceEditForm(e)
 );
+
+// =============================================
+// DISPLAY (OR NOT) EDIT FORM AFTER LOAD PAGE
+
+const editFormOnLoaded = (e) => {
+	if (!validationInvoiceEditForm(e)) {
+		openInvoiceEditForm();
+	}
+};
+
+document.addEventListener('DOMContentLoaded', (e) => editFormOnLoaded(e));
 
 // ============================================================
 // NOTES
