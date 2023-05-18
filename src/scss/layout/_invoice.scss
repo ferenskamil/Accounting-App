@@ -159,6 +159,15 @@
 					&:focus {
 						background-color: $grey-light;
 					}
+
+					&.invoice__edit-form-box-input--empty {
+						background-color: red;
+						background-color: #dc3545;
+						background-color: #ff7885;
+						background-color: #fc99a3;
+						background-color: #fdd9dd;
+						// background-color: #28a745;
+					}
 				}
 
 				textarea {
