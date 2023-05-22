@@ -239,8 +239,117 @@
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-services">
                                         <h2>Usługi</h2>
-                                        <p>Tutaj będzie podgląd usług (do zrobienia na końcu)</p>
-                                        <!-- Podgląd usług -->
+                                        <table class="invoice__edit-form-box-services-table">
+                                                <thead>
+                                                        <tr>
+                                                                <th class="service-thead--mobile">Services
+                                                                        list</th>
+                                                                <th class="service-thead--large">L.p.</th>
+                                                                <th class="service-thead--large">Nazwa towaru / usługi
+                                                                </th>
+                                                                <th class="service-thead--large">Kod PKWiU</th>
+                                                                <th class="service-thead--large">Ilość</th>
+                                                                <th class="service-thead--large">Cena netto (zł)</th>
+                                                                <th class="service-thead--large">Stawka VAT</th>
+                                                                <th class="service-thead--large">Wartość netto (zł)</th>
+                                                                <th class="service-thead--large">Wartość brutto (zł)
+                                                                </th>
+                                                                <th class="service-thead--large"></th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                                <td><span class="service-title--mobile">Nr pozycji:
+                                                                        </span> 1</td>
+                                                                <td><span class="service-title--mobile">Nazwa towaru /
+                                                                                usługi: </span><input type="text"
+                                                                                value="Nauka pływania"></td>
+                                                                <td><span class="service-title--mobile">Kod PKWiU
+                                                                                :</span><input type="text"
+                                                                                value="84.51.10.0"></td>
+                                                                <td><span class="service-title--mobile">Ilość:
+                                                                        </span><input type="number" value="1">
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Cena netto (zł):
+                                                                        </span><input type="number" name="" id=""
+                                                                                value="9999">
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Stawka VAT:
+                                                                        </span><select name="" id="">
+                                                                                <option value="0">zw</option>
+                                                                                <option value="8">8%</option>
+                                                                                <option value="23">23%</option>
+                                                                        </select></td>
+                                                                <td><span class="service-title--mobile">Wartość netto
+                                                                                (zł):
+                                                                        </span><input type="text" value="9999" disabled>
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Wartość
+                                                                                brutto (zł): </span><input type="text"
+                                                                                value="9999" disabled>
+                                                                </td>
+                                                                <td><button class="delete-btn"><i
+                                                                                        class="fa-solid fa-trash"></i>
+                                                                                Delete</button>
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td><span class="service-title--mobile">Nr pozycji:
+                                                                        </span>2</td>
+                                                                <td><span class="service-title--mobile">Nazwa towaru /
+                                                                                usługi: </span><input type="text"
+                                                                                value="Nauka pływania"></td>
+                                                                <td><span class="service-title--mobile">Kod PKWiU
+                                                                                :</span><input type="text"
+                                                                                value="84.51.10.0"></td>
+                                                                <td><span class="service-title--mobile">Ilość:
+                                                                        </span><input type="number" value="1">
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Cena netto (zł):
+                                                                        </span><input type="number" name="" id=""
+                                                                                value="9999">
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Stawka VAT:
+                                                                        </span><select name="" id="">
+                                                                                <option value="0">zw</option>
+                                                                                <option value="8">8%</option>
+                                                                                <option value="23">23%</option>
+                                                                        </select></td>
+                                                                <td><span class="service-title--mobile">Wartość netto
+                                                                                (zł):
+                                                                        </span><input type="text" value="9999" disabled>
+                                                                </td>
+                                                                <td><span class="service-title--mobile">Wartość
+                                                                                brutto (zł): </span><input type="text"
+                                                                                value="9999" disabled>
+                                                                </td>
+                                                                <td><button class="delete-btn"><i
+                                                                                        class="fa-solid fa-trash"></i>
+                                                                                Delete</button>
+                                                                </td>
+                                                        </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                        <tr>
+                                                                <td><button class="new-service-btn"><i
+                                                                                        class="fa-sharp fa-solid fa-plus"></i>
+                                                                                Add new</button></td>
+                                                                <td><strong>RAZEM:</strong></td>
+                                                                <td><span class="service-title--mobile"><strong>Cena
+                                                                                        netto:
+                                                                                </strong></span><span>9999</span>zł
+                                                                </td>
+                                                                <td><span class="service-title--mobile"><strong>Wartość
+                                                                                        netto:
+                                                                                </strong></span><span><span>0,00</span>zł
+                                                                </td>
+                                                                <td><span class="service-title--mobile"><strong>Cena
+                                                                                        brutto:
+                                                                                </strong></span><span><span>9999</span>zł
+                                                                </td>
+                                                        </tr>
+                                                </tfoot>
+                                        </table>
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-comments">
                                         <h2>Dodatkowe informacje</h2>
@@ -256,8 +365,8 @@
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/num_to_word.min.js""></script>
-        <script src=" ./dist/js/invoice.min.js""></script>
+        <script src="./dist/js/num_to_word.min.js"></script>
+        <script src="./dist/js/invoice.min.js"></script>
 </body>
 
 </html>

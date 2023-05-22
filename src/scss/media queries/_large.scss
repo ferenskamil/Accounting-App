@@ -82,6 +82,122 @@
 			box-shadow: 0 0 10px 10px $grey-alpha;
 			max-width: 210mm;
 		}
+
+		&__edit {
+			&-form {
+				&-box {
+					&-services {
+						&-table {
+							thead {
+								tr {
+									display: grid;
+									grid-template-columns:
+										40px minmax(150px, 1fr)
+										80px 40px 80px 80px 80px 80px 80px;
+									grid-template-rows: 1fr;
+									gap: 15px;
+									padding: 0.6em 0.5em 1em 0;
+
+									th {
+										padding: 0.6em 0;
+										text-align: start;
+										&.service-thead--mobile {
+											display: none;
+										}
+
+										&.service-thead--large {
+											display: block;
+										}
+									}
+
+									th:nth-child(2) {
+										text-align: center;
+									}
+								}
+							}
+
+							tbody {
+								tr {
+									grid-template-columns:
+										40px minmax(150px, 1fr)
+										80px 40px 80px 80px 80px 80px 80px;
+									justify-content: center;
+									align-items: end;
+									gap: 15px;
+									padding: 0.6em 0.5em 1em 0;
+									text-align: center;
+
+									td {
+										.service-title--mobile {
+											display: none;
+										}
+
+										.delete-btn {
+											padding: 0.5em;
+											margin: 0;
+										}
+
+										input {
+											width: 100%;
+										}
+									}
+
+									td:first-child {
+										padding-bottom: 5px;
+									}
+
+									td:last-child {
+										text-align: center;
+									}
+								}
+							}
+
+							tfoot {
+								tr {
+									display: grid;
+									grid-template-columns:
+										40px minmax(150px, 1fr)
+										80px 40px 80px 80px 80px 80px 80px;
+									grid-template-rows: 1fr;
+									gap: 15px;
+									padding: 0.6em 0.5em 1em 0;
+
+									td {
+										padding: 0.6em 0;
+										font-weight: 700;
+										text-align: start;
+
+										.new-service-btn {
+											@include button(
+												$green,
+												$green-dark
+											);
+
+											margin: 0;
+										}
+									}
+
+									td:nth-child(1) {
+										grid-column: 1 / 3;
+										grid-row: 1 / 2;
+									}
+
+									td:nth-child(2) {
+										grid-column: 3 / 5;
+										grid-row: 1 / 2;
+										text-align: center;
+									}
+								}
+							}
+
+							.service-title--mobile {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	.invoice-list {
