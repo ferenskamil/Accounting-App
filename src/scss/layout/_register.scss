@@ -1,14 +1,18 @@
 @use '../utilities/' as *;
 
 .register {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
-	width: 100vw;
-	height: 100vh;
 	padding: calc(50px + 0.5em) 0.5em 0.5em 0.5em;
 	background-color: $main-color;
+	font-size: 1.6rem;
 
 	&__top {
 		position: absolute;
@@ -23,7 +27,7 @@
 
 		i {
 			padding: 0.5em;
-			font-size: 2.4rem;
+			font-size: 3rem;
 		}
 
 		h2 {
@@ -59,13 +63,13 @@
 
 		&-label {
 			color: $main-color;
-			font-size: 1.6rem;
+			font-size: 2rem;
 			font-weight: 700;
 		}
 
 		&-input {
 			padding: 0.3em 0.5em;
-			font-size: 1rem;
+			font-size: 1.4rem;
 			border-radius: 4px;
 			border: 1px solid $main-color-alpha;
 			outline: none;
@@ -80,7 +84,7 @@
 		.error {
 			padding-top: 0.3em;
 			padding-left: 0.3em;
-			font-size: 1rem;
+			font-size: 1.3rem;
 			color: $main-color;
 		}
 
@@ -90,6 +94,7 @@
 			padding: 0.2em;
 			width: 100%;
 			color: $main-color;
+			font-size: 2rem;
 			font-weight: 700;
 			background-color: $second-color;
 			border: 1px solid transparent;
@@ -117,7 +122,7 @@
 				text-decoration: underline;
 
 				&:visited {
-					color: purple;
+					color: $second-color;
 				}
 			}
 		}
