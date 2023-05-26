@@ -53,7 +53,6 @@ submitBtnEditForm.addEventListener('click', (e) =>
 
 // =============================================
 // TRANSFERRING DATA FROM EDIT FORM TO PREVIEW
-
 const transferDataFromEditFormToPreview = () => {
 	const invoiceNoEditForm = document.querySelector('#invoice-no-edit').value;
 	const dateEditForm = document.querySelector('#date-edit').value;
@@ -190,6 +189,76 @@ const sanitizeAccountNoInput = (e) => {
 };
 
 accountNoInput.addEventListener('input', (e) => sanitizeAccountNoInput(e));
+
+// ============================================================
+// ADD SERVICE AFTER "ADD" BUTOON
+const addNewServiceBtn = document.querySelector('.new-service-btn');
+const servicesList = document.querySelector(
+	'.invoice__edit-form-box-services-table tbody'
+);
+
+// Funkcja nadająca numery poszczególnym wierszom
+// zbiera wszystkie do tablicy 
+// Za kazdym razem iteruje po wierszach i nadaje im nr zgodny z ich pozycją w tablicy 
+
+const createNewServiceItem = (e) => {
+	e.preventDefault();
+
+	const newItem = document.createElement('tr');
+	const itemNoSpan = document.createElement('td');
+	itemNoSpan.innerHTML = `<span class="service-title--mobile">Nr pozycji: </span>${'1'}`;
+
+	const serviceName = document.createElement('td');
+	serviceName.innerHTML = `<span class="service-title--mobile">Nazwa towaru / usługi: </span>
+	<input type="text" value="${'Carbonara'}">`;
+
+	const activityCode = document.createElement('td');
+	activityCode.innerHTML = `<span class="service-title--mobile">Kod PKWiU: </span>
+	<input type="text" value="${'56.21.11.0'}">`;
+
+	const amount = document.createElement('td');
+	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
+	<input type="number" value="${'1'}">`;
+
+	const netPrice = document.createElement('td');
+	netPrice.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
+	<input type="number" name="" id=""value="${5555}">`;
+
+	const taxValue = document.createElement('td');
+	taxValue.innerHTML = `<span class="service-title--mobile">Stawka VAT: </span>
+	<select name="" id="">
+		<option value="0">zw</option>
+		<option value="8">8%</option>
+		<option value="23">23%</option>
+	</select>`;
+
+	const netSumAmount = document.createElement('td');
+	netSumAmount.innerHTML = `<span class="service-title--mobile">Wartość netto (zł): </span>
+	<input type="text" value="${9999}" disabled>`;
+
+	const grossSumAmount = document.createElement('td');
+	grossSumAmount.innerHTML = `<span class="service-title--mobile">Wartość brutto (zł): </span>
+	<input type="text" value="${9999}" disabled>`;
+
+	const deleteBtn = document.createElement('td');
+	deleteBtn.innerHTML = `<button class="delete-btn">
+	<i class="fa-solid fa-trash"></i>Delete</button>`;
+
+	newItem.append(
+		itemNoSpan,
+		serviceName,
+		activityCode,
+		amount,
+		netPrice,
+		taxValue,
+		netSumAmount,
+		grossSumAmount,
+		deleteBtn
+	);
+	servicesList.append(newItem);
+};
+
+addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
 // ============================================================
 // NOTES
 // key shortcuts for testing
