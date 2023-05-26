@@ -198,15 +198,25 @@ const servicesList = document.querySelector(
 );
 
 // Funkcja nadająca numery poszczególnym wierszom
-// zbiera wszystkie do tablicy 
-// Za kazdym razem iteruje po wierszach i nadaje im nr zgodny z ich pozycją w tablicy 
+// zbiera wszystkie do tablicy
+// Za kazdym razem iteruje po wierszach i nadaje im nr zgodny z ich pozycją w tablicy
+
+const updateServiceItemNumbers = () => {
+	const allSpans = document.querySelectorAll(
+		'.invoice__edit-form-box-services-table .service-item-number'
+	);
+
+	for (let i = 0; i < allSpans.length; i++) {
+		allSpans[i].textContent = i + 1;
+	}
+};
 
 const createNewServiceItem = (e) => {
 	e.preventDefault();
 
 	const newItem = document.createElement('tr');
 	const itemNoSpan = document.createElement('td');
-	itemNoSpan.innerHTML = `<span class="service-title--mobile">Nr pozycji: </span>${'1'}`;
+	itemNoSpan.innerHTML = `<span class="service-title--mobile">Nr pozycji: </span><span class="service-item-number"></span>`;
 
 	const serviceName = document.createElement('td');
 	serviceName.innerHTML = `<span class="service-title--mobile">Nazwa towaru / usługi: </span>
@@ -256,6 +266,8 @@ const createNewServiceItem = (e) => {
 		deleteBtn
 	);
 	servicesList.append(newItem);
+
+	updateServiceItemNumbers();
 };
 
 addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
@@ -264,7 +276,6 @@ addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
 // key shortcuts for testing
 // const keyShortcuts = (e) => {
 // 	if (e.key === 'Enter') {
-// 		alert('test');
 // 	}
 // };
 // document.addEventListener('keydown', (e) => keyShortcuts(e));
