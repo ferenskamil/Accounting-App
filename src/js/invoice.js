@@ -289,17 +289,17 @@ addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
 // ============================================================
 // CALCULATE VALUES IN SERVICE ITEM
 
-const calculateTotalNet = (e) => {
+const calculateItemTotalNet = (e) => {
 	const item = e.target.parentElement.parentElement;
 	const amount = item.querySelector('.service-item-amount').value;
 	const netValue = item.querySelector('.service-item-net-value').value;
 	const totalNetValue = item.querySelector('.service-item-net-sum');
 
 	totalNetValue.value = `${amount * netValue} zł`;
-	calculateTotalGross(e);
+	calculateItemTotalGross(e);
 };
 
-const calculateTotalGross = (e) => {
+const calculateItemTotalGross = (e) => {
 	const item = e.target.parentElement.parentElement;
 	const tax = item.querySelector('.service-item-tax').value;
 	const netValue = item.querySelector('.service-item-net-sum').value;
@@ -316,11 +316,11 @@ document.addEventListener('input', (e) => {
 		e.target.classList.contains('service-item-amount') ||
 		e.target.classList.contains('service-item-net-value')
 	) {
-		calculateTotalNet(e);
+		calculateItemTotalNet(e);
 	}
 
 	if (e.target.classList.contains('service-item-tax')) {
-		calculateTotalGross(e);
+		calculateItemTotalGross(e);
 	}
 });
 
