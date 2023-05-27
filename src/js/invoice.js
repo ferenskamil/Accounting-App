@@ -307,6 +307,23 @@ document.addEventListener('input', (e) => {
 });
 
 // ============================================================
+// DELETE SERVICE ITEM
+const deleteServiceItem = (e) => {
+	e.preventDefault();
+
+	const item = e.target.parentElement.parentElement;
+	item.outerHTML = '';
+
+	updateServiceItemNumbers();
+};
+
+document.addEventListener('click', (e) => {
+	if (e.target.classList.contains('delete-btn')) {
+		deleteServiceItem(e);
+	}
+});
+
+// ============================================================
 // NOTES
 // key shortcuts for testing
 // const keyShortcuts = (e) => {
