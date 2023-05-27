@@ -232,10 +232,10 @@ const createNewServiceItem = (e) => {
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Stawka VAT: </span>
-	<select name="" id="">
+	<select name="" id="" class="service-item-tax">
 		<option value="0">zw</option>
-		<option value="8">8%</option>
-		<option value="23">23%</option>
+		<option value="0.08">8%</option>
+		<option value="0.23">23%</option>
 	</select>`;
 
 	const netSumAmount = document.createElement('td');
@@ -282,7 +282,19 @@ const calculateSumItemNetAmount = (e) => {
 		'.service-item-net-sum'
 	);
 
+	calculateTotalGross(e);
 	sumNetValue.value = `${amount * netValue} zł`;
+};
+
+const calculateTotalGross = (e) => {
+	const item = e.target.parentElement.parentElement;
+	const tax = item.querySelector('.service-item-tax').value;
+	const netValue = item.querySelector('.service-item-net-value').value;
+	const sumGrossValue = item.querySelector('.service-item-gross-sum');
+
+	const totalGross =
+		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
+	sumGrossValue.value = `${totalGross.toFixed(2)} zł`;
 };
 
 document.addEventListener('input', (e) => {
@@ -291,6 +303,10 @@ document.addEventListener('input', (e) => {
 		e.target.classList.contains('service-item-net-value')
 	) {
 		calculateSumItemNetAmount(e);
+	}
+
+	if (e.target.classList.contains('service-item-tax')) {
+		calculateTotalGross(e);
 	}
 });
 
