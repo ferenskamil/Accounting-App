@@ -191,15 +191,11 @@ const sanitizeAccountNoInput = (e) => {
 accountNoInput.addEventListener('input', (e) => sanitizeAccountNoInput(e));
 
 // ============================================================
-// ADD SERVICE AFTER "ADD" BUTOON
+// ADD SERVICE AFTER "ADD" BUTTON
 const addNewServiceBtn = document.querySelector('.new-service-btn');
 const servicesList = document.querySelector(
 	'.invoice__edit-form-box-services-table tbody'
 );
-
-// Funkcja nadająca numery poszczególnym wierszom
-// zbiera wszystkie do tablicy
-// Za kazdym razem iteruje po wierszach i nadaje im nr zgodny z ich pozycją w tablicy
 
 const updateServiceItemNumbers = () => {
 	const allSpans = document.querySelectorAll(
@@ -228,11 +224,11 @@ const createNewServiceItem = (e) => {
 
 	const amount = document.createElement('td');
 	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
-	<input type="number" value="${'1'}">`;
+	<input type="number" value="1" class="service-item-amount">`;
 
 	const netPrice = document.createElement('td');
 	netPrice.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
-	<input type="number" name="" id=""value="${5555}">`;
+	<input type="number" name="" id=""value="0" class="service-item-net-value">`;
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Stawka VAT: </span>
@@ -244,11 +240,11 @@ const createNewServiceItem = (e) => {
 
 	const netSumAmount = document.createElement('td');
 	netSumAmount.innerHTML = `<span class="service-title--mobile">Wartość netto (zł): </span>
-	<input type="text" value="${9999}" disabled>`;
+	<input type="text" value="0 zł" class="service-item-net-sum" disabled>`;
 
 	const grossSumAmount = document.createElement('td');
 	grossSumAmount.innerHTML = `<span class="service-title--mobile">Wartość brutto (zł): </span>
-	<input type="text" value="${9999}" disabled>`;
+	<input type="text" value="0 zł" class="service-item-gross-sum" disabled>`;
 
 	const deleteBtn = document.createElement('td');
 	deleteBtn.innerHTML = `<button class="delete-btn">
@@ -271,6 +267,33 @@ const createNewServiceItem = (e) => {
 };
 
 addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
+
+// ============================================================
+// CALCULATE VALUES IN SERVICE ITEM
+
+const calculateSumItemNetAmount = (e) => {
+	const amount = e.target.parentElement.parentElement.querySelector(
+		'.service-item-amount'
+	).value;
+	const netValue = e.target.parentElement.parentElement.querySelector(
+		'.service-item-net-value'
+	).value;
+	const sumNetValue = e.target.parentElement.parentElement.querySelector(
+		'.service-item-net-sum'
+	);
+
+	sumNetValue.value = `${amount * netValue} zł`;
+};
+
+document.addEventListener('input', (e) => {
+	if (
+		e.target.classList.contains('service-item-amount') ||
+		e.target.classList.contains('service-item-net-value')
+	) {
+		calculateSumItemNetAmount(e);
+	}
+});
+
 // ============================================================
 // NOTES
 // key shortcuts for testing

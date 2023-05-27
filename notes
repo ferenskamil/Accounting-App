@@ -1,6 +1,2 @@
-- resize font sizes
-
-- resize div ".register" display by changing "position:absolute" and 
-"top: 0; bottom: 0; left: 0, right: 0" on mobile devices
-
-- change display visited link color to "white"
+- Function calculate (update) the sum of net amount of service 
+- function calculate (update) the sum of gross amount of service 

@@ -250,9 +250,8 @@
                                                                 <th class="service-thead--large">Ilość</th>
                                                                 <th class="service-thead--large">Cena netto (zł)</th>
                                                                 <th class="service-thead--large">Stawka VAT</th>
-                                                                <th class="service-thead--large">Wartość netto (zł)</th>
-                                                                <th class="service-thead--large">Wartość brutto (zł)
-                                                                </th>
+                                                                <th class="service-thead--large">Wartość netto</th>
+                                                                <th class="service-thead--large">Wartość brutto</th>
                                                                 <th class="service-thead--large"></th>
                                                         </tr>
                                                 </thead>
@@ -269,10 +268,12 @@
                                                                                 :</span><input type="text"
                                                                                 value="56.21.11.0"></td>
                                                                 <td><span class="service-title--mobile">Ilość:
-                                                                        </span><input type="number" value="1">
+                                                                        </span><input type="number" value="1"
+                                                                                class="service-item-amount">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Cena netto (zł):
-                                                                        </span><input type="number" name="" id=""
+                                                                        </span><input type="number"
+                                                                                class="service-item-net-value"
                                                                                 value="9999">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Stawka VAT:
@@ -283,11 +284,13 @@
                                                                         </select></td>
                                                                 <td><span class="service-title--mobile">Wartość netto
                                                                                 (zł):
-                                                                        </span><input type="text" value="9999" disabled>
+                                                                        </span><input class="service-item-net-sum"
+                                                                                type="text" value="9999" disabled>
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Wartość
                                                                                 brutto (zł): </span><input type="text"
-                                                                                value="9999" disabled>
+                                                                                value="9999"
+                                                                                class="service-item-gross-sum" disabled>
                                                                 </td>
                                                                 <td><button class="delete-btn"><i
                                                                                         class="fa-solid fa-trash"></i>
@@ -306,10 +309,12 @@
                                                                                 :</span><input type="text"
                                                                                 value="56.21.11.0"></td>
                                                                 <td><span class="service-title--mobile">Ilość:
-                                                                        </span><input type="number" value="1">
+                                                                        </span><input type="number" value="1"
+                                                                                class="service-item-amount">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Cena netto (zł):
-                                                                        </span><input type="number" name="" id=""
+                                                                        </span><input type="number"
+                                                                                class="service-item-net-value"
                                                                                 value="9999">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Stawka VAT:
@@ -320,11 +325,13 @@
                                                                         </select></td>
                                                                 <td><span class="service-title--mobile">Wartość netto
                                                                                 (zł):
-                                                                        </span><input type="text" value="9999" disabled>
+                                                                        </span><input type="text" value="9999"
+                                                                                class="service-item-net-sum" disabled>
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Wartość
                                                                                 brutto (zł): </span><input type="text"
-                                                                                value="9999" disabled>
+                                                                                value="9999"
+                                                                                class="service-item-gross-sum" disabled>
                                                                 </td>
                                                                 <td><button class="delete-btn"><i
                                                                                         class="fa-solid fa-trash"></i>
