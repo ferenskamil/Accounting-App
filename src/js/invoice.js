@@ -191,6 +191,23 @@ const sanitizeAccountNoInput = (e) => {
 accountNoInput.addEventListener('input', (e) => sanitizeAccountNoInput(e));
 
 // ============================================================
+// DISPLAY INFO WHEN TBODY IS EMPTY
+
+const showEmptyInfo = () => {
+	const tbody = document.querySelector(
+		'.invoice__edit-form-box-services-table tbody'
+	);
+	const trItems = tbody.querySelectorAll('tr');
+	const emptyInfo = tbody.querySelector('.empty-info');
+
+	if (trItems.length === 1) {
+		emptyInfo.style.display = 'grid';
+	} else if (trItems.length > 1) {
+		emptyInfo.style.display = 'none';
+	}
+};
+
+// ============================================================
 // ADD SERVICE AFTER "ADD" BUTTON
 const addNewServiceBtn = document.querySelector('.new-service-btn');
 const servicesList = document.querySelector(
@@ -264,6 +281,7 @@ const createNewServiceItem = (e) => {
 	servicesList.append(newItem);
 
 	updateServiceItemNumbers();
+	showEmptyInfo();
 };
 
 addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
@@ -315,6 +333,7 @@ const deleteServiceItem = (e) => {
 	item.outerHTML = '';
 
 	updateServiceItemNumbers();
+	showEmptyInfo();
 };
 
 document.addEventListener('click', (e) => {

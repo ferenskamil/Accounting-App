@@ -149,6 +149,12 @@
 									td:last-child {
 										text-align: center;
 									}
+
+									&.empty-info {
+										td {
+											padding: 1rem;
+										}
+									}
 								}
 							}
 

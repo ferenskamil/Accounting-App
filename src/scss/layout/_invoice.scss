@@ -255,6 +255,17 @@
 								td:last-child {
 									text-align: end;
 								}
+
+								&.empty-info {
+									display: none;
+									padding: 0;
+
+									td {
+										grid-column: 1 / 10;
+										padding: 1rem;
+										font-size: 1.6rem;
+									}
+								}
 							}
 						}
 
