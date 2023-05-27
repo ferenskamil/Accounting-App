@@ -224,7 +224,7 @@ const createNewServiceItem = (e) => {
 
 	const amount = document.createElement('td');
 	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
-	<input type="number" value="1" class="service-item-amount">`;
+	<input type="number" value="1" min="0" class="service-item-amount">`;
 
 	const netPrice = document.createElement('td');
 	netPrice.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
@@ -277,18 +277,19 @@ const calculateTotalNet = (e) => {
 	const netValue = item.querySelector('.service-item-net-value').value;
 	const totalNetValue = item.querySelector('.service-item-net-sum');
 
-	calculateTotalGross(e);
 	totalNetValue.value = `${amount * netValue} zł`;
+	calculateTotalGross(e);
 };
 
 const calculateTotalGross = (e) => {
 	const item = e.target.parentElement.parentElement;
 	const tax = item.querySelector('.service-item-tax').value;
-	const netValue = item.querySelector('.service-item-net-value').value;
+	const netValue = item.querySelector('.service-item-net-sum').value;
 	const sumGrossValue = item.querySelector('.service-item-gross-sum');
 
 	const totalGross =
 		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
+
 	sumGrossValue.value = `${totalGross.toFixed(2)} zł`;
 };
 
