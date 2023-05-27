@@ -9,6 +9,9 @@ const openInvoiceEditForm = () => {
 	invoiceEditForm.style.display = 'block';
 	invoiceView.style.display = 'none';
 	invoiceSettings.style.display = 'none';
+
+	showEmptyInfo();
+	calculateTableSummary();
 };
 
 const closeInvoiceEditForm = () => {
@@ -309,6 +312,40 @@ const calculateItemTotalGross = (e) => {
 		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
 
 	sumGrossValue.value = `${totalGross.toFixed(2)} zł`;
+	calculateTableSummary();
+};
+
+const calculateInvoiceTotalNet = () => {
+	const itemTotalNetArr = document.querySelectorAll('.service-item-net-sum');
+	const invoiceTotalNetSpan = document.querySelector('.invoice-total-net');
+	let sum = 0;
+
+	itemTotalNetArr.forEach((el) => {
+		sum += parseFloat(el.value);
+	});
+
+	invoiceTotalNetSpan.textContent = `${sum} zł`;
+};
+
+const calculateInvoiceTotalGross = () => {
+	const itemTotalGrossArr = document.querySelectorAll(
+		'.service-item-gross-sum'
+	);
+	const invoiceTotalGrossSpan = document.querySelector(
+		'.invoice-total-gross'
+	);
+	let sum = 0;
+
+	itemTotalGrossArr.forEach((el) => {
+		sum += parseFloat(el.value);
+	});
+
+	invoiceTotalGrossSpan.textContent = `${sum} zł`;
+};
+
+const calculateTableSummary = () => {
+	calculateInvoiceTotalNet();
+	calculateInvoiceTotalGross();
 };
 
 document.addEventListener('input', (e) => {
@@ -334,6 +371,7 @@ const deleteServiceItem = (e) => {
 
 	updateServiceItemNumbers();
 	showEmptyInfo();
+	calculateTableSummary();
 };
 
 document.addEventListener('click', (e) => {
@@ -345,8 +383,10 @@ document.addEventListener('click', (e) => {
 // ============================================================
 // NOTES
 // key shortcuts for testing
-// const keyShortcuts = (e) => {
-// 	if (e.key === 'Enter') {
-// 	}
-// };
-// document.addEventListener('keydown', (e) => keyShortcuts(e));
+const keyShortcuts = (e) => {
+	if (e.key === 'Enter') {
+		calculateInvoiceTotalNet();
+		calculateInvoiceTotalGross();
+	}
+};
+document.addEventListener('keydown', (e) => keyShortcuts(e));

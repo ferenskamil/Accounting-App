@@ -1,1 +1,8 @@
-- function calculate (update) the sum of gross amount of service 
+INVOICE EDIT-FORM: calculate table summary
+
+- function "calculateInvoiceTotalNet()" calculates and displays the total net value of the entire invoice
+- function "calculateInvoiceTotalGross()" calculates and displays the total gross value of the entire invoice
+- function "calculateTableSummary()" invoke function above functions (calculateInvoiceTotalNet() and calculateInvoiceTotalGross())
+
+Other:
+- add a call to the "showEmptyInfo()" and "calculateTableSummary()" functions at the moment of opening the edit form

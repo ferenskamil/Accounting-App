@@ -191,7 +191,7 @@
                                                         <tr class="empty-info">
                                                                 <td>Brak pozycji na liście</td>
                                                         </tr>
-                                                        <tr>
+                                                        <!-- <tr>
                                                                 <td><span class="service-title--mobile">Nr pozycji:
                                                                         </span><span
                                                                                 class="service-item-number">1</span>
@@ -209,19 +209,19 @@
                                                                 <td><span class="service-title--mobile">Cena netto (zł):
                                                                         </span><input type="number"
                                                                                 class="service-item-net-value"
-                                                                                value="9999">
+                                                                                value="100">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Stawka VAT:
                                                                         </span><select name="" id=""
                                                                                 class="service-item-tax">
                                                                                 <option value="0">zw</option>
-                                                                                <option value="8">8%</option>
-                                                                                <option value="23">23%</option>
+                                                                                <option value="0.08">8%</option>
+                                                                                <option value="0.23">23%</option>
                                                                         </select></td>
                                                                 <td><span class="service-title--mobile">Wartość netto
                                                                                 (zł):
                                                                         </span><input class="service-item-net-sum"
-                                                                                type="text" value="9999" disabled>
+                                                                                type="text" value="100" disabled>
                                                                 </td>
                                                                 <td><span class="service-title--mobile">Wartość
                                                                                 brutto (zł): </span><input type="text"
@@ -274,7 +274,7 @@
                                                                                         class="fa-solid fa-trash"></i>
                                                                                 Delete</button>
                                                                 </td>
-                                                        </tr>
+                                                        </tr> -->
                                                 </tbody>
                                                 <tfoot>
                                                         <tr>
@@ -284,11 +284,13 @@
                                                                 <td><strong>RAZEM:</strong></td>
                                                                 <td><span class="service-title--mobile"><strong>Wartość
                                                                                         netto:
-                                                                                </strong></span><span><span>0,00</span>zł
+                                                                                </strong></span><span
+                                                                                class="invoice-total-net">0</span>
                                                                 </td>
                                                                 <td><span class="service-title--mobile"><strong>Cena
                                                                                         brutto:
-                                                                                </strong></span><span><span>9999</span>zł
+                                                                                </strong></span><span
+                                                                                class="invoice-total-gross">0</span>
                                                                 </td>
                                                         </tr>
                                                 </tfoot>
