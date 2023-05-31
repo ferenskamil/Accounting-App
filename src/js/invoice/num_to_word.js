@@ -1,7 +1,11 @@
-const amountNumSpan = document.querySelector('.invoice__sum-num').textContent;
+// ============================================================
+// WORD TO NUM FUNCTION
+
+let amountNumSpan = document.querySelector('.invoice__sum-num');
 const amountWordSpan = document.querySelector('.invoice__sum-word');
 
 const unities = {
+	0: 'zero',
 	1: 'jeden',
 	2: 'dwa',
 	3: 'trzy',
@@ -89,47 +93,48 @@ const threeDigitsToPhrase = (num) => {
 };
 
 const changeNum = (num) => {
-	const threeDigitsArr = [];
+	num = num.toString();
+	const threeDigitsPartsArr = [];
 	const currency = 'zł';
-	let workNum = num;
-	let restAmount = '00';
-	let wholeAmount;
+	let rest = '00';
+	let whole = (num - (num % 1)).toString();
+	let workNum = whole;
 
 	// loop that removes zeros from the front of the number (string)
 	while (num[0] === '0') {
 		num = num.substring(1);
 	}
 
-	if (num.includes(',')) {
-		restAmount = num.substring(num.indexOf(',') + 1);
-		restAmount = restAmount.substring(0, 2);
-		wholeAmount = num.substring(0, num.indexOf(','));
+	// To ponizej mozna jakoś wpleść do wyświetlania części dziesiętnych
+	if (num.includes('.')) {
+		rest = num.substring(num.indexOf('.') + 1);
+		rest = rest.concat('0');
+		rest = rest.substring(0, 2);
+		whole = num.substring(0, num.indexOf('.'));
 	}
 
 	while (workNum.length >= 3) {
-		threeDigitsArr.unshift(workNum.slice(-3));
+		threeDigitsPartsArr.unshift(workNum.slice(-3));
 		workNum = workNum.slice(0, -3);
 	}
 
 	if (workNum.length < 3 && workNum) {
-		threeDigitsArr.unshift(workNum);
+		threeDigitsPartsArr.unshift(workNum);
 	}
 
-	if (wholeAmount.length <= 3) {
+	if (whole.length <= 3) {
 		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
-			threeDigitsArr[0]
-		)} ${restAmount}/100 ${currency}`);
-	} else if (wholeAmount.length <= 6) {
-		let thousandsForm = threeDigitsArr[0].slice(-1);
+			threeDigitsPartsArr[0]
+		)} ${rest}/100 ${currency}`);
+	} else if (whole.length <= 6) {
+		let thousandsForm = threeDigitsPartsArr[0].slice(-1);
 
 		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
-			threeDigitsArr[0]
+			threeDigitsPartsArr[0]
 		)} ${thousands_ends[`${thousandsForm}`]} ${threeDigitsToPhrase(
-			threeDigitsArr[1]
-		)} ${restAmount}/100 ${currency}`);
+			threeDigitsPartsArr[1]
+		)} ${rest}/100 ${currency}`);
 	}
 
 	return (amountWordSpan.textContent = 'Za długa liczba');
 };
-
-changeNum(amountNumSpan);

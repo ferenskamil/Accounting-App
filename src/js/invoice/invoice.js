@@ -124,8 +124,6 @@ const displayServiceItemsInPreview = () => {
 		invoiceTbodyPreview.innerHTML = '';
 
 		itemsArr.forEach((el) => {
-			console.log(el);
-
 			const newTr = document.createElement('tr');
 
 			const numberTd = document.createElement('td');
@@ -173,6 +171,7 @@ const displayServiceItemsInPreview = () => {
 };
 
 const displayInvoiceSummaryInPreview = () => {
+	let amountNumSpan = document.querySelector('.invoice__sum-num');
 	const editFormTotalNet = document.querySelector('.invoice-total-net');
 	const editFormTotalGross = document.querySelector('.invoice-total-gross');
 
@@ -182,8 +181,6 @@ const displayInvoiceSummaryInPreview = () => {
 	previewTotalNet.textContent = editFormTotalNet.textContent;
 	previewTotalGross.textContent = editFormTotalGross.textContent;
 	amountNumSpan.textContent = parseFloat(editFormTotalGross.textContent);
-	console.log(parseFloat(editFormTotalGross.textContent));
-	console.log(amountNumSpan.textContent);
 
 	changeNum(amountNumSpan.textContent);
 };
