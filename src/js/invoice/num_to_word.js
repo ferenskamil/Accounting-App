@@ -89,7 +89,6 @@ const threeDigitsToPhrase = (num) => {
 };
 
 const changeNum = (num) => {
-	console.log(num);
 	const threeDigitsArr = [];
 	const currency = 'zł';
 	let workNum = num;
