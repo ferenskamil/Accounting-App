@@ -56,6 +56,138 @@ submitBtnEditForm.addEventListener('click', (e) =>
 
 // =============================================
 // TRANSFERRING DATA FROM EDIT FORM TO PREVIEW
+
+const invoiceTbodyPreview = document.querySelector(
+	'.invoice__paper table tbody'
+);
+
+let itemsArr = [];
+class serviceItem {
+	constructor(
+		number,
+		name,
+		activityCode,
+		amount,
+		netPrice,
+		tax,
+		netSum,
+		grossSum
+	) {
+		this.number = number;
+		this.name = name;
+		this.activityCode = activityCode;
+		this.amount = amount;
+		this.netPrice = netPrice;
+		this.tax = tax;
+		this.netSum = netSum;
+		this.grossSum = grossSum;
+	}
+}
+
+const transferServiceItemsFromEditFormToArr = () => {
+	const serviceItemsArr = document.querySelectorAll(
+		'.invoice__edit-form-box-services-table tbody tr'
+	);
+	itemsArr = [];
+
+	for (let i = 1; i < serviceItemsArr.length; i++) {
+		const el = serviceItemsArr[i];
+
+		const number = el.querySelector('.service-item-number').textContent;
+		const name = el.querySelector('.service-item-name').value;
+		const activityCode = el.querySelector('.service-item-code').value;
+		const amount = el.querySelector('.service-item-amount').value;
+		const netPrice = el.querySelector('.service-item-net-value').value;
+		const tax = el.querySelector('.service-item-tax').value;
+		const netSum = el.querySelector('.service-item-net-sum').value;
+		const grossSum = el.querySelector('.service-item-gross-sum').value;
+
+		const newItem = new serviceItem(
+			number,
+			name,
+			activityCode,
+			amount,
+			netPrice,
+			tax,
+			netSum,
+			grossSum
+		);
+
+		itemsArr.push(newItem);
+	}
+};
+
+const displayServiceItemsInPreview = () => {
+	transferServiceItemsFromEditFormToArr();
+
+	if (itemsArr.length !== 0) {
+		invoiceTbodyPreview.innerHTML = '';
+
+		itemsArr.forEach((el) => {
+			console.log(el);
+
+			const newTr = document.createElement('tr');
+
+			const numberTd = document.createElement('td');
+			numberTd.innerHTML = el.number + '.';
+
+			const activityCodeTd = document.createElement('td');
+			activityCodeTd.innerHTML = el.activityCode;
+
+			const amountTd = document.createElement('td');
+			amountTd.innerHTML = el.amount;
+
+			const netPriceTd = document.createElement('td');
+			netPriceTd.innerHTML = el.netPrice;
+
+			const taxTd = document.createElement('td');
+			if (el.tax === '0') {
+				taxTd.innerHTML = 'zw';
+			} else {
+				taxTd.innerHTML = `${el.tax * 100}%`;
+			}
+
+			const netSumTd = document.createElement('td');
+			netSumTd.innerHTML = el.netSum;
+
+			const grossSumTd = document.createElement('td');
+			grossSumTd.innerHTML = el.grossSum;
+
+			const nameTd = document.createElement('td');
+			nameTd.innerHTML = el.name;
+
+			newTr.append(
+				numberTd,
+				nameTd,
+				activityCodeTd,
+				amountTd,
+				netPriceTd,
+				taxTd,
+				netSumTd,
+				grossSumTd
+			);
+
+			invoiceTbodyPreview.append(newTr);
+		});
+	}
+};
+
+const displayInvoiceSummaryInPreview = () => {
+	const editFormTotalNet = document.querySelector('.invoice-total-net');
+	const editFormTotalGross = document.querySelector('.invoice-total-gross');
+
+	const previewTotalNet = document.querySelector('.preview-total-net');
+	const previewTotalGross = document.querySelector('.preview-total-gross');
+
+	previewTotalNet.textContent = editFormTotalNet.textContent;
+	previewTotalGross.textContent = editFormTotalGross.textContent;
+	amountNumSpan.textContent = parseFloat(editFormTotalGross.textContent);
+	console.log(parseFloat(editFormTotalGross.textContent));
+	console.log(amountNumSpan.textContent);
+
+	changeNum(amountNumSpan.textContent);
+};
+
 const transferDataFromEditFormToPreview = () => {
 	const invoiceNoEditForm = document.querySelector('#invoice-no-edit').value;
 	const dateEditForm = document.querySelector('#date-edit').value;
@@ -130,10 +262,12 @@ const transferDataFromEditFormToPreview = () => {
 	customerNIPView.textContent = customerNIPEditForm;
 
 	commentTextAreaView.textContent = commentTextAreaEditForm;
+
+	displayServiceItemsInPreview();
+	displayInvoiceSummaryInPreview();
 };
 
 submitBtnEditForm.addEventListener('click', transferDataFromEditFormToPreview);
-
 // =============================================
 // DISPLAY (OR NOT) EDIT FORM AFTER LOAD PAGE
 
@@ -236,11 +370,11 @@ const createNewServiceItem = (e) => {
 
 	const serviceName = document.createElement('td');
 	serviceName.innerHTML = `<span class="service-title--mobile">Nazwa towaru / usługi: </span>
-	<input type="text" value="${'Carbonara'}">`;
+	<input class="service-item-name" type="text" value="${'Carbonara'}">`;
 
 	const activityCode = document.createElement('td');
 	activityCode.innerHTML = `<span class="service-title--mobile">Kod PKWiU: </span>
-	<input type="text" value="${'56.21.11.0'}">`;
+	<input class="service-item-code" type="text" value="${'56.21.11.0'}">`;
 
 	const amount = document.createElement('td');
 	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
@@ -248,7 +382,7 @@ const createNewServiceItem = (e) => {
 
 	const netPrice = document.createElement('td');
 	netPrice.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
-	<input type="number" name="" id=""value="0" class="service-item-net-value">`;
+	<input type="number" name="" id="" min="0" value="0" class="service-item-net-value">`;
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Stawka VAT: </span>
@@ -383,10 +517,10 @@ document.addEventListener('click', (e) => {
 // ============================================================
 // NOTES
 // key shortcuts for testing
-const keyShortcuts = (e) => {
-	if (e.key === 'Enter') {
-		calculateInvoiceTotalNet();
-		calculateInvoiceTotalGross();
-	}
-};
-document.addEventListener('keydown', (e) => keyShortcuts(e));
+// const keyShortcuts = (e) => {
+// 	if (e.key === 'Enter') {
+// 		transferServiceItemsFromEditFormToArr();
+// 		displayServiceItemsInPreview();
+// 	}
+// };
+// document.addEventListener('keydown', (e) => keyShortcuts(e));
