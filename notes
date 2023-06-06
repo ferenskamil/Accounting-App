@@ -1,1 +1,35 @@
-- zmiana organizacji tabeli w preview 
+- create one variable "servicesTbody" and removed the twin variable "servicesList"
+- minor corrections in the comments
+
+In the function "showEmptyInfo()":
+- changing the variable name from "trItems" to "services"
+
+In the function "updateServiceItemNumbers()":
+- zmiana nazwy funkcji na "updateItemsNumbers()"
+- changing the variable name from "allSpans" to "itemsNoSpans"
+
+
+In the function "createNewServiceItem()":
+- rename the function to "createNewService()"
+- changing the variable name from "netPrice" to "netValue"
+- changing the variable name from "netSumAmount" to "netSum"
+- changing the variable name from "grossSumAmount" to "grossSum"
+- in the variables "netSum" and "grossSum" change the initial value from 
+"0 PLN" to "0.00 PLN"
+
+In the function "calculateItemTotalNet(e)": 
+- changing the variable name from "netValue" to "netPerOnePiece"
+- changing the variable name from "totalNetValue" to "net"
+- rounding the "netValue" value to two decimal places
+
+In the function "calculateItemTotalGross(e)":
+- zmiana nazwy zmienne "sumGrossValue" to "grossValue" 
+
+
+In the function "calculateInvoiceTotalNet()":
+- changing the variable name from "itemTotalNetArr" to "allNetValues"
+- rounding the "sum" value to two decimal places
+
+In the function "calculateInvoiceTotalGross()": 
+- changing the variable name from "itemTotalGrossArr" to "allGrossValues"
+- rounding the "sum" value to two decimal places

@@ -1,38 +1,36 @@
 // ============================================================
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
-const showEmptyInfo = () => {
-	const tbody = document.querySelector(
-		'.invoice__edit-form-box-services-table tbody'
-	);
-	const trItems = tbody.querySelectorAll('tr');
-	const emptyInfo = tbody.querySelector('.empty-info');
+const servicesTbody = document.querySelector(
+	'.invoice__edit-form-box-services-table tbody'
+);
+const addNewServiceBtn = document.querySelector('.new-service-btn');
 
-	if (trItems.length === 1) {
+const showEmptyInfo = () => {
+	const services = servicesTbody.querySelectorAll('tr');
+	const emptyInfo = servicesTbody.querySelector('.empty-info');
+
+	if (services.length === 1) {
 		emptyInfo.style.display = 'grid';
-	} else if (trItems.length > 1) {
+	} else if (services.length > 1) {
 		emptyInfo.style.display = 'none';
 	}
 };
 
 // ============================================================
-// ADD SERVICE AFTER "ADD" BUTTON
-const addNewServiceBtn = document.querySelector('.new-service-btn');
-const servicesList = document.querySelector(
-	'.invoice__edit-form-box-services-table tbody'
-);
+// ADD SERVICE AFTER CLICK THE"ADD" BUTTON
 
-const updateServiceItemNumbers = () => {
-	const allSpans = document.querySelectorAll(
+const updateItemsNumbers = () => {
+	const itemsNoSpans = document.querySelectorAll(
 		'.invoice__edit-form-box-services-table .service-item-number'
 	);
 
-	for (let i = 0; i < allSpans.length; i++) {
-		allSpans[i].textContent = i + 1;
+	for (let i = 0; i < itemsNoSpans.length; i++) {
+		itemsNoSpans[i].textContent = i + 1;
 	}
 };
 
-const createNewServiceItem = (e) => {
+const createNewService = (e) => {
 	e.preventDefault();
 
 	const newItem = document.createElement('tr');
@@ -51,8 +49,8 @@ const createNewServiceItem = (e) => {
 	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
 	<input type="number" value="1" min="0" class="service-item-amount">`;
 
-	const netPrice = document.createElement('td');
-	netPrice.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
+	const netValue = document.createElement('td');
+	netValue.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
 	<input type="number" name="" id="" min="0" value="0" class="service-item-net-value">`;
 
 	const taxValue = document.createElement('td');
@@ -63,13 +61,13 @@ const createNewServiceItem = (e) => {
 		<option value="0.23">23%</option>
 	</select>`;
 
-	const netSumAmount = document.createElement('td');
-	netSumAmount.innerHTML = `<span class="service-title--mobile">Wartość netto (zł): </span>
-	<input type="text" value="0 zł" class="service-item-net-sum" disabled>`;
+	const netSum = document.createElement('td');
+	netSum.innerHTML = `<span class="service-title--mobile">Wartość netto (zł): </span>
+	<input type="text" value="0.00 zł" class="service-item-net-sum" disabled>`;
 
-	const grossSumAmount = document.createElement('td');
-	grossSumAmount.innerHTML = `<span class="service-title--mobile">Wartość brutto (zł): </span>
-	<input type="text" value="0 zł" class="service-item-gross-sum" disabled>`;
+	const grossSum = document.createElement('td');
+	grossSum.innerHTML = `<span class="service-title--mobile">Wartość brutto (zł): </span>
+	<input type="text" value="0.00 zł" class="service-item-gross-sum" disabled>`;
 
 	const deleteBtn = document.createElement('td');
 	deleteBtn.innerHTML = `<button class="delete-btn">
@@ -80,19 +78,19 @@ const createNewServiceItem = (e) => {
 		serviceName,
 		activityCode,
 		amount,
-		netPrice,
+		netValue,
 		taxValue,
-		netSumAmount,
-		grossSumAmount,
+		netSum,
+		grossSum,
 		deleteBtn
 	);
-	servicesList.append(newItem);
+	servicesTbody.append(newItem);
 
-	updateServiceItemNumbers();
+	updateItemsNumbers();
 	showEmptyInfo();
 };
 
-addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
+addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
 
 // ============================================================
 // CALCULATE VALUES IN SERVICE ITEM
@@ -100,10 +98,10 @@ addNewServiceBtn.addEventListener('click', (e) => createNewServiceItem(e));
 const calculateItemTotalNet = (e) => {
 	const item = e.target.parentElement.parentElement;
 	const amount = item.querySelector('.service-item-amount').value;
-	const netValue = item.querySelector('.service-item-net-value').value;
-	const totalNetValue = item.querySelector('.service-item-net-sum');
+	const netPerOnePiece = item.querySelector('.service-item-net-value').value;
+	const net = item.querySelector('.service-item-net-sum');
 
-	totalNetValue.value = `${amount * netValue} zł`;
+	net.value = `${(amount * netPerOnePiece).toFixed(2)} zł`;
 	calculateItemTotalGross(e);
 };
 
@@ -111,41 +109,40 @@ const calculateItemTotalGross = (e) => {
 	const item = e.target.parentElement.parentElement;
 	const tax = item.querySelector('.service-item-tax').value;
 	const netValue = item.querySelector('.service-item-net-sum').value;
-	const sumGrossValue = item.querySelector('.service-item-gross-sum');
+	const sumGross = item.querySelector('.service-item-gross-sum');
 
 	const totalGross =
 		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
 
-	sumGrossValue.value = `${totalGross.toFixed(2)} zł`;
+	sumGross.value = `${totalGross.toFixed(2)} zł`;
+
 	calculateTableSummary();
 };
 
 const calculateInvoiceTotalNet = () => {
-	const itemTotalNetArr = document.querySelectorAll('.service-item-net-sum');
+	const allNetValues = document.querySelectorAll('.service-item-net-sum');
 	const invoiceTotalNetSpan = document.querySelector('.invoice-total-net');
 	let sum = 0;
 
-	itemTotalNetArr.forEach((el) => {
+	allNetValues.forEach((el) => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalNetSpan.textContent = `${sum} zł`;
+	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} zł`;
 };
 
 const calculateInvoiceTotalGross = () => {
-	const itemTotalGrossArr = document.querySelectorAll(
-		'.service-item-gross-sum'
-	);
+	const allGrossValues = document.querySelectorAll('.service-item-gross-sum');
 	const invoiceTotalGrossSpan = document.querySelector(
 		'.invoice-total-gross'
 	);
 	let sum = 0;
 
-	itemTotalGrossArr.forEach((el) => {
+	allGrossValues.forEach((el) => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalGrossSpan.textContent = `${sum} zł`;
+	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} zł`;
 };
 
 const calculateTableSummary = () => {
@@ -174,7 +171,7 @@ const deleteServiceItem = (e) => {
 	const item = e.target.parentElement.parentElement;
 	item.outerHTML = '';
 
-	updateServiceItemNumbers();
+	updateItemsNumbers();
 	showEmptyInfo();
 	calculateTableSummary();
 };
