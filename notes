@@ -1,36 +1,15 @@
-transfer_data_from_edit_to_preview.js
+INVOICE: changes in "transfer_data_from_edit_to_preview.js" file
 
--   changed the class name from "serviceItem" to "Service"
--   changed the function name from "transferServiceItemsFromEditFormToArr" to "getServicesFromEditFormToArr"
--   changed the function name from "displayServiceItemsInPreview" to "displayServicesInPreview"
-
-In the function "getServicesFromEditFormToArr()":
-
--   changed the variable name from "serviceItemsArr" to "servicesFromEditForm"
--   changed the variable name from "newItem" to "service"
-
-In the function "displayServicesInPreview()":
--   changed the variable name from "newTr" to "newServiceInPreview"
--   changed the variable name from "numberTd" to "number"
--   changed the variable name from "activityCodeTd" to "activityCode"
--   changed the variable name from "nameTd" to "name"
--   changed the variable name from "amountTd" to "amount"
--   changed the variable name from "netPriceTd" to "netPrice"
--   changed the variable name from "taxTd" to "tax"
--   changed the variable name from "netSumTd" to "netSum"
--   changed the variable name from "grossSumTd" to "grossSum"
+- changed the function name from "changeNum(num)" to "verbalNotation(num)" 
+- changed the "verbalNotation(num)" function so that it returns a string
 
 In the function "displayInvoiceSummaryInPreview()":
--   changed the variable name from "editFormTotalNet" to "totalNetEditForm"
--   changed the variable name from "editFormTotalGross" to "totalGrossEditForm"
--   changed the variable name from "previewTotalNet" to "totalNetPreview"
--   changed the variable name from "previewTotalGross" to "totalGrossPreview"
-- 
+- changed the variable name from "amountNumSpan" to "numericSpan"
+- add the variable "verbalSpan"
 
-
-
-
-
+In the file "invoice.html"
+- swap class ".invoice__sum-num" with id "invoice__sum-numeric"
+- swap class ".invoice__sum-word" with id "invoice__sum-verbal"
 
 
 

@@ -1,8 +1,5 @@
 // ============================================================
-// WORD TO NUM FUNCTION
-
-let amountNumSpan = document.querySelector('.invoice__sum-num');
-const amountWordSpan = document.querySelector('.invoice__sum-word');
+// CHANGE NUMBER TO 
 
 const unities = {
 	0: 'zero',
@@ -92,7 +89,7 @@ const threeDigitsToPhrase = (num) => {
 	return result;
 };
 
-const changeNum = (num) => {
+const verbalNotation = (num) => {
 	num = num.toString();
 	const threeDigitsPartsArr = [];
 	const currency = 'zł';
@@ -100,12 +97,10 @@ const changeNum = (num) => {
 	let whole = (num - (num % 1)).toString();
 	let workNum = whole;
 
-	// loop that removes zeros from the front of the number (string)
 	while (num[0] === '0') {
 		num = num.substring(1);
 	}
 
-	// To ponizej mozna jakoś wpleść do wyświetlania części dziesiętnych
 	if (num.includes('.')) {
 		rest = num.substring(num.indexOf('.') + 1);
 		rest = rest.concat('0');
@@ -123,18 +118,19 @@ const changeNum = (num) => {
 	}
 
 	if (whole.length <= 3) {
-		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
+
+		return `${threeDigitsToPhrase(
 			threeDigitsPartsArr[0]
-		)} ${rest}/100 ${currency}`);
+		)} ${rest}/100 ${currency}`;
 	} else if (whole.length <= 6) {
 		let thousandsForm = threeDigitsPartsArr[0].slice(-1);
 
-		return (amountWordSpan.textContent = `${threeDigitsToPhrase(
-			threeDigitsPartsArr[0]
-		)} ${thousands_ends[`${thousandsForm}`]} ${threeDigitsToPhrase(
+		return `${threeDigitsToPhrase(threeDigitsPartsArr[0])} ${
+			thousands_ends[`${thousandsForm}`]
+		} ${threeDigitsToPhrase(
 			threeDigitsPartsArr[1]
-		)} ${rest}/100 ${currency}`);
+		)} ${rest}/100 ${currency}`;
 	}
 
-	return (amountWordSpan.textContent = 'Za długa liczba');
+	return 'Za długa liczba';
 };

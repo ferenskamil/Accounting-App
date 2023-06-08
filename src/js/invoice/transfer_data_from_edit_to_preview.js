@@ -72,10 +72,10 @@ const displayServicesInPreview = () => {
 
 			const number = document.createElement('td');
 			number.innerHTML = el.number + '.';
-			
+
 			const name = document.createElement('td');
 			name.innerHTML = el.name;
-			
+
 			const activityCode = document.createElement('td');
 			activityCode.innerHTML = el.activityCode;
 
@@ -98,7 +98,6 @@ const displayServicesInPreview = () => {
 			const grossSum = document.createElement('td');
 			grossSum.innerHTML = el.grossSum;
 
-
 			newServiceInPreview.append(
 				number,
 				name,
@@ -116,7 +115,9 @@ const displayServicesInPreview = () => {
 };
 
 const displayInvoiceSummaryInPreview = () => {
-	let amountNumSpan = document.querySelector('.invoice__sum-num');
+	const numericSpan = document.querySelector('#invoice__sum-numeric');
+	const verbalSpan = document.querySelector('#invoice__sum-verbal');
+
 	const totalNetEditForm = document.querySelector('.invoice-total-net');
 	const totalGrossEditForm = document.querySelector('.invoice-total-gross');
 
@@ -125,9 +126,9 @@ const displayInvoiceSummaryInPreview = () => {
 
 	totalNetPreview.textContent = totalNetEditForm.textContent;
 	totalGrossPreview.textContent = totalGrossEditForm.textContent;
-	amountNumSpan.textContent = parseFloat(totalGrossEditForm.textContent);
+	numericSpan.textContent = parseFloat(totalGrossEditForm.textContent);
 
-	changeNum(amountNumSpan.textContent);
+	verbalSpan.textContent = verbalNotation(numericSpan.textContent);
 };
 
 const transferDataFromEditFormToPreview = () => {
