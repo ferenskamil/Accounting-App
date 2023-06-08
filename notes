@@ -1,35 +1,17 @@
-- create one variable "servicesTbody" and removed the twin variable "servicesList"
-- minor corrections in the comments
+edit_form_validation.js
 
-In the function "showEmptyInfo()":
-- changing the variable name from "trItems" to "services"
+- changing the variable name from "allInputs" to "inputs"
+- changing the variable name from "submitBtnEditForm" to "submitBtn"
+- changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
+- changing the function name from "sanitizeAccountNoInput(e)" to "sanitizeAccountNo(e)"
 
-In the function "updateServiceItemNumbers()":
-- zmiana nazwy funkcji na "updateItemsNumbers()"
-- changing the variable name from "allSpans" to "itemsNoSpans"
+In the function "sanitizeAccountNo(e)":
+- changing the variable name from "accountNoString" to "accountNo"
+- changing the variable name from "workString" to "newSpace"
 
-
-In the function "createNewServiceItem()":
-- rename the function to "createNewService()"
-- changing the variable name from "netPrice" to "netValue"
-- changing the variable name from "netSumAmount" to "netSum"
-- changing the variable name from "grossSumAmount" to "grossSum"
-- in the variables "netSum" and "grossSum" change the initial value from 
-"0 PLN" to "0.00 PLN"
-
-In the function "calculateItemTotalNet(e)": 
-- changing the variable name from "netValue" to "netPerOnePiece"
-- changing the variable name from "totalNetValue" to "net"
-- rounding the "netValue" value to two decimal places
-
-In the function "calculateItemTotalGross(e)":
-- zmiana nazwy zmienne "sumGrossValue" to "grossValue" 
+Also in "open_hide_edit_form.js": 
+- changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
 
 
-In the function "calculateInvoiceTotalNet()":
-- changing the variable name from "itemTotalNetArr" to "allNetValues"
-- rounding the "sum" value to two decimal places
-
-In the function "calculateInvoiceTotalGross()": 
-- changing the variable name from "itemTotalGrossArr" to "allGrossValues"
-- rounding the "sum" value to two decimal places
+Also in "transfer_data_from_edit_to_preview.js": 
+- changing the variable name from "submitBtnEditForm" to "submitBtn"

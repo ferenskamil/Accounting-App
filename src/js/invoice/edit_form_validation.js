@@ -1,16 +1,15 @@
 // =============================================
 // EDIT FORM VALIDATION
-const allInputs = document.querySelectorAll('.invoice__edit-form-box input');
-const submitBtnEditForm = document.querySelector(
+const inputs = document.querySelectorAll('.invoice__edit-form-box input');
+const submitBtn = document.querySelector(
 	'.invoice__edit-form-box-submit-btn button'
 );
 
-const validationInvoiceEditForm = (e) => {
-	// prevent default only for testing
+const editFormValidation = (e) => {
 	e.preventDefault();
 
 	let isOK = true;
-	allInputs.forEach((input) => {
+	inputs.forEach((input) => {
 		input.classList.remove('invoice__edit-form-box-input--empty');
 
 		if (input.value === '') {
@@ -25,52 +24,51 @@ const validationInvoiceEditForm = (e) => {
 	return isOK;
 };
 
-submitBtnEditForm.addEventListener('click', (e) =>
-	validationInvoiceEditForm(e)
-);
+submitBtn.addEventListener('click', (e) => editFormValidation(e));
 
 // ============================================================
 // SANITIZE VALUE IN BANK ACCOUNT INPUT
 const accountNoInput = document.querySelector('#account-no-edit');
-const sanitizeAccountNoInput = (e) => {
+
+const sanitizeAccountNo = (e) => {
 	// In the future I can to this with regex
-	let accountNoString = accountNoInput.value;
-	let workString;
+	let accountNo = accountNoInput.value;
+	let newSpace;
 
 	if (!parseInt(e.data) && e.data !== '0') {
-		accountNoString = accountNoString.slice(0, -1);
+		accountNo = accountNo.slice(0, -1);
 	}
 
-	switch (accountNoString.length) {
+	switch (accountNo.length) {
 		case 2:
-			workString = ''.concat(accountNoString.slice(0, 2), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 2), ' ');
 			break;
 		case 7:
-			workString = ''.concat(accountNoString.slice(0, 7), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 7), ' ');
 			break;
 		case 12:
-			workString = ''.concat(accountNoString.slice(0, 12), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 12), ' ');
 			break;
 		case 17:
-			workString = ''.concat(accountNoString.slice(0, 17), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 17), ' ');
 			break;
 		case 22:
-			workString = ''.concat(accountNoString.slice(0, 22), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 22), ' ');
 			break;
 		case 27:
-			workString = ''.concat(accountNoString.slice(0, 27), ' ');
+			newSpace = ''.concat(accountNo.slice(0, 27), ' ');
 			break;
 		case 33:
-			accountNoString = accountNoString.slice(0, -1);
+			accountNo = accountNo.slice(0, -1);
 			break;
 		default:
 			break;
 	}
 
-	if (workString) {
-		accountNoString = workString;
+	if (newSpace) {
+		accountNo = newSpace;
 	}
-	accountNoInput.value = accountNoString;
+	accountNoInput.value = accountNo;
 };
 
-accountNoInput.addEventListener('input', (e) => sanitizeAccountNoInput(e));
+accountNoInput.addEventListener('input', (e) => sanitizeAccountNo(e));

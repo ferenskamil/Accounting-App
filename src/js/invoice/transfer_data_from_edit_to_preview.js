@@ -208,4 +208,4 @@ const transferDataFromEditFormToPreview = () => {
 	displayInvoiceSummaryInPreview();
 };
 
-submitBtnEditForm.addEventListener('click', transferDataFromEditFormToPreview);
+submitBtn.addEventListener('click', transferDataFromEditFormToPreview);

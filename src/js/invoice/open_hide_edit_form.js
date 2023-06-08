@@ -27,7 +27,7 @@ invoiceEditBackBtn.addEventListener('click', closeInvoiceEditForm);
 // DISPLAY (OR NOT) EDIT FORM AFTER LOAD PAGE
 
 const editFormOnLoaded = (e) => {
-	if (!validationInvoiceEditForm(e)) {
+	if (!editFormValidation(e)) {
 		openInvoiceEditForm();
 	} else {
 		transferDataFromEditFormToPreview();
