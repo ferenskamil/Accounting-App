@@ -34,9 +34,9 @@ const transferDataFromEditFormToPreview = () => {
 	displayInvoiceSummaryInPreview();
 };
 
-const copyAndDisplay = (idEditString, idPreviewString) => {
-	const fromWhere = document.querySelector(`${idEditString}`).value;
-	const toWhere = document.querySelector(`${idPreviewString}`);
+const copyAndDisplay = (inputIdString, spanIdString) => {
+	const fromWhere = document.querySelector(`${inputIdString}`).value;
+	const toWhere = document.querySelector(`${spanIdString}`);
 	toWhere.textContent = fromWhere;
 };
 
@@ -145,19 +145,19 @@ const displayServicesInPreview = () => {
 };
 
 const displayInvoiceSummaryInPreview = () => {
+	const totalNetEditForm = document.querySelector('.invoice-total-net');
+	const totalNetPreview = document.querySelector('.preview-total-net');
+	totalNetPreview.textContent = totalNetEditForm.textContent;
+
+	const totalGrossEditForm = document.querySelector('.invoice-total-gross');
+	const totalGrossPreview = document.querySelector('.preview-total-gross');
+	totalGrossPreview.textContent = totalGrossEditForm.textContent;
+
 	const numericSpan = document.querySelector('#invoice__sum-numeric');
 	const verbalSpan = document.querySelector('#invoice__sum-verbal');
-
-	const totalNetEditForm = document.querySelector('.invoice-total-net');
-	const totalGrossEditForm = document.querySelector('.invoice-total-gross');
-
-	const totalNetPreview = document.querySelector('.preview-total-net');
-	const totalGrossPreview = document.querySelector('.preview-total-gross');
-
-	totalNetPreview.textContent = totalNetEditForm.textContent;
-	totalGrossPreview.textContent = totalGrossEditForm.textContent;
-	numericSpan.textContent = parseFloat(totalGrossEditForm.textContent);
-
+	numericSpan.textContent = parseFloat(
+		totalGrossEditForm.textContent
+	).toFixed(2);
 	verbalSpan.textContent = verbalNotation(numericSpan.textContent);
 };
 
