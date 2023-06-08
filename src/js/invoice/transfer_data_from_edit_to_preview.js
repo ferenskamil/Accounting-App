@@ -6,7 +6,7 @@ const invoiceTbodyPreview = document.querySelector(
 );
 
 let itemsArr = [];
-class serviceItem {
+class Service {
 	constructor(
 		number,
 		name,
@@ -28,14 +28,14 @@ class serviceItem {
 	}
 }
 
-const transferServiceItemsFromEditFormToArr = () => {
-	const serviceItemsArr = document.querySelectorAll(
+const getServicesFromEditFormToArr = () => {
+	const servicesFromEditForm = document.querySelectorAll(
 		'.invoice__edit-form-box-services-table tbody tr'
 	);
 	itemsArr = [];
 
-	for (let i = 1; i < serviceItemsArr.length; i++) {
-		const el = serviceItemsArr[i];
+	for (let i = 1; i < servicesFromEditForm.length; i++) {
+		const el = servicesFromEditForm[i];
 
 		const number = el.querySelector('.service-item-number').textContent;
 		const name = el.querySelector('.service-item-name').value;
@@ -46,7 +46,7 @@ const transferServiceItemsFromEditFormToArr = () => {
 		const netSum = el.querySelector('.service-item-net-sum').value;
 		const grossSum = el.querySelector('.service-item-gross-sum').value;
 
-		const newItem = new serviceItem(
+		const service = new Service(
 			number,
 			name,
 			activityCode,
@@ -57,74 +57,75 @@ const transferServiceItemsFromEditFormToArr = () => {
 			grossSum
 		);
 
-		itemsArr.push(newItem);
+		itemsArr.push(service);
 	}
 };
 
-const displayServiceItemsInPreview = () => {
-	transferServiceItemsFromEditFormToArr();
+const displayServicesInPreview = () => {
+	getServicesFromEditFormToArr();
 
 	if (itemsArr.length !== 0) {
 		invoiceTbodyPreview.innerHTML = '';
 
 		itemsArr.forEach((el) => {
-			const newTr = document.createElement('tr');
+			const newServiceInPreview = document.createElement('tr');
 
-			const numberTd = document.createElement('td');
-			numberTd.innerHTML = el.number + '.';
+			const number = document.createElement('td');
+			number.innerHTML = el.number + '.';
+			
+			const name = document.createElement('td');
+			name.innerHTML = el.name;
+			
+			const activityCode = document.createElement('td');
+			activityCode.innerHTML = el.activityCode;
 
-			const activityCodeTd = document.createElement('td');
-			activityCodeTd.innerHTML = el.activityCode;
+			const amount = document.createElement('td');
+			amount.innerHTML = el.amount;
 
-			const amountTd = document.createElement('td');
-			amountTd.innerHTML = el.amount;
+			const netPrice = document.createElement('td');
+			netPrice.innerHTML = el.netPrice;
 
-			const netPriceTd = document.createElement('td');
-			netPriceTd.innerHTML = el.netPrice;
-
-			const taxTd = document.createElement('td');
+			const tax = document.createElement('td');
 			if (el.tax === '0') {
-				taxTd.innerHTML = 'zw';
+				tax.innerHTML = 'zw';
 			} else {
-				taxTd.innerHTML = `${el.tax * 100}%`;
+				tax.innerHTML = `${el.tax * 100}%`;
 			}
 
-			const netSumTd = document.createElement('td');
-			netSumTd.innerHTML = el.netSum;
+			const netSum = document.createElement('td');
+			netSum.innerHTML = el.netSum;
 
-			const grossSumTd = document.createElement('td');
-			grossSumTd.innerHTML = el.grossSum;
+			const grossSum = document.createElement('td');
+			grossSum.innerHTML = el.grossSum;
 
-			const nameTd = document.createElement('td');
-			nameTd.innerHTML = el.name;
 
-			newTr.append(
-				numberTd,
-				nameTd,
-				activityCodeTd,
-				amountTd,
-				netPriceTd,
-				taxTd,
-				netSumTd,
-				grossSumTd
+			newServiceInPreview.append(
+				number,
+				name,
+				activityCode,
+				amount,
+				netPrice,
+				tax,
+				netSum,
+				grossSum
 			);
 
-			invoiceTbodyPreview.append(newTr);
+			invoiceTbodyPreview.append(newServiceInPreview);
 		});
 	}
 };
 
 const displayInvoiceSummaryInPreview = () => {
 	let amountNumSpan = document.querySelector('.invoice__sum-num');
-	const editFormTotalNet = document.querySelector('.invoice-total-net');
-	const editFormTotalGross = document.querySelector('.invoice-total-gross');
+	const totalNetEditForm = document.querySelector('.invoice-total-net');
+	const totalGrossEditForm = document.querySelector('.invoice-total-gross');
 
-	const previewTotalNet = document.querySelector('.preview-total-net');
-	const previewTotalGross = document.querySelector('.preview-total-gross');
+	const totalNetPreview = document.querySelector('.preview-total-net');
+	const totalGrossPreview = document.querySelector('.preview-total-gross');
 
-	previewTotalNet.textContent = editFormTotalNet.textContent;
-	previewTotalGross.textContent = editFormTotalGross.textContent;
-	amountNumSpan.textContent = parseFloat(editFormTotalGross.textContent);
+	totalNetPreview.textContent = totalNetEditForm.textContent;
+	totalGrossPreview.textContent = totalGrossEditForm.textContent;
+	amountNumSpan.textContent = parseFloat(totalGrossEditForm.textContent);
 
 	changeNum(amountNumSpan.textContent);
 };
@@ -204,7 +205,7 @@ const transferDataFromEditFormToPreview = () => {
 
 	commentTextAreaView.textContent = commentTextAreaEditForm;
 
-	displayServiceItemsInPreview();
+	displayServicesInPreview();
 	displayInvoiceSummaryInPreview();
 };
 

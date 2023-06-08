@@ -1,17 +1,60 @@
-edit_form_validation.js
+transfer_data_from_edit_to_preview.js
 
-- changing the variable name from "allInputs" to "inputs"
-- changing the variable name from "submitBtnEditForm" to "submitBtn"
-- changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
-- changing the function name from "sanitizeAccountNoInput(e)" to "sanitizeAccountNo(e)"
+-   changed the class name from "serviceItem" to "Service"
+-   changed the function name from "transferServiceItemsFromEditFormToArr" to "getServicesFromEditFormToArr"
+-   changed the function name from "displayServiceItemsInPreview" to "displayServicesInPreview"
+
+In the function "getServicesFromEditFormToArr()":
+
+-   changed the variable name from "serviceItemsArr" to "servicesFromEditForm"
+-   changed the variable name from "newItem" to "service"
+
+In the function "displayServicesInPreview()":
+-   changed the variable name from "newTr" to "newServiceInPreview"
+-   changed the variable name from "numberTd" to "number"
+-   changed the variable name from "activityCodeTd" to "activityCode"
+-   changed the variable name from "nameTd" to "name"
+-   changed the variable name from "amountTd" to "amount"
+-   changed the variable name from "netPriceTd" to "netPrice"
+-   changed the variable name from "taxTd" to "tax"
+-   changed the variable name from "netSumTd" to "netSum"
+-   changed the variable name from "grossSumTd" to "grossSum"
+
+In the function "displayInvoiceSummaryInPreview()":
+-   changed the variable name from "editFormTotalNet" to "totalNetEditForm"
+-   changed the variable name from "editFormTotalGross" to "totalGrossEditForm"
+-   changed the variable name from "previewTotalNet" to "totalNetPreview"
+-   changed the variable name from "previewTotalGross" to "totalGrossPreview"
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////
+
+-   changing the variable name from "submitBtnEditForm" to "submitBtn"
+-   changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
+-   changing the function name from "sanitizeAccountNoInput(e)" to "sanitizeAccountNo(e)"
 
 In the function "sanitizeAccountNo(e)":
-- changing the variable name from "accountNoString" to "accountNo"
-- changing the variable name from "workString" to "newSpace"
 
-Also in "open_hide_edit_form.js": 
-- changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
+-   changing the variable name from "accountNoString" to "accountNo"
+-   changing the variable name from "workString" to "newSpace"
 
+Also in "open_hide_edit_form.js":
 
-Also in "transfer_data_from_edit_to_preview.js": 
-- changing the variable name from "submitBtnEditForm" to "submitBtn"
+-   changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
+
+Also in "transfer_data_from_edit_to_preview.js":
+
+-   changing the variable name from "submitBtnEditForm" to "submitBtn"
