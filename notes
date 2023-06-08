@@ -1,39 +1,5 @@
-INVOICE: changes in "transfer_data_from_edit_to_preview.js" file
-
-- changed the function name from "changeNum(num)" to "verbalNotation(num)" 
-- changed the "verbalNotation(num)" function so that it returns a string
-
-In the function "displayInvoiceSummaryInPreview()":
-- changed the variable name from "amountNumSpan" to "numericSpan"
-- add the variable "verbalSpan"
-
-In the file "invoice.html"
-- swap class ".invoice__sum-num" with id "invoice__sum-numeric"
-- swap class ".invoice__sum-word" with id "invoice__sum-verbal"
-
-
-
-
-
-
-
-
-
-/////////////////////////////////
-
--   changing the variable name from "submitBtnEditForm" to "submitBtn"
--   changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
--   changing the function name from "sanitizeAccountNoInput(e)" to "sanitizeAccountNo(e)"
-
-In the function "sanitizeAccountNo(e)":
-
--   changing the variable name from "accountNoString" to "accountNo"
--   changing the variable name from "workString" to "newSpace"
-
-Also in "open_hide_edit_form.js":
-
--   changing the function name from "validationInvoiceEditForm(e)" to "editFormValidation(e)"
-
-Also in "transfer_data_from_edit_to_preview.js":
-
--   changing the variable name from "submitBtnEditForm" to "submitBtn"
+INVOICE: changes in "transfer_data_from_edit_to_preview.js" file (add "copyAndDisplay()" function )
+- Create an additional function "displayInvoiceInfoInPreview()" and invoke it in the function "transferDataFromEditFormToPreview()".
+- Code has been moved to the "displayInvoiceInfoInPreview()" function, which is responsible for displaying invoice information (e.g., date, contractor details) in the preview.
+- Changed the order of functions (moving the "displayInvoiceInfoInPreview()" function to the beginning of the document)
+- Added an additional function "copyAndDisplay()", which takes the text from the element with the specified id and displays it in another indicated element
