@@ -1,24 +1,12 @@
+SETTINGS: first steps
 
+- created file "settings.html"
+- link nav to "settings.html"
+- filled the file "settings.html" with content
+- created "settings.scss" and styles for mobiles and tablets
 
-
-
-Also: 
-- changed names the parameters of the "copyAndDisplay" function to "(inputIdString, spanIdString)"
-- changed basic value in invoice summary in preview to "0.00 zł" instead "0"
-
-
-
-
-
-
-
-
-
-INVOICE: changes in "transfer_data_from_edit_to_preview.js" file (add "copyAndDisplay()" function )
-- Create an additional function "displayInvoiceInfoInPreview()" and invoke it in the function "transferDataFromEditFormToPreview()".
-- Code has been moved to the "displayInvoiceInfoInPreview()" function, which is responsible for displaying invoice information (e.g., date, contractor details) in the preview.
-- Changed the order of functions (moving the "displayInvoiceInfoInPreview()" function to the beginning of the document)
-- Added an additional function "copyAndDisplay()", which takes the text from the element with the specified id and displays it in another indicated element
+Also:
+- created mixin "field" to styling inputs, selects and textareas
 
 
 

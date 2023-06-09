@@ -32,6 +32,7 @@ const transferDataFromEditFormToPreview = () => {
 	displayInvoiceInfoInPreview();
 	displayServicesInPreview();
 	displayInvoiceSummaryInPreview();
+	closeInvoiceEditForm();
 };
 
 const copyAndDisplay = (inputIdString, spanIdString) => {
@@ -71,7 +72,8 @@ const getServicesFromEditFormToArr = () => {
 		const name = el.querySelector('.service-item-name').value;
 		const activityCode = el.querySelector('.service-item-code').value;
 		const amount = el.querySelector('.service-item-amount').value;
-		const netPrice = el.querySelector('.service-item-net-value').value;
+		const netPrice =
+			el.querySelector('.service-item-net-value').value + 'zł';
 		const tax = el.querySelector('.service-item-tax').value;
 		const netSum = el.querySelector('.service-item-net-sum').value;
 		const grossSum = el.querySelector('.service-item-gross-sum').value;
