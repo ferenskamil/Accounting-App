@@ -1,12 +1,4 @@
-SETTINGS: first steps
+SETTINGS: add desktop display
 
-- created file "settings.html"
-- link nav to "settings.html"
-- filled the file "settings.html" with content
-- created "settings.scss" and styles for mobiles and tablets
-
-Also:
-- created mixin "field" to styling inputs, selects and textareas
-
-
-
+Also: 
+- delete unusual comments
