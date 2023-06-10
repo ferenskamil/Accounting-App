@@ -32,12 +32,12 @@ function handleKits(done) {
 	src(paths.html)
 		.pipe(kit())
 		// This below will be using for change files enxtension to ".php"
-		// .pipe(
-		// 	rename(function (path) {
-		// 		// Updates the object in-place  // path.dirname += '/ciao'; // path.basename += '-goodbye';
-		// 		path.extname = '.php';
-		// 	})
-		// )
+		.pipe(
+			rename(function (path) {
+				// Updates the object in-place  // path.dirname += '/ciao'; // path.basename += '-goodbye';
+				path.extname = '.php';
+			})
+		)
 		.pipe(dest('./'));
 	done();
 }

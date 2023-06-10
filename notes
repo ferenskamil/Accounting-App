@@ -1,4 +1,12 @@
-SETTINGS: add desktop display
+STRUCTURE: prepare for PHP scripts
+
+Prepare the structure for writing php scripts. 
+In order to create: 
+- database connection, 
+- the ability to create an account and log in
 
 Also: 
-- delete unusual comments
+- create "SQL" folder for databases
+- change conversion ".kit" files for ".php" insead ".html"
+- change anchor addresses in navigation 
+- As of now, I can no longer use liveServer to preview the site. From now on, I can access the site locally by using XAMPP and going to "http://localhost/accountingApp" 

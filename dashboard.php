@@ -21,7 +21,7 @@
         <div class="nav">
         <ul class="nav__list">
                 <li>
-                        <a href="./index.html" class="nav__item">
+                        <a href="./index.php" class="nav__item">
                                 <div class="nav__item-icon"><i class="fa-brands fa-apple"></i></div>
                                 <div class="nav__item-title">
                                         <h2>AccountingApp</h2>
@@ -29,25 +29,25 @@
                         </a>
                 </li>
                 <li>
-                        <a href="./dashboard.html" class="nav__item">
+                        <a href="./dashboard.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-sharp fa-solid fa-house"></i></span>
                                 <span class="nav__item-title">Dashboard</span>
                         </a>
                 </li>
                 <li>
-                        <a href="./invoice.html" class="nav__item">
+                        <a href="./invoice.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-message"></i></span>
                                 <span class="nav__item-title">Invoice</span>
                         </a>
                 </li>
                 <li>
-                        <a href="./invoice_list.html" class="nav__item">
+                        <a href="./invoice_list.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-users"></i></span>
                                 <span class="nav__item-title">Invoice list</span>
                         </a>
                 </li>
                 <li>
-                        <a href="./settings.html" class=" nav__item">
+                        <a href="./settings.php" class=" nav__item">
                                 <span class="nav__item-icon"><i class="fa-sharp fa-solid fa-gear"></i></span>
                                 <span class="nav__item-title">Settings</span>
                         </a>

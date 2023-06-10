@@ -7,78 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./dist/css/main.min.css">
 
-        <!-- FontAwesome Kit -->
-<script src="https://kit.fontawesome.com/63681c7143.js" crossorigin="anonymous"></script>
-
-<!-- Poppins - GoogleFonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- @include './fonts_icons -->
         <title>Invoice (test)</title>
 </head>
 
 <body>
-        <div class="nav">
-        <ul class="nav__list">
-                <li>
-                        <a href="./index.html" class="nav__item">
-                                <div class="nav__item-icon"><i class="fa-brands fa-apple"></i></div>
-                                <div class="nav__item-title">
-                                        <h2>AccountingApp</h2>
-                                </div>
-                        </a>
-                </li>
-                <li>
-                        <a href="./dashboard.html" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-sharp fa-solid fa-house"></i></span>
-                                <span class="nav__item-title">Dashboard</span>
-                        </a>
-                </li>
-                <li>
-                        <a href="./invoice.html" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-message"></i></span>
-                                <span class="nav__item-title">Invoice</span>
-                        </a>
-                </li>
-                <li>
-                        <a href="./invoice_list.html" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-users"></i></span>
-                                <span class="nav__item-title">Invoice list</span>
-                        </a>
-                </li>
-                <li>
-                        <a href="./settings.html" class=" nav__item">
-                                <span class="nav__item-icon"><i class="fa-sharp fa-solid fa-gear"></i></span>
-                                <span class="nav__item-title">Settings</span>
-                        </a>
-                </li>
-                <li>
-                        <a href="#" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-lock-open"></i></span>
-                                <span class="nav__item-title"> Lorem ipsum</span>
-                        </a>
-                </li>
-                <li>
-                        <a href="#" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                                <span class="nav__item-title"> Lorem ipsum</span>
-                        </a>
-                </li>
-        </ul>
-</div>
-<div class="topbar">
-        <div class="burger-btn-container">
-                <button class="burger-btn"><i class="fa-sharp fa-solid fa-bars"></i></button>
-        </div>
-        <div class="topbar__search">
-                <input class="topbar__search-input" type="text" placeholder="Search here">
-                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="topbar__avatar">
-                <img src="./dist/img/avatars/mrkaam_avatar.jpg" alt="Kamil Ferens photo">
-        </div>
-        <div class="shadow"></div>
-</div>
+        <!-- @include './nav_topbar' -->
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button><i class="fa-solid fa-paper-plane"></i>Send</button>
@@ -90,7 +24,7 @@
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logo/test_logo.png"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Faktura VAT nr <span id="invoice-no-view"></span></h2>
+                                <h2 class="invoice__paper-title">Faktura VAT nr<span id="invoice-no-view"></span></h2>
                                 <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Data wystawienia: </Strong><span id="date-view"></span></p>
                                         <p><Strong>Miejscowość: </Strong><span id="city-view"></span></p>
