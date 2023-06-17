@@ -1,12 +1,23 @@
-STRUCTURE: prepare for PHP scripts
+LOGIN SCRIPT (PHP):
 
-Prepare the structure for writing php scripts. 
-In order to create: 
-- database connection, 
-- the ability to create an account and log in
+- Creating a "db_connect.php" file with the data needed to connect to the database. Implement it in the file "login.php".
+- MySQL database connection "accounting app".
+- Creation of session variables from data from the login form and from the database. 
+- Assigning database data to session variables
+- In the case of an incorrect LOGIN or PASSWORD, create a session variable "log_error_login" or "log_error_pass" and assign an error message to it. The message will be displayed in the login form in case of an incorrectly entered password. The session variable "log_error_login" will be deleted at the time of correct finding a user. The session variable "log_error_pass" will be deleted at the time of correct login.
+- wyświetlanie komunikatu niepoprawnego hasła w przypadku, gdy podane hasło nie zgadza się z hasłem zapisyanym w bazie danych.
+
+In the "loginform.php" file:
+- opening of the session
+- display of an invalid password message if the password is not entered correctly.
+- storing the user's login in a session variable and then displaying it in the input in case of a failed login.
+
+SQL injection security:
+- htmlentities.
+- mysqli_real_escape_string.
 
 Also: 
-- create "SQL" folder for databases
-- change conversion ".kit" files for ".php" insead ".html"
-- change anchor addresses in navigation 
-- As of now, I can no longer use liveServer to preview the site. From now on, I can access the site locally by using XAMPP and going to "http://localhost/accountingApp" 
+- Change the linking in the home page navigation (index.php) from .html to php split.
+- Remove unnecessary comments.
+- Correction of error (typo) in "loginform.php" file from "methiod" to "method".
+    

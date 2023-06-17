@@ -1,3 +1,7 @@
+<?php 
+        session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,20 +30,20 @@
                 </div>
                 <h1 class="register__title">Sign in</h1>
                 <div class="register__wrapper">
-                        <form action="#" methiod="post" class="register__form">
+                        <form action="./php_scripts/login.php" method="post" class="register__form">
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="login">Login</label>
                                         <input class="register__form-input" type="text" name="login"
-                                                placeholder="Login">
-                                        <!-- <p class="error">Your login is invalid!!! Change it!!</p> -->
+                                                placeholder="Login" value="<?php if(isset($_SESSION['login'])) echo $_SESSION['login'] ?>">
+                                        <p class="error"><?php if (isset($_SESSION['log_error_login'])) echo $_SESSION['log_error_login'] ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password1">Password</label>
                                         <input class="register__form-input" type="password" name="password1"
                                                 placeholder="Password">
-                                        <!-- <p class="error">Your password must consist of 8 charactaer and ate least on big letter</p> -->
+                                        <p class="error"><?php if (isset($_SESSION['log_error_pass'])) echo $_SESSION['log_error_pass'] ?></p>
                                 </div>
-                                <button class="register__form-submit" type="submit">sign in</button>
+                                <button class="register__form-submit" type="submit" name="submit">sign in</button>
                         </form>
                 </div>
                 <div class="register__info">

@@ -18,7 +18,8 @@ const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 
 const paths = {
-	html: './src/html/**/*.kit',
+	// html: './src/html/**/*.kit',
+	html: './src/php/**/*.kit',
 	sass: './src/scss/**/*.scss',
 	js: './src/js/**/*.js',
 	img: './src/img/**/*',
@@ -81,7 +82,8 @@ function startBrowserSync(done) {
 }
 
 function watchForChanges(done) {
-	watch('./*.html').on('change', reload);
+	// watch('./*.html').on('change', reload);
+	watch('./*.php').on('change', reload);
 	watch(
 		[paths.html, paths.sass, paths.js],
 		parallel(handleKits, sassCompiler, javaScript)
