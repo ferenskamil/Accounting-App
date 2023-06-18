@@ -1,3 +1,19 @@
+<?php 
+        session_start();
+
+        if ($_SESSION['is_logged']) {
+                $account_options = "You are logged!";
+        } else {
+                $account_options = '<a href="./loginform.php">
+                        <button class="home__top-right-btn login-btn">Sign in</button>
+                </a>
+                <a href="./registration.php">
+                        <button class="home__top-right-btn register-btn">Register</button>
+                </a>';
+        }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,11 +64,7 @@
 
                                         </ul>
                                         <div class="home__top-right-btns">
-                                                <a href="./loginform.php"><button
-                                                                class="home__top-right-btn login-btn">Sign
-                                                                in</button></a>
-                                                <a href="./registration.php"><button
-                                                                class="home__top-right-btn register-btn">Register</button></a>
+                                                <?php echo $account_options ?>
                                         </div>
                                 </div>
                         </div>

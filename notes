@@ -1,17 +1,6 @@
-LOGOUT SCRIPT (PHP): logout script and redirections between pages
+INDEX.PHP: script that changes the navigation display depending on whether the user is logged in
 
-In the file "logout.php":
-- Create a script whose task will be to log out the user, and then redirect to the home page.
-
-In the app navigation: 
-- Naming and linking the "Logout" element is the "logout.php" script.
-
-Redirections: 
-In the file "login.php":
-- If the user is logged in, he will be redirected to the "dashboard.php" file after accessing the "loginform.php" file.
-
-In the file "dashboard.php":
-- Set redirection - if a non-logged-in user enters the address "/dashboard.php" he will be redirected to the page "/index.php".
-
+- Start a session in the index.php file
+- A script that will cause that if a non-logged-in user enters the "index.php" page then the "sign in" and "register" buttons will be displayed to him. If a logged-in user enters the page, then instead of the buttons it will display a welcome message.
 
 
