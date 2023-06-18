@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if (!$_SESSION['is_logged']) {
+        header('Location: index.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,9 +67,9 @@
                         </a>
                 </li>
                 <li>
-                        <a href="#" class="nav__item">
+                        <a href="./php_scripts/logout.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                                <span class="nav__item-title"> Lorem ipsum</span>
+                                <span class="nav__item-title">Logout</span>
                         </a>
                 </li>
         </ul>

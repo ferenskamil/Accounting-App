@@ -1,23 +1,17 @@
-LOGIN SCRIPT (PHP):
+LOGOUT SCRIPT (PHP): logout script and redirections between pages
 
-- Creating a "db_connect.php" file with the data needed to connect to the database. Implement it in the file "login.php".
-- MySQL database connection "accounting app".
-- Creation of session variables from data from the login form and from the database. 
-- Assigning database data to session variables
-- In the case of an incorrect LOGIN or PASSWORD, create a session variable "log_error_login" or "log_error_pass" and assign an error message to it. The message will be displayed in the login form in case of an incorrectly entered password. The session variable "log_error_login" will be deleted at the time of correct finding a user. The session variable "log_error_pass" will be deleted at the time of correct login.
-- wyświetlanie komunikatu niepoprawnego hasła w przypadku, gdy podane hasło nie zgadza się z hasłem zapisyanym w bazie danych.
+In the file "logout.php":
+- Create a script whose task will be to log out the user, and then redirect to the home page.
 
-In the "loginform.php" file:
-- opening of the session
-- display of an invalid password message if the password is not entered correctly.
-- storing the user's login in a session variable and then displaying it in the input in case of a failed login.
+In the app navigation: 
+- Naming and linking the "Logout" element is the "logout.php" script.
 
-SQL injection security:
-- htmlentities.
-- mysqli_real_escape_string.
+Redirections: 
+In the file "login.php":
+- If the user is logged in, he will be redirected to the "dashboard.php" file after accessing the "loginform.php" file.
 
-Also: 
-- Change the linking in the home page navigation (index.php) from .html to php split.
-- Remove unnecessary comments.
-- Correction of error (typo) in "loginform.php" file from "methiod" to "method".
-    
+In the file "dashboard.php":
+- Set redirection - if a non-logged-in user enters the address "/dashboard.php" he will be redirected to the page "/index.php".
+
+
+
