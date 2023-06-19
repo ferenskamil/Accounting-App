@@ -83,7 +83,7 @@ if (!$_SESSION['is_logged']) {
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/mrkaam_avatar.jpg" alt="Kamil Ferens photo">
+                <img src="./dist/img/avatars/mrkaam_avatar.jpg" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

@@ -56,6 +56,14 @@
 				a {
 					width: 100%;
 				}
+
+				img.home__top-right-btns-avatar {
+					// border: 10px solid red;
+					border-radius: 50%;
+					max-width: 45px;
+					max-height: 45px;
+					// object-fit: cover;
+				}
 			}
 
 			&-btn {
@@ -101,6 +109,33 @@
 
 						&:hover {
 							background-color: $second-color;
+						}
+					}
+				}
+			}
+
+			&-logged-user {
+				display: flex;
+				flex-direction: row;
+				margin-top: 1.5em;
+				gap: 1em;
+
+				img.home__top-right-logged-user-avatar {
+					border-radius: 50%;
+					max-width: 45px;
+					max-height: 45px;
+					object-fit: cover;
+				}
+
+				&-info {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					p {
+						font-size: 1.1rem;
+
+						&:nth-child(1) {
+							font-size: 1.4rem;
 						}
 					}
 				}

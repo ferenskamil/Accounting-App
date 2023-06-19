@@ -1,16 +1,32 @@
 <?php 
         session_start();
 
-        if ($_SESSION['is_logged']) {
-                $account_options = "You are logged!";
+        // $user_name = $_SESSION['login'];
+
+        if (isset($_SESSION['is_logged']) && $_SESSION['is_logged']) {
+                $user_name = $_SESSION['login'];
+
+                $account_options = '
+                <div class="home__top-right-logged-user"> 
+                        <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/mrkaam_avatar.jpg" alt="user photo">
+                        <div class="home__top-right-logged-user-info">
+                                <p><strong>'.$user_name.'</strong></p>
+                                <p>You are logged</p>
+                        </div>
+                </div>';
+                        
         } else {
-                $account_options = '<a href="./loginform.php">
-                        <button class="home__top-right-btn login-btn">Sign in</button>
-                </a>
-                <a href="./registration.php">
-                        <button class="home__top-right-btn register-btn">Register</button>
-                </a>';
+                $account_options = '
+                <div class="home__top-right-btns">
+                        <a href="./loginform.php">
+                                <button class="home__top-right-btn login-btn">Sign in</button>
+                        </a>
+                        <a href="./registration.php">
+                                <button class="home__top-right-btn register-btn">Register</button>
+                        </a>
+                </div>';
         }
+        
 ?>
 
 
@@ -57,9 +73,7 @@
                                                 </a>
 
                                         </ul>
-                                        <div class="home__top-right-btns">
-                                                <?php echo $account_options ?>
-                                        </div>
+                                        <?php echo $account_options ?>
                                 </div>
                         </div>
                 </div>

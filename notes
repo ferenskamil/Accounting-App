@@ -1,6 +1,5 @@
 INDEX.PHP: script that changes the navigation display depending on whether the user is logged in
 
 - Start a session in the index.php file
-- A script that will cause that if a non-logged-in user enters the "index.php" page then the "sign in" and "register" buttons will be displayed to him. If a logged-in user enters the page, then instead of the buttons it will display a welcome message.
-
-
+- A script that will cause that if a non-logged-in user enters the "index.php" page then the "sign in" and "register" buttons will be displayed to him. If a logged-in user enters the page, then instead of the buttons it will display his username, avatar and welcome message.
+- styling the above div
