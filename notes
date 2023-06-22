@@ -1,11 +1,5 @@
-REGISTRATION SCRIPT: password validation
+REGISTRATION SCRIPT: checkbox term of services validation
 
-Do walidacji hasła użyto wyrażenia regularnego: 
-- Czy hasło składa się z 8-20 znaków?
-- Czy hasło składa się wyłącznie z liter i cyfr?
-
-Dodatkowo:
-- Sprawdzono czy podane hasła są identyczne?
-- Utworzono zmienną, w której znajduje się zahashowane hasło? 
-- Hasło1 po niepoprawnym wysłaniu formularza zostanie automatycznie uzupełnione w formularzu, dzięki utworzeniu zmiennej sesyjnej.
-
+- In the case of an incorrectly filled out form, the previously selected checkbox will be automatically completed.
+- Checked checkbox is not necessary for proper form validation (setting $everything_OK flag to "true")
+- If the checkbox is not checked in the form an error will be displayed

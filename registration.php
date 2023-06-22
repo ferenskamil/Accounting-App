@@ -68,14 +68,19 @@ session_start();
                                                 placeholder="Repeat password">
                                         <p class="error"><?php 
                                                 if (isset( $_SESSION['e_pass2'])) echo $_SESSION['e_pass2'];
-                                        ?></p>                                </div>
-                                <div class="register__form-box term-of-services">
-                                      <label for="term-of-services">
+                                        ?></p>                                
+                                </div>
+                                <div class="register__form-box term-of-services-box">
+                                        <label for="term-of-services">
                                         <input type="checkbox" name="term-of-services" id="term-of-services" <?php 
-                                                if (isset($_SESSION['term-of-services']) && $_SESSION['term-of-services']) echo "checked";
-                                        ?>>
+                                                if (isset($_SESSION['term-of-services']) && $_SESSION['term-of-services']) {
+                                                        echo 'checked';
+                                                } ?>>
                                         I agree with the term of services
-                                      </label>  
+                                        </label>  
+                                        <p class="error"><?php 
+                                                if (isset($_SESSION['e_term_of_services'])) echo $_SESSION['e_term_of_services'];
+                                        ?></p>                               
                                 </div>
                                 <button class="register__form-submit" type="submit">Sign up</button>
                         </form>

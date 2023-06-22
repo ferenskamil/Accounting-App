@@ -63,17 +63,24 @@ if (isset($_POST['login'])) {
                 $_SESSION['e_pass2'] = "";
         }
 
-        $password_hash = password_hash($password1, PASSWORD_DEFAULT);
+        $password_hash = password_hash($pass1, PASSWORD_DEFAULT);
+
+        // CHECKBOX - is input "term of services" accepted?
+        if (!$term_is_accepted) {
+                $everything_OK = false;
+                $_SESSION['e_term_of_services'] = "Accept term of services";
+        } else {
+                $_SESSION['e_term_of_services'] = "";
+        }
 } 
 
-// checkbox validate 
-
 // After succeded validation
-// if (!$everything_OK) header('Location: ../registration.php');
-header('Location: ../registration.php');
+if (!$everything_OK) header('Location: ../registration.php');
 
 echo $login."</br>";
 echo $email."</br>";
+echo $pass1."</br>";
+echo $pass2."</br>";
 echo $term_is_accepted."</br>";
 
 
