@@ -5,13 +5,14 @@
 
         if (isset($_SESSION['is_logged']) && $_SESSION['is_logged']) {
                 $user_name = $_SESSION['login'];
+                $user_email = $_SESSION['user_email'];
 
                 $account_options = '
                 <div class="home__top-right-logged-user"> 
                         <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/mrkaam_avatar.jpg" alt="user photo">
                         <div class="home__top-right-logged-user-info">
                                 <p><strong>'.$user_name.'</strong></p>
-                                <p>You are logged</p>
+                                <p>'.$user_email.'</p>
                         </div>
                 </div>';
                         

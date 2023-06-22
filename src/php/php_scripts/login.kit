@@ -28,8 +28,7 @@ if ($result_query = $db_conn->query($sql)) {
                        
                         $_SESSION['is_logged'] = true;
                         $_SESSION['login'] = $login;
-                        $_SESSION['data1'] = $user_data['data1'];
-                        $_SESSION['time'] = $user_data['time'];
+                        $_SESSION['user_email'] = $user_data['email'];
 
                         $result_query->close();
                         header('Location: ../dashboard.php');

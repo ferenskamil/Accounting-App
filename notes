@@ -1,5 +1,10 @@
-INDEX.PHP: script that changes the navigation display depending on whether the user is logged in
+REGISTRATION SCRIPT: connect script php "register.php" with form "registration.php"
+- Create a file "register.php" in which there will be a script responsible for entering the data of a new user into the database.
+- Merge the "registration.php" file in such a way that submitting the form will launch the "register.php" script. 
+- If you return to the form, the fields "login", "password" and input "term of servcies" will be automatically filled in with the previously entered data.
 
-- Start a session in the index.php file
-- A script that will cause that if a non-logged-in user enters the "index.php" page then the "sign in" and "register" buttons will be displayed to him. If a logged-in user enters the page, then instead of the buttons it will display his username, avatar and welcome message.
-- styling the above div
+
+Also:
+- In the "registration.php" file, change the link from "loginform.html" to "loginform.php".
+- In the "index.php" file, when the user is logged in - next to the avatar, the user's email address will be displayed instead of the caption "You are logged".
+- In the "registration.php" file, I added an option to indicate acceptance of the terms of the services.
