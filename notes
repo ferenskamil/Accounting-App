@@ -1,4 +1,11 @@
 REGISTRATION SCRIPT: password validation
+
+Do walidacji hasła użyto wyrażenia regularnego: 
 - Czy hasło składa się z 8-20 znaków?
-- Czy hasło zawiera małą literę, dużą literę i znak specjalny?
-- Czy podane hasła są identyczne? 
+- Czy hasło składa się wyłącznie z liter i cyfr?
+
+Dodatkowo:
+- Sprawdzono czy podane hasła są identyczne?
+- Utworzono zmienną, w której znajduje się zahashowane hasło? 
+- Hasło1 po niepoprawnym wysłaniu formularza zostanie automatycznie uzupełnione w formularzu, dzięki utworzeniu zmiennej sesyjnej.
+

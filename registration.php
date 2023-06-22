@@ -55,15 +55,20 @@ session_start();
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password1">Password</label>
                                         <input class="register__form-input" type="password" name="password1"
-                                                placeholder="Password">
-                                        <!-- <p class="error">Your password must consist of 8 charactaer and ate least on big letter</p> -->
+                                                placeholder="Password" value="<?php 
+                                                        if (isset($_SESSION['pass1'])) echo $_SESSION['pass1'];
+                                                ?>">
+                                        <p class="error"><?php 
+                                                if (isset( $_SESSION['e_pass1'])) echo $_SESSION['e_pass1'];
+                                        ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password2">Repeat password</label>
                                         <input class="register__form-input" type="password" name="password2"
                                                 placeholder="Repeat password">
-                                        <!-- <p class="error">Password must be identhical</p> -->
-                                </div>
+                                        <p class="error"><?php 
+                                                if (isset( $_SESSION['e_pass2'])) echo $_SESSION['e_pass2'];
+                                        ?></p>                                </div>
                                 <div class="register__form-box term-of-services">
                                       <label for="term-of-services">
                                         <input type="checkbox" name="term-of-services" id="term-of-services" <?php 
