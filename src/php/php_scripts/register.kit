@@ -10,23 +10,40 @@ if (isset($_POST['term-of-services'])) {
 };
 
 
+
 // Sava data as session variables
 $_SESSION['login'] = $login;
 $_SESSION['email'] = $email;
 $_SESSION['term-of-services'] = $term_is_accepted;
 
-// login validate
+// validation
+if (isset($_POST['login'])) {
+        $everything_OK = true;
 
+        // LOGIN - login length
+        if (strlen($login) >=5 && strlen($login) <= 15) {
+                $_SESSION['e_login'] = "";
+        } else {
+                $everything_OK = false;
+                $_SESSION['e_login'] = "Login must consist of 5-15 letters and numbers";
+        }
 
-// emailvalidate
+        // LOGIN - are every characters alphanumeric?
+        if(ctype_alnum($login) === false) {
+                $everything_OK = false;
+                $_SESSION['e_login'] = "Login can only contain letters and numbers";
+        }
+} 
+
+// email validate
 
 // password validate
 
 // checkbox validate 
 
-
-// header('Location: ../registration.php');
-
+// After succeded validation
+// if (!$everything_OK) header('Location: ../registration.php');
+header('Location: ../registration.php');
 
 echo $login."</br>";
 echo $email."</br>";

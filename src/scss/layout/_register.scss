@@ -58,7 +58,7 @@
 		&-box {
 			display: flex;
 			flex-direction: column;
-			margin-bottom: 1em;
+			// margin-bottom: 1em;
 
 			&.term-of-services-box {
 				label {
@@ -96,6 +96,7 @@
 		.error {
 			padding-top: 0.3em;
 			padding-left: 0.3em;
+			margin-bottom: 0.6em;
 			font-size: 1.3rem;
 			color: $main-color;
 		}

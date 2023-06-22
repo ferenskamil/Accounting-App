@@ -43,7 +43,9 @@ session_start();
                                                 placeholder="Login" value="<?php 
                                                         if (isset($_SESSION['login'])) echo $_SESSION['login'];
                                                 ?>">
-                                        <!-- <p class="error">Your login is invalid!!! Change it!!</p> -->
+                                        <p class="error"><?php 
+                                                if (isset( $_SESSION['e_login'])) echo $_SESSION['e_login'];
+                                        ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="email">Email</label>

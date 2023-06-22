@@ -1,10 +1,7 @@
-REGISTRATION SCRIPT: connect script php "register.php" with form "registration.php"
-- Create a file "register.php" in which there will be a script responsible for entering the data of a new user into the database.
-- Merge the "registration.php" file in such a way that submitting the form will launch the "register.php" script. 
-- If you return to the form, the fields "login", "password" and input "term of servcies" will be automatically filled in with the previously entered data.
+REGISTRATION SCRIPT: login validate rules
 
+- Security using the length of the entered login to check if the login consists of 5-15 characters.
+- Security with the ctype_alnum function that checks whether the entered login consists of letters and numbers only.
 
-Also:
-- In the "registration.php" file, change the link from "loginform.html" to "loginform.php".
-- In the "index.php" file, when the user is logged in - next to the avatar, the user's email address will be displayed instead of the caption "You are logged".
-- In the "registration.php" file, I added an option to indicate acceptance of the terms of the services.
+Also: 
+- Change the display of error message.
