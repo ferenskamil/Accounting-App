@@ -1,10 +1,5 @@
 <?php 
 session_start();
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +48,9 @@ session_start();
                                                 placeholder="email" value="<?php 
                                                         if (isset($_SESSION['email'])) echo $_SESSION['email'];
                                                 ?>">
-                                        <!-- <p class="error">Your login is invalid!!! Change it!!</p> -->
+                                        <p class="error"><?php 
+                                                if (isset( $_SESSION['e_email'])) echo $_SESSION['e_email'];
+                                        ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password1">Password</label>

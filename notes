@@ -1,7 +1,4 @@
-REGISTRATION SCRIPT: login validate rules
-
-- Security using the length of the entered login to check if the login consists of 5-15 characters.
-- Security with the ctype_alnum function that checks whether the entered login consists of letters and numbers only.
-
-Also: 
-- Change the display of error message.
+REGISTRATION SCRIPT: password validation
+- Czy hasło składa się z 8-20 znaków?
+- Czy hasło zawiera małą literę, dużą literę i znak specjalny?
+- Czy podane hasła są identyczne? 
