@@ -21,11 +21,9 @@ if ($result_query = $db_conn->query($sql)) {
                 unset($_SESSION['log_error_login']);
                 $user_data = $result_query->fetch_assoc();
 
-                // if (password_verify($password, $user_data['password'])) {
-                if ($password === $user_data['password']) {
+                if (password_verify($password, $user_data['password'])) {
                         unset($_SESSION['log_error_pass']);
-                       
-                       
+                                              
                         $_SESSION['is_logged'] = true;
                         $_SESSION['login'] = $login;
                         $_SESSION['user_email'] = $user_data['email'];
