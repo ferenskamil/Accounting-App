@@ -26,7 +26,12 @@ if (!$_SESSION['is_logged']) {
 </head>
 
 <body>
-        <div class="nav">
+        <?php
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+        }
+?>
+<div class="nav">
         <ul class="nav__list">
                 <li>
                         <a href="./index.php" class="nav__item">
@@ -83,7 +88,7 @@ if (!$_SESSION['is_logged']) {
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/mrkaam_avatar.jpg" alt="user photo">
+                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

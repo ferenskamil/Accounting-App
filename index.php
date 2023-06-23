@@ -6,10 +6,11 @@
         if (isset($_SESSION['is_logged']) && $_SESSION['is_logged']) {
                 $user_name = $_SESSION['login'];
                 $user_email = $_SESSION['user_email'];
+                $user_img = $_SESSION['avatar_img'];
 
                 $account_options = '
                 <div class="home__top-right-logged-user"> 
-                        <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/mrkaam_avatar.jpg" alt="user photo">
+                        <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/'.$user_img.'" alt="user photo">
                         <div class="home__top-right-logged-user-info">
                                 <p><strong>'.$user_name.'</strong></p>
                                 <p>'.$user_email.'</p>
