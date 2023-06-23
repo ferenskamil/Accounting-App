@@ -11,8 +11,6 @@ if (isset($_POST['term-of-services'])) {
         $term_is_accepted =  false;
 };
 
-
-
 // Sava data as session variables
 $_SESSION['login'] = $login;
 $_SESSION['email'] = $email;
@@ -75,13 +73,19 @@ if (isset($_POST['login'])) {
 } 
 
 // After succeded validation
-if (!$everything_OK) header('Location: ../registration.php');
+if ($everything_OK) {
+        require_once 'db_database.php';
 
-echo $login."</br>";
-echo $email."</br>";
-echo $pass1."</br>";
-echo $pass2."</br>";
-echo $term_is_accepted."</br>";
+        $query = $db->prepare('INSERT INTO users VALUES (NULL, :login, :pass, :email, NULL)');
+        $query->bindvalue(':login', $login, PDO::PARAM_STR);
+        $query->bindvalue(':pass', $password_hash, PDO::PARAM_STR);
+        $query->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
+        $query->execute();
 
+        echo 'Successfull registration';
 
-?>
+} else {
+        header('Location: ../registration.php');
+        exit();
+}
+
