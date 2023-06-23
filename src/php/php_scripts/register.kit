@@ -76,14 +76,43 @@ if (isset($_POST['login'])) {
 if ($everything_OK) {
         require_once 'db_database.php';
 
+        // A flag that checks whether the user is located, already in the database
+        $user_already_exist = false;
+
+        // LOGIN - does the login exist in the database?
+        $how_many_logins = $db->prepare("SELECT * FROM `users` WHERE login = :login");
+        $how_many_logins->bindvalue(':login', $login, PDO::PARAM_STR);
+        $how_many_logins->execute();
+
+        if ($how_many_logins->rowCount() !== 0) {
+                $user_already_exist = true;
+                $_SESSION['e_login'] = "Login already exist";
+                header('Location: ../registration.php');
+                exit();
+        } 
+
+        // EMAIL - does the email exist in database?
+        $how_many_emails = $db->prepare("SELECT * FROM `users` WHERE email = :email");
+        $how_many_emails->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
+        $how_many_emails->execute();
+
+        if ($how_many_emails->rowCount() !== 0) {
+                $user_already_exist = true;
+                $_SESSION['e_email'] = "Email already exist";
+                header('Location: ../registration.php');
+                exit();
+        } 
+
+        // If the user does not exist in the database, we add him to the database
+        if (!$user_already_exist) {
         $query = $db->prepare('INSERT INTO users VALUES (NULL, :login, :pass, :email, NULL)');
         $query->bindvalue(':login', $login, PDO::PARAM_STR);
         $query->bindvalue(':pass', $password_hash, PDO::PARAM_STR);
         $query->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
         $query->execute();
-
+        
         echo 'Successfull registration';
-
+        } 
 } else {
         header('Location: ../registration.php');
         exit();
