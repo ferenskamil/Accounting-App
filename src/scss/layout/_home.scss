@@ -57,13 +57,15 @@
 					width: 100%;
 				}
 
-				img.home__top-right-btns-avatar {
-					// border: 10px solid red;
-					border-radius: 50%;
-					max-width: 45px;
-					max-height: 45px;
-					// object-fit: cover;
-				}
+				// img.home__top-right-logged-user-avatar {
+				// 	// border: 10px solid red;
+				// 	// border-radius: 50%;
+				// 	min-width: 45px;
+				// 	max-width: 45px;
+				// 	min-height: 45px;
+				// 	max-height: 45px;
+				// 	object-fit: cover;
+				// }
 			}
 
 			&-btn {
@@ -122,7 +124,9 @@
 
 				img.home__top-right-logged-user-avatar {
 					border-radius: 50%;
+					width: 45px;
 					max-width: 45px;
+					height: 45px;
 					max-height: 45px;
 					object-fit: cover;
 				}

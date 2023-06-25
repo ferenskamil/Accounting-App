@@ -66,12 +66,6 @@ if (!$_SESSION['is_logged']) {
                         </a>
                 </li>
                 <li>
-                        <a href="#" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-lock-open"></i></span>
-                                <span class="nav__item-title"> Lorem ipsum</span>
-                        </a>
-                </li>
-                <li>
                         <a href="./php_scripts/logout.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                                 <span class="nav__item-title">Logout</span>

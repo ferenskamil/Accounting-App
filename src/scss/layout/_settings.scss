@@ -4,9 +4,6 @@
 	padding: 1em;
 	font-size: 1.3rem;
 
-	&__title {
-	}
-
 	&__description {
 		font-size: 1.3rem;
 	}
@@ -44,6 +41,49 @@
 				border: 1px solid $grey-dark;
 				border-bottom: 1px solid $grey-dark;
 				outline: none;
+			}
+		}
+
+		&-change-avatar {
+			// display: flex;
+			// flex-direction: column;
+
+			.test {
+				display: flex;
+				flex-direction: row;
+				gap: 0.5em;
+			}
+
+			img {
+				margin-top: 0.5em;
+				height: 8em;
+				width: 8em;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+
+			.upload-img-btn-label {
+				@include button($second-color, $main-color);
+				// margin-top: 1em;
+				margin-bottom: 0;
+				width: auto;
+				transition: background-color 0.5s;
+				// cursor: pointer;
+				align-self: end;
+
+				&:hover {
+					background-color: $main-color;
+				}
+
+				input {
+					display: none;
+				}
+			}
+
+			.error {
+				align-self: end;
+				font-size: 1.1rem;
+				color: red;
 			}
 		}
 

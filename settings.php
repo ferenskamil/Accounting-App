@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,12 +59,6 @@
                         </a>
                 </li>
                 <li>
-                        <a href="#" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-lock-open"></i></span>
-                                <span class="nav__item-title"> Lorem ipsum</span>
-                        </a>
-                </li>
-                <li>
                         <a href="./php_scripts/logout.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                                 <span class="nav__item-title">Logout</span>
@@ -88,7 +83,21 @@
                 <h1 class="settings__title">Settings</h1>
                 <p class="settings__description">Here you can set default information for all invoices you will issue in
                         the future. Later, too, you will be able to edit them from within a single invoice</p>
-                <form action="" method="post" class="settings__form">
+                        <form action="./php_scripts/upload_avatar.php" method="post" enctype="multipart/form-data" class="settings__form-change-avatar">
+                                <h2>User photo</h2>
+                                <div class="test">
+                                        <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                                        <label for="upload-img-btn" class="upload-img-btn-label">
+                                                <input type="file" id="upload-img-btn" name="upload-img-btn" accept=".jpg, .jpeg, .png">
+                                                <!-- <input type="submit" value="Send File" /> -->
+                                                <i class="fa-sharp fa-solid fa-camera"></i>Send File
+                                        </label>
+                                        <p class="error"><?php 
+                                                if (isset($_SESSION['e_upload'])) echo $_SESSION['e_upload'];
+                                        ?></p>
+                                </div>
+                        </form>
+                        <form action="" method="post" class="settings__form">
                         <div class="settings__form-box">
                                 <h2>Company info</h2>
                                 <label for="settings-company-name">Nazwa firmy: </label>
@@ -125,6 +134,7 @@
 
         </main>
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/settings.min.js"></script>
 </body>
 
 </html>
