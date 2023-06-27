@@ -1,25 +1,3 @@
-UPLOAD AVATAR IMAGE FILE: user can upload image file and change its avatar
+Displaying default company values in the invoice editing form
 
-In the "upload_avatar.php" script:
-
--   The user will be able to upload his own photo and serve it as an avatar of his profile.
--   The photo must not be larger than 3mb.
--   The photo can have formats only ".jpg", ".jpeg", ".png".
--   The new name of the photo will be inserted into the database.
--   The script will be run every time a photo is selected via fileinput.
--   The uploaded photo will be automatically saved in the folder "dist/img/avatars/".
--   The old photo will be automatically deleted.
--   If the user changes the avatar for the first time, the default photo will not be deleted, and the correct avatar assigned to the username will be created on the server as a new file.
-
-In the file "settings.php":
-
--   Styled the input file button.
--   Inserted a section to change the profile picture into the "settings.php" file.
-
-In the file "register.php":
-
--   When registering, each user will have a default avatar set, which can later be changed.
-
-Also:
-
--   Delete one element of nav.
+- data are taken from session variables, which are taken from the database during login

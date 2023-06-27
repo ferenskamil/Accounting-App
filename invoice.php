@@ -170,14 +170,19 @@ session_start();
                                         <label for="invoice-no-edit">Nr faktury</label>
                                         <input type="text" name="invoice-no" id="invoice-no-edit" value="01/01/2023">
                                         <label for="date-edit">Data wystawienia: </label>
-                                        <input class="test" type="date" name="date" id="date-edit" value="2024-05-18">
+                                        <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
                                         <label for="city-edit">Miejscowość: </label>
-                                        <input type="text" name="city" id="city-edit" value="Wrocław">
+                                        <input type="text" name="city" id="city-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
+                                        ?>">
                                         <label for="bank-edit">Bank: </label>
-                                        <input type="text" name="bank" id="bank-edit" value="mBank">
+                                        <input type="text" name="bank" id="bank-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
+                                        ?>">
                                         <label for="account-no-edit">Nr konta: </label>
-                                        <input type="text" name="account-no" id="account-no-edit"
-                                                value="99 0000 1111 2222 3333 4444 5555">
+                                        <input type="text" name="account-no" id="account-no-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
+                                        ?>">
                                         <label for="term-edit">Termin zapłaty: </label>
                                         <select name="term" id="term-edit">
                                                 <option value="7 dni">7 dni</option>
@@ -187,31 +192,35 @@ session_start();
                                 <div class="invoice__edit-form-box invoice__edit-form-box-seller">
                                         <h2>Twoje dane</h2>
                                         <label for="seller-name-edit">Nazwa: </label>
-                                        <input type="text" name="seller-name" id="seller-name-edit"
-                                                value="Pizzeria Roma">
+                                        <input type="text" name="seller-name" id="seller-name-edit" value="<?php 
+                                                if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
+                                        ?>">
                                         <label for="seller-address1-edit">Adres: </label>
-                                        <input type="text" name="seller-address1" id="seller-address1-edit"
-                                                value="ul.Warszawska 14/3">
+                                        <input type="text" name="seller-address1" id="seller-address1-edit" value="<?php 
+                                                if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
+                                        ?>">
                                         <label for="seller-address2-edit">Adres cz.2: </label>
-                                        <input type="text" name="seller-address2" id="seller-address2-edit"
-                                                value="54-123 Wrocław">
+                                        <input type="text" name="seller-address2" id="seller-address2-edit" value="<?php 
+                                                 if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
+                                        ?>">
                                         <label for="seller-NIP-edit">NIP: </label>
-                                        <input type="text" name="seller-NIP" id="seller-NIP-edit" value="1234432112"
-                                                placeholder="jeżeli brak wpisz '---'">
+                                        <input type="text" name="seller-NIP" id="seller-NIP-edit" placeholder="if none enter '---'" value="<?php 
+                                                if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
+                                        ?>">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-customer">
                                         <h2>Dane nabywcy</h2>
                                         <label for="customer-name-edit">Nazwa: </label>
                                         <input type="text" name="customer-name" id="customer-name-edit"
-                                                value="Jan Kowalski">
+                                                value="">
                                         <label for="customer-address1-edit">Adres: </label>
                                         <input type="text" name="customer-address1" id="customer-address1-edit"
-                                                value="ul.Słoneczna 12c">
+                                                value="">
                                         <label for="customer-address2-edit">Adres cz.2: </label>
                                         <input type="text" name="customer-address2" id="customer-address2-edit"
-                                                value="54-123 Wrocław">
+                                                value="">
                                         <label for="customer-NIP-edit">NIP: </label>
-                                        <input type="text" name="customer-NIP" id="customer-NIP-edit" value="---"
+                                        <input type="text" name="customer-NIP" id="customer-NIP-edit" value=""
                                                 placeholder="jeżeli brak wpisz '---'">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-services">
