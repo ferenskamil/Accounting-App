@@ -1,3 +1,4 @@
-Displaying default company values in the invoice editing form
+SETTINGS.PHP: changing company data in the database
 
-- data are taken from session variables, which are taken from the database during login
+- The "change_company_data.kit" script retrieves the form data from the "settings.php" file, then updates the data of the lozogged user
+- The script updates the session variables of the entered data and displays them in the form

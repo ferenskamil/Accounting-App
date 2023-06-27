@@ -123,7 +123,7 @@ session_start();
                                         ?></p>
                         </div>
                 </form>
-                <form action="" method="post" class="settings__form">
+                <form action="./php_scripts/change_company_data.php" method="post" class="settings__form">
                         <div class="settings__form-box">
                                 <h2>Company info</h2>
                                 <label for="settings-company-name">Nazwa firmy: </label>
