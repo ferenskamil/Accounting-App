@@ -93,7 +93,7 @@
 									display: grid;
 									grid-template-columns:
 										40px minmax(150px, 1fr)
-										80px 40px 80px 80px 80px 80px 80px;
+										80px 60px 80px 80px 80px 80px 80px;
 									grid-template-rows: 1fr;
 									gap: 15px;
 									padding: 0.6em 0.5em 1em 0;
@@ -101,6 +101,7 @@
 									th {
 										padding: 0.6em 0;
 										text-align: start;
+
 										&.service-thead--mobile {
 											display: none;
 										}
@@ -120,7 +121,7 @@
 								tr {
 									grid-template-columns:
 										40px minmax(150px, 1fr)
-										80px 40px 80px 80px 80px 80px 80px;
+										80px 60px 80px 80px 80px 80px 80px;
 									justify-content: center;
 									align-items: end;
 									gap: 15px;
@@ -163,7 +164,7 @@
 									display: grid;
 									grid-template-columns:
 										40px minmax(150px, 1fr)
-										80px 40px 80px 80px 80px 80px 80px;
+										80px 60px 80px 80px 80px 80px 80px;
 									grid-template-rows: 1fr;
 									gap: 15px;
 									padding: 0.6em 0.5em 1em 0;

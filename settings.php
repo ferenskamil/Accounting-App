@@ -1,15 +1,5 @@
 <?php 
 session_start(); 
-
-// if (isset($_SESSION['is_logged']) && $_SESSION['is_logged']) {
-//         require_once 'db_database.php';
-
-//         $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");
-//         $db_user->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
-//         $db_user->execute();
-//         $db_user_arr = $db_user->fetch(PDO::FETCH_ASSOC);
-//         $db_user_arr['company_logo_file_path'];
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,26 +116,26 @@ session_start();
                 <form action="./php_scripts/change_company_data.php" method="post" class="settings__form">
                         <div class="settings__form-box">
                                 <h2>Company info</h2>
-                                <label for="settings-company-name">Nazwa firmy: </label>
+                                <label for="settings-company-name">Name: </label>
                                 <input type="text" id="settings-company-name" name="settings-company-name" value="<?php 
                                         if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
                                 ?>">
-                                <label for="settings-company-address1">Adres: </label>
+                                <label for="settings-company-address1">Address: </label>
                                 <input type="text" id="settings-company-address1" name="settings-company-address1" value="<?php 
                                         if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
                                 ?>">
-                                <label for="settings-company-address2">Adres cz.2: </label>
+                                <label for="settings-company-address2">Address 2: </label>
                                 <input type="text" id="settings-company-address2" name="settings-company-address2" value="<?php 
                                         if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
                                 ?>">
-                                <label for="settings-company-number">NIP: </label>
+                                <label for="settings-company-number">Company no.: </label>
                                 <input type="text" id="settings-company-number" name="settings-company-number" value="<?php 
                                         if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
                                 ?>">
                         </div>
                         <div class="settings__form-box">
                                 <h2>Invoice default info</h2>
-                                <label for="settings-invoice-city">Miejscowość: </label>
+                                <label for="settings-invoice-city">City: </label>
                                 <input type="text" id="settings-invoice-city" name="settings-invoice-city" value="<?php 
                                         if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
                                 ?>">
@@ -153,15 +143,14 @@ session_start();
                                 <input type="text" id="settings-invoice-bank" name="settings-invoice-bank" value="<?php 
                                         if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
                                 ?>">
-                                <label for="settings-invoice-account-no">Nr konta: </label>
+                                <label for="settings-invoice-account-no">Account no.: </label>
                                 <input type="text" id="settings-invoice-account-no" name="settings-invoice-account-no" value="<?php 
                                         if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
                                 ?>">
                         </div>
                         <div class="settings__form-box settings__form-box-additional-info">
                                 <h2>Additional info</h2>
-                                <p>*Fill in if the following applies to the good (service).
-                                        subject exemptions from tax</p>
+                                <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 <textarea name="settings-additional-info" id="settings-additional-info" cols="30"
                                         rows="10"><?php 
                                         if (isset($_SESSION['default_invoice_additional_info'])) echo $_SESSION['default_invoice_additional_info'];

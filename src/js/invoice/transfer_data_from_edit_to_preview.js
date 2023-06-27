@@ -51,11 +51,11 @@ const displayInvoiceInfoInPreview = () => {
 	copyAndDisplay('#seller-name-edit', '#seller-name-view');
 	copyAndDisplay('#seller-address1-edit', '#seller-address1-view');
 	copyAndDisplay('#seller-address2-edit', '#seller-address2-view');
-	copyAndDisplay('#seller-NIP-edit', '#seller-NIP-view');
+	copyAndDisplay('#seller-company-no-edit', '#seller-company-no-view');
 	copyAndDisplay('#customer-name-edit', '#customer-name-view');
 	copyAndDisplay('#customer-address1-edit', '#customer-address1-view');
 	copyAndDisplay('#customer-address2-edit', '#customer-address2-view');
-	copyAndDisplay('#customer-NIP-edit', '#customer-NIP-view');
+	copyAndDisplay('#customer-company-no-edit', '#customer-company-no-view');
 	copyAndDisplay('#comment-edit', '#comment-view');
 };
 
@@ -73,7 +73,7 @@ const getServicesFromEditFormToArr = () => {
 		const activityCode = el.querySelector('.service-item-code').value;
 		const amount = el.querySelector('.service-item-amount').value;
 		const netPrice =
-			el.querySelector('.service-item-net-value').value + 'zł';
+			el.querySelector('.service-item-net-value').value + ' PLN';
 		const tax = el.querySelector('.service-item-tax').value;
 		const netSum = el.querySelector('.service-item-net-sum').value;
 		const grossSum = el.querySelector('.service-item-gross-sum').value;

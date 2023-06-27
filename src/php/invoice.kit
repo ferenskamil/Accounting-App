@@ -28,40 +28,40 @@ session_start();
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Faktura VAT nr <span id="invoice-no-view"></span></h2>
+                                <h2 class="invoice__paper-title">Invoice no. <span id="invoice-no-view"></span></h2>
                                 <div class="invoice__paper-content invoice-info">
-                                        <p><Strong>Data wystawienia: </Strong><span id="date-view"></span></p>
-                                        <p><Strong>Miejscowość: </Strong><span id="city-view"></span></p>
+                                        <p><Strong>Invoice date: </Strong><span id="date-view"></span></p>
+                                        <p><Strong>City: </Strong><span id="city-view"></span></p>
                                         <p><Strong>Bank: </Strong><span id="bank-view"></span></p>
-                                        <p><Strong>Nr konta: </Strong><span id="account-no-view"></span></p>
-                                        <p><Strong>Termin zapłaty: </Strong><span id="term-view"></span></p>
+                                        <p><Strong>Account no.: </Strong><span id="account-no-view"></span></p>
+                                        <p><Strong>Payment term: </Strong><span id="term-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-seller">
-                                        <h3>Sprzedawca</h3>
+                                        <h3>Seller:</h3>
                                         <p><span id="seller-name-view"></span></p>
                                         <p><span id="seller-address1-view"></span></p>
                                         <p><span id="seller-address2-view"></span></p>
-                                        <p><span id="seller-NIP-view"></span></p>
+                                        <p><span id="seller-company-no-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-customer">
-                                        <h3>Nabywca</h3>
+                                        <h3>Bill to:</h3>
                                         <p><span id="customer-name-view"></span></p>
                                         <p><span id="customer-address1-view"></span></p>
                                         <p><span id="customer-address2-view"></span></p>
-                                        <p><span id="customer-NIP-view"></span></p>
+                                        <p><span id="customer-company-no-view"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice__paper-services">
                                         <table>
                                                 <thead>
                                                         <tr>
-                                                                <th>L.p.</th>
-                                                                <th>Nazwa towaru / usługi</th>
-                                                                <th>Kod PKWiU</th>
-                                                                <th>Ilość</th>
-                                                                <th>Cena netto</th>
-                                                                <th>Stawka VAT</th>
-                                                                <th>Wartość netto</th>
-                                                                <th>Wartość brutto</th>
+                                                                <th>No.</th>
+                                                                <th>Item / service</th>
+                                                                <th>Service code</th>
+                                                                <th>Quantity</th>
+                                                                <th>Net price</th>
+                                                                <th>Tax</th>
+                                                                <th>Net sum</th>
+                                                                <th>Gross sum</th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
@@ -69,44 +69,42 @@ session_start();
                                                 <tfoot>
                                                         <tr>
                                                                 <td colspan="4"></td>
-                                                                <td>RAZEM:</td>
+                                                                <td>TOTAL:</td>
                                                                 <td></td>
-                                                                <td class="preview-total-net">0 zł</td>
-                                                                <td class="preview-total-gross">0 zł</td>
+                                                                <td class="preview-total-net">0 PLN</td>
+                                                                <td class="preview-total-gross">0 PLN</td>
                                                         </tr>
                                                 </tfoot>
                                         </table>
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
-                                        <p><Strong>Do zapłaty: </Strong><span id="invoice__sum-numeric"></span>
-                                                zł
+                                        <p><Strong>To pay: </Strong><span id="invoice__sum-numeric"></span>
+                                                PLN
                                         </p>
-                                        <p><Strong>Słownie: </Strong><span id="invoice__sum-verbal"></span></p>
+                                        <p><Strong>In words: </Strong><span id="invoice__sum-verbal"></span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-comments">
-                                        <h3>Informacje dodatkowe</h3>
+                                        <h3>Additional notes</h3>
                                         <p class="comment"><span id="comment-view"></span></p>
-                                        <p class="footnote">*Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
-                                                się zwolnienia przedmiotowe z podatku</p>
+                                        <p class="footnote">*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 </div>
                                 <div class="invoice__paper-content invoice-sign">
                                         <div class="line"></div>
-                                        <p>Podpis osoby upoważnionej do wystawienia faktury</p>
+                                        <p>Signature of authorized person</p>
                                 </div>
                         </div>
                 </div>
-                <!-- shadow? -->
                 <div class="invoice__edit">
                         <button class="invoice__edit-back"><i
                                         class="fa-sharp fa-solid fa-arrow-rotate-left"></i>Return</button>
                         <form action="" method="post" class="invoice__edit-form">
                                 <div class="invoice__edit-form-box invoice__edit-form-box-details ">
-                                        <h2>Szczegóły</h2>
-                                        <label for="invoice-no-edit">Nr faktury</label>
+                                        <h2>Details</h2>
+                                        <label for="invoice-no-edit">Invoice no.</label>
                                         <input type="text" name="invoice-no" id="invoice-no-edit" value="01/01/2023">
-                                        <label for="date-edit">Data wystawienia: </label>
+                                        <label for="date-edit">Invoice date: </label>
                                         <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
-                                        <label for="city-edit">Miejscowość: </label>
+                                        <label for="city-edit">City: </label>
                                         <input type="text" name="city" id="city-edit" value="<?php 
                                                 if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
                                         ?>">
@@ -114,72 +112,71 @@ session_start();
                                         <input type="text" name="bank" id="bank-edit" value="<?php 
                                                 if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
                                         ?>">
-                                        <label for="account-no-edit">Nr konta: </label>
+                                        <label for="account-no-edit">Account no.: </label>
                                         <input type="text" name="account-no" id="account-no-edit" value="<?php 
                                                 if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
                                         ?>">
-                                        <label for="term-edit">Termin zapłaty: </label>
+                                        <label for="term-edit">Payment term: </label>
                                         <select name="term" id="term-edit">
-                                                <option value="7 dni">7 dni</option>
-                                                <option value="14 dni" selected>14 dni</option>
+                                                <option value="7 days">7 days</option>
+                                                <option value="14 days" selected>14 days</option>
                                         </select>
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-seller">
-                                        <h2>Twoje dane</h2>
-                                        <label for="seller-name-edit">Nazwa: </label>
+                                        <h2>Your data</h2>
+                                        <label for="seller-name-edit">Name: </label>
                                         <input type="text" name="seller-name" id="seller-name-edit" value="<?php 
                                                 if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
                                         ?>">
-                                        <label for="seller-address1-edit">Adres: </label>
+                                        <label for="seller-address1-edit">Address: </label>
                                         <input type="text" name="seller-address1" id="seller-address1-edit" value="<?php 
                                                 if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
                                         ?>">
-                                        <label for="seller-address2-edit">Adres cz.2: </label>
+                                        <label for="seller-address2-edit">Address 2: </label>
                                         <input type="text" name="seller-address2" id="seller-address2-edit" value="<?php 
                                                  if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
                                         ?>">
-                                        <label for="seller-NIP-edit">NIP: </label>
-                                        <input type="text" name="seller-NIP" id="seller-NIP-edit" placeholder="if none enter '---'" value="<?php 
+                                        <label for="seller-company-no-edit">Company no.: </label>
+                                        <input type="text" name="seller-company-no" id="seller-company-no-edit" placeholder="if none enter '---'" value="<?php 
                                                 if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
                                         ?>">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-customer">
-                                        <h2>Dane nabywcy</h2>
-                                        <label for="customer-name-edit">Nazwa: </label>
+                                        <h2>Billed to</h2>
+                                        <label for="customer-name-edit">Name: </label>
                                         <input type="text" name="customer-name" id="customer-name-edit"
                                                 value="">
-                                        <label for="customer-address1-edit">Adres: </label>
+                                        <label for="customer-address1-edit">Address: </label>
                                         <input type="text" name="customer-address1" id="customer-address1-edit"
                                                 value="">
-                                        <label for="customer-address2-edit">Adres cz.2: </label>
+                                        <label for="customer-address2-edit">Address 2: </label>
                                         <input type="text" name="customer-address2" id="customer-address2-edit"
                                                 value="">
-                                        <label for="customer-NIP-edit">NIP: </label>
-                                        <input type="text" name="customer-NIP" id="customer-NIP-edit" value=""
-                                                placeholder="jeżeli brak wpisz '---'">
+                                        <label for="customer-company-no-edit">Company no.: </label>
+                                        <input type="text" name="customer-company-no" id="customer-company-no-edit" value=""
+                                                placeholder="if none enter '---'">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-services">
-                                        <h2>Usługi</h2>
+                                        <h2>Services</h2>
                                         <table class="invoice__edit-form-box-services-table">
                                                 <thead>
                                                         <tr>
                                                                 <th class="service-thead--mobile">Services
                                                                         list</th>
-                                                                <th class="service-thead--large">L.p.</th>
-                                                                <th class="service-thead--large">Nazwa towaru / usługi
-                                                                </th>
-                                                                <th class="service-thead--large">Kod PKWiU</th>
-                                                                <th class="service-thead--large">Ilość</th>
-                                                                <th class="service-thead--large">Cena netto (zł)</th>
-                                                                <th class="service-thead--large">Stawka VAT</th>
-                                                                <th class="service-thead--large">Wartość netto</th>
-                                                                <th class="service-thead--large">Wartość brutto</th>
+                                                                <th class="service-thead--large">No.</th>
+                                                                <th class="service-thead--large">Item / service</th>
+                                                                <th class="service-thead--large">Service code</th>
+                                                                <th class="service-thead--large">Quantity</th>
+                                                                <th class="service-thead--large">Net price (PLN)</th>
+                                                                <th class="service-thead--large">Tax</th>
+                                                                <th class="service-thead--large">Net sum</th>
+                                                                <th class="service-thead--large">Gross sum</th>
                                                                 <th class="service-thead--large"></th>
                                                         </tr>
                                                 </thead>
                                                 <tbody>
                                                         <tr class="empty-info">
-                                                                <td>Brak pozycji na liście</td>
+                                                                <td>No items to display</td>
                                                         </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -187,28 +184,23 @@ session_start();
                                                                 <td><button class="new-service-btn"><i
                                                                                         class="fa-sharp fa-solid fa-plus"></i>
                                                                                 Add new</button></td>
-                                                                <td><strong>RAZEM:</strong></td>
-                                                                <td><span class="service-title--mobile"><strong>Wartość
-                                                                                        netto:
-                                                                                </strong></span><span
-                                                                                class="invoice-total-net">0.00 zł</span>
+                                                                <td><strong>TOTAL:</strong></td>
+                                                                <td><span class="service-title--mobile">
+                                                                        <strong>Net:</strong></span>
+                                                                        <span class="invoice-total-net">0.00 PLN</span>
                                                                 </td>
-                                                                <td><span class="service-title--mobile"><strong>Cena
-                                                                                        brutto:
-                                                                                </strong></span><span
-                                                                                class="invoice-total-gross">0.00
-                                                                                zł</span>
+                                                                <td><span class="service-title--mobile"><strong>Gross:</strong></span>
+                                                                <span class="invoice-total-gross">0.00 PLN</span>
                                                                 </td>
                                                         </tr>
                                                 </tfoot>
                                         </table>
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-comments">
-                                        <h2>Dodatkowe informacje</h2>
-                                        <p>*Wypełnia się w przypadku, gdy do towaru (usługi) stosuje
-                                                się zwolnienia przedmiotowe z podatku</p>
+                                        <h2>Additional notes</h2>
+                                        <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                         <textarea name="comment" id="comment-edit" cols="30"
-                                                rows="10">Zwolnienie podmiotowe art. 113 ust. o podatku dochodwym Lorem ipsum</textarea>
+                                                rows="10"></textarea>
                                 </div>
                                 <div class="invoice__edit-form-box-submit-btn">
                                         <button type="submit"><i class="fa-solid fa-floppy-disk "></i>Save</button>

@@ -1,4 +1,9 @@
-SETTINGS.PHP: changing company data in the database
+INVOICE.PHP: Translate all text to english 
 
-- The "change_company_data.kit" script retrieves the form data from the "settings.php" file, then updates the data of the lozogged user
-- The script updates the session variables of the entered data and displays them in the form
+Changed all Polish words to English words
+
+Changes in files: 
+- "invoice.php" (mainly)
+- "transfer_data_from_edit_to_preview.min.js"
+- "edit_form_services.min.js"
+- "_large.scss"

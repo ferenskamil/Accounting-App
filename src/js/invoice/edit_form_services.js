@@ -35,39 +35,39 @@ const createNewService = (e) => {
 
 	const newItem = document.createElement('tr');
 	const itemNoSpan = document.createElement('td');
-	itemNoSpan.innerHTML = `<span class="service-title--mobile">Nr pozycji: </span><span class="service-item-number"></span>`;
+	itemNoSpan.innerHTML = `<span class="service-title--mobile">No.: </span><span class="service-item-number"></span>`;
 
 	const serviceName = document.createElement('td');
-	serviceName.innerHTML = `<span class="service-title--mobile">Nazwa towaru / usługi: </span>
-	<input class="service-item-name" type="text" value="${'Carbonara'}">`;
+	serviceName.innerHTML = `<span class="service-title--mobile">Item / service: </span>
+	<input class="service-item-name" type="text" value="${''}">`;
 
 	const activityCode = document.createElement('td');
-	activityCode.innerHTML = `<span class="service-title--mobile">Kod PKWiU: </span>
+	activityCode.innerHTML = `<span class="service-title--mobile">Service code: </span>
 	<input class="service-item-code" type="text" value="${'56.21.11.0'}">`;
 
 	const amount = document.createElement('td');
-	amount.innerHTML = `<span class="service-title--mobile">Ilość: </span>
+	amount.innerHTML = `<span class="service-title--mobile">Quantity: </span>
 	<input type="number" value="1" min="0" class="service-item-amount">`;
 
 	const netValue = document.createElement('td');
-	netValue.innerHTML = `<span class="service-title--mobile">Cena netto (zł): </span>
+	netValue.innerHTML = `<span class="service-title--mobile">Net price (PLN): </span>
 	<input type="number" name="" id="" min="0" value="0" class="service-item-net-value">`;
 
 	const taxValue = document.createElement('td');
-	taxValue.innerHTML = `<span class="service-title--mobile">Stawka VAT: </span>
+	taxValue.innerHTML = `<span class="service-title--mobile">Tax: </span>
 	<select name="" id="" class="service-item-tax">
-		<option value="0">zw</option>
+		<option value="0">tax-free</option>
 		<option value="0.08">8%</option>
 		<option value="0.23">23%</option>
 	</select>`;
 
 	const netSum = document.createElement('td');
-	netSum.innerHTML = `<span class="service-title--mobile">Wartość netto (zł): </span>
-	<input type="text" value="0.00 zł" class="service-item-net-sum" disabled>`;
+	netSum.innerHTML = `<span class="service-title--mobile">Net sum (PLN): </span>
+	<input type="text" value="0.00 PLN" class="service-item-net-sum" disabled>`;
 
 	const grossSum = document.createElement('td');
-	grossSum.innerHTML = `<span class="service-title--mobile">Wartość brutto (zł): </span>
-	<input type="text" value="0.00 zł" class="service-item-gross-sum" disabled>`;
+	grossSum.innerHTML = `<span class="service-title--mobile">Gross sum (PLN): </span>
+	<input type="text" value="0.00 PLN" class="service-item-gross-sum" disabled>`;
 
 	const deleteBtn = document.createElement('td');
 	deleteBtn.innerHTML = `<button class="delete-btn">
@@ -101,7 +101,7 @@ const calculateItemTotalNet = (e) => {
 	const netPerOnePiece = item.querySelector('.service-item-net-value').value;
 	const net = item.querySelector('.service-item-net-sum');
 
-	net.value = `${(amount * netPerOnePiece).toFixed(2)} zł`;
+	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`;
 	calculateItemTotalGross(e);
 };
 
@@ -114,7 +114,7 @@ const calculateItemTotalGross = (e) => {
 	const totalGross =
 		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
 
-	sumGross.value = `${totalGross.toFixed(2)} zł`;
+	sumGross.value = `${totalGross.toFixed(2)} PLN`;
 
 	calculateTableSummary();
 };
@@ -128,7 +128,7 @@ const calculateInvoiceTotalNet = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} zł`;
+	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`;
 };
 
 const calculateInvoiceTotalGross = () => {
@@ -142,7 +142,7 @@ const calculateInvoiceTotalGross = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} zł`;
+	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`;
 };
 
 const calculateTableSummary = () => {
