@@ -28,6 +28,7 @@ if ($result_query = $db_conn->query($sql)) {
                         $_SESSION['login'] = $login;
                         $_SESSION['user_email'] = $user_data['email'];
                         $_SESSION['avatar_img'] = $user_data['avatar_file_img'];
+                        $_SESSION['logo_img'] = $user_data['company_logo_file_path'];
 
                         $result_query->close();
                         header('Location: ../dashboard.php');

@@ -10,10 +10,16 @@
 
                 $account_options = '
                 <div class="home__top-right-logged-user"> 
-                        <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/'.$user_img.'" alt="user photo">
                         <div class="home__top-right-logged-user-info">
-                                <p><strong>'.$user_name.'</strong></p>
-                                <p>'.$user_email.'</p>
+                                <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/'.$user_img.'" alt="user photo">
+                                <div>
+                                        <p><strong>'.$user_name.'</strong></p>
+                                        <p>'.$user_email.'</p>
+                                </div>
+                        </div>
+                        <div class="home__top-right-logged-user-settings">
+                                <a href="./dashboard.php"><button>App</button></a>
+                                <a href="./php_scripts/logout.php"><button>Log out</button></a>
                         </div>
                 </div>';
                         
@@ -80,6 +86,8 @@
                         </div>
                 </div>
         </main>
+
+        <script src="./dist/js/home.min.js"></script>
 </body>
 
 </html>

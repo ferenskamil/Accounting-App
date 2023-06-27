@@ -44,31 +44,20 @@
 			}
 		}
 
-		&-change-avatar {
-			// display: flex;
-			// flex-direction: column;
-
-			.test {
+		&-change-avatar,
+		&-change-company-logo {
+			div {
 				display: flex;
 				flex-direction: row;
-				gap: 0.5em;
+				gap: 1em;
 			}
 
-			img {
-				margin-top: 0.5em;
-				height: 8em;
-				width: 8em;
-				border-radius: 50%;
-				object-fit: cover;
-			}
-
-			.upload-img-btn-label {
+			.change-avatar-btn-label,
+			.change-logo-btn-label {
 				@include button($second-color, $main-color);
-				// margin-top: 1em;
 				margin-bottom: 0;
 				width: auto;
 				transition: background-color 0.5s;
-				// cursor: pointer;
 				align-self: end;
 
 				&:hover {
@@ -84,6 +73,26 @@
 				align-self: end;
 				font-size: 1.1rem;
 				color: red;
+			}
+		}
+
+		&-change-avatar {
+			img {
+				margin-top: 0.5em;
+				height: 8em;
+				width: 8em;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+		}
+
+		&-change-company-logo {
+			img {
+				margin-top: 0.5em;
+				height: 8em;
+				max-width: 20em;
+				// border-radius: 50%;
+				object-fit: cover;
 			}
 		}
 

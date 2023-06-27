@@ -1,20 +1,17 @@
 <?php
 session_start();
 
-// echo "<b>File name: </b>".$_FILES['upload-img-btn']['name']."<br>";
-// echo "<b>Type: </b>".$_FILES['upload-img-btn']['type']."<br>";
-// echo "<b>Size: </b>".$_FILES['upload-img-btn']['size']." B<br>";
-// echo "<b>Tmp name: </b>".$_FILES['upload-img-btn']['tmp_name']."<br>"; 
-// echo "<b>Error: </b>".$_FILES['upload-img-btn']['error']."<br>";
-// echo "<b>Full path: </b>".$_FILES['upload-img-btn']['full_path']."<br>";
+// echo "<b>File name: </b>".$_FILES['change-avatar-btn']['name']."<br>";
+// echo "<b>Type: </b>".$_FILES['change-avatar-btn']['type']."<br>";
+// echo "<b>Size: </b>".$_FILES['change-avatar-btn']['size']." B<br>";
+// echo "<b>Tmp name: </b>".$_FILES['change-avatar-btn']['tmp_name']."<br>"; 
+// echo "<b>Error: </b>".$_FILES['change-avatar-btn']['error']."<br>";
+// echo "<b>Full path: </b>".$_FILES['change-avatar-btn']['full_path']."<br>";
 
-// $test = fopen("localhost/accountingApp/test.txt", "w");
-// unlink("../test.txt");
-
-if (isset($_FILES['upload-img-btn']['name'])) {
-        $image_name = $_FILES['upload-img-btn']['name'];
-        $image_size = $_FILES['upload-img-btn']['size'];
-        $tmp_name = $_FILES['upload-img-btn']['tmp_name'];
+if (isset($_FILES['change-avatar-btn']['name'])) {
+        $image_name = $_FILES['change-avatar-btn']['name'];
+        $image_size = $_FILES['change-avatar-btn']['size'];
+        $tmp_name = $_FILES['change-avatar-btn']['tmp_name'];
         
         // image validation
         $valid_img_extension = ['jpg', 'jpeg', 'png'];
@@ -22,10 +19,10 @@ if (isset($_FILES['upload-img-btn']['name'])) {
         $img_extension = strtolower(end($img_extension));
 
         if (!in_array($img_extension, $valid_img_extension)) {
-                $_SESSION['e_upload'] = "File must be .jpg, .jpeg, .png";
+                $_SESSION['e_upload_avatar'] = "File must be .jpg, .jpeg, .png";
                 
         } elseif ($image_size > 25165824 ) {
-                $_SESSION['e_upload'] = "Maximum photo size is 3mb";
+                $_SESSION['e_upload_avatar'] = "Maximum photo size is 3mb";
         } else {
                 $new_img_name = $_SESSION['login']."_avatar_".date("Y-m-d").".".$img_extension;
                 
@@ -54,9 +51,9 @@ if (isset($_FILES['upload-img-btn']['name'])) {
 
                         // Set session variables
                         $_SESSION['avatar_img'] = $new_img_name;
-                        $_SESSION['e_upload'] = "";
+                        $_SESSION['e_upload_avatar'] = "";
                 } else {
-                        $_SESSION['e_upload'] = "Failure to save file";
+                        $_SESSION['e_upload_avatar'] = "Failure to save file";
                 }
         }
 

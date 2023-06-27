@@ -4,6 +4,7 @@
 	&__top {
 		background-color: $main-color;
 		color: $white;
+		overflow: hidden;
 
 		&-left {
 			display: flex;
@@ -118,9 +119,13 @@
 
 			&-logged-user {
 				display: flex;
-				flex-direction: row;
+				flex-direction: column;
 				margin-top: 1.5em;
+				align-items: start;
+				// padding-left: 2em;
 				gap: 1em;
+				// background-color: $white;
+				cursor: pointer;
 
 				img.home__top-right-logged-user-avatar {
 					border-radius: 50%;
@@ -133,13 +138,35 @@
 
 				&-info {
 					display: flex;
-					flex-direction: column;
-					justify-content: center;
+					flex-direction: row;
+					// justify-content: center;
+					// align-content: center;
+					align-items: center;
+					gap: 1em;
+
 					p {
 						font-size: 1.1rem;
 
 						&:nth-child(1) {
 							font-size: 1.4rem;
+						}
+					}
+				}
+
+				&-settings {
+					height: 0px;
+					width: 100%;
+					border: 1px solid transparent;
+					overflow: hidden;
+					transition: height 0.5s;
+
+					&--active {
+						height: 200px;
+					}
+
+					a {
+						button {
+							cursor: pointer;
 						}
 					}
 				}

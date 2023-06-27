@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <title>Invoice (test)</title>
+        <title>Invoice</title>
 </head>
 
 <body>
@@ -87,7 +91,7 @@
                 </div>
                 <div class="invoice__container">
                         <div class="invoice__paper">
-                                <img class="invoice__paper-logo" src="./dist/img/logo/test_logo.png"
+                                <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
                                 <h2 class="invoice__paper-title">Faktura VAT nr<span id="invoice-no-view"></span></h2>
                                 <div class="invoice__paper-content invoice-info">
