@@ -1,9 +1,2 @@
-INVOICE.PHP: Translate all text to english 
+SUGGEST_INVOICE_NO.PHP: A script that suggests a unique invoice number to the user
 
-Changed all Polish words to English words
-
-Changes in files: 
-- "invoice.php" (mainly)
-- "transfer_data_from_edit_to_preview.min.js"
-- "edit_form_services.min.js"
-- "_large.scss"

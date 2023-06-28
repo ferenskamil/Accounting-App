@@ -1,5 +1,7 @@
 <?php 
 session_start();
+
+require_once './php_scripts/suggest_invoice_no.php';
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +103,9 @@ session_start();
                                 <div class="invoice__edit-form-box invoice__edit-form-box-details ">
                                         <h2>Details</h2>
                                         <label for="invoice-no-edit">Invoice no.</label>
-                                        <input type="text" name="invoice-no" id="invoice-no-edit" value="01/01/2023">
+                                        <input type="text" name="invoice-no" id="invoice-no-edit" value="<?php 
+                                                if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
+                                        ?>">
                                         <label for="date-edit">Invoice date: </label>
                                         <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
                                         <label for="city-edit">City: </label>
