@@ -1,2 +1,1 @@
-SUGGEST_INVOICE_NO.PHP: A script that suggests a unique invoice number to the user
-
+- utworzono plik "update_invoice_in_db.php"
