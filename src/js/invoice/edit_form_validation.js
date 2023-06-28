@@ -6,8 +6,6 @@ const submitBtn = document.querySelector(
 );
 
 const editFormValidation = (e) => {
-	e.preventDefault();
-
 	let isOK = true;
 	inputs.forEach((input) => {
 		input.classList.remove('invoice__edit-form-box-input--empty');
@@ -17,10 +15,10 @@ const editFormValidation = (e) => {
 			isOK = false;
 		}
 	});
+	transferDataFromEditFormToPreview();
 
 	// Block submit form if any input is empty
 	if (!isOK) e.preventDefault();
-
 	return isOK;
 };
 

@@ -32,7 +32,6 @@ const transferDataFromEditFormToPreview = () => {
 	displayInvoiceInfoInPreview();
 	displayServicesInPreview();
 	displayInvoiceSummaryInPreview();
-	closeInvoiceEditForm();
 };
 
 const copyAndDisplay = (inputIdString, spanIdString) => {
@@ -162,5 +161,3 @@ const displayInvoiceSummaryInPreview = () => {
 	).toFixed(2);
 	verbalSpan.textContent = verbalNotation(numericSpan.textContent);
 };
-
-submitBtn.addEventListener('click', transferDataFromEditFormToPreview);
