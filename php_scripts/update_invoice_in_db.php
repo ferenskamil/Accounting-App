@@ -35,5 +35,12 @@ function is_an_invoice_syntax_OK(string $invoice_no) {
 }
 
 if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
+        unset($_SESSION['e_invoice_no_syntax']);
         echo "Syntax is OK";
+} else {
+        $_SESSION['e_invoice_no_syntax'] = 'The number must follow the formula "number/month/year" for example "1/01/1111"';
+        header('Location: ../invoice.php');
+        exit();
 }
+
+?>

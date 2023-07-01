@@ -171,6 +171,9 @@ require_once './php_scripts/suggest_invoice_no.php';
                                         <input type="text" name="invoice-no" id="invoice-no-edit" value="<?php 
                                                 if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
                                         ?>">
+                                        <p class="error"><?php 
+                                                if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
+                                        ?></p>
                                         <label for="date-edit">Invoice date: </label>
                                         <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
                                         <label for="city-edit">City: </label>
