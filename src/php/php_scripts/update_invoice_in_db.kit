@@ -43,4 +43,26 @@ if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
         exit();
 }
 
+// Checking if there is already an invoice in the database with the given number (for a given user)
+require_once 'db_database.php';
+
+$db_invoices_query = $db->prepare("
+        SELECT invoices.no FROM `invoices`
+        INNER JOIN users ON invoices.user_id = users.id
+        WHERE users.login = :login");
+$db_invoices_query->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+$db_invoices_query->execute();
+$db_invoices_nums = $db_invoices_query->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($db_invoices_nums as $num) {
+        $invoice_nums[] = $num['no'];
+}
+
+if (in_array($_POST['invoice-no'], $invoice_nums)) {
+        header('Location: ../add_invoice_to_db_confirmation.php');
+} else {
+        echo "Faktura o tym nr nie istnieje ;)";
+}
+
+
 ?>
