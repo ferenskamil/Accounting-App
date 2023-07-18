@@ -1,5 +1,1 @@
-Validation of invoice no. syntax before entering into the database 
-- No. must be consistent with the syntax "COUNT_NUM / MONTH / YEAR"
-- COUNT_NUM - any positive integer consisting of any number of digits 
-- MONTH - a number between 1-12 (digits only). Numbers 1-9 are preceded by a "0" sign on the left side.
-- YEAR - any positive integer consisting of 4 digits
+Feat: add invoice to database 

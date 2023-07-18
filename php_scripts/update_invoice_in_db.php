@@ -43,7 +43,7 @@ if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
         exit();
 }
 
-// Sprawdzenie czy w bazie danych występuje już faktura o podanym numerze (dla danego użytownika)
+// Checking if there is already an invoice in the database with the given number (for a given user)
 require_once 'db_database.php';
 
 $db_invoices_query = $db->prepare("
@@ -59,9 +59,33 @@ foreach($db_invoices_nums as $num) {
 }
 
 if (in_array($_POST['invoice-no'], $invoice_nums)) {
-        header('Location: ../add_invoice_to_db_confirmation.php');
+        header('Location: ./add_invoice_to_db_confirmation.php');
 } else {
-        echo "Faktura o tym nr nie istnieje ;)";
+        $query = $db->prepare("INSERT INTO invoices (`user_id`, `no`, `date`, 
+        `sum_net`, `sum_gross`, `city`, `bank`, 
+        `account_no`, `payment_term`, 
+        `to_pay`, `to_pay_in_words`, 
+        `additional_notes`) 
+        VALUES ('17', :no , :date,
+        :sum_net, :sum_gross ,:city, :bank,
+        :account_no , :term,
+        :to_pay, :to_pay_in_words,
+        :comment)");
+        $query->bindvalue(':no', $_POST['invoice-no'], PDO::PARAM_STR);
+        $query->bindvalue(':date', $_POST['date'], PDO::PARAM_STR);
+        $query->bindvalue(':sum_net', $_POST['total-net'], PDO::PARAM_STR);
+        $query->bindvalue(':sum_gross', $_POST['total-gross'], PDO::PARAM_STR);
+        $query->bindvalue(':city', $_POST['city'], PDO::PARAM_STR);
+        $query->bindvalue(':bank', $_POST['bank'], PDO::PARAM_STR);
+        $query->bindvalue(':account_no', $_POST['account-no'], PDO::PARAM_STR);
+        $query->bindvalue(':term', $_POST['term'], PDO::PARAM_STR);
+        $query->bindvalue(':to_pay',$_POST['to-pay-numeric'], PDO::PARAM_STR);
+        $query->bindvalue(':to_pay_in_words',$_POST['to-pay-verbal'], PDO::PARAM_STR);
+        $query->bindvalue(':comment', $_POST['comment'], PDO::PARAM_STR);
+        $query->execute();
+        header('Location: ../invoice.php');
+
+        // Trzeba jeszcze dorobić kolumny do tabeli BILLED TO 
 }
 
 

@@ -195,13 +195,18 @@ require_once './php_scripts/suggest_invoice_no.php';
                                                                 <td><span class="service-title--mobile">
                                                                         <strong>Net:</strong></span>
                                                                         <span class="invoice-total-net">0.00 PLN</span>
+                                                                        <input type="text" hidden name="total-net" id="total-net" value="0.00">
                                                                 </td>
-                                                                <td><span class="service-title--mobile"><strong>Gross:</strong></span>
-                                                                <span class="invoice-total-gross">0.00 PLN</span>
+                                                                <td><span class="service-title--mobile">
+                                                                        <strong>Gross:</strong></span>
+                                                                        <span class="invoice-total-gross">0.00 PLN</span>
+                                                                        <input type="text" hidden name="total-gross" id="total-gross" value="0.00">
                                                                 </td>
                                                         </tr>
                                                 </tfoot>
                                         </table>
+                                        <input type="text" hidden name="to-pay-numeric" id="to-pay-numeric" value="0.00">
+                                        <input type="text" hidden name="to-pay-verbal" id="to-pay-verbal" value="zero PLN 00/100">
                                 </div>
                                 <div class="invoice__edit-form-box invoice__edit-form-box-comments">
                                         <h2>Additional notes</h2>
@@ -216,11 +221,12 @@ require_once './php_scripts/suggest_invoice_no.php';
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/invoice/num_to_word.min.js"></script>
+        <script src="./dist/js/invoice/prepare_form.min.js"></script>
         <script src="./dist/js/invoice/open_hide_edit_form.min.js"></script>
         <script src="./dist/js/invoice/edit_form_validation.min.js"></script>
         <script src="./dist/js/invoice/edit_form_services.min.js"></script>
         <script src="./dist/js/invoice/transfer_data_from_edit_to_preview.min.js"></script>
-        <script src="./dist/js/invoice/num_to_word.min.js"></script>
 </body>
 
 </html>
