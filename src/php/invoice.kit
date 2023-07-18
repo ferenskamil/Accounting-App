@@ -1,9 +1,11 @@
 <?php 
 session_start();
 
+require_once './php_scripts/redirect_if_user_not_logged_in.php';
+redirect_if_user_not_logged_in('index.php');
+
 require_once './php_scripts/suggest_invoice_no.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

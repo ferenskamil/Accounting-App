@@ -1,11 +1,9 @@
-<?php 
+<?php
 session_start();
-if (!$_SESSION['is_logged']) {
-        header('Location: index.php');
-}
+
+require_once './php_scripts/redirect_if_user_not_logged_in.php';
+redirect_if_user_not_logged_in('index.php');
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
