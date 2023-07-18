@@ -3,64 +3,64 @@
 
 const unities = {
 	0: 'zero',
-	1: 'jeden',
-	2: 'dwa',
-	3: 'trzy',
-	4: 'cztery',
-	5: 'pięć',
-	6: 'sześć',
-	7: 'siedem',
-	8: 'osiem',
-	9: 'dziewięć',
+	1: 'one',
+	2: 'two',
+	3: 'three',
+	4: 'four',
+	5: 'five',
+	6: 'six',
+	7: 'seven',
+	8: 'eight',
+	9: 'nine',
 };
 
 const aboveTen = {
-	10: 'dziesięć',
-	11: 'jedenaście',
-	12: 'dwanaście',
-	13: 'trzynaście',
-	14: 'czternaście',
-	15: 'pietnaście',
-	16: 'szesnaście',
-	17: 'siedemnaście',
-	18: 'osiemnaście',
-	19: 'dziewiętnaście',
+	10: 'ten',
+	11: 'eleven',
+	12: 'twelve',
+	13: 'thirteen',
+	14: 'fourteen',
+	15: 'fifteen',
+	16: 'sixteen',
+	17: 'seventeen',
+	18: 'eighteen',
+	19: 'nineteen',
 };
 
 const dozens = {
-	2: 'dwadzieścia ',
-	3: 'trzydzieści ',
-	4: 'czterdzieści ',
-	5: 'pięćdziesiąt ',
-	6: 'sześćdziesiąt ',
-	7: 'siedemdziesiąt ',
-	8: 'osiemdziesiąt ',
-	9: 'dziewięćdziesiąt ',
+	2: 'twenty ',
+	3: 'thirty ',
+	4: 'forty ',
+	5: 'fifty ',
+	6: 'sixty ',
+	7: 'seventy ',
+	8: 'eighty ',
+	9: 'ninety ',
 };
 
 const hundreds = {
-	1: 'sto ',
-	2: 'dwieście ',
-	3: 'trzysta ',
-	4: 'czterysta ',
-	5: 'pięćset ',
-	6: 'sześćset ',
-	7: 'siedemset ',
-	8: 'osiemset ',
-	9: 'dziewięćset ',
+	1: 'one hundred ',
+	2: 'two hundred ',
+	3: 'three hundred ',
+	4: 'four hundred ',
+	5: 'five hundred ',
+	6: 'six hundred ',
+	7: 'seven hundred ',
+	8: 'eight hundred ',
+	9: 'nine hundred ',
 };
 
 const thousands_ends = {
-	0: 'tysięcy',
-	1: 'tysiąc',
-	2: 'tysiące',
-	3: 'tysiące',
-	4: 'tysiące',
-	5: 'tysięcy',
-	6: 'tysięcy',
-	7: 'tysięcy',
-	8: 'tysięcy',
-	9: 'tysięcy',
+	0: 'thousand',
+	1: 'thousand',
+	2: 'thousand',
+	3: 'thousand',
+	4: 'thousand',
+	5: 'thousand',
+	6: 'thousand',
+	7: 'thousand',
+	8: 'thousand',
+	9: 'thousand',
 };
 
 const threeDigitsToPhrase = (num) => {
@@ -92,7 +92,7 @@ const threeDigitsToPhrase = (num) => {
 const verbalNotation = (num) => {
 	num = num.toString();
 	const threeDigitsPartsArr = [];
-	const currency = 'zł';
+	const currency = 'PLN';
 	let rest = '00';
 	let whole = (num - (num % 1)).toString();
 	let workNum = whole;
@@ -132,5 +132,5 @@ const verbalNotation = (num) => {
 		)} ${rest}/100 ${currency}`;
 	}
 
-	return 'Za długa liczba';
+	return 'The number is too long';
 };
