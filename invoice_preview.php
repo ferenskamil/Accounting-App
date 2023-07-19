@@ -4,9 +4,18 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Finding the data of a given invoice from the database
+if (isset($_POST['invoice-no'])) {
+        require_once './php_scripts/db_database.php';
+        
+        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
+        $db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_query->bindvalue(':invoice_no', $_POST['invoice-no'], PDO::PARAM_STR);
+        $db_query->execute();
+        $invoice = $db_query->fetchAll(PDO::FETCH_ASSOC);
 
-
-
+        // print_r($invoice);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
