@@ -8,11 +8,12 @@ redirect_if_user_not_logged_in('index.php');
 if (isset($_POST['invoice-no'])) {
         require_once './php_scripts/db_database.php';
         
-        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
+        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no AND id = :invoice_id");
         $db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
         $db_query->bindvalue(':invoice_no', $_POST['invoice-no'], PDO::PARAM_STR);
+        $db_query->bindvalue(':invoice_id', $_POST['invoice-id'], PDO::PARAM_INT);
         $db_query->execute();
-        $invoice = $db_query->fetchAll(PDO::FETCH_ASSOC);
+        $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
 
         // print_r($invoice);
 }
