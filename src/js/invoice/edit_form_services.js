@@ -17,6 +17,8 @@ const showEmptyInfo = () => {
 	}
 };
 
+document.addEventListener('DOMContentLoaded', showEmptyInfo);
+
 // ============================================================
 // ADD SERVICE AFTER CLICK THE"ADD" BUTTON
 
