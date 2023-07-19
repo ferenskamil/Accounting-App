@@ -15,7 +15,7 @@ const editFormValidation = (e) => {
 			isOK = false;
 		}
 	});
-	transferDataFromEditFormToPreview();
+	// transferDataFromEditFormToPreview();
 
 	// Block submit form if any input is empty
 	if (!isOK) e.preventDefault();
