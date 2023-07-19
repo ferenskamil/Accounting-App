@@ -4,7 +4,9 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
-require_once './php_scripts/suggest_invoice_no.php';
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +93,9 @@ require_once './php_scripts/suggest_invoice_no.php';
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Invoice no. <span id="invoice-no-view"></span></h2>
+                                <h2 class="invoice__paper-title">Invoice no. <span id="invoice-no-view"><?php 
+                                        echo $_POST['invoice-no'];
+                                ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Invoice date: </Strong><span id="date-view"></span></p>
                                         <p><Strong>City: </Strong><span id="city-view"></span></p>
