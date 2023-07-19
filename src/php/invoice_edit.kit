@@ -28,20 +28,20 @@ require_once './php_scripts/suggest_invoice_no.php';
                                 <div class="invoice-edit__form-box invoice-edit__form-box-details ">
                                         <h2>Details</h2>
                                         <label for="invoice-no-edit">Invoice no.</label>
-                                        <input type="text" name="invoice-no" id="invoice-no-edit" value="<?php 
+                                        <input type="text" name="invoice-no" value="<?php 
                                                 if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
                                         ?>">
                                         <p class="error"><?php 
                                                 if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
                                         ?></p>
                                         <label for="date-edit">Invoice date: </label>
-                                        <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
+                                        <input class="test" type="date" name="date"value="<?php echo date('Y-m-d') ?>">
                                         <label for="city-edit">City: </label>
-                                        <input type="text" name="city" id="city-edit" value="<?php 
+                                        <input type="text" name="city" value="<?php 
                                                 if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
                                         ?>">
                                         <label for="bank-edit">Bank: </label>
-                                        <input type="text" name="bank" id="bank-edit" value="<?php 
+                                        <input type="text" name="bank" value="<?php 
                                                 if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
                                         ?>">
                                         <label for="account-no-edit">Account no.: </label>
@@ -49,7 +49,7 @@ require_once './php_scripts/suggest_invoice_no.php';
                                                 if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
                                         ?>">
                                         <label for="term-edit">Payment term: </label>
-                                        <select name="term" id="term-edit">
+                                        <select name="term">
                                                 <option value="7 days">7 days</option>
                                                 <option value="14 days" selected>14 days</option>
                                         </select>
@@ -57,35 +57,32 @@ require_once './php_scripts/suggest_invoice_no.php';
                                 <div class="invoice-edit__form-box invoice-edit__form-box-seller">
                                         <h2>Your data</h2>
                                         <label for="seller-name-edit">Name: </label>
-                                        <input type="text" name="seller-name" id="seller-name-edit" value="<?php 
+                                        <input type="text" name="seller-name" value="<?php 
                                                 if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
                                         ?>">
                                         <label for="seller-address1-edit">Address: </label>
-                                        <input type="text" name="seller-address1" id="seller-address1-edit" value="<?php 
+                                        <input type="text" name="seller-address1" value="<?php 
                                                 if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
                                         ?>">
                                         <label for="seller-address2-edit">Address 2: </label>
-                                        <input type="text" name="seller-address2" id="seller-address2-edit" value="<?php 
+                                        <input type="text" name="seller-address2" value="<?php 
                                                  if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
                                         ?>">
                                         <label for="seller-company-no-edit">Company no.: </label>
-                                        <input type="text" name="seller-company-no" id="seller-company-no-edit" placeholder="if none enter '---'" value="<?php 
+                                        <input type="text" name="seller-company-no" placeholder="if none enter '---'" value="<?php 
                                                 if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
                                         ?>">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-customer">
                                         <h2>Billed to</h2>
                                         <label for="customer-name-edit">Name: </label>
-                                        <input type="text" name="customer-name" id="customer-name-edit"
-                                                value="">
+                                        <input type="text" name="customer-name" value="">
                                         <label for="customer-address1-edit">Address: </label>
-                                        <input type="text" name="customer-address1" id="customer-address1-edit"
-                                                value="">
+                                        <input type="text" name="customer-address1" value="">
                                         <label for="customer-address2-edit">Address 2: </label>
-                                        <input type="text" name="customer-address2" id="customer-address2-edit"
-                                                value="">
+                                        <input type="text" name="customer-address2" value="">
                                         <label for="customer-company-no-edit">Company no.: </label>
-                                        <input type="text" name="customer-company-no" id="customer-company-no-edit" value=""
+                                        <input type="text" name="customer-company-no" value=""
                                                 placeholder="if none enter '---'">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-services">
