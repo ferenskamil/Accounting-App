@@ -1,7 +1,6 @@
 @use '../utilities/' as *;
 
 .invoice-edit {
-	// display: none;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -102,15 +101,6 @@
 					background-color: $grey-light;
 				}
 			}
-
-			// &-details {
-			// }
-
-			// &-seller {
-			// }
-
-			// &-customer {
-			// }
 
 			&-services {
 				grid-template-columns: 1fr;

@@ -157,12 +157,6 @@ require_once './php_scripts/suggest_invoice_no.php';
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
-        <!-- <script src="./dist/js/invoice/num_to_word.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/prepare_form.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/open_hide_edit_form.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/edit_form_validation.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/edit_form_services.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/transfer_data_from_edit_to_preview.min.js"></script> -->
 </body>
 
 </html>

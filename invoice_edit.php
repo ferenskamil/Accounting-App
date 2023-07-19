@@ -80,7 +80,6 @@ require_once './php_scripts/suggest_invoice_no.php';
         </div>
         <div class="shadow"></div>
 </div>
-        <!-- <main class="main invoice"> -->
         <main class="main">
                 <div class="invoice-edit">
                         <a href="./invoice_preview.php"><button class="invoice-edit__back"><i class="fa-sharp fa-solid fa-arrow-rotate-left"></i>Return</button></a>
@@ -209,8 +208,6 @@ require_once './php_scripts/suggest_invoice_no.php';
         <script src="./dist/js/invoice/num_to_word.min.js"></script>
         <script src="./dist/js/invoice/edit_form_services.min.js"></script>
         <script src="./dist/js/invoice/edit_form_validation.min.js"></script>
-        <!-- <script src="./dist/js/invoice/open_hide_edit_form.min.js"></script> -->
-        <!-- <script src="./dist/js/invoice/transfer_data_from_edit_to_preview.min.js"></script> -->
 </body>
 
 </html>
