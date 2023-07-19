@@ -13,6 +13,7 @@
 
 	&__back {
 		@include button($red, $red-dark);
+		margin-bottom: 0;
 	}
 
 	&__form {
@@ -40,6 +41,12 @@
 				grid-column: 1 / 3;
 				grid-row: 1 / 2;
 				margin-top: 1em;
+			}
+
+			&:nth-child(1) {
+				h2 {
+					margin-top: 0;
+				}
 			}
 
 			p {
@@ -75,7 +82,7 @@
 					background-color: #fdd9dd;
 				}
 			}
-			
+
 			textarea {
 				grid-column: 1 / 3;
 				grid-row: auto;
