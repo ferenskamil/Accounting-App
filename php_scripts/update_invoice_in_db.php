@@ -66,13 +66,16 @@ if (in_array($_POST['invoice-no'], $invoice_nums)) {
         `account_no`, `payment_term`, 
         `to_pay`, `to_pay_in_words`, 
         `additional_notes`, `customer_name`, `customer_address1`, 
-        `customer_address2`, `customer_company_no`) 
+        `customer_address2`, `customer_company_no`, `seller_name`, `seller_address1`, 
+        `seller_address2`, `seller_company_no`) 
         VALUES (:user_id, :no , :date,
         :sum_net, :sum_gross ,:city, :bank,
         :account_no , :term,
         :to_pay, :to_pay_in_words,
         :comment, :customer_name, :customer_address1,
-        :customer_address2, :customer_company_no)");
+        :customer_address2, :customer_company_no, 
+        :seller_name, :seller_address1,
+        :seller_address2, :seller_company_no)");
         $query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
         $query->bindvalue(':no', $_POST['invoice-no'], PDO::PARAM_STR);
         $query->bindvalue(':date', $_POST['date'], PDO::PARAM_STR);
@@ -89,6 +92,10 @@ if (in_array($_POST['invoice-no'], $invoice_nums)) {
         $query->bindvalue(':customer_address1', $_POST['customer-address1'], PDO::PARAM_STR);
         $query->bindvalue(':customer_address2', $_POST['customer-address2'], PDO::PARAM_STR);
         $query->bindvalue(':customer_company_no', $_POST['customer-company-no'], PDO::PARAM_STR);
+        $query->bindvalue(':seller_name', $_POST['seller-name'], PDO::PARAM_STR);
+        $query->bindvalue(':seller_address1', $_POST['seller-address1'], PDO::PARAM_STR);
+        $query->bindvalue(':seller_address2', $_POST['seller-address2'], PDO::PARAM_STR);
+        $query->bindvalue(':seller_company_no', $_POST['seller-company-no'], PDO::PARAM_STR);
         $query->execute();
         header('Location: ../invoice_edit.php');
 }
