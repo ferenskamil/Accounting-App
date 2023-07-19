@@ -3,6 +3,12 @@ session_start();
 
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
+
+require_once './php_scripts/db_database.php';
+$db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id");
+$db_query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_STR);
+$db_query->execute();
+$user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,104 +99,43 @@ redirect_if_user_not_logged_in('index.php');
                                 </tr>
                         </thead>
                         <tbody class="invoice-list__table-tbody">
-                                <tr class="invoice-list__table-tbody-item">
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
-                                                </span>
-                                                01/01/2023
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor:
-                                                </span>
-                                                Jan Kowalski
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor No:
-                                                </span>
-                                                123456789
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Gross:
-                                                </span>
-                                                9999zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Net:
-                                                </span>
-                                                8765zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Status:
-                                                </span>
-                                                not-send</td>
-                                        <td class="invoice-list__table-tbody-item-btns">
-                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>
-                                                <button><i class="fa-solid fa-download"></i>Download</button>
-                                                <button><i class="fa-solid fa-print"></i>Print</button>
-                                                <button class="delete-btn"><i
-                                                                class="fa-solid fa-trash"></i>Delete</button>
-                                        </td>
-                                </tr>
-                                <tr class="invoice-list__table-tbody-item">
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
-                                                </span>
-                                                01/01/2023
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor:
-                                                </span>
-                                                Jan Kowalski
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor No:
-                                                </span>
-                                                123456789
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Gross:
-                                                </span>
-                                                9999zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Net:
-                                                </span>
-                                                8765zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Status:
-                                                </span>
-                                                not-send
-                                        </td>
-                                        <td class="invoice-list__table-tbody-item-btns">
-                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>                                             
-                                                <button><i class="fa-solid fa-download"></i>Download</button>
-                                                <button><i class="fa-solid fa-print"></i>Print</button>
-                                                <button class="delete-btn"><i
-                                                                class="fa-solid fa-trash"></i>Delete</button>
-                                        </td>
-                                </tr>
-                                <tr class="invoice-list__table-tbody-item">
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
-                                                </span>
-                                                01/01/2023
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor:
-                                                </span>
-                                                Jan Kowalski
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor No:
-                                                </span>
-                                                123456789
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Gross:
-                                                </span>
-                                                9999zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Net:
-                                                </span>
-                                                8765zł
-                                        </td>
-                                        <td><span class="invoice-list__table-tbody-item--mobile-title">Status:
-                                                </span>
-                                                not-send
-                                        </td>
-                                        <td class="invoice-list__table-tbody-item-btns">
-                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>
-                                                <button><i class="fa-solid fa-download"></i>Download</button>
-                                                <button><i class="fa-solid fa-print"></i>Print</button>
-                                                <button class="delete-btn"><i
-                                                                class="fa-solid fa-trash"></i>Delete</button>
-                                        </td>
-                                </tr>
+                                <?php
+                                      foreach ($user_invoices as $invoice) {
+                                        $item = '
+                                        <tr class="invoice-list__table-tbody-item">
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
+                                                        </span>
+                                                        '.$invoice['no'].'
+                                                </td>
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor:
+                                                        </span>
+                                                        '.$invoice['customer_name'].'
+                                                </td>
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor No:
+                                                        </span>
+                                                        '.$invoice['customer_company_no'].'
+                                                </td>
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Gross:
+                                                        </span>
+                                                        '.$invoice['sum_gross'].' zł
+                                                </td>
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Net:
+                                                        </span>
+                                                        '.$invoice['sum_net'].' zł
+                                                </td>
+                                                <td><span class="invoice-list__table-tbody-item--mobile-title">Status:
+                                                        </span>
+                                                        not-send</td>
+                                                <td class="invoice-list__table-tbody-item-btns">
+                                                        <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>
+                                                        <button><i class="fa-solid fa-download"></i>Download</button>
+                                                        <button><i class="fa-solid fa-print"></i>Print</button>
+                                                        <button class="delete-btn"><i
+                                                                        class="fa-solid fa-trash"></i>Delete</button>
+                                                </td>
+                                        </tr>';
+                                        echo $item;
+                                }?>
                         </tbody>
                 </table>
         </main>
