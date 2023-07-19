@@ -1,17 +1,17 @@
 // =============================================
 // EDIT FORM VALIDATION
-const inputs = document.querySelectorAll('.invoice__edit-form-box input');
+const inputs = document.querySelectorAll('.invoice-edit__form-box input');
 const submitBtn = document.querySelector(
-	'.invoice__edit-form-box-submit-btn button'
+	'.invoice-edit__form-box-submit-btn button'
 );
 
 const editFormValidation = (e) => {
 	let isOK = true;
 	inputs.forEach((input) => {
-		input.classList.remove('invoice__edit-form-box-input--empty');
+		input.classList.remove('invoice-edit__form-box-input--empty');
 
 		if (input.value === '') {
-			input.classList.add('invoice__edit-form-box-input--empty');
+			input.classList.add('invoice-edit__form-box-input--empty');
 			isOK = false;
 		}
 	});

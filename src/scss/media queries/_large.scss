@@ -83,128 +83,253 @@
 			max-width: 210mm;
 		}
 
-		&__edit {
-			&-form {
-				&-box {
-					&-services {
-						&-table {
-							thead {
-								tr {
-									display: grid;
-									grid-template-columns:
-										40px minmax(150px, 1fr)
-										80px 60px 80px 80px 80px 80px 80px;
-									grid-template-rows: 1fr;
-									gap: 15px;
-									padding: 0.6em 0.5em 1em 0;
+		// &__edit {
+		// 	&-form {
+		// 		&-box {
+		// 			&-services {
+		// 				&-table {
+		// 					thead {
+		// 						tr {
+		// 							display: grid;
+		// 							grid-template-columns:
+		// 								40px minmax(150px, 1fr)
+		// 								80px 60px 80px 80px 80px 80px 80px;
+		// 							grid-template-rows: 1fr;
+		// 							gap: 15px;
+		// 							padding: 0.6em 0.5em 1em 0;
 
-									th {
-										padding: 0.6em 0;
-										text-align: start;
+		// 							th {
+		// 								padding: 0.6em 0;
+		// 								text-align: start;
 
-										&.service-thead--mobile {
-											display: none;
-										}
+		// 								&.service-thead--mobile {
+		// 									display: none;
+		// 								}
 
-										&.service-thead--large {
-											display: block;
-										}
+		// 								&.service-thead--large {
+		// 									display: block;
+		// 								}
+		// 							}
+
+		// 							th:nth-child(2) {
+		// 								text-align: center;
+		// 							}
+		// 						}
+		// 					}
+
+		// 					tbody {
+		// 						tr {
+		// 							grid-template-columns:
+		// 								40px minmax(150px, 1fr)
+		// 								80px 60px 80px 80px 80px 80px 80px;
+		// 							justify-content: center;
+		// 							align-items: end;
+		// 							gap: 15px;
+		// 							padding: 0.6em 0.5em 1em 0;
+		// 							text-align: center;
+
+		// 							td {
+		// 								.service-title--mobile {
+		// 									display: none;
+		// 								}
+
+		// 								.delete-btn {
+		// 									padding: 0.5em;
+		// 									margin: 0;
+		// 								}
+
+		// 								input {
+		// 									width: 100%;
+		// 								}
+		// 							}
+
+		// 							td:first-child {
+		// 								padding-bottom: 5px;
+		// 							}
+
+		// 							td:last-child {
+		// 								text-align: center;
+		// 							}
+
+		// 							&.empty-info {
+		// 								td {
+		// 									padding: 1rem;
+		// 								}
+		// 							}
+		// 						}
+		// 					}
+
+		// 					tfoot {
+		// 						tr {
+		// 							display: grid;
+		// 							grid-template-columns:
+		// 								40px minmax(150px, 1fr)
+		// 								80px 60px 80px 80px 80px 80px 80px;
+		// 							grid-template-rows: 1fr;
+		// 							gap: 15px;
+		// 							padding: 0.6em 0.5em 1em 0;
+
+		// 							td {
+		// 								padding: 0.6em 0;
+		// 								font-weight: 700;
+		// 								text-align: start;
+
+		// 								.new-service-btn {
+		// 									@include button(
+		// 										$green,
+		// 										$green-dark
+		// 									);
+
+		// 									margin: 0;
+		// 								}
+		// 							}
+
+		// 							td:nth-child(1) {
+		// 								grid-column: 1 / 5;
+		// 								grid-row: 1 / 2;
+		// 							}
+
+		// 							td:nth-child(2) {
+		// 								grid-column: 5 / 7;
+		// 								grid-row: 1 / 2;
+		// 								text-align: right;
+		// 							}
+
+		// 							td:nth-child(3) {
+		// 								grid-column: 7 / 8;
+		// 								grid-row: 1 / 2;
+		// 							}
+		// 						}
+		// 					}
+
+		// 					.service-title--mobile {
+		// 						display: none;
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+	}
+
+	.invoice-edit {
+		&__form {
+			&-box {
+				&-services {
+					&-table {
+						thead {
+							tr {
+								display: grid;
+								grid-template-columns:
+									40px minmax(150px, 1fr)
+									80px 60px 80px 80px 80px 80px 80px;
+								grid-template-rows: 1fr;
+								gap: 15px;
+								padding: 0.6em 0.5em 1em 0;
+
+								th {
+									padding: 0.6em 0;
+									text-align: start;
+
+									&.service-thead--mobile {
+										display: none;
 									}
 
-									th:nth-child(2) {
-										text-align: center;
+									&.service-thead--large {
+										display: block;
 									}
 								}
-							}
 
-							tbody {
-								tr {
-									grid-template-columns:
-										40px minmax(150px, 1fr)
-										80px 60px 80px 80px 80px 80px 80px;
-									justify-content: center;
-									align-items: end;
-									gap: 15px;
-									padding: 0.6em 0.5em 1em 0;
+								th:nth-child(2) {
 									text-align: center;
+								}
+							}
+						}
 
+						tbody {
+							tr {
+								grid-template-columns:
+									40px minmax(150px, 1fr)
+									80px 60px 80px 80px 80px 80px 80px;
+								justify-content: center;
+								align-items: end;
+								gap: 15px;
+								padding: 0.6em 0.5em 1em 0;
+								text-align: center;
+
+								td {
+									.service-title--mobile {
+										display: none;
+									}
+
+									.delete-btn {
+										padding: 0.5em;
+										margin: 0;
+									}
+
+									input {
+										width: 100%;
+									}
+								}
+
+								td:first-child {
+									padding-bottom: 5px;
+								}
+
+								td:last-child {
+									text-align: center;
+								}
+
+								&.empty-info {
 									td {
-										.service-title--mobile {
-											display: none;
-										}
-
-										.delete-btn {
-											padding: 0.5em;
-											margin: 0;
-										}
-
-										input {
-											width: 100%;
-										}
-									}
-
-									td:first-child {
-										padding-bottom: 5px;
-									}
-
-									td:last-child {
-										text-align: center;
-									}
-
-									&.empty-info {
-										td {
-											padding: 1rem;
-										}
+										padding: 1rem;
 									}
 								}
 							}
+						}
 
-							tfoot {
-								tr {
-									display: grid;
-									grid-template-columns:
-										40px minmax(150px, 1fr)
-										80px 60px 80px 80px 80px 80px 80px;
-									grid-template-rows: 1fr;
-									gap: 15px;
-									padding: 0.6em 0.5em 1em 0;
+						tfoot {
+							tr {
+								display: grid;
+								grid-template-columns:
+									40px minmax(150px, 1fr)
+									80px 60px 80px 80px 80px 80px 80px;
+								grid-template-rows: 1fr;
+								gap: 15px;
+								padding: 0.6em 0.5em 1em 0;
 
-									td {
-										padding: 0.6em 0;
-										font-weight: 700;
-										text-align: start;
+								td {
+									padding: 0.6em 0;
+									font-weight: 700;
+									text-align: start;
 
-										.new-service-btn {
-											@include button(
-												$green,
-												$green-dark
-											);
+									.new-service-btn {
+										@include button($green, $green-dark);
 
-											margin: 0;
-										}
-									}
-
-									td:nth-child(1) {
-										grid-column: 1 / 5;
-										grid-row: 1 / 2;
-									}
-
-									td:nth-child(2) {
-										grid-column: 5 / 7;
-										grid-row: 1 / 2;
-										text-align: right;
-									}
-
-									td:nth-child(3) {
-										grid-column: 7 / 8;
-										grid-row: 1 / 2;
+										margin: 0;
 									}
 								}
-							}
 
-							.service-title--mobile {
-								display: none;
+								td:nth-child(1) {
+									grid-column: 1 / 5;
+									grid-row: 1 / 2;
+								}
+
+								td:nth-child(2) {
+									grid-column: 5 / 7;
+									grid-row: 1 / 2;
+									text-align: right;
+								}
+
+								td:nth-child(3) {
+									grid-column: 7 / 8;
+									grid-row: 1 / 2;
+								}
 							}
+						}
+
+						.service-title--mobile {
+							display: none;
 						}
 					}
 				}

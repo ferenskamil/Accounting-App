@@ -1,0 +1,158 @@
+<?php 
+session_start();
+
+require_once './php_scripts/redirect_if_user_not_logged_in.php';
+redirect_if_user_not_logged_in('index.php');
+
+require_once './php_scripts/suggest_invoice_no.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./dist/css/main.min.css">
+
+        <!-- @include './fonts_icons -->
+        <title>Invoice edit form</title>
+</head>
+
+<body>
+        <!-- @include './nav_topbar' -->
+        <!-- <main class="main invoice"> -->
+        <main class="main">
+                <div class="invoice-edit">
+                        <button class="invoice-edit__back"><i
+                                        class="fa-sharp fa-solid fa-arrow-rotate-left"></i>Return</button>
+                        <form action="./php_scripts/update_invoice_in_db.php" method="post" class="invoice-edit__form">
+                                <div class="invoice-edit__form-box invoice-edit__form-box-details ">
+                                        <h2>Details</h2>
+                                        <label for="invoice-no-edit">Invoice no.</label>
+                                        <input type="text" name="invoice-no" id="invoice-no-edit" value="<?php 
+                                                if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
+                                        ?>">
+                                        <p class="error"><?php 
+                                                if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
+                                        ?></p>
+                                        <label for="date-edit">Invoice date: </label>
+                                        <input class="test" type="date" name="date" id="date-edit" value="<?php echo date('Y-m-d') ?>">
+                                        <label for="city-edit">City: </label>
+                                        <input type="text" name="city" id="city-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
+                                        ?>">
+                                        <label for="bank-edit">Bank: </label>
+                                        <input type="text" name="bank" id="bank-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
+                                        ?>">
+                                        <label for="account-no-edit">Account no.: </label>
+                                        <input type="text" name="account-no" id="account-no-edit" value="<?php 
+                                                if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
+                                        ?>">
+                                        <label for="term-edit">Payment term: </label>
+                                        <select name="term" id="term-edit">
+                                                <option value="7 days">7 days</option>
+                                                <option value="14 days" selected>14 days</option>
+                                        </select>
+                                </div>
+                                <div class="invoice-edit__form-box invoice-edit__form-box-seller">
+                                        <h2>Your data</h2>
+                                        <label for="seller-name-edit">Name: </label>
+                                        <input type="text" name="seller-name" id="seller-name-edit" value="<?php 
+                                                if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
+                                        ?>">
+                                        <label for="seller-address1-edit">Address: </label>
+                                        <input type="text" name="seller-address1" id="seller-address1-edit" value="<?php 
+                                                if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
+                                        ?>">
+                                        <label for="seller-address2-edit">Address 2: </label>
+                                        <input type="text" name="seller-address2" id="seller-address2-edit" value="<?php 
+                                                 if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
+                                        ?>">
+                                        <label for="seller-company-no-edit">Company no.: </label>
+                                        <input type="text" name="seller-company-no" id="seller-company-no-edit" placeholder="if none enter '---'" value="<?php 
+                                                if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
+                                        ?>">
+                                </div>
+                                <div class="invoice-edit__form-box invoice-edit__form-box-customer">
+                                        <h2>Billed to</h2>
+                                        <label for="customer-name-edit">Name: </label>
+                                        <input type="text" name="customer-name" id="customer-name-edit"
+                                                value="">
+                                        <label for="customer-address1-edit">Address: </label>
+                                        <input type="text" name="customer-address1" id="customer-address1-edit"
+                                                value="">
+                                        <label for="customer-address2-edit">Address 2: </label>
+                                        <input type="text" name="customer-address2" id="customer-address2-edit"
+                                                value="">
+                                        <label for="customer-company-no-edit">Company no.: </label>
+                                        <input type="text" name="customer-company-no" id="customer-company-no-edit" value=""
+                                                placeholder="if none enter '---'">
+                                </div>
+                                <div class="invoice-edit__form-box invoice-edit__form-box-services">
+                                        <h2>Services</h2>
+                                        <table class="invoice-edit__form-box-services-table">
+                                                <thead>
+                                                        <tr>
+                                                                <th class="service-thead--mobile">Services
+                                                                        list</th>
+                                                                <th class="service-thead--large">No.</th>
+                                                                <th class="service-thead--large">Item / service</th>
+                                                                <th class="service-thead--large">Service code</th>
+                                                                <th class="service-thead--large">Quantity</th>
+                                                                <th class="service-thead--large">Net price (PLN)</th>
+                                                                <th class="service-thead--large">Tax</th>
+                                                                <th class="service-thead--large">Net sum</th>
+                                                                <th class="service-thead--large">Gross sum</th>
+                                                                <th class="service-thead--large"></th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr class="empty-info">
+                                                                <td>No items to display</td>
+                                                        </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                        <tr>
+                                                                <td><button class="new-service-btn"><i
+                                                                                        class="fa-sharp fa-solid fa-plus"></i>
+                                                                                Add new</button></td>
+                                                                <td><strong>TOTAL:</strong></td>
+                                                                <td><span class="service-title--mobile">
+                                                                        <strong>Net:</strong></span>
+                                                                        <span class="invoice-total-net">0.00 PLN</span>
+                                                                        <input type="text" hidden name="total-net" id="total-net" value="0.00">
+                                                                </td>
+                                                                <td><span class="service-title--mobile">
+                                                                        <strong>Gross:</strong></span>
+                                                                        <span class="invoice-total-gross">0.00 PLN</span>
+                                                                        <input type="text" hidden name="total-gross" id="total-gross" value="0.00">
+                                                                </td>
+                                                        </tr>
+                                                </tfoot>
+                                        </table>
+                                        <input type="text" hidden name="to-pay-numeric" id="to-pay-numeric" value="0.00">
+                                        <input type="text" hidden name="to-pay-verbal" id="to-pay-verbal" value="zero PLN 00/100">
+                                </div>
+                                <div class="invoice-edit__form-box invoice-edit__form-box-comments">
+                                        <h2>Additional notes</h2>
+                                        <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
+                                        <textarea name="comment" id="comment-edit" cols="30"
+                                                rows="10"></textarea>
+                                </div>
+                                <div class="invoice-edit__form-box-submit-btn">
+                                        <button type="submit"><i class="fa-solid fa-floppy-disk "></i>Save</button>
+                                </div>
+                        </form>
+                </div>
+        </main>
+        <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/invoice/num_to_word.min.js"></script>
+        <script src="./dist/js/invoice/edit_form_validation.min.js"></script>
+        <script src="./dist/js/invoice/edit_form_services.min.js"></script>
+        <!-- <script src="./dist/js/invoice/open_hide_edit_form.min.js"></script> -->
+        <!-- <script src="./dist/js/invoice/transfer_data_from_edit_to_preview.min.js"></script> -->
+</body>
+
+</html>

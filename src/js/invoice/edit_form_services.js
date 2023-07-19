@@ -2,7 +2,7 @@
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
 const servicesTbody = document.querySelector(
-	'.invoice__edit-form-box-services-table tbody'
+	'.invoice-edit__form-box-services-table tbody'
 );
 const addNewServiceBtn = document.querySelector('.new-service-btn');
 
@@ -22,7 +22,7 @@ const showEmptyInfo = () => {
 
 const updateItemsNumbers = () => {
 	const itemsNoSpans = document.querySelectorAll(
-		'.invoice__edit-form-box-services-table .service-item-number'
+		'.invoice-edit__form-box-services-table .service-item-number'
 	);
 
 	for (let i = 0; i < itemsNoSpans.length; i++) {
