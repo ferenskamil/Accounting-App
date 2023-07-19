@@ -48,12 +48,6 @@ require_once './php_scripts/suggest_invoice_no.php';
                         </a>
                 </li>
                 <li>
-                        <a href="./invoice.php" class="nav__item">
-                                <span class="nav__item-icon"><i class="fa-solid fa-message"></i></span>
-                                <span class="nav__item-title">Invoice</span>
-                        </a>
-                </li>
-                <li>
                         <a href="./invoice_list.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-users"></i></span>
                                 <span class="nav__item-title">Invoice list</span>
