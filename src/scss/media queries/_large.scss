@@ -420,55 +420,107 @@
 		}
 	}
 
-	.invoice {
-		&__edit {
-			margin: 0 auto;
-			width: 100%;
-			max-width: 1400px;
+	// .invoice {
+		// &__edit {
+		// 	margin: 0 auto;
+		// 	width: 100%;
+		// 	max-width: 1400px;
 
-			&-form {
-				grid-template-columns: repeat(3, 1fr);
-				max-width: 1200px;
+		// 	&-form {
+		// 		grid-template-columns: repeat(3, 1fr);
+		// 		max-width: 1200px;
 
-				&-box {
-					label {
-						line-height: auto;
-					}
+		// 		&-box {
+		// 			label {
+		// 				line-height: auto;
+		// 			}
 
-					input {
-						width: fit-content;
-						min-width: 100%;
-					}
+		// 			input {
+		// 				width: fit-content;
+		// 				min-width: 100%;
+		// 			}
 
-					&-details {
-						grid-column: 1 / 2;
-						grid-row: 1 / 2;
-					}
+		// 			&-details {
+		// 				grid-column: 1 / 2;
+		// 				grid-row: 1 / 2;
+		// 			}
 
-					&-seller {
-						grid-column: 2 / 3;
-						grid-row: 1 / 2;
-					}
+		// 			&-seller {
+		// 				grid-column: 2 / 3;
+		// 				grid-row: 1 / 2;
+		// 			}
 
-					&-customer {
-						grid-column: 3 / 4;
-						grid-row: 1 / 2;
-					}
+		// 			&-customer {
+		// 				grid-column: 3 / 4;
+		// 				grid-row: 1 / 2;
+		// 			}
 
-					&-services {
-						grid-column: 1 / 4;
-						grid-row: 2 / 3;
-					}
+		// 			&-services {
+		// 				grid-column: 1 / 4;
+		// 				grid-row: 2 / 3;
+		// 			}
 
-					&-comments {
-						grid-column: 1 / 3;
-						grid-row: 3 / 4;
-					}
+		// 			&-comments {
+		// 				grid-column: 1 / 3;
+		// 				grid-row: 3 / 4;
+		// 			}
 
-					&-submit-btn {
-						grid-column: 3 / 4;
-						grid-row: 3 / 4;
-					}
+		// 			&-submit-btn {
+		// 				grid-column: 3 / 4;
+		// 				grid-row: 3 / 4;
+		// 			}
+		// 		}
+		// 	}
+		// }
+	// }
+
+	.invoice-edit {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 1400px;
+
+		&__form {
+			grid-template-columns: repeat(3, 1fr);
+			max-width: 1200px;
+
+			&-box {
+				label {
+					line-height: auto;
+				}
+
+				input {
+					width: fit-content;
+					min-width: 100%;
+				}
+
+				&-details {
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
+
+				&-seller {
+					grid-column: 2 / 3;
+					grid-row: 1 / 2;
+				}
+
+				&-customer {
+					grid-column: 3 / 4;
+					grid-row: 1 / 2;
+				}
+
+				&-services {
+					grid-column: 1 / 4;
+					grid-row: 2 / 3;
+				}
+
+				&-comments {
+					grid-column: 1 / 3;
+					grid-row: 3 / 4;
+				}
+
+				&-submit-btn {
+					grid-column: 3 / 4;
+					grid-row: 3 / 4;
 				}
 			}
 		}
