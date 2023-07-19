@@ -39,7 +39,7 @@ if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
         echo "Syntax is OK";
 } else {
         $_SESSION['e_invoice_no_syntax'] = 'The number must follow the formula "number/month/year" for example "1/01/1111"';
-        header('Location: ../invoice.php');
+        header('Location: ../invoice_edit.php');
         exit();
 }
 
@@ -90,7 +90,7 @@ if (in_array($_POST['invoice-no'], $invoice_nums)) {
         $query->bindvalue(':customer_address2', $_POST['customer-address2'], PDO::PARAM_STR);
         $query->bindvalue(':customer_company_no', $_POST['customer-company-no'], PDO::PARAM_STR);
         $query->execute();
-        header('Location: ../invoice.php');
+        header('Location: ../invoice_edit.php');
 
         // Trzeba jeszcze dorobić kolumny do tabeli BILLED TO 
 }
