@@ -42,53 +42,53 @@ if (isset($_POST['invoice-no'])) {
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Invoice no. <span id="invoice-no-view"><?php 
-                                        echo $invoice['no'];
-                                ?></span></h2>
+                                <h2 class="invoice__paper-title">Invoice no. <span>
+                                        <?php echo $invoice['no'] ?>
+                                </span></h2>
                                 <div class="invoice__paper-content invoice-info">
-                                        <p><Strong>Invoice date: </Strong><span id="date-view">
+                                        <p><Strong>Invoice date: </Strong><span>
                                                 <?php echo $invoice['date'] ?>
                                         </span></p>
-                                        <p><Strong>City: </Strong><span id="city-view">
+                                        <p><Strong>City: </Strong><span>
                                                 <?php echo $invoice['city'] ?>
                                         </span></p>
-                                        <p><Strong>Bank: </Strong><span id="bank-view">
+                                        <p><Strong>Bank: </Strong><span>
                                                 <?php echo $invoice['bank'] ?>
                                         </span></p>
-                                        <p><Strong>Account no.: </Strong><span id="account-no-view">
+                                        <p><Strong>Account no.: </Strong><span>
                                                 <?php echo $invoice['account_no'] ?>
                                         </span></p>
-                                        <p><Strong>Payment term: </Strong><span id="term-view">
+                                        <p><Strong>Payment term: </Strong><span>
                                                 <?php echo $invoice['payment_term'] ?>
                                         </span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-seller">
                                         <h3>Seller:</h3>
-                                        <p><span id="seller-name-view">
+                                        <p><span>
                                                 <?php echo $invoice['seller_name'] ?>
                                         </span></p>
-                                        <p><span id="seller-address1-view">
+                                        <p><span>
                                                 <?php echo $invoice['seller_address1'] ?>
                                         </span></p>
-                                        <p><span id="seller-address2-view">
+                                        <p><span>
                                                 <?php echo $invoice['seller_address2'] ?>
                                         </span></p>
-                                        <p><span id="seller-company-no-view">
+                                        <p><span>
                                                 <?php echo "NIP: ".$invoice['seller_company_no'] ?>
                                         </span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-customer">
                                         <h3>Bill to:</h3>
-                                        <p><span id="customer-name-view">
+                                        <p><span>
                                                 <?php echo $invoice['customer_name'] ?>
                                         </span></p>
-                                        <p><span id="customer-address1-view">
+                                        <p><span>
                                                 <?php echo $invoice['customer_address1'] ?>
                                         </span></p>
-                                        <p><span id="customer-address2-view">
+                                        <p><span>
                                                 <?php echo $invoice['customer_address2'] ?>
                                         </span></p>
-                                        <p><span id="customer-company-no-view">
+                                        <p><span>
                                                 <?php echo "NIP: ".$invoice['customer_company_no'] ?>
                                         </span></p>
                                 </div>
@@ -113,10 +113,10 @@ if (isset($_POST['invoice-no'])) {
                                                                 <td colspan="4"></td>
                                                                 <td>TOTAL:</td>
                                                                 <td></td>
-                                                                <td class="preview-total-net">
+                                                                <td>
                                                                         <?php echo $invoice['sum_net']." PLN" ?>
                                                                 </td>
-                                                                <td class="preview-total-gross">
+                                                                <td>
                                                                         <?php echo $invoice['sum_gross']." PLN" ?>
                                                                 </td>
                                                         </tr>
@@ -124,16 +124,16 @@ if (isset($_POST['invoice-no'])) {
                                         </table>
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
-                                        <p><Strong>To pay: </Strong><span id="invoice__sum-numeric">
+                                        <p><Strong>To pay: </Strong><span>
                                                 <?php echo $invoice['to_pay'] ?>
                                         </span></p>
-                                        <p><Strong>In words: </Strong><span id="invoice__sum-verbal">
+                                        <p><Strong>In words: </Strong><span>
                                                 <?php echo $invoice['to_pay_in_words'] ?>
                                         </span></p>
                                 </div>
                                 <div class="invoice__paper-content invoice-comments">
                                         <h3>Additional notes</h3>
-                                        <p class="comment"><span id="comment-view">
+                                        <p class="comment"><span>
                                                 <?php echo $invoice['additional_notes'] ?>
                                         </span></p>
                                         <p class="footnote">*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
