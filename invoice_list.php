@@ -118,7 +118,7 @@ redirect_if_user_not_logged_in('index.php');
                                                 </span>
                                                 not-send</td>
                                         <td class="invoice-list__table-tbody-item-btns">
-                                                <button><i class="fa-solid fa-magnifying-glass"></i>View</button>
+                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>
                                                 <button><i class="fa-solid fa-download"></i>Download</button>
                                                 <button><i class="fa-solid fa-print"></i>Print</button>
                                                 <button class="delete-btn"><i
@@ -151,7 +151,7 @@ redirect_if_user_not_logged_in('index.php');
                                                 not-send
                                         </td>
                                         <td class="invoice-list__table-tbody-item-btns">
-                                                <button><i class="fa-solid fa-magnifying-glass"></i>View</button>
+                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>                                             
                                                 <button><i class="fa-solid fa-download"></i>Download</button>
                                                 <button><i class="fa-solid fa-print"></i>Print</button>
                                                 <button class="delete-btn"><i
@@ -184,7 +184,7 @@ redirect_if_user_not_logged_in('index.php');
                                                 not-send
                                         </td>
                                         <td class="invoice-list__table-tbody-item-btns">
-                                                <button><i class="fa-solid fa-magnifying-glass"></i>View</button>
+                                                <a href="./invoice_preview.php"><button><i class="fa-solid fa-magnifying-glass"></i>View</button></a>
                                                 <button><i class="fa-solid fa-download"></i>Download</button>
                                                 <button><i class="fa-solid fa-print"></i>Print</button>
                                                 <button class="delete-btn"><i
