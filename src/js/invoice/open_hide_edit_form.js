@@ -26,12 +26,12 @@ invoiceEditBackBtn.addEventListener('click', closeInvoiceEditForm);
 // =============================================
 // DISPLAY (OR NOT) EDIT FORM AFTER LOAD PAGE
 
-const editFormOnLoaded = (e) => {
-	if (!editFormValidation(e)) {
-		openInvoiceEditForm();
-	} else {
-		transferDataFromEditFormToPreview();
-	}
-};
+// const editFormOnLoaded = (e) => {
+// 	if (!editFormValidation(e)) {
+// 		openInvoiceEditForm();
+// 	} else {
+// 		transferDataFromEditFormToPreview();
+// 	}
+// };
 
-document.addEventListener('DOMContentLoaded', (e) => editFormOnLoaded(e));
+// document.addEventListener('DOMContentLoaded', (e) => editFormOnLoaded(e));
