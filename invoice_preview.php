@@ -106,6 +106,15 @@ if ($invoice_no_to_display !== '') {
                         <button><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
+                <div class="invoice__message">
+                        <div class="invoice__message-box">
+                                <i class="fa-regular fa-circle-check"></i>
+                                <p class="invoice__message-text">This is the test message for invoice no <span>01/01/0001</span></p>
+                        </div>
+                        <button class="invoice__message-close">
+                                <i class="fa-solid fa-xmark"></i>
+                        </button>
+                </div>
                 <div class="invoice__container">
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
@@ -214,6 +223,7 @@ if ($invoice_no_to_display !== '') {
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/invoice/preview_message.min.js"></script>
 </body>
 
 </html>
