@@ -76,10 +76,15 @@
 
 	.invoice {
 		&__container {
-			margin: 4em auto;
+			margin: 3em auto;
 			padding: 5mm 3mm;
 			border: 1px solid $grey-alpha;
 			box-shadow: 0 0 10px 10px $grey-alpha;
+			max-width: 210mm;
+		}
+
+		&__message {
+			margin: 0 auto;
 			max-width: 210mm;
 		}
 	}

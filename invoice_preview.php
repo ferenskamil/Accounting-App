@@ -4,14 +4,22 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
-// Finding the data of a given invoice from the database
+$invoice_no_to_display = '';
 if (isset($_POST['invoice-no'])) {
+        $invoice_no_to_display = $_POST['invoice-no'];
+} elseif (isset($_SESSION['invoice_no_to_display'])) {
+        $invoice_no_to_display = $_SESSION['invoice_no_to_display'];
+        unset($_SESSION['invoice_no_to_display']);
+} else {
+        header('Location: invoice_list.php');
+}
+
+if ($invoice_no_to_display !== '') {
         require_once './php_scripts/db_database.php';
         
-        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no AND id = :invoice_id");
+        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
         $db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
-        $db_query->bindvalue(':invoice_no', $_POST['invoice-no'], PDO::PARAM_STR);
-        $db_query->bindvalue(':invoice_id', $_POST['invoice-id'], PDO::PARAM_INT);
+        $db_query->bindvalue(':invoice_no', $invoice_no_to_display, PDO::PARAM_STR);
         $db_query->execute();
         $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
 }
@@ -93,10 +101,29 @@ if (isset($_POST['invoice-no'])) {
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button><i class="fa-solid fa-paper-plane"></i>Send</button>
-                        <a href="./invoice_edit.php"><button class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button></a>
+                        <form action="./invoice_edit.php" method="post">
+                                <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
+                                <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                        </form>
                         <button><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
+                <?php
+                        if (isset($_SESSION['comment_after_edit'])) {
+                                echo('
+                                <div class="invoice__message">
+                                        <div class="invoice__message-box">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <p class="invoice__message-text">'.$_SESSION['comment_after_edit'].'</p>
+                                        </div>
+                                        <button class="invoice__message-close">
+                                                <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                </div>');
+
+                                unset($_SESSION['comment_after_edit']);
+                        }
+                ?>
                 <div class="invoice__container">
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
@@ -205,6 +232,7 @@ if (isset($_POST['invoice-no'])) {
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/invoice/preview_message.min.js"></script>
 </body>
 
 </html>

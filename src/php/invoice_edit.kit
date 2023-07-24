@@ -5,6 +5,17 @@ require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 require_once './php_scripts/suggest_invoice_no.php';
+
+if (isset($_POST['invoice_no_to_edit'])) {
+        require_once './php_scripts/db_database.php';
+        $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
+        $db_invoice_query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_invoice_query->bindvalue(':invoice_no', $_POST['invoice_no_to_edit'], PDO::PARAM_STR);
+        $db_invoice_query->execute();
+        $db_invoice_to_edit = $db_invoice_query->fetch(PDO::FETCH_ASSOC);
+
+        $_SESSION['is_user_wants_edit'] = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,62 +39,134 @@ require_once './php_scripts/suggest_invoice_no.php';
                                 <div class="invoice-edit__form-box invoice-edit__form-box-details ">
                                         <h2>Details</h2>
                                         <label for="invoice-no-edit">Invoice no.</label>
-                                        <input type="text" name="invoice-no" value="<?php 
-                                                if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
-                                        ?>">
+                                        <?php
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo '<input readonly type="text" name="invoice-no" value='.$_POST['invoice_no_to_edit'].'>';
+                                                        
+                                                } else if (isset($_SESSION['suggestion_invoice_no'])) {
+                                                        echo '<input type="text" name="invoice-no" value='.$_SESSION['suggestion_invoice_no'].'>';
+                                                }
+                                        ?>
                                         <p class="error"><?php 
                                                 if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
                                         ?></p>
                                         <label for="date-edit">Invoice date: </label>
-                                        <input class="test" type="date" name="date"value="<?php echo date('Y-m-d') ?>">
+                                        <input class="test" type="date" name="date" value="<?php 
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo $db_invoice_to_edit['date'];
+                                                } else {
+                                                        echo date('Y-m-d');
+                                                }
+                                                
+                                        ?>">
                                         <label for="city-edit">City: </label>
                                         <input type="text" name="city" value="<?php 
-                                                if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['city'];
+                                                } 
+                                                elseif(isset($_SESSION['default_invoice_city'])) {
+                                                        echo $_SESSION['default_invoice_city'];
+                                                }
                                         ?>">
                                         <label for="bank-edit">Bank: </label>
                                         <input type="text" name="bank" value="<?php 
-                                                if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['bank'];
+                                                } 
+                                                elseif(isset($_SESSION['default_invoice_bank_name'])) {
+                                                        echo $_SESSION['default_invoice_bank_name'];
+                                                }
                                         ?>">
                                         <label for="account-no-edit">Account no.: </label>
-                                        <input type="text" name="account-no" id="account-no-edit" value="<?php 
-                                                if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
+                                        <input type="text" name="account-no" id="account-no-edit" value="<?php
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['account_no'];
+                                                } 
+                                                elseif(isset($_SESSION['default_invoice_bank_account_no'])) {
+                                                        echo $_SESSION['default_invoice_bank_account_no'];
+                                                }                                        
                                         ?>">
                                         <label for="term-edit">Payment term: </label>
                                         <select name="term">
-                                                <option value="7 days">7 days</option>
-                                                <option value="14 days" selected>14 days</option>
+                                                <option value="7 days" <?php 
+                                                        if (isset($_POST['invoice_no_to_edit']) && $db_invoice_to_edit === '7 days') {
+                                                                echo 'selected';
+                                                        }
+                                                ?>>7 days</option>
+                                                <option value="14 days" <?php 
+                                                        if (isset($_POST['invoice_no_to_edit']) && $db_invoice_to_edit === '14 days') {
+                                                                echo 'selected';
+                                                        } elseif (!isset($_POST['invoice_no_to_edit'])) {
+                                                                echo 'selected';
+                                                        }
+                                                ?>>14 days</option>
                                         </select>
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-seller">
                                         <h2>Your data</h2>
                                         <label for="seller-name-edit">Name: </label>
                                         <input type="text" name="seller-name" value="<?php 
-                                                if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['seller_name'];
+                                                } 
+                                                elseif(isset($_SESSION['company_name'])) {
+                                                        echo $_SESSION['company_name'];
+                                                }
                                         ?>">
                                         <label for="seller-address1-edit">Address: </label>
-                                        <input type="text" name="seller-address1" value="<?php 
-                                                if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
+                                        <input type="text" name="seller-address1" value="<?php
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['seller_address1'];
+                                                } 
+                                                elseif(isset($_SESSION['address1'])) {
+                                                        echo $_SESSION['address1'];
+                                                }
                                         ?>">
                                         <label for="seller-address2-edit">Address 2: </label>
-                                        <input type="text" name="seller-address2" value="<?php 
-                                                 if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
+                                        <input type="text" name="seller-address2" value="<?php
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['seller_address2'];
+                                                } 
+                                                elseif(isset($_SESSION['address2'])) {
+                                                        echo $_SESSION['address2'];
+                                                }
                                         ?>">
                                         <label for="seller-company-no-edit">Company no.: </label>
-                                        <input type="text" name="seller-company-no" placeholder="if none enter '---'" value="<?php 
-                                                if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
+                                        <input type="text" name="seller-company-no" placeholder="if none enter '---'" value="<?php
+                                                if (isset($_POST['invoice_no_to_edit'])){
+                                                        echo $db_invoice_to_edit['seller_company_no'];
+                                                } 
+                                                elseif(isset($_SESSION['company_number'])) {
+                                                        echo $_SESSION['company_number'];
+                                                }
                                         ?>">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-customer">
                                         <h2>Billed to</h2>
                                         <label for="customer-name-edit">Name: </label>
-                                        <input type="text" name="customer-name" value="">
+                                        <input type="text" name="customer-name" value="<?php 
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo $db_invoice_to_edit['customer_name'] ;
+                                                }
+                                        ?>">
                                         <label for="customer-address1-edit">Address: </label>
-                                        <input type="text" name="customer-address1" value="">
+                                        <input type="text" name="customer-address1" value="<?php 
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo $db_invoice_to_edit['customer_address1'] ;
+                                                }
+                                        ?>">
                                         <label for="customer-address2-edit">Address 2: </label>
-                                        <input type="text" name="customer-address2" value="">
+                                        <input type="text" name="customer-address2" value="<?php 
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo $db_invoice_to_edit['customer_address2'] ;
+                                                }
+                                        ?>">
                                         <label for="customer-company-no-edit">Company no.: </label>
-                                        <input type="text" name="customer-company-no" value=""
-                                                placeholder="if none enter '---'">
+                                        <input type="text" name="customer-company-no" value="<?php 
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        echo $db_invoice_to_edit['customer_company_no'] ;
+                                                }
+                                        ?>" placeholder="if none enter '---'">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-services">
                                         <h2>Services</h2>
@@ -134,7 +217,14 @@ require_once './php_scripts/suggest_invoice_no.php';
                                         <h2>Additional notes</h2>
                                         <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                         <textarea name="comment" id="comment-edit" cols="30"
-                                                rows="10"></textarea>
+                                                rows="10"><?php 
+                                                        if (isset($_POST['invoice_no_to_edit'])){
+                                                                echo $db_invoice_to_edit['additional_notes'];
+                                                        } 
+                                                        elseif(isset($_SESSION['default_invoice_city'])) {
+                                                                echo $_SESSION['default_invoice_additional_info'];
+                                                        }
+                                        ?></textarea>
                                 </div>
                                 <div class="invoice-edit__form-box-submit-btn">
                                         <button type="submit"><i class="fa-solid fa-floppy-disk "></i>Save</button>
