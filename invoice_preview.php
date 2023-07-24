@@ -10,6 +10,8 @@ if (isset($_POST['invoice-no'])) {
 } elseif (isset($_SESSION['invoice_no_to_display'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_display'];
         unset($_SESSION['invoice_no_to_display']);
+} else {
+        header('Location: invoice_list.php');
 }
 
 if ($invoice_no_to_display !== '') {
@@ -106,15 +108,22 @@ if ($invoice_no_to_display !== '') {
                         <button><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
-                <div class="invoice__message">
-                        <div class="invoice__message-box">
-                                <i class="fa-regular fa-circle-check"></i>
-                                <p class="invoice__message-text">This is the test message for invoice no <span>01/01/0001</span></p>
-                        </div>
-                        <button class="invoice__message-close">
-                                <i class="fa-solid fa-xmark"></i>
-                        </button>
-                </div>
+                <?php
+                        if (isset($_SESSION['comment_after_edit'])) {
+                                echo('
+                                <div class="invoice__message">
+                                        <div class="invoice__message-box">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <p class="invoice__message-text">'.$_SESSION['comment_after_edit'].'</p>
+                                        </div>
+                                        <button class="invoice__message-close">
+                                                <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                </div>');
+
+                                unset($_SESSION['comment_after_edit']);
+                        }
+                ?>
                 <div class="invoice__container">
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"

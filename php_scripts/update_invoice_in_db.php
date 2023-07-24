@@ -104,7 +104,7 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $query->execute();
 
         $_SESSION['invoice_no_to_display'] = $_POST['invoice-no'];
-        $_SESSION['comment_after_edit'] = "ZMIENIONO FAKTURĘ TEST";
+        $_SESSION['comment_after_edit'] = "Invoice No. <span>".$_SESSION['invoice_no_to_display']."</span> has been successfully amended ";
         unset($_SESSION['is_user_wants_edit']);
 } elseif (!in_array($_POST['invoice-no'], $invoice_nums)) {
         $query = $db->prepare("INSERT INTO invoices (`user_id`, `no`, `date`, 
@@ -144,7 +144,8 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $query->bindvalue(':seller_company_no', $_POST['seller-company-no'], PDO::PARAM_STR);
         $query->execute();
 
-        $_SESSION['comment_after_edit'] = "DODANO FAKTURĘ TEST";
+        $_SESSION['invoice_no_to_display'] = $_POST['invoice-no'];
+        $_SESSION['comment_after_edit'] = "Invoice No. <span>".$_SESSION['invoice_no_to_display']."</span> has been successfully added";
 } else {
         $_SESSION['comment_after_edit'] = "Coś poszło nie tak. Nie można dodać nr faktury, bo taki już istnieje. Nie można edytować obecnego nr bo użytkonik nie zgadza się na edycję.";
 }
