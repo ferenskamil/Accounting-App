@@ -7,6 +7,8 @@ redirect_if_user_not_logged_in('index.php');
 require_once './php_scripts/suggest_invoice_no.php';
 
 if (isset($_POST['invoice_no_to_edit'])) {
+        $_SESSION['invoice_no_to_edit'] = $_POST['invoice_no_to_edit'];
+
         require_once './php_scripts/db_database.php';
         $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
         $db_invoice_query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_STR);
