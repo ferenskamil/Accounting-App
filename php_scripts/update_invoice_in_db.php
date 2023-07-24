@@ -99,4 +99,7 @@ if (in_array($_POST['invoice-no'], $invoice_nums)) {
         $query->execute();
         header('Location: ../invoice_edit.php');
 }
+
+// unset $_SESSION['is_user_wants_edit'] after edit
+
 ?>

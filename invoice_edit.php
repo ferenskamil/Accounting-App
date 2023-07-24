@@ -87,9 +87,15 @@ require_once './php_scripts/suggest_invoice_no.php';
                                 <div class="invoice-edit__form-box invoice-edit__form-box-details ">
                                         <h2>Details</h2>
                                         <label for="invoice-no-edit">Invoice no.</label>
-                                        <input type="text" name="invoice-no" value="<?php 
-                                                if (isset($_SESSION['suggestion_invoice_no'])) echo $_SESSION['suggestion_invoice_no'];
-                                        ?>">
+                                        <?php
+                                                if (isset($_POST['invoice_no_to_edit'])) {
+                                                        $_SESSION['is_user_wants_edit'] = true;
+                                                        echo '<input disabled type="text" name="invoice-no" value='.$_POST['invoice_no_to_edit'].'>';
+                                                        
+                                                } else if (isset($_SESSION['suggestion_invoice_no'])) {
+                                                        echo '<input type="text" name="invoice-no" value='.$_SESSION['suggestion_invoice_no'].'>';
+                                                }
+                                        ?>
                                         <p class="error"><?php 
                                                 if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
                                         ?></p>

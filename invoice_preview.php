@@ -93,7 +93,10 @@ if (isset($_POST['invoice-no'])) {
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button><i class="fa-solid fa-paper-plane"></i>Send</button>
-                        <a href="./invoice_edit.php"><button class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button></a>
+                        <form action="./invoice_edit.php" method="post">
+                                <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
+                                <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                        </form>
                         <button><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
