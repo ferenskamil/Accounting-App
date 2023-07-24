@@ -41,7 +41,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="invoice-no-edit">Invoice no.</label>
                                         <?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo '<input disabled type="text" name="invoice-no" value='.$_POST['invoice_no_to_edit'].'>';
+                                                        echo '<input readonly type="text" name="invoice-no" value='.$_POST['invoice_no_to_edit'].'>';
                                                         
                                                 } else if (isset($_SESSION['suggestion_invoice_no'])) {
                                                         echo '<input type="text" name="invoice-no" value='.$_SESSION['suggestion_invoice_no'].'>';
