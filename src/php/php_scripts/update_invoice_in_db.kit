@@ -103,6 +103,7 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $query->bindvalue(':invoice_no', $_POST['invoice-no'], PDO::PARAM_STR);
         $query->execute();
 
+        $_SESSION['invoice_no_to_display'] = $_POST['invoice-no'];
         $_SESSION['comment_after_edit'] = "ZMIENIONO FAKTURĘ TEST";
         unset($_SESSION['is_user_wants_edit']);
 } elseif (!in_array($_POST['invoice-no'], $invoice_nums)) {
@@ -147,5 +148,5 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
 } else {
         $_SESSION['comment_after_edit'] = "Coś poszło nie tak. Nie można dodać nr faktury, bo taki już istnieje. Nie można edytować obecnego nr bo użytkonik nie zgadza się na edycję.";
 }
-echo "successfull edit";
+header('Location: ../invoice_preview.php');
 ?>
