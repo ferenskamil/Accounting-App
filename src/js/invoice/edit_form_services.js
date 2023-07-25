@@ -219,12 +219,9 @@ const updateServicesTable = () => {
 document.addEventListener('DOMContentLoaded', updateServicesTable);
 
 // ============================================================
-// NOTES
-// key shortcuts for testing
-// const keyShortcuts = (e) => {
-// 	if (e.key === 'Enter') {
-// 		transferServiceItemsFromEditFormToArr();
-// 		displayServiceItemsInPreview();
-// 	}
-// };
-// document.addEventListener('keydown', (e) => keyShortcuts(e));
+// Block the form from being sent automatically by pressing the Enter key
+document.addEventListener('keydown', (e) => {
+	if (e.key === 'Enter') {
+		e.preventDefault();
+	}
+});
