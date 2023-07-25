@@ -240,7 +240,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                         </td>
                                                                         <td>
                                                                                 <span class="service-title--mobile">Net price (PLN): </span>
-                                                                                <input type="number" min="0" value="'.$service['item_net_price'].'" class="service-item-net-value" name="item_net_price['.$i.']">
+                                                                                <input type="number" min="0" value="'.$service['item_net_price'].'" class="service-item-net-value" name="item_net_price['.$i.']" step=".01">
                                                                         </td>
                                                                         <td>
                                                                                 <span class="service-title--mobile">Tax: </span>
