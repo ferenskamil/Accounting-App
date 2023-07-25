@@ -8,6 +8,7 @@ require_once './php_scripts/suggest_invoice_no.php';
 
 if (isset($_POST['invoice_no_to_edit'])) {
         $_SESSION['invoice_no_to_edit'] = $_POST['invoice_no_to_edit'];
+        $_SESSION['is_user_wants_edit'] = true;
 
         require_once './php_scripts/db_database.php';
         $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
@@ -16,7 +17,14 @@ if (isset($_POST['invoice_no_to_edit'])) {
         $db_invoice_query->execute();
         $db_invoice_to_edit = $db_invoice_query->fetch(PDO::FETCH_ASSOC);
 
-        $_SESSION['is_user_wants_edit'] = true;
+        // Download services from database to array
+        $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
+        $db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_services_query->bindvalue(':invoice_id', $db_invoice_to_edit['id'], PDO::PARAM_STR);
+        $db_services_query->execute();
+        $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
+
+        // print_r($services_arr);
 }
 ?>
 <!DOCTYPE html>
@@ -251,6 +259,73 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         <tr class="empty-info">
                                                                 <td>No items to display</td>
                                                         </tr>
+                                                        <?php
+                                                        if (isset($_SESSION['is_user_wants_edit'])){
+                                                                for ($i=0; $i < count($services_arr) ; $i++) { 
+                                                                        $service = $services_arr[$i];
+
+                                                                        if ($service['service_tax'] === '0.08') {
+                                                                                $tax_options = '
+                                                                                <option value="0">tax-free</option>
+                                                                                <option value="0.08" checked>8%</option>
+                                                                                <option value="0.23">23%</option>';
+                                                                        } elseif ($service['service_tax'] === '0.23') {
+                                                                                $tax_options = '
+                                                                                <option value="0">tax-free</option>
+                                                                                <option value="0.08">8%</option>
+                                                                                <option value="0.23" checked>23%</option>';
+                                                                        } else {
+                                                                                $tax_options = '
+                                                                                <option value="0" checked>tax-free</option>
+                                                                                <option value="0.08">8%</option>
+                                                                                <option value="0.23">23%</option>';        
+                                                                echo('
+                                                                <tr>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">No.: </span>
+                                                                                <span class="service-item-number">'.$service['position'].'</span>
+                                                                                <input hidden="" class="position-hidden-input" type="text" name="position['.$i.']">
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Item / service: </span>
+                                                                                <input class="service-item-name" type="text" name="service_name['.$i.']" value="'.$service['service_name'].'">
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Service code: </span>
+                                                                                <input class="service-item-code" type="text" name="service_code['.$i.']" value="'.$service['service_code'].'">
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Quantity: </span>
+                                                                                <input type="number" value="'.$service['quantity'].'" min="0" class="service-item-amount" name="quantity['.$i.']">
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Net price (PLN): </span>
+                                                                                <input type="number" min="0" value="'.$service['item_net_price'].'" class="service-item-net-value" name="item_net_price['.$i.']">
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Tax: </span>
+                                                                                <select class="service-item-tax" name="service_tax['.$i.']">
+                                                                                        <option value="0">tax-free</option>
+                                                                                        <option value="0.08">8%</option>
+                                                                                        <option value="0.23">23%</option>
+                                                                                </select>
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Net sum (PLN): </span>
+                                                                                <input type="text" value="'.$service['service_total_net'].' PLN" class="service-item-net-sum" name="service_total_net['.$i.']" readonly>
+                                                                        </td>
+                                                                        <td>
+                                                                                <span class="service-title--mobile">Gross sum (PLN): </span>
+                                                                                <input type="text" value="'.$service['service_total_gross'].' PLN" class="service-item-gross-sum" name="service_total_gross['.$i.']" readonly>
+                                                                        </td>
+                                                                        <td>
+                                                                                <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
+                                                                        </td>
+                                                                </tr>'); 
+                                                                }
+                                                        };
+                                                        }
+                                                        ?>
                                                 </tbody>
                                                 <tfoot>
                                                         <tr>

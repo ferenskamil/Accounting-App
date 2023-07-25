@@ -25,7 +25,13 @@ if ($invoice_no_to_display !== '') {
         $db_query->bindvalue(':invoice_no', $invoice_no_to_display, PDO::PARAM_STR);
         $db_query->execute();
         $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
-}
+} 
+// Download services from database to array
+$db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
+$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+$db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_STR);
+$db_services_query->execute();
+$services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,6 +143,26 @@ if ($invoice_no_to_display !== '') {
                                                         </tr>
                                                 </thead>
                                                 <tbody>
+                                                        <?php
+                                                        foreach ($services_arr as $service) {
+                                                                if ($service['service_tax'] === '0.00') {
+                                                                        $service_tax = "tax-free";
+                                                                } else {
+                                                                        $service_tax = strval($service['service_tax']*100)."%";
+                                                                }
+                                                                echo("
+                                                                <tr>
+                                                                        <td>{$service['position']}</td>
+                                                                        <td>{$service['service_name']}</td>
+                                                                        <td>{$service['service_code']}</td>
+                                                                        <td>{$service['quantity']}</td>
+                                                                        <td>{$service['item_net_price']}</td>
+                                                                        <td>{$service_tax}</td>
+                                                                        <td>{$service['service_total_net']}</td>
+                                                                        <td>{$service['service_total_gross']}</td>
+                                                                </tr>");
+                                                        }                        
+                                                        ?>
                                                 </tbody>
                                                 <tfoot>
                                                         <tr>

@@ -27,37 +27,47 @@ const updateItemsNumbers = () => {
 		'.invoice-edit__form-box-services-table .service-item-number'
 	);
 
+	const positionHiddenInputs = document.querySelectorAll(
+		'.position-hidden-input'
+	);
+
 	for (let i = 0; i < itemsNoSpans.length; i++) {
 		itemsNoSpans[i].textContent = i + 1;
 	}
+
+	for (let i = 0; i < positionHiddenInputs.length; i++) {
+		positionHiddenInputs[i].value = i + 1;
+	}
 };
 
+let servicesLength = servicesTbody.querySelectorAll('tr').length;
 const createNewService = (e) => {
 	e.preventDefault();
 
 	const newItem = document.createElement('tr');
 	const itemNoSpan = document.createElement('td');
-	itemNoSpan.innerHTML = `<span class="service-title--mobile">No.: </span><span class="service-item-number"></span>`;
+	itemNoSpan.innerHTML = `<span class="service-title--mobile">No.: </span><span class="service-item-number"></span>
+	<input hidden class="position-hidden-input" type="text" name="position[${servicesLength}]" value=""></input>`;
 
 	const serviceName = document.createElement('td');
 	serviceName.innerHTML = `<span class="service-title--mobile">Item / service: </span>
-	<input class="service-item-name" type="text" value="${''}">`;
+	<input class="service-item-name"  type="text" name="service_name[${servicesLength}]">`;
 
 	const activityCode = document.createElement('td');
 	activityCode.innerHTML = `<span class="service-title--mobile">Service code: </span>
-	<input class="service-item-code" type="text" value="${'56.21.11.0'}">`;
+	<input class="service-item-code" type="text" name="service_code[${servicesLength}]">`;
 
 	const amount = document.createElement('td');
 	amount.innerHTML = `<span class="service-title--mobile">Quantity: </span>
-	<input type="number" value="1" min="0" class="service-item-amount">`;
+	<input type="number" value="1" min="0" class="service-item-amount" name="quantity[${servicesLength}]">`;
 
 	const netValue = document.createElement('td');
 	netValue.innerHTML = `<span class="service-title--mobile">Net price (PLN): </span>
-	<input type="number" name="" id="" min="0" value="0" class="service-item-net-value">`;
+	<input type="number" min="0" value="0" class="service-item-net-value" name="item_net_price[${servicesLength}]">`;
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Tax: </span>
-	<select name="" id="" class="service-item-tax">
+	<select class="service-item-tax" name="service_tax[${servicesLength}]">
 		<option value="0">tax-free</option>
 		<option value="0.08">8%</option>
 		<option value="0.23">23%</option>
@@ -65,11 +75,11 @@ const createNewService = (e) => {
 
 	const netSum = document.createElement('td');
 	netSum.innerHTML = `<span class="service-title--mobile">Net sum (PLN): </span>
-	<input type="text" value="0.00 PLN" class="service-item-net-sum" disabled>`;
+	<input type="text" value="0.00 PLN" class="service-item-net-sum" name="service_total_net[${servicesLength}]" readonly>`;
 
 	const grossSum = document.createElement('td');
 	grossSum.innerHTML = `<span class="service-title--mobile">Gross sum (PLN): </span>
-	<input type="text" value="0.00 PLN" class="service-item-gross-sum" disabled>`;
+	<input type="text" value="0.00 PLN" class="service-item-gross-sum" name="service_total_gross[${servicesLength}]" readonly>`;
 
 	const deleteBtn = document.createElement('td');
 	deleteBtn.innerHTML = `<button class="delete-btn">
@@ -90,6 +100,8 @@ const createNewService = (e) => {
 
 	updateItemsNumbers();
 	showEmptyInfo();
+
+	servicesLength++;
 };
 
 addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
@@ -195,6 +207,16 @@ document.addEventListener('click', (e) => {
 		deleteServiceItem(e);
 	}
 });
+
+// ============================================================
+// UPDATE SERVICES TABLE AFTER LOAD PAGE
+const updateServicesTable = () => {
+	updateItemsNumbers();
+	showEmptyInfo();
+	calculateTableSummary();
+};
+
+document.addEventListener('DOMContentLoaded', updateServicesTable);
 
 // ============================================================
 // NOTES
