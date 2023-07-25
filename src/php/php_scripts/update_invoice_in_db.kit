@@ -67,8 +67,6 @@ if (isset($_POST['position'])) {
 
                 $services_arr[$i] = $service;
         }
-
-        print_r($services_arr[0]);
 }
 // connect with database
 require_once 'db_database.php';

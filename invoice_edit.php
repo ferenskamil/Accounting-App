@@ -23,8 +23,6 @@ if (isset($_POST['invoice_no_to_edit'])) {
         $db_services_query->bindvalue(':invoice_id', $db_invoice_to_edit['id'], PDO::PARAM_STR);
         $db_services_query->execute();
         $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
-
-        // print_r($services_arr);
 }
 ?>
 <!DOCTYPE html>
@@ -278,7 +276,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                                 $tax_options = '
                                                                                 <option value="0" checked>tax-free</option>
                                                                                 <option value="0.08">8%</option>
-                                                                                <option value="0.23">23%</option>';        
+                                                                                <option value="0.23">23%</option>';
+                                                                        };
                                                                 echo('
                                                                 <tr>
                                                                         <td>
@@ -324,7 +323,6 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                 </tr>'); 
                                                                 }
                                                         };
-                                                        }
                                                         ?>
                                                 </tbody>
                                                 <tfoot>

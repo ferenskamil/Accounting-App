@@ -9,10 +9,10 @@ if (isset($_POST['invoice-no'])) {
         $invoice_no_to_display = $_POST['invoice-no'];
 } elseif (isset($_SESSION['invoice_no_to_display'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_display'];
-        unset($_SESSION['invoice_no_to_display']);
+        // unset($_SESSION['invoice_no_to_display']);
 } elseif(isset($_SESSION['invoice_no_to_edit'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_edit'];
-        unset($_SESSION['invoice_no_to_edit']);
+        // unset($_SESSION['invoice_no_to_edit']);
 } else {
         header('Location: invoice_list.php');
 }
@@ -28,8 +28,8 @@ if ($invoice_no_to_display !== '') {
 } 
 // Download services from database to array
 $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
-$db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_STR);
+$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
 $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
