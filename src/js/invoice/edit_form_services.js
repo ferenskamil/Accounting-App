@@ -40,8 +40,7 @@ const updateItemsNumbers = () => {
 	}
 };
 
-let servicesLength = 0;
-
+let servicesLength = servicesTbody.querySelectorAll('tr').length;
 const createNewService = (e) => {
 	e.preventDefault();
 
