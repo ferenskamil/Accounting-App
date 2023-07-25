@@ -36,11 +36,39 @@ function is_an_invoice_syntax_OK(string $invoice_no) {
 
 if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
         unset($_SESSION['e_invoice_no_syntax']);
-        echo "Syntax is OK";
 } else {
         $_SESSION['e_invoice_no_syntax'] = 'The number must follow the formula "number/month/year" for example "1/01/1111"';
         header('Location: ../invoice_edit.php');
         exit();
+}
+
+// Prepare services for entry into the database 
+if (isset($_POST['position'])) {       
+        $positions = array_values($_POST['position']);
+        $service_names = array_values($_POST['service_name']);
+        $service_codes = array_values($_POST['service_code']);
+        $quantities = array_values($_POST['quantity']);
+        $item_net_prices = array_values($_POST['item_net_price']);
+        $service_taxes = array_values($_POST['service_tax']);
+        $service_total_nets = array_values($_POST['service_total_net']);
+        $service_total_grosses = array_values($_POST['service_total_gross']);
+        
+        $services_arr = [];
+        for ($i=0; $i < count($positions); $i++ ) {
+                $service = []; 
+                $service['position'] = floatval($positions[$i]);
+                $service['service_name'] = $service_names[$i];
+                $service['service_code'] = $service_codes[$i];
+                $service['quantity'] = floatval($quantities[$i]);
+                $service['item_net_price'] =  number_format(floatval($item_net_prices[$i]), 2, '.', ' ');
+                $service['service_tax'] = $service_taxes[$i];
+                $service['service_total_net'] =  number_format(floatval($service_total_nets[$i]), 2, '.', ' ');
+                $service['service_total_gross'] =  number_format(floatval($service_total_grosses[$i]), 2, '.', ' ');
+
+                $services_arr[$i] = $service;
+        }
+
+        print_r($services_arr[0]);
 }
 
 // Checking if there is already an invoice in the database with the given number (for a given user)
