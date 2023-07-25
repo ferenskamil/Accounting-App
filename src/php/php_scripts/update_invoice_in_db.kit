@@ -70,10 +70,10 @@ if (isset($_POST['position'])) {
 
         print_r($services_arr[0]);
 }
-
-// Checking if there is already an invoice in the database with the given number (for a given user)
+// connect with database
 require_once 'db_database.php';
 
+// Checking if there is already an invoice in the database with the given number (for a given user)
 $db_invoices_query = $db->prepare("
         SELECT invoices.no FROM `invoices`
         INNER JOIN users ON invoices.user_id = users.id
@@ -177,6 +177,57 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $_SESSION['comment_after_edit'] = "Invoice No. <span>".$_SESSION['invoice_no_to_display']."</span> has been successfully added";
 } else {
         $_SESSION['comment_after_edit'] = "Coś poszło nie tak. Nie można dodać nr faktury, bo taki już istnieje. Nie można edytować obecnego nr bo użytkonik nie zgadza się na edycję.";
+}
+
+// prepare invoice id
+$db_invoice_id_query = $db->prepare("SELECT id FROM invoices
+        WHERE no = :invoice_no AND user_id = :user_id");
+
+$db_invoice_id_query->bindValue(':invoice_no',$_POST['invoice-no'], PDO::PARAM_STR);
+$db_invoice_id_query->bindValue(':user_id',$_SESSION['id'], PDO::PARAM_INT);
+$db_invoice_id_query->execute();
+$invoice_id = $db_invoice_id_query->fetch();
+$invoice_id = $invoice_id['id'];
+
+// Update services in database
+if (isset($services_arr)){
+        foreach($services_arr as $service) {
+                $db_add_service_query = $db->prepare("INSERT INTO `services`(
+                        `user_id`,
+                        `invoice_id`,
+                        `position`,
+                        `service_name`,
+                        `service_code`,
+                        `quantity`,
+                        `item_net_price`,
+                        `service_tax`,
+                        `service_total_net`,
+                        `service_total_gross`
+                )
+                VALUES(
+                        :user_id,
+                        :invoice_id,
+                        :position,
+                        :service_name,
+                        :service_code,
+                        :quantity,
+                        :item_net_price,
+                        :service_tax,
+                        :service_total_net,
+                        :service_total_gross
+                )");
+                $db_add_service_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':position', $service['position'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':service_name', $service['service_name'], PDO::PARAM_STR);
+                $db_add_service_query->bindvalue(':service_code', $service['service_code'], PDO::PARAM_STR);
+                $db_add_service_query->bindvalue(':quantity', $service['quantity'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':item_net_price', $service['item_net_price'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':service_tax', $service['service_tax'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':service_total_net', $service['service_total_net'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':service_total_gross', $service['service_total_gross'], PDO::PARAM_INT);
+                $db_add_service_query->execute();
+        }
 }
 header('Location: ../invoice_preview.php');
 ?>
