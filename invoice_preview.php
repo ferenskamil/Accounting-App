@@ -26,7 +26,6 @@ if ($invoice_no_to_display !== '') {
         $db_query->execute();
         $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
 } 
-//////////////////////PLAYGROUND
 // Download services from database to array
 $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
 $db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
