@@ -73,6 +73,8 @@ if (isset($_POST['position'])) {
 // connect with database
 require_once 'db_database.php';
 
+////////////////////////////////
+// ADD OR EDIT INVOICE IN DATABASE 
 // Checking if there is already an invoice in the database with the given number (for a given user)
 $db_invoices_query = $db->prepare("
         SELECT invoices.no FROM `invoices`
@@ -86,6 +88,7 @@ foreach($db_invoices_nums as $num) {
         $invoice_nums[] = $num['no'];
 }
 
+// Add or edit invoice in database 
 if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] === true) {
         $query = $db->prepare("UPDATE invoices
                 SET
@@ -178,7 +181,8 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
 } else {
         $_SESSION['comment_after_edit'] = "Coś poszło nie tak. Nie można dodać nr faktury, bo taki już istnieje. Nie można edytować obecnego nr bo użytkonik nie zgadza się na edycję.";
 }
-
+////////////////////////////////
+// UPDATE SERVICES IN DATABASE
 // prepare invoice id
 $db_invoice_id_query = $db->prepare("SELECT id FROM invoices
         WHERE no = :invoice_no AND user_id = :user_id");
@@ -189,7 +193,14 @@ $db_invoice_id_query->execute();
 $invoice_id = $db_invoice_id_query->fetch();
 $invoice_id = $invoice_id['id'];
 
-// Update services in database
+// Remove services from database 
+$db_remove_services_query = $db->prepare("DELETE FROM services
+WHERE user_id = :user_id AND invoice_id = :invoice_id");
+$db_remove_services_query->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_remove_services_query->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+$db_remove_services_query->execute();
+
+// Add services to database 
 if (isset($services_arr)){
         foreach($services_arr as $service) {
                 $db_add_service_query = $db->prepare("INSERT INTO `services`(
@@ -229,5 +240,7 @@ if (isset($services_arr)){
                 $db_add_service_query->execute();
         }
 }
+////////////////////////////////
+// Redirect to preview
 header('Location: ../invoice_preview.php');
 ?>
