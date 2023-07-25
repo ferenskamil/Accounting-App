@@ -17,7 +17,7 @@ const editFormValidation = (e) => {
 	});
 
 	// Block submit form if any input is empty
-	// if (!isOK) e.preventDefault();
+	if (!isOK) e.preventDefault();
 	return isOK;
 };
 
