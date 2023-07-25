@@ -210,6 +210,16 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================================================
+// UPDATE SERVICES TABLE AFTER LOAD PAGE
+const updateServicesTable = () => {
+	updateItemsNumbers();
+	showEmptyInfo();
+	calculateTableSummary();
+};
+
+document.addEventListener('DOMContentLoaded', updateServicesTable);
+
+// ============================================================
 // NOTES
 // key shortcuts for testing
 // const keyShortcuts = (e) => {
