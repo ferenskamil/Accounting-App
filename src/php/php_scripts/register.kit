@@ -105,11 +105,23 @@ if ($everything_OK) {
 
         // If the user does not exist in the database, we add him to the database
         if (!$user_already_exist) {
-        $query = $db->prepare('INSERT INTO users VALUES (NULL, :login, :pass, :email, :avatar_file)');
+        $query = $db->prepare("INSERT INTO `users`(
+                login,
+                password,
+                email,
+                avatar_file_img,
+                company_logo_file_path )
+            VALUES(
+                :login,
+                :pass,
+                :email,
+                :avatar_img,
+                :company_logo )");
         $query->bindvalue(':login', $login, PDO::PARAM_STR);
         $query->bindvalue(':pass', $password_hash, PDO::PARAM_STR);
         $query->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
-        $query->bindvalue(':avatar_file', 'default_avatar.png', PDO::PARAM_STR);
+        $query->bindvalue(':avatar_img', 'default_avatar.png', PDO::PARAM_STR);
+        $query->bindvalue(':company_logo', 'default_logo.png', PDO::PARAM_STR);
         $query->execute();
         
         echo 'Successfull registration';
