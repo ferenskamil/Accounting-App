@@ -25,7 +25,7 @@ submitBtn.addEventListener('click', (e) => editFormValidation(e));
 
 // ============================================================
 // SANITIZE VALUE IN BANK ACCOUNT INPUT
-const accountNoInput = document.querySelector('#account-no-edit');
+const accountNoInput = document.querySelector('#account-no');
 
 const sanitizeAccountNo = (e) => {
 	// In the future I can to this with regex
