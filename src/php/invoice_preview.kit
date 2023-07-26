@@ -178,7 +178,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
                                         <p><Strong>To pay: </Strong><span>
-                                                <?php echo $invoice['to_pay'] ?>
+                                                <?php echo number_format($invoice['to_pay'], 2, ',',' ')." PLN" ?>
                                         </span></p>
                                         <p><Strong>In words: </Strong><span>
                                                 <?php echo $invoice['to_pay_in_words'] ?>

@@ -167,7 +167,7 @@ const calculateInvoiceTotalGross = () => {
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-gross');
 
-	changeValueInHiddenInput(`${sum.toFixed(2)} PLN`, '#to-pay-numeric');
+	changeValueInHiddenInput(sum.toFixed(2), '#to-pay-numeric');
 	changeValueInHiddenInput(verbalNotation(sum.toFixed(2)), '#to-pay-verbal');
 };
 
