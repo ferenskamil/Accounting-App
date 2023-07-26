@@ -35,10 +35,12 @@
 
 <body>
         <main class="register">
-                <div class="register__top">
-                        <i class="fa-brands fa-apple"></i>
-                        <h2>AccountingApp</h2>
-                </div>
+                <a href="./index.php">
+                        <div class="register__top">
+                                <i class="fa-brands fa-apple"></i>
+                                <h2>AccountingApp</h2>
+                        </div>
+                </a>
                 <h1 class="register__title">Sign in</h1>
                 <div class="register__wrapper">
                         <p>You have successfully registered. You can log in now.</p>
