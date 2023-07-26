@@ -63,7 +63,7 @@ const createNewService = (e) => {
 
 	const netValue = document.createElement('td');
 	netValue.innerHTML = `<span class="service-title--mobile">Net price (PLN): </span>
-	<input type="number" min="0" value="0" class="service-item-net-value" name="item_net_price[${servicesLength}]">`;
+	<input type="number" min="0" value="0.00" class="service-item-net-value" name="item_net_price[${servicesLength}]" step=".01">`;
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Tax: </span>
