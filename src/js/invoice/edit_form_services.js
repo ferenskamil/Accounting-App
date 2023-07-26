@@ -115,8 +115,8 @@ const calculateItemTotalNet = (e) => {
 	const netPerOnePiece = item.querySelector('.service-item-net-value').value;
 	const net = item.querySelector('.service-item-net-sum');
 
-	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`;
-	calculateItemTotalGross(e);
+	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`.replace('.', ',');
+	calculateItemTotalGross(e, (amount * netPerOnePiece).toFixed(2));
 };
 
 const calculateItemTotalGross = (e) => {
@@ -126,9 +126,10 @@ const calculateItemTotalGross = (e) => {
 	const sumGross = item.querySelector('.service-item-gross-sum');
 
 	const totalGross =
-		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
+		parseFloat(tax) * parseFloat(netValue.replace(',', '.')) +
+		parseFloat(netValue.replace(',', '.'));
 
-	sumGross.value = `${totalGross.toFixed(2)} PLN`;
+	sumGross.value = `${totalGross.toFixed(2)} PLN`.replace('.', ',');
 
 	calculateTableSummary();
 };
@@ -147,7 +148,7 @@ const calculateInvoiceTotalNet = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`;
+	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-net');
 };
@@ -163,7 +164,10 @@ const calculateInvoiceTotalGross = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`;
+	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`.replace(
+		'.',
+		','
+	);
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-gross');
 
