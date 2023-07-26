@@ -23,6 +23,12 @@
 				background-color: transparent;
 			}
 		}
+
+		li:last-child {
+			.nav__item:hover {
+				background-color: $red;
+			}
+		}
 	}
 
 	&__item {
