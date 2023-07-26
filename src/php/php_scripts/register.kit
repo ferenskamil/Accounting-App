@@ -123,8 +123,10 @@ if ($everything_OK) {
         $query->bindvalue(':avatar_img', 'default_avatar.png', PDO::PARAM_STR);
         $query->bindvalue(':company_logo', 'default_logo.png', PDO::PARAM_STR);
         $query->execute();
-        
-        echo 'Successfull registration';
+
+        $_SESSION['is_registered_success'] = true;
+        header('Location: ../welcome.php');
+        exit();
         } 
 } else {
         header('Location: ../registration.php');
