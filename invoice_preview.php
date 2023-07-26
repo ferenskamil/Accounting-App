@@ -249,9 +249,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="invoice__paper-content invoice-comments">
                                         <h3>Additional notes</h3>
-                                        <p class="comment"><span>
-                                                <?php echo $invoice['additional_notes'] ?>
-                                        </span></p>
+                                        <pre class="comment"><?php echo $invoice['additional_notes'] ?></pre>
                                         <p class="footnote">*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 </div>
                                 <div class="invoice__paper-content invoice-sign">

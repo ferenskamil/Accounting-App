@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', updateServicesTable);
 // ============================================================
 // Block the form from being sent automatically by pressing the Enter key
 document.addEventListener('keydown', (e) => {
-	if (e.key === 'Enter') {
+	if (e.key === 'Enter' && e.target.localName !== 'textarea') {
 		e.preventDefault();
 	}
 });
