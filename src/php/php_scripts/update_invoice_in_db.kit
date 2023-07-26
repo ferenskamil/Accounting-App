@@ -137,21 +137,48 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         unset($_SESSION['invoice_no_to_edit']);
         unset($_SESSION['is_user_wants_edit']);
 } elseif (!in_array($_POST['invoice-no'], $invoice_nums)) {
-        $query = $db->prepare("INSERT INTO invoices (`user_id`, `no`, `date`, 
-        `sum_net`, `sum_gross`, `city`, `bank`, 
-        `account_no`, `payment_term`, 
-        `to_pay`, `to_pay_in_words`, 
-        `additional_notes`, `customer_name`, `customer_address1`, 
-        `customer_address2`, `customer_company_no`, `seller_name`, `seller_address1`, 
-        `seller_address2`, `seller_company_no`) 
-        VALUES (:user_id, :no , :date,
-        :sum_net, :sum_gross ,:city, :bank,
-        :account_no , :term,
-        :to_pay, :to_pay_in_words,
-        :comment, :customer_name, :customer_address1,
-        :customer_address2, :customer_company_no, 
-        :seller_name, :seller_address1,
-        :seller_address2, :seller_company_no)");
+        $query = $db->prepare("INSERT INTO invoices 
+                (`user_id`, 
+                `no`,
+                `date`,
+                `sum_net`,
+                `sum_gross`,
+                `city`,
+                `bank`,
+                `account_no`,
+                `payment_term`,
+                `to_pay`,
+                `to_pay_in_words`,
+                `additional_notes`,
+                `customer_name`,
+                `customer_address1`,
+                `customer_address2`,
+                `customer_company_no`,
+                `seller_name`,
+                `seller_address1`,
+                `seller_address2`,
+                `seller_company_no`) 
+        VALUES 
+                (:user_id,
+                :no ,
+                :date,
+                :sum_net,
+                :sum_gross ,
+                :city,
+                :bank,
+                :account_no ,
+                :term,
+                :to_pay,
+                :to_pay_in_words,
+                :comment,
+                :customer_name,
+                :customer_address1,
+                :customer_address2,
+                :customer_company_no,
+                :seller_name,
+                :seller_address1,
+                :seller_address2,
+                :seller_company_no)");
         $query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
         $query->bindvalue(':no', $_POST['invoice-no'], PDO::PARAM_STR);
         $query->bindvalue(':date', $_POST['date'], PDO::PARAM_STR);
