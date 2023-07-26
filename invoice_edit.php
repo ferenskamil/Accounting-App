@@ -268,16 +268,16 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                         if ($service['service_tax'] === '0.08') {
                                                                                 $tax_options = '
                                                                                 <option value="0">tax-free</option>
-                                                                                <option value="0.08" checked>8%</option>
+                                                                                <option value="0.08" selected>8%</option>
                                                                                 <option value="0.23">23%</option>';
                                                                         } elseif ($service['service_tax'] === '0.23') {
                                                                                 $tax_options = '
                                                                                 <option value="0">tax-free</option>
                                                                                 <option value="0.08">8%</option>
-                                                                                <option value="0.23" checked>23%</option>';
+                                                                                <option value="0.23" selected>23%</option>';
                                                                         } else {
                                                                                 $tax_options = '
-                                                                                <option value="0" checked>tax-free</option>
+                                                                                <option value="0" selected>tax-free</option>
                                                                                 <option value="0.08">8%</option>
                                                                                 <option value="0.23">23%</option>';
                                                                         };
@@ -307,9 +307,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                         <td>
                                                                                 <span class="service-title--mobile">Tax: </span>
                                                                                 <select class="service-item-tax" name="service_tax['.$i.']">
-                                                                                        <option value="0">tax-free</option>
-                                                                                        <option value="0.08">8%</option>
-                                                                                        <option value="0.23">23%</option>
+                                                                                        '.$tax_options.'
                                                                                 </select>
                                                                         </td>
                                                                         <td>
