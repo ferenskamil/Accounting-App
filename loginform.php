@@ -48,7 +48,7 @@
                 </div>
                 <div class="register__info">
                         <p>Forgot your password? <a href="#">Reset password</a></p>
-                        <p>No account? <a href="./registration.html">Create one</a></p>
+                        <p>No account? <a href="./registration.php">Create one</a></p>
                 </div>
         </main>
 </body>
