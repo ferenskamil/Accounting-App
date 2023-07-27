@@ -52,42 +52,30 @@ const insertSpacesIntoAccountNo = (
 const sanitizeAccountNo = (e) => {
 	// In the future I can to this with regex
 	let accountNo = accountNoInput.value;
-	let newSpace;
+	let testVar = accountNoInput.selectionEnd;
+	accountNoInput.setAttribute('maxlength', 32);
 
-	if (!parseInt(e.data) && e.data !== '0') {
-		accountNo = accountNo.slice(0, -1);
-	}
+	// delete spaces, letters and special characters 
+	accountNo = accountNo.replace(/[^0-9 ]/g, '');
 
-	switch (accountNo.length) {
-		case 2:
-			newSpace = ''.concat(accountNo.slice(0, 2), ' ');
-			break;
-		case 7:
-			newSpace = ''.concat(accountNo.slice(0, 7), ' ');
-			break;
-		case 12:
-			newSpace = ''.concat(accountNo.slice(0, 12), ' ');
-			break;
-		case 17:
-			newSpace = ''.concat(accountNo.slice(0, 17), ' ');
-			break;
-		case 22:
-			newSpace = ''.concat(accountNo.slice(0, 22), ' ');
-			break;
-		case 27:
-			newSpace = ''.concat(accountNo.slice(0, 27), ' ');
-			break;
-		case 33:
-			accountNo = accountNo.slice(0, -1);
-			break;
-		default:
-			break;
-	}
+	if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.data)) {
+		accountNoInput.value = insertSpacesIntoAccountNo(accountNo);
 
-	if (newSpace) {
-		accountNo = newSpace;
+		if (
+			accountNo.substring(testVar, testVar + 1) === ' ' ||
+			testVar === accountNo.length
+		) {
+			accountNoInput.selectionStart = testVar + 1;
+			accountNoInput.selectionEnd = testVar + 1;
+		} else {
+			accountNoInput.selectionStart = testVar;
+			accountNoInput.selectionEnd = testVar;
+		}
+	} else if (e.data !== ' ' && e.data !== null) {
+		accountNoInput.value = accountNo;
+		accountNoInput.selectionStart = testVar - 1;
+		accountNoInput.selectionEnd = testVar - 1;
 	}
-	accountNoInput.value = accountNo;
 };
 
 accountNoInput.addEventListener('input', (e) => sanitizeAccountNo(e));
