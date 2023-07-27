@@ -371,6 +371,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
         <script src="./dist/js/invoice/num_to_word.min.js"></script>
         <script src="./dist/js/invoice/edit_form_services.min.js"></script>
         <script src="./dist/js/invoice/edit_form_validation.min.js"></script>
+        <script src="./dist/js/invoice/sanitize_account_number.min.js"></script>
 </body>
 
 </html>
