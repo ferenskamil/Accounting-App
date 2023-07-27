@@ -38,7 +38,9 @@ if (isset($_FILES['change-logo-btn']['name'])) {
                 if (move_uploaded_file($tmp_name, "../dist/img/logos/".$new_img_name)) {
 
                         // Set new file name (with extension) in db 
-                        $db_update_user_img_name = $db->prepare("UPDATE users SET company_logo_file_path = :file_name WHERE login = :login");
+                        $db_update_user_img_name = $db->prepare("UPDATE users 
+                                SET company_logo_file_path = :file_name 
+                                WHERE login = :login");
                         $db_update_user_img_name->bindvalue(':file_name', $new_img_name, PDO::PARAM_STR);
                         $db_update_user_img_name->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
                         $db_update_user_img_name->execute();

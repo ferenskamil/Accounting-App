@@ -32,8 +32,6 @@ if (isset($_POST['invoice_no_to_edit'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./dist/css/main.min.css">
-
         <!-- FontAwesome Kit -->
 <script src="https://kit.fontawesome.com/63681c7143.js" crossorigin="anonymous"></script>
 
@@ -41,6 +39,9 @@ if (isset($_POST['invoice_no_to_edit'])) {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- CSS stylesheet -->
+<link rel="stylesheet" href="./dist/css/main.min.css">
         <title>Invoice edit form</title>
 </head>
 
@@ -105,20 +106,22 @@ if (isset($_POST['invoice_no_to_edit'])) {
                         <form action="./php_scripts/update_invoice_in_db.php" method="post" class="invoice-edit__form">
                                 <div class="invoice-edit__form-box invoice-edit__form-box-details ">
                                         <h2>Details</h2>
-                                        <label for="invoice-no-edit">Invoice no.</label>
+                                        <label for="invoice-no">Invoice no.</label>
                                         <?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo '<input readonly type="text" name="invoice-no" value='.$_POST['invoice_no_to_edit'].'>';
+                                                        echo '<input readonly type="text" name="invoice-no" id="invoice-no"
+                                                        value='.$_POST['invoice_no_to_edit'].'>';
                                                         
                                                 } else if (isset($_SESSION['suggestion_invoice_no'])) {
-                                                        echo '<input type="text" name="invoice-no" value='.$_SESSION['suggestion_invoice_no'].'>';
+                                                        echo '<input type="text" name="invoice-no" id="invoice-no"
+                                                        value='.$_SESSION['suggestion_invoice_no'].'>';
                                                 }
                                         ?>
                                         <p class="error"><?php 
                                                 if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
                                         ?></p>
-                                        <label for="date-edit">Invoice date: </label>
-                                        <input class="test" type="date" name="date" value="<?php 
+                                        <label for="date">Invoice date: </label>
+                                        <input class="test" type="date" name="date" id="date" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $db_invoice_to_edit['date'];
                                                 } else {
@@ -126,8 +129,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 }
                                                 
                                         ?>">
-                                        <label for="city-edit">City: </label>
-                                        <input type="text" name="city" value="<?php 
+                                        <label for="city">City: </label>
+                                        <input type="text" name="city" id="city" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['city'];
                                                 } 
@@ -135,8 +138,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['default_invoice_city'];
                                                 }
                                         ?>">
-                                        <label for="bank-edit">Bank: </label>
-                                        <input type="text" name="bank" value="<?php 
+                                        <label for="bank">Bank: </label>
+                                        <input type="text" name="bank" id="bank" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['bank'];
                                                 } 
@@ -144,8 +147,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['default_invoice_bank_name'];
                                                 }
                                         ?>">
-                                        <label for="account-no-edit">Account no.: </label>
-                                        <input type="text" name="account-no" id="account-no-edit" value="<?php
+                                        <label for="account-no">Account no.: </label>
+                                        <input type="text" name="account-no" id="account-no" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['account_no'];
                                                 } 
@@ -153,8 +156,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['default_invoice_bank_account_no'];
                                                 }                                        
                                         ?>">
-                                        <label for="term-edit">Payment term: </label>
-                                        <select name="term">
+                                        <label for="term">Payment term: </label>
+                                        <select name="term" id="term">
                                                 <option value="7 days" <?php 
                                                         if (isset($_POST['invoice_no_to_edit']) && $db_invoice_to_edit === '7 days') {
                                                                 echo 'selected';
@@ -171,8 +174,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-seller">
                                         <h2>Your data</h2>
-                                        <label for="seller-name-edit">Name: </label>
-                                        <input type="text" name="seller-name" value="<?php 
+                                        <label for="seller-name">Name: </label>
+                                        <input type="text" name="seller-name" id="seller-name" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_name'];
                                                 } 
@@ -180,8 +183,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['company_name'];
                                                 }
                                         ?>">
-                                        <label for="seller-address1-edit">Address: </label>
-                                        <input type="text" name="seller-address1" value="<?php
+                                        <label for="seller-address1">Address: </label>
+                                        <input type="text" name="seller-address1" id="seller-address1" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_address1'];
                                                 } 
@@ -189,8 +192,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['address1'];
                                                 }
                                         ?>">
-                                        <label for="seller-address2-edit">Address 2: </label>
-                                        <input type="text" name="seller-address2" value="<?php
+                                        <label for="seller-address2">Address 2: </label>
+                                        <input type="text" name="seller-address2" id="seller-address2" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_address2'];
                                                 } 
@@ -198,8 +201,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $_SESSION['address2'];
                                                 }
                                         ?>">
-                                        <label for="seller-company-no-edit">Company no.: </label>
-                                        <input type="text" name="seller-company-no" placeholder="if none enter '---'" value="<?php
+                                        <label for="seller-company-no">Company no.: </label>
+                                        <input type="text" name="seller-company-no" id="seller-company-no" placeholder="if none enter '---'" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_company_no'];
                                                 } 
@@ -210,26 +213,26 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-customer">
                                         <h2>Billed to</h2>
-                                        <label for="customer-name-edit">Name: </label>
-                                        <input type="text" name="customer-name" value="<?php 
+                                        <label for="customer-name">Name: </label>
+                                        <input type="text" name="customer-name" id="customer-name" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $db_invoice_to_edit['customer_name'] ;
                                                 }
                                         ?>">
-                                        <label for="customer-address1-edit">Address: </label>
-                                        <input type="text" name="customer-address1" value="<?php 
+                                        <label for="customer-address1">Address: </label>
+                                        <input type="text" name="customer-address1" id="customer-address1" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $db_invoice_to_edit['customer_address1'] ;
                                                 }
                                         ?>">
-                                        <label for="customer-address2-edit">Address 2: </label>
-                                        <input type="text" name="customer-address2" value="<?php 
+                                        <label for="customer-address2">Address 2: </label>
+                                        <input type="text" name="customer-address2" id="customer-address2" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $db_invoice_to_edit['customer_address2'] ;
                                                 }
                                         ?>">
-                                        <label for="customer-company-no-edit">Company no.: </label>
-                                        <input type="text" name="customer-company-no" value="<?php 
+                                        <label for="customer-company-no">Company no.: </label>
+                                        <input type="text" name="customer-company-no" id="customer-company-no" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $db_invoice_to_edit['customer_company_no'] ;
                                                 }
@@ -265,16 +268,16 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                         if ($service['service_tax'] === '0.08') {
                                                                                 $tax_options = '
                                                                                 <option value="0">tax-free</option>
-                                                                                <option value="0.08" checked>8%</option>
+                                                                                <option value="0.08" selected>8%</option>
                                                                                 <option value="0.23">23%</option>';
                                                                         } elseif ($service['service_tax'] === '0.23') {
                                                                                 $tax_options = '
                                                                                 <option value="0">tax-free</option>
                                                                                 <option value="0.08">8%</option>
-                                                                                <option value="0.23" checked>23%</option>';
+                                                                                <option value="0.23" selected>23%</option>';
                                                                         } else {
                                                                                 $tax_options = '
-                                                                                <option value="0" checked>tax-free</option>
+                                                                                <option value="0" selected>tax-free</option>
                                                                                 <option value="0.08">8%</option>
                                                                                 <option value="0.23">23%</option>';
                                                                         };
@@ -304,24 +307,22 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                         <td>
                                                                                 <span class="service-title--mobile">Tax: </span>
                                                                                 <select class="service-item-tax" name="service_tax['.$i.']">
-                                                                                        <option value="0">tax-free</option>
-                                                                                        <option value="0.08">8%</option>
-                                                                                        <option value="0.23">23%</option>
+                                                                                        '.$tax_options.'
                                                                                 </select>
                                                                         </td>
                                                                         <td>
                                                                                 <span class="service-title--mobile">Net sum (PLN): </span>
-                                                                                <input type="text" value="'.$service['service_total_net'].' PLN" class="service-item-net-sum" name="service_total_net['.$i.']" readonly>
+                                                                                <input type="text" value="'.number_format($service['service_total_net'],2,',',' ').' PLN" class="service-item-net-sum" name="service_total_net['.$i.']" readonly>
                                                                         </td>
                                                                         <td>
                                                                                 <span class="service-title--mobile">Gross sum (PLN): </span>
-                                                                                <input type="text" value="'.$service['service_total_gross'].' PLN" class="service-item-gross-sum" name="service_total_gross['.$i.']" readonly>
+                                                                                <input type="text" value="'.number_format($service['service_total_gross'],2,',',' ').' PLN" class="service-item-gross-sum" name="service_total_gross['.$i.']" readonly>
                                                                         </td>
                                                                         <td>
                                                                                 <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                                                                         </td>
                                                                 </tr>'); 
-                                                                }
+                                                                }; 
                                                         };
                                                         ?>
                                                 </tbody>
@@ -333,7 +334,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                 <td><strong>TOTAL:</strong></td>
                                                                 <td><span class="service-title--mobile">
                                                                         <strong>Net:</strong></span>
-                                                                        <span class="invoice-total-net">0.00 PLN</span>
+                                                                        <span class="invoice-total-net">0,00 PLN</span>
                                                                         <input type="text" hidden name="total-net" id="total-net" value="0.00">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">
@@ -348,9 +349,9 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <input type="text" hidden name="to-pay-verbal" id="to-pay-verbal" value="zero PLN 00/100">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-comments">
-                                        <h2>Additional notes</h2>
+                                        <label for="comment"><h2>Additional notes</h2></label>
                                         <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
-                                        <textarea name="comment" id="comment-edit" cols="30"
+                                        <textarea name="comment" id="comment" cols="30"
                                                 rows="10"><?php 
                                                         if (isset($_POST['invoice_no_to_edit'])){
                                                                 echo $db_invoice_to_edit['additional_notes'];

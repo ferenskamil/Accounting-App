@@ -15,7 +15,8 @@ if (isset($_POST['settings-company-name'])) {
                 default_invoice_bank_name = :bank_name,
                 default_invoice_bank_account_no = :account_no,
                 default_invoice_additional_info = :additional_info
-         WHERE login = :login");
+         WHERE 
+                login = :login");
         $db_query->bindvalue(':company_name', $_POST['settings-company-name'], PDO::PARAM_STR);
         $db_query->bindvalue(':address1', $_POST['settings-company-address1'], PDO::PARAM_STR);
         $db_query->bindvalue(':address2', $_POST['settings-company-address2'], PDO::PARAM_STR);

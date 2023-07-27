@@ -40,8 +40,6 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./dist/css/main.min.css">
-
         <!-- FontAwesome Kit -->
 <script src="https://kit.fontawesome.com/63681c7143.js" crossorigin="anonymous"></script>
 
@@ -49,6 +47,9 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- CSS stylesheet -->
+<link rel="stylesheet" href="./dist/css/main.min.css">
         <title>Invoice preview</title>
 </head>
 
@@ -215,13 +216,12 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                                                         <td>{$service['service_name']}</td>
                                                                         <td>{$service['service_code']}</td>
                                                                         <td>{$service['quantity']}</td>
-                                                                        <td>{$service['item_net_price']}</td>
+                                                                        <td>".number_format($service['item_net_price'], 2, ',',' ')."</td>
                                                                         <td>{$service_tax}</td>
-                                                                        <td>{$service['service_total_net']}</td>
-                                                                        <td>{$service['service_total_gross']}</td>
+                                                                        <td>".number_format($service['service_total_net'], 2, ',',' ')." PLN</td>
+                                                                        <td>".number_format($service['service_total_gross'], 2, ',',' ')." PLN</td>
                                                                 </tr>");
-                                                        }                        
-                                                        ?>
+                                                        }?>
                                                 </tbody>
                                                 <tfoot>
                                                         <tr>
@@ -229,10 +229,10 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                                                 <td>TOTAL:</td>
                                                                 <td></td>
                                                                 <td>
-                                                                        <?php echo $invoice['sum_net']." PLN" ?>
+                                                                        <?php echo number_format($invoice['sum_net'], 2, ',',' ')." PLN" ?>
                                                                 </td>
                                                                 <td>
-                                                                        <?php echo $invoice['sum_gross']." PLN" ?>
+                                                                        <?php echo number_format($invoice['sum_gross'], 2, ',',' ')." PLN" ?>
                                                                 </td>
                                                         </tr>
                                                 </tfoot>
@@ -240,7 +240,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
                                         <p><Strong>To pay: </Strong><span>
-                                                <?php echo $invoice['to_pay'] ?>
+                                                <?php echo number_format($invoice['to_pay'], 2, ',',' ')." PLN" ?>
                                         </span></p>
                                         <p><Strong>In words: </Strong><span>
                                                 <?php echo $invoice['to_pay_in_words'] ?>
@@ -248,9 +248,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="invoice__paper-content invoice-comments">
                                         <h3>Additional notes</h3>
-                                        <p class="comment"><span>
-                                                <?php echo $invoice['additional_notes'] ?>
-                                        </span></p>
+                                        <pre class="comment"><?php echo $invoice['additional_notes'] ?></pre>
                                         <p class="footnote">*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 </div>
                                 <div class="invoice__paper-content invoice-sign">

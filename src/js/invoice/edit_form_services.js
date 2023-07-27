@@ -63,7 +63,7 @@ const createNewService = (e) => {
 
 	const netValue = document.createElement('td');
 	netValue.innerHTML = `<span class="service-title--mobile">Net price (PLN): </span>
-	<input type="number" min="0" value="0" class="service-item-net-value" name="item_net_price[${servicesLength}]">`;
+	<input type="number" min="0" value="0.00" class="service-item-net-value" name="item_net_price[${servicesLength}]" step=".01">`;
 
 	const taxValue = document.createElement('td');
 	taxValue.innerHTML = `<span class="service-title--mobile">Tax: </span>
@@ -115,8 +115,8 @@ const calculateItemTotalNet = (e) => {
 	const netPerOnePiece = item.querySelector('.service-item-net-value').value;
 	const net = item.querySelector('.service-item-net-sum');
 
-	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`;
-	calculateItemTotalGross(e);
+	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`.replace('.', ',');
+	calculateItemTotalGross(e, (amount * netPerOnePiece).toFixed(2));
 };
 
 const calculateItemTotalGross = (e) => {
@@ -126,9 +126,10 @@ const calculateItemTotalGross = (e) => {
 	const sumGross = item.querySelector('.service-item-gross-sum');
 
 	const totalGross =
-		parseFloat(tax) * parseFloat(netValue) + parseFloat(netValue);
+		parseFloat(tax) * parseFloat(netValue.replace(',', '.')) +
+		parseFloat(netValue.replace(',', '.'));
 
-	sumGross.value = `${totalGross.toFixed(2)} PLN`;
+	sumGross.value = `${totalGross.toFixed(2)} PLN`.replace('.', ',');
 
 	calculateTableSummary();
 };
@@ -147,7 +148,7 @@ const calculateInvoiceTotalNet = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`;
+	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-net');
 };
@@ -163,11 +164,14 @@ const calculateInvoiceTotalGross = () => {
 		sum += parseFloat(el.value);
 	});
 
-	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`;
+	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`.replace(
+		'.',
+		','
+	);
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-gross');
 
-	changeValueInHiddenInput(`${sum.toFixed(2)} PLN`, '#to-pay-numeric');
+	changeValueInHiddenInput(sum.toFixed(2), '#to-pay-numeric');
 	changeValueInHiddenInput(verbalNotation(sum.toFixed(2)), '#to-pay-verbal');
 };
 
@@ -221,7 +225,7 @@ document.addEventListener('DOMContentLoaded', updateServicesTable);
 // ============================================================
 // Block the form from being sent automatically by pressing the Enter key
 document.addEventListener('keydown', (e) => {
-	if (e.key === 'Enter') {
+	if (e.key === 'Enter' && e.target.localName !== 'textarea') {
 		e.preventDefault();
 	}
 });
