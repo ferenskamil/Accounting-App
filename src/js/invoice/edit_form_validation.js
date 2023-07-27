@@ -27,6 +27,28 @@ submitBtn.addEventListener('click', (e) => editFormValidation(e));
 // SANITIZE VALUE IN BANK ACCOUNT INPUT
 const accountNoInput = document.querySelector('#account-no');
 
+const insertSpacesIntoAccountNo = (
+	accountNoString,
+	firstSplit = 2,
+	eachNextSplit = 4
+) => {
+	// delete spaces
+	accountNoString = accountNoString.replace(/ /g, '');
+
+	// insert spaces in the correct places
+	const parts = [];
+	parts.push(accountNoString.substring(0, firstSplit));
+	accountNoString = accountNoString.substring(firstSplit);
+
+	do {
+		parts.push(accountNoString.substring(0, eachNextSplit));
+		accountNoString = accountNoString.slice(eachNextSplit);
+	} while (accountNoString.length > 0);
+
+	// return string
+	return parts.filter((part) => part !== '').join(' ');
+};
+
 const sanitizeAccountNo = (e) => {
 	// In the future I can to this with regex
 	let accountNo = accountNoInput.value;
