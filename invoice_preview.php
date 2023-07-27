@@ -218,8 +218,8 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                                                         <td>{$service['quantity']}</td>
                                                                         <td>".number_format($service['item_net_price'], 2, ',',' ')."</td>
                                                                         <td>{$service_tax}</td>
-                                                                        <td>".number_format($service['service_total_net'], 2, ',',' ')."</td>
-                                                                        <td>".number_format($service['service_total_gross'], 2, ',',' ')."</td>
+                                                                        <td>".number_format($service['service_total_net'], 2, ',',' ')." PLN</td>
+                                                                        <td>".number_format($service['service_total_gross'], 2, ',',' ')." PLN</td>
                                                                 </tr>");
                                                         }?>
                                                 </tbody>
