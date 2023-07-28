@@ -34,6 +34,14 @@ function is_an_invoice_syntax_OK(string $invoice_no) {
         return $is_OK;
 }
 
+function prepare_string_to_save_as_number(string $value, string $currency = 'PLN') {
+        $value = str_replace(' ','',$value);
+        $value = rtrim($value, $currency);
+        $value = str_replace(',','.',$value);
+        $value = floatval($value);
+        return $value;
+}
+
 if (is_an_invoice_syntax_OK($_POST['invoice-no'])) {
         unset($_SESSION['e_invoice_no_syntax']);
 } else {
@@ -52,18 +60,19 @@ if (isset($_POST['position'])) {
         $service_taxes = array_values($_POST['service_tax']);
         $service_total_nets = array_values($_POST['service_total_net']);
         $service_total_grosses = array_values($_POST['service_total_gross']);
-        
+
         $services_arr = [];
+
         for ($i=0; $i < count($positions); $i++ ) {
                 $service = []; 
                 $service['position'] = floatval($positions[$i]);
                 $service['service_name'] = $service_names[$i];
                 $service['service_code'] = $service_codes[$i];
                 $service['quantity'] = floatval($quantities[$i]);
-                $service['item_net_price'] =  number_format(floatval($item_net_prices[$i]), 2, '.', ' ');
+                $service['item_net_price'] = prepare_string_to_save_as_number($item_net_prices[$i]);
                 $service['service_tax'] = $service_taxes[$i];
-                $service['service_total_net'] =  number_format(floatval($service_total_nets[$i]), 2, '.', ' ');
-                $service['service_total_gross'] =  number_format(floatval($service_total_grosses[$i]), 2, '.', ' ');
+                $service['service_total_net'] = prepare_string_to_save_as_number($service_total_nets[$i]);
+                $service['service_total_gross'] = prepare_string_to_save_as_number($service_total_grosses[$i]);
 
                 $services_arr[$i] = $service;
         }

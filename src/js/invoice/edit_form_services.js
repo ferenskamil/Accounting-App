@@ -145,7 +145,7 @@ const calculateInvoiceTotalNet = () => {
 	let sum = 0;
 
 	allNetValues.forEach((el) => {
-		sum += parseFloat(el.value);
+		sum += parseFloat(el.value.replace(',', '.'));
 	});
 
 	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
@@ -161,7 +161,7 @@ const calculateInvoiceTotalGross = () => {
 	let sum = 0;
 
 	allGrossValues.forEach((el) => {
-		sum += parseFloat(el.value);
+		sum += parseFloat(el.value.replace(',', '.'));
 	});
 
 	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`.replace(
@@ -170,7 +170,6 @@ const calculateInvoiceTotalGross = () => {
 	);
 
 	changeValueInHiddenInput(sum.toFixed(2), '#total-gross');
-
 	changeValueInHiddenInput(sum.toFixed(2), '#to-pay-numeric');
 	changeValueInHiddenInput(verbalNotation(sum.toFixed(2)), '#to-pay-verbal');
 };
