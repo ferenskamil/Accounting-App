@@ -1,7 +1,21 @@
 @use '../utilities/' as *;
 
 .invoice-list {
+	display: flex;
+	flex-direction: column;
 	padding: 0 1em;
+
+	&__add-new-btn {
+		align-self: flex-end;
+
+		button {
+			@include button($green, $green-dark);
+			padding: 0.4em 0.8em;
+			font-size: 1.4rem;
+			margin-bottom: 1em;
+		}
+	}
+
 	&__table {
 		width: 100%;
 		border-collapse: collapse;
