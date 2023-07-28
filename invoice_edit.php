@@ -6,6 +6,8 @@ redirect_if_user_not_logged_in('index.php');
 
 require_once './php_scripts/suggest_invoice_no.php';
 
+if (isset($_SESSION['is_user_wants_edit'])) unset($_SESSION['is_user_wants_edit']);
+
 if (isset($_POST['invoice_no_to_edit'])) {
         $_SESSION['invoice_no_to_edit'] = $_POST['invoice_no_to_edit'];
         $_SESSION['is_user_wants_edit'] = true;

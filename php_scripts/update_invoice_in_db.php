@@ -135,7 +135,6 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $_SESSION['invoice_no_to_display'] = $_POST['invoice-no'];
         $_SESSION['comment_after_edit'] = "Invoice No. <span>".$_SESSION['invoice_no_to_display']."</span> has been successfully amended ";
         unset($_SESSION['invoice_no_to_edit']);
-        unset($_SESSION['is_user_wants_edit']);
 } elseif (!in_array($_POST['invoice-no'], $invoice_nums)) {
         $query = $db->prepare("INSERT INTO invoices 
                 (`user_id`, 
