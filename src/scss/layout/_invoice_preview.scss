@@ -101,45 +101,6 @@
 	}
 
 	&__message {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		position: relative;
-		margin: 0 1em 1em;
-		padding: 0.5em;
-		font-size: 1.3rem;
-		border: 1px solid $green;
-		border-top: 5px solid $green;
-
-		&-box {
-			display: flex;
-			align-items: center;
-
-			i {
-				padding-right: 0.5em;
-				color: $green;
-				font-size: 2rem;
-			}
-		}
-
-		&-text {
-			span {
-				font-weight: 700;
-			}
-		}
-
-		&-close {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: transparent;
-			border: 1px solid transparent;
-			padding: 0.5em;
-			cursor: pointer;
-			i {
-				font-size: 2rem;
-				font-weight: 700;
-			}
-		}
+		@include pop-up($green);
 	}
 }
