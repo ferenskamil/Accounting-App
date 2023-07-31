@@ -25,17 +25,22 @@
 </head>
 
 <body>
-        <main class="register">
-                <a href="./index.php">
-                        <div class="register__top">
+        <main class="welcome">
+                <div class="welcome__top">
+                        <a href="./index.php">
                                 <i class="fa-brands fa-apple"></i>
                                 <h2>AccountingApp</h2>
-                        </div>
-                </a>
-                <h1 class="register__title">Sign in</h1>
-                <div class="register__wrapper">
-                        <p>You have successfully registered. You can log in now.</p>
-                        <a href="./loginform.php"><button>Log in</button></a>
+                        </a>
+                </div>
+                <h1 class="welcome__title">Welcome</h1>
+                <div class="welcome__wrapper">
+                        <p>Thank you for registering with Accounting App. Your account has been successfully created.</p>
+                        <p>An activation link has been sent to your email. If the message did not arrive, 
+                                <a href="#" class="send-again">send the activation link again.</a>
+                        </p>
+                        <a href="./loginform.php">
+                                <button class="welcome__wrapper-btn">Log in</button>
+                        </a>
                 </div>
         </main>
 </body>
