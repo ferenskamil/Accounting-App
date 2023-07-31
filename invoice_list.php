@@ -86,11 +86,6 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
         <div class="shadow"></div>
 </div>
         <main class="main invoice-list">
-                <!-- <a href="./invoice_edit.php">
-                        <button class="invoice-list__add-new-btn">
-                                <i class="fa-solid fa-plus"></i>Add new invoice
-                        </button>
-                </a> -->
                 <a href="./invoice_edit.php" class="invoice-list__add-new-btn">
                         <button>
                                 <i class="fa-solid fa-plus"></i>Add new invoice
