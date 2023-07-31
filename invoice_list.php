@@ -127,7 +127,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                         <tr class="invoice-list__table-tbody-item">
                                                 <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
                                                         </span>
-                                                        '.$invoice['no'].'
+                                                        <span>'.$invoice['no'].'</span>
                                                 </td>
                                                 <td><span class="invoice-list__table-tbody-item--mobile-title">Contractor:
                                                         </span>
@@ -167,6 +167,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
         </main>
 
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/invoice_list/confirm_popup.min.js"></script>
 </body>
 
 </html>
