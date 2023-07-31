@@ -31,6 +31,21 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+        <div class="confirm__shadow">
+                <div class="confirm__pop-up">
+                        <div class="confirm__pop-up-message">
+                                <p>Are you sure you want to delete invoice number 
+                                        <span>01/01/2023</span> ?</p>
+                        </div>
+                        <div class="confirm__pop-up-buttons">
+                                <a href="#">
+                                        <button class="confirm__pop-up-buttons-delete">Delete</button>
+                                </a>
+                                <button class="confirm__pop-up-buttons-return">Return</button>
+                        </div>
+                </div>       
+        </div>
+
         <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {
                 session_start();
