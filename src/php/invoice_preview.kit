@@ -45,6 +45,22 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+        <div class="confirm__shadow">
+                <div class="confirm__pop-up">
+                        <div class="confirm__pop-up-message">
+                                <p>Are you sure you want to delete invoice number 
+                                        <span>01/01/2023</span> ?</p>
+                        </div>
+                        <div class="confirm__pop-up-buttons">
+                                <form action="./php_scripts/delete_invoice.php" method="post">
+                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
+                                        <button type="submit" class="confirm__pop-up-buttons-delete">Delete</button>
+                                </form>
+                                <button class="confirm__pop-up-buttons-return">Return</button>
+                        </div>
+                </div>       
+        </div>
+
         <!-- @include './nav_topbar' -->
         <main class="main invoice">
                 <div class="invoice__settings">
@@ -53,7 +69,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </form>
-                        <button><i class="fa-solid fa-trash"></i>Delete</button>
+                        <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                         <button><i class="fa-solid fa-download"></i>Download</button>
                 </div>
                 <?php
@@ -76,9 +92,9 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Invoice no. <span>
-                                        <?php echo $invoice['no'] ?>
-                                </span></h2>
+                                <h2 class="invoice__paper-title">Invoice no. <span><?php 
+                                        echo $invoice['no'] 
+                                ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Invoice date: </Strong><span>
                                                 <?php echo $invoice['date'] ?>
@@ -198,6 +214,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         </main>
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/invoice/preview_message.min.js"></script>
+        <script src="./dist/js/confirm_popup.min.js"></script>
 </body>
 
 </html>
