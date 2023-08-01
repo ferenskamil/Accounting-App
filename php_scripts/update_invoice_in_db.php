@@ -89,11 +89,8 @@ $db_invoices_query = $db->prepare("
         WHERE users.login = :login");
 $db_invoices_query->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
 $db_invoices_query->execute();
-$db_invoices_nums = $db_invoices_query->fetchAll(PDO::FETCH_ASSOC);
-
-foreach($db_invoices_nums as $num) {
-        $invoice_nums[] = $num['no'];
-}
+$invoice_nums = $db_invoices_query->fetchAll(PDO::FETCH_ASSOC);
+$invoice_nums = array_column($invoice_nums, 'no');
 
 // Add or edit invoice in database 
 if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] === true) {
@@ -144,7 +141,7 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $_SESSION['invoice_no_to_display'] = $_POST['invoice-no'];
         $_SESSION['comment_after_edit'] = "Invoice No. <span>".$_SESSION['invoice_no_to_display']."</span> has been successfully amended ";
         unset($_SESSION['invoice_no_to_edit']);
-} elseif (!in_array($_POST['invoice-no'], $invoice_nums)) {
+} elseif (!array_key_exists($_POST['invoice-no'], $invoice_nums)) {
         $query = $db->prepare("INSERT INTO invoices 
                 (`user_id`, 
                 `no`,
