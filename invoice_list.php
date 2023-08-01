@@ -107,6 +107,22 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                 <i class="fa-solid fa-plus"></i>Add new invoice
                         </button>
                 </a>
+                <?php
+                        if (isset($_SESSION['comment_after_delete'])) {
+                                echo('
+                                <div class="invoice-list__pop-up-edit">
+                                        <div class="invoice__pop-up-edit-box">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                <p class="invoice__pop-up-edit-text">'.$_SESSION['comment_after_delete'].'</p>
+                                        </div>
+                                        <button class="invoice__pop-up-edit-close">
+                                                <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                </div>');
+
+                                unset($_SESSION['comment_after_delete']);
+                        }
+                ?>
                 <table class="invoice-list__table">
                         <thead class="invoice-list__table-thead">
                                 <tr>

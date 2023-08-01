@@ -26,6 +26,9 @@ $db_delete_services_query = $db->prepare("DELETE FROM services
 $db_delete_services_query->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
 $db_delete_services_query->execute();
 
+// Create comment message
+$_SESSION['comment_after_delete'] = "Invoice No. <span>".$invoice_no_to_delete."</span> has been successfully deleted.";
+
 header('Location: ../invoice_list.php');
 
 ?>
