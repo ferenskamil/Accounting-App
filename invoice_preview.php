@@ -154,9 +154,9 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
-                                <h2 class="invoice__paper-title">Invoice no. <span>
-                                        <?php echo $invoice['no'] ?>
-                                </span></h2>
+                                <h2 class="invoice__paper-title">Invoice no. <span><?php 
+                                        echo $invoice['no'] 
+                                ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Invoice date: </Strong><span>
                                                 <?php echo $invoice['date'] ?>
