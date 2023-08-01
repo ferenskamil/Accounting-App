@@ -6,15 +6,22 @@ const showConfirmPopup = (e) => {
 	const popupInvoiceNoSpan = popup.querySelector(
 		'.confirm__pop-up-message p span'
 	);
-
-	const item = e.target.closest('.invoice-list__table-tbody-item');
-	const invoiceNo = item.querySelector(
-		'td:nth-child(1) span:nth-child(2)'
-	).textContent;
-
 	const invoiceNoHidden = document.querySelector(
 		'#pop-up-invoice-no-hidden-input'
 	);
+	let invoiceNo;
+
+	// Invoice no. will be fetched from a different location depending on the file we are in
+	if (e.target.closest('.invoice-list')) {
+		const item = e.target.closest('.invoice-list__table-tbody-item');
+		invoiceNo = item.querySelector(
+			'td:nth-child(1) span:nth-child(2)'
+		).textContent;
+	} else if (e.target.closest('.invoice')) {
+		invoiceNo = document.querySelector(
+			'.invoice__paper-title span'
+		).textContent;
+	}
 
 	popupInvoiceNoSpan.textContent = invoiceNo;
 	invoiceNoHidden.value = invoiceNo;
