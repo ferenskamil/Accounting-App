@@ -30,7 +30,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div class="confirm__pop-up-buttons">
                                 <form action="./php_scripts/delete_invoice.php" method="post">
-                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input">
+                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
                                         <button type="submit" class="confirm__pop-up-buttons-delete">Delete</button>
                                 </form>
                                 <button class="confirm__pop-up-buttons-return">Return</button>
