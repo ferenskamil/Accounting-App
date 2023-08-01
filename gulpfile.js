@@ -2,6 +2,7 @@ const { src, dest, parallel, series, watch } = require('gulp');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const php = require('gulp-connect-php');
 const reload = browserSync.reload;
 const clean = require('gulp-clean');
 
@@ -93,6 +94,28 @@ function watchForChanges(done) {
 	done();
 }
 
+function watchPhp(done) {
+	watch(['./*.html', './*.php']).on('change', browserSync.reload);
+	done();
+}
+
+function sync(done) {
+	php.server({
+		base: './',
+		port: 3000,
+		keepalive: true,
+		// custom PHP locations
+		bin: '../../php/php.exe',
+		ini: '../../php/php.ini',
+	});
+	browserSync.init({
+		proxy: 'localhost:3000',
+		baseDir: './',
+		notify: false,
+	});
+	done();
+}
+
 function cleanStuff(done) {
 	src(paths.dist, { read: false }).pipe(clean());
 	done();
@@ -104,6 +127,12 @@ const mainFunctions = parallel(
 	javaScript,
 	convertImages
 );
-exports.default = series(mainFunctions, startBrowserSync, watchForChanges);
+exports.default = series(
+	mainFunctions,
+	// startBrowserSync,
+	watchForChanges,
+	watchPhp,
+	sync
+);
 exports.cleanStuff = cleanStuff;
 exports.handleKits = handleKits;
