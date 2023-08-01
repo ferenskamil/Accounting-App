@@ -29,7 +29,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                         <span>01/01/2023</span> ?</p>
                         </div>
                         <div class="confirm__pop-up-buttons">
-                                <form action="#" method="post">
+                                <form action="./php_scripts/delete_invoice.php" method="post">
                                         <input hidden type="text" id="pop-up-invoice-no-hidden-input">
                                         <button type="submit" class="confirm__pop-up-buttons-delete">Delete</button>
                                 </form>
