@@ -7,6 +7,12 @@
 		margin: 1em;
 		padding: 0 1em;
 
+		button.delete-btn {
+			@include button($red, $red-dark);
+			margin-left: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
 		button {
 			@include button($green, $green-dark);
 			margin-left: 0.5em;
