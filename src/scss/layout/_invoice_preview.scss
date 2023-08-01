@@ -100,7 +100,7 @@
 		color: red;
 	}
 
-	&__message {
+	&__pop-up {
 		@include pop-up($green);
 	}
 }

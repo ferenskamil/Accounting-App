@@ -137,12 +137,12 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                         if (isset($_SESSION['comment_after_edit'])) {
                                 echo('
-                                <div class="invoice__message">
-                                        <div class="invoice__message-box">
+                                <div class="invoice__pop-up pop-up">
+                                        <div class="invoice__pop-up-box">
                                                 <i class="fa-regular fa-circle-check"></i>
-                                                <p class="invoice__message-text">'.$_SESSION['comment_after_edit'].'</p>
+                                                <p class="invoice__pop-up-text">'.$_SESSION['comment_after_edit'].'</p>
                                         </div>
-                                        <button class="invoice__message-close">
+                                        <button class="close-pop-up">
                                                 <i class="fa-solid fa-xmark"></i>
                                         </button>
                                 </div>');
@@ -275,7 +275,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 </div>
         </main>
         <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/invoice/preview_message.min.js"></script>
+        <script src="./dist/js/popup_message.min.js"></script>
         <script src="./dist/js/confirm_popup.min.js"></script>
 </body>
 

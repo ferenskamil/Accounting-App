@@ -110,12 +110,12 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                         if (isset($_SESSION['comment_after_delete'])) {
                                 echo('
-                                <div class="invoice-list__pop-up-edit">
-                                        <div class="invoice__pop-up-edit-box">
+                                <div class="invoice-list__pop-up pop-up">
+                                        <div class="invoice__pop-up-box">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                                <p class="invoice__pop-up-edit-text">'.$_SESSION['comment_after_delete'].'</p>
+                                                <p class="invoice__pop-up-text">'.$_SESSION['comment_after_delete'].'</p>
                                         </div>
-                                        <button class="invoice__pop-up-edit-close">
+                                        <button class="close-pop-up">
                                                 <i class="fa-solid fa-xmark"></i>
                                         </button>
                                 </div>');
@@ -183,6 +183,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
         </main>
 
         <script src="./dist/js/index.min.js"></script>
+        <script src="./dist/js/popup_message.min.js"></script>
         <script src="./dist/js/confirm_popup.min.js"></script>
 </body>
 
