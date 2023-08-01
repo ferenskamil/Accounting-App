@@ -183,7 +183,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
         </main>
 
         <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/invoice_list/confirm_popup.min.js"></script>
+        <script src="./dist/js/confirm_popup.min.js"></script>
 </body>
 
 </html>
