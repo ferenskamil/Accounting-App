@@ -1,4 +1,4 @@
-@use '../utilities/colors' as *;
+@use '../utilities' as *;
 
 *,
 *::before,
@@ -41,11 +41,11 @@ ol {
 	max-width: 1300px;
 }
 
-// For confirm pop-up you need below html structure: 
+// For confirm pop-up you need below html structure:
 // <div class="confirm__shadow">
 // <div class="confirm__pop-up">
 // 	<div class="confirm__pop-up-message">
-// 		<p>message 
+// 		<p>message
 // 			<span>f.e. invoice no.</span> ?</p>
 // 	</div>
 // 	<div class="confirm__pop-up-buttons">
@@ -55,7 +55,7 @@ ol {
 // 		</form>
 // 		<button class="confirm__pop-up-buttons-return">Return</button>
 // 	</div>
-// </div>       
+// </div>
 // </div>
 
 .confirm {
