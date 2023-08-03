@@ -350,6 +350,7 @@ HTML;
 // - - - - - - - - - 
 // GENERATE PDF
 
+// Pass html code to $dompdf object
 $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
