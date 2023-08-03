@@ -105,7 +105,6 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                                 <td class="invoice-list__table-tbody-item-btns">
                                                         <form action="./invoice_preview.php" method="post">
                                                                 <input hidden class="invoice-no-hidden-input" name="invoice-no" type="text" value="'.$invoice['no'].'">
-                                                                <input hidden class="invoice-id-hidden-input" name="invoice-id" type="text" value="'.$invoice['id'].'">
                                                                 <button class="preview-btn"><i class="fa-solid fa-magnifying-glass"></i>View</button>
                                                         </form>
                                                         <button><i class="fa-solid fa-download"></i>Download</button>
