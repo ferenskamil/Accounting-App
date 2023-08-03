@@ -389,7 +389,8 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream('filename.pdf', [
+$filename = $_SESSION['login']."_".str_replace('/', '_', $invoice['no']).".pdf";
+$dompdf->stream($filename, [
         'compress' => true,
         'Attachment' => false, // 'Attachment' => false is only for testing. After test change to 'Attachment' => true
 ]);
