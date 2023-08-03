@@ -39,5 +39,3 @@ $dompdf->render();
 
 // Output the generated PDF to Browser
 $dompdf->stream();
-
-echo '<div><img src="../dist/img/logos/default_logo.png" alt="test"></div>';
