@@ -306,7 +306,7 @@ $html = <<<HTML
                         </div>
                 </div>
                 <div class="row2 row">
-                        <h2 class="title">Invoice no. <span>test</span></h2>
+                        <h2 class="title">Invoice no. <span>{$invoice['no']}</span></h2>
                 </div>
                 <div class="row3 row">
                         <div class="details col">
