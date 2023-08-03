@@ -13,6 +13,24 @@ if (!isset($_POST['invoice-id'])) {
         exit();
 }
 
+// If invoice id was found...
+// connect with database
+require_once './db_database.php';
+
+// Dowload invoice data from database to array
+$db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND id = :invoice_id");
+$db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+$db_query->bindvalue(':invoice_id', $_POST['invoice-id'], PDO::PARAM_STR);
+$db_query->execute();
+$invoice = $db_query->fetch(PDO::FETCH_ASSOC);
+
+// Download services from database to array
+$db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
+$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
+$db_services_query->execute();
+$services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
+
 // - - - - - - - - - 
 // DOWLOAD DOMPDF LIBRARY
 
