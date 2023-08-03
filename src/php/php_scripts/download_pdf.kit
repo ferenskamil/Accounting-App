@@ -58,7 +58,7 @@ $dompdf = new Dompdf([
 // PREPARE TO GENERATE PDF
 
 // add image path
-$logo_img_path = "../dist/img/logos/default_logo.png";
+$logo_img_path = "../dist/img/logos/{$_SESSION['logo_img']}";
 $dompdf->getOptions()->setChroot("$logo_img_path");
 
 $html = <<<HTML
