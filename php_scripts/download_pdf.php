@@ -364,7 +364,7 @@ $html = <<<HTML
                 <div class="row6 row">            
                         <div class="notes col">
                                 <h3>Additional notes</h3>
-                                <p class="comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quo veritatis illo blanditiis saepe maiores iusto fugit cupiditate, modi ipsam, obcaecati voluptas quidem magnam! Similique ipsam doloremque corrupti necessitatibus sunt!</pre>
+                                <p class="comment">{$invoice['additional_notes']}</p>
                         </div>
                 </div>
                 <div class="row7 row">
