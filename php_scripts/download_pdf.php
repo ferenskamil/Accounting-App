@@ -257,6 +257,7 @@ $html = <<<HTML
             }
 
             .notes .comment {
+                font-family: inherit;
                 font-size: 11px;
             }
 
@@ -359,7 +360,7 @@ $html = <<<HTML
                 <div class="row6 row">            
                         <div class="notes col">
                                 <h3>Additional notes</h3>
-                                <p class="comment">{$invoice['additional_notes']}</p>
+                                <pre class="comment">{$invoice['additional_notes']}</pre>
                         </div>
                 </div>
                 <div class="row7 row">
