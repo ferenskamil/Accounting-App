@@ -2,7 +2,7 @@
 // - - - - - - - - - 
 // DOWNLOAD INVOICE DATA
 
-
+echo $_POST['invoice-id'];
 
 
 // - - - - - - - - - 
@@ -357,10 +357,10 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
-$dompdf->render();
+// $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream('filename.pdf', [
-        'compress' => true,
-        'Attachment' => false, // 'Attachment' => false is only for testing. After test change to 'Attachment' => true
-]);
+// $dompdf->stream('filename.pdf', [
+//         'compress' => true,
+//         'Attachment' => false, // 'Attachment' => false is only for testing. After test change to 'Attachment' => true
+// ]);

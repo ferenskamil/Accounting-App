@@ -108,6 +108,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                                                 <button class="preview-btn"><i class="fa-solid fa-magnifying-glass"></i>View</button>
                                                         </form>
                                                         <form action="./php_scripts/download_pdf.php" method="post">
+                                                                <input hidden class="invoice-id-hidden-input" name="invoice-id" type="text" value="'.$invoice['id'].'">
                                                                 <button type="submit">
                                                                         <i class="fa-solid fa-download"></i>
                                                                         Download
