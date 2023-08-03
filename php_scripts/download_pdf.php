@@ -1,9 +1,17 @@
 <?php
 // - - - - - - - - - 
 // DOWNLOAD INVOICE DATA
+session_start();
 
-echo $_POST['invoice-id'];
+require_once './redirect_if_user_not_logged_in.php';
+redirect_if_user_not_logged_in('index.php');
 
+// Exit the script if the user did not submit the form
+if (!isset($_POST['invoice-id'])) {
+        $_SESSION['comment_download_error'] = "Something went wrong, the invoice was not found. Try again in a while. ";
+        header('Location: ../invoice_list.php');
+        exit();
+}
 
 // - - - - - - - - - 
 // DOWLOAD DOMPDF LIBRARY

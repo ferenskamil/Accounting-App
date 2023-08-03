@@ -59,6 +59,19 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>');
 
                                 unset($_SESSION['comment_after_delete']);
+                        } else if (isset($_SESSION['comment_download_error'])) {
+                                echo('
+                                <div class="invoice-list__pop-up pop-up">
+                                        <div class="invoice__pop-up-box">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                <p class="invoice__pop-up-text">'.$_SESSION['comment_download_error'].'</p>
+                                        </div>
+                                        <button class="close-pop-up">
+                                                <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                </div>');
+
+                                unset($_SESSION['comment_download_error']);
                         }
                 ?>
                 <table class="invoice-list__table">
