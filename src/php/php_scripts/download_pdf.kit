@@ -287,10 +287,10 @@ $html = <<<HTML
                         </div>
                         <div class="details col col-p">
                                 <h3>Bill to:</h3>
-                                <p>test</p>
-                                <p>test</p>
-                                <p>test</p>
-                                <p>---</p>
+                                <p>{$invoice['customer_name']}</p>
+                                <p>{$invoice['customer_address1']}</p>
+                                <p>{$invoice['customer_address2']}</p>
+                                <p>NIP: {$invoice['customer_company_no']}</p>
                         </div>
                 </div>
                 <div class="row4 row">
