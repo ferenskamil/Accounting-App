@@ -43,7 +43,7 @@ $dompdf->getOptions()->setChroot("$logo_img_path");
 $dompdf->loadHtml('<div><img src="'.$logo_img_path.'" alt="test"></div>');
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
 $dompdf->render();
