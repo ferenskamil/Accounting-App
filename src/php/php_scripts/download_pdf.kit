@@ -1,13 +1,12 @@
 <?php
 // - - - - - - - - - 
-// PREPARE
-
+// DOWNLOAD INVOICE DATA
 
 
 
 
 // - - - - - - - - - 
-// GENERATE PDF
+// DOWLOAD DOMPDF LIBRARY
 
 // include autoloader
 require_once '../libs/dompdf/autoload.inc.php';
@@ -18,9 +17,17 @@ use Dompdf\Dompdf;
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 
+// - - - - - - - - - 
+// PREPARE TO GENERATE PDF
+
 // add image path
 $logo_img_path = "../dist/img/logos/default_logo.png";
 $dompdf->getOptions()->setChroot("$logo_img_path");
+
+
+
+// - - - - - - - - - 
+// GENERATE PDF
 
 $dompdf->loadHtml('<div><img src="'.$logo_img_path.'" alt="test"></div>');
 
