@@ -15,7 +15,18 @@ require_once '../libs/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 // instantiate and use the dompdf class
-$dompdf = new Dompdf();
+$tmp = sys_get_temp_dir();
+
+$dompdf = new Dompdf([
+        'logOutputFile' => '',
+        // authorize DomPdf to download fonts and other Internet assets
+        'isRemoteEnabled' => true,
+        // all directories must exist and not end with /
+        'fontDir' => $tmp,
+        'fontCache' => $tmp,
+        'tempDir' => $tmp,
+        'chroot' => $tmp,
+    ]);
 
 // - - - - - - - - - 
 // PREPARE TO GENERATE PDF
@@ -38,4 +49,7 @@ $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream();
+$dompdf->stream('filename.pdf', [
+        'compress' => true,
+        'Attachment' => false, // 'Attachment' => false is only for testing. After test change to 'Attachment' => true
+]);
