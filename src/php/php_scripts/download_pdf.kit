@@ -32,6 +32,9 @@ $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 
 // variables that will be inserted into html code
+$to_pay_numeric = number_format($invoice['to_pay'], 2, ',',' ');
+$to_pay_verbal = $invoice['to_pay_in_words'];
+
 $total_sum_net = number_format($invoice['sum_net'], 2, ',',' ');
 $total_sum_gross = number_format($invoice['sum_gross'], 2, ',',' ');
 
@@ -355,8 +358,8 @@ $html = <<<HTML
                         </table>
                 </div>
                 <div class="row5 row">
-                        <p><b>To pay: </b>100,56 PLN</p>
-                        <p><b>In words: </b>one hundred 56/100 PLN </p>
+                        <p><b>To pay: </b>{$to_pay_numeric} PLN</p>
+                        <p><b>In words: </b>{$to_pay_verbal}</p>
                 </div>
                 <div class="row6 row">            
                         <div class="notes col">
