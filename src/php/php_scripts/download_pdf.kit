@@ -267,11 +267,11 @@ $html = <<<HTML
                                 <img src="{$logo_img_path}" alt="company logo">
                         </div>
                         <div class="invoice-info col col-p">
-                                <p><b>Invoice date: </b><span>01.01.2023</span></p>
-                                <p><b>City: </b><span>test</span></p>
-                                <p><b>Bank: </b><span>test</span></p>
-                                <p><b>Account no.: </b><span>00 1111 2222 3333 4444 5555 6666</span></p>
-                                <p><b>Payment term: </b><span>14 days</span></p>
+                                <p><b>Invoice date: </b><span>{$invoice['date']}</span></p>
+                                <p><b>City: </b><span>{$invoice['city']}</span></p>
+                                <p><b>Bank: </b><span>{$invoice['bank']}</span></p>
+                                <p><b>Account no.: </b><span>{$invoice['account_no']}</span></p>
+                                <p><b>Payment term: </b><span>{$invoice['payment_term']}</span></p>
                         </div>
                 </div>
                 <div class="row2 row">
