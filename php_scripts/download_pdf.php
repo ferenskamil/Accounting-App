@@ -299,15 +299,15 @@ $html = <<<HTML
                                 <img src="{$logo_img_path}" alt="company logo">
                         </div>
                         <div class="invoice-info col col-p">
-                                <p><b>Invoice date: </b><span>{$invoice['date']}</span></p>
-                                <p><b>City: </b><span>{$invoice['city']}</span></p>
-                                <p><b>Bank: </b><span>{$invoice['bank']}</span></p>
-                                <p><b>Account no.: </b><span>{$invoice['account_no']}</span></p>
-                                <p><b>Payment term: </b><span>{$invoice['payment_term']}</span></p>
+                                <p><b>Invoice date: </b>{$invoice['date']}</p>
+                                <p><b>City: </b>{$invoice['city']}</p>
+                                <p><b>Bank: </b>{$invoice['bank']}</p>
+                                <p><b>Account no.: </b>{$invoice['account_no']}</p>
+                                <p><b>Payment term: </b>{$invoice['payment_term']}</p>
                         </div>
                 </div>
                 <div class="row2 row">
-                        <h2 class="title">Invoice no. <span>{$invoice['no']}</span></h2>
+                        <h2 class="title">Invoice no. {$invoice['no']}</h2>
                 </div>
                 <div class="row3 row">
                         <div class="details col">
