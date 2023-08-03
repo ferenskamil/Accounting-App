@@ -133,6 +133,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         </form>
                         <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                         <form action="./php_scripts/download_pdf.php" method="post">
+                                <input hidden type="text" value="<?php echo $invoice['id'] ?>" name="invoice-id">
                                 <button type="submit">
                                         <i class="fa-solid fa-download"></i>
                                         Download
