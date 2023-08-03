@@ -280,10 +280,10 @@ $html = <<<HTML
                 <div class="row3 row">
                         <div class="details col">
                                 <h3>Seller:</h3>
-                                <p>test</p>
-                                <p>test</p>
-                                <p>test</p>
-                                <p>NIP: test</p>
+                                <p>{$invoice['seller_name']}</p>
+                                <p>{$invoice['seller_address1']}</p>
+                                <p>{$invoice['seller_address2']}</p>
+                                <p>NIP: {$invoice['seller_company_no']}</p>
                         </div>
                         <div class="details col col-p">
                                 <h3>Bill to:</h3>
