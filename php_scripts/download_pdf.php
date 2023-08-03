@@ -31,6 +31,10 @@ $db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
 $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 
+// variables that will be inserted into html code
+$total_sum_net = number_format($invoice['sum_net'], 2, ',',' ');
+$total_sum_gross = number_format($invoice['sum_gross'], 2, ',',' ');
+
 // - - - - - - - - - 
 // DOWLOAD DOMPDF LIBRARY
 
@@ -344,8 +348,8 @@ $html = <<<HTML
                                                 <td colspan="4"></td>
                                                 <td>TOTAL:</td>
                                                 <td></td>
-                                                <td>0,00 PLN</td>
-                                                <td>0,00 PLN</td>
+                                                <td>{$total_sum_net} PLN</td>
+                                                <td>{$total_sum_gross} PLN</td>
                                         </tr>
                                 </tfoot>
                         </table>
