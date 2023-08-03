@@ -32,6 +32,30 @@ $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 
 // Some variables that will be inserted into html code
+foreach ($services_arr as $service) {
+        if ($service['service_tax'] === '0.00') {
+                $service_tax = "tax-free";
+        } else {
+                $service_tax = strval($service['service_tax']*100)."%";
+        }
+        $service_tr = "
+        <tr>
+                <td>{$service['position']}</td>
+                <td>{$service['service_name']}</td>
+                <td>{$service['service_code']}</td>
+                <td>{$service['quantity']}</td>
+                <td>".number_format($service['item_net_price'], 2, ',',' ')."</td>
+                <td>{$service_tax}</td>
+                <td>".number_format($service['service_total_net'], 2, ',',' ')." PLN</td>
+                <td>".number_format($service['service_total_gross'], 2, ',',' ')." PLN</td>
+        </tr>";
+
+        // Create $all_services_tr if it is first iteration
+        if (!isset($all_services_tr)) $all_services_tr = '';
+
+        // Conacate created $service_tr to $all_services_tr
+        $all_services_tr .= $service_tr;
+}
 $to_pay_numeric = number_format($invoice['to_pay'], 2, ',',' ');
 $to_pay_verbal = $invoice['to_pay_in_words'];
 
@@ -315,36 +339,7 @@ $html = <<<HTML
                                         </tr>
                                 </thead>
                                 <tbody>
-                                        <tr>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                               <td>ąę</td>
-                                        </tr>
-                                        <tr>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                        </tr>
-                                        <tr>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                               <td>test</td>
-                                        </tr>
+                                        {$all_services_tr}
                                 </tbody>
                                 <tfoot>
                                         <tr>
