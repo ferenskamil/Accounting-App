@@ -31,7 +31,7 @@ $db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
 $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 
-// variables that will be inserted into html code
+// Some variables that will be inserted into html code
 $to_pay_numeric = number_format($invoice['to_pay'], 2, ',',' ');
 $to_pay_verbal = $invoice['to_pay_in_words'];
 
