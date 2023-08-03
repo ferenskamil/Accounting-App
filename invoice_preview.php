@@ -132,7 +132,12 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </form>
                         <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
-                        <button><i class="fa-solid fa-download"></i>Download</button>
+                        <form action="./php_scripts/download_pdf.php" method="post">
+                                <button type="submit">
+                                        <i class="fa-solid fa-download"></i>
+                                        Download
+                                </button>
+                        </form>
                 </div>
                 <?php
                         if (isset($_SESSION['comment_after_edit'])) {
