@@ -179,7 +179,10 @@ const updateAllHiddenInputValues = () => {
 	changeValueInHiddenInput(totalNetNum, '#total-net');
 };
 
-const sumUpValues = (inputsArr, outputSpan) => {
+const sumUpValues = (inputsArrSelectorAll, outputSpanSelector) => {
+	const inputsArr = document.querySelectorAll(inputsArrSelectorAll);
+	const outputSpan = document.querySelector(outputSpanSelector);
+
 	let sum = 0;
 	inputsArr.forEach((el) => {
 		sum += parseFloat(el.value.replace(',', '.'));
@@ -192,15 +195,8 @@ const sumUpValues = (inputsArr, outputSpan) => {
 };
 
 const calculateTableSummary = () => {
-	const allNetValues = document.querySelectorAll('.service-item-net-sum');
-	const invoiceTotalNetSpan = document.querySelector('.invoice-total-net');
-	sumUpValues(allNetValues, invoiceTotalNetSpan);
-
-	const allGrossValues = document.querySelectorAll('.service-item-gross-sum');
-	const invoiceTotalGrossSpan = document.querySelector(
-		'.invoice-total-gross'
-	);
-	sumUpValues(allGrossValues, invoiceTotalGrossSpan);
+	sumUpValues('.service-item-net-sum', '.invoice-total-net');
+	sumUpValues('.service-item-gross-sum', '.invoice-total-gross');
 };
 
 document.addEventListener('input', (e) => {
