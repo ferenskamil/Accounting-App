@@ -9,12 +9,7 @@ const addNewServiceBtn = document.querySelector('.new-service-btn');
 const showEmptyInfo = () => {
 	const services = servicesTbody.querySelectorAll('tr');
 	const emptyInfo = servicesTbody.querySelector('.empty-info');
-
-	if (services.length === 1) {
-		emptyInfo.style.display = 'grid';
-	} else if (services.length > 1) {
-		emptyInfo.style.display = 'none';
-	}
+	emptyInfo.style.display = services.length === 1 ? 'grid' : 'none';
 };
 
 document.addEventListener('DOMContentLoaded', showEmptyInfo);
