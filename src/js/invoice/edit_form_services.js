@@ -48,9 +48,6 @@ const showEmptyInfo = () => {
 	const emptyInfo = servicesTbody.querySelector('.empty-info');
 	emptyInfo.style.display = services.length === 1 ? 'grid' : 'none';
 };
-
-document.addEventListener('DOMContentLoaded', showEmptyInfo);
-
 // ============================================================
 // ADD SERVICE AFTER CLICK THE"ADD" BUTTON
 
@@ -230,9 +227,6 @@ const updateServicesTable = () => {
 	showEmptyInfo();
 	calculateTableSummary();
 };
-
-document.addEventListener('DOMContentLoaded', updateServicesTable);
-
 // ============================================================
 // Block the form from being sent automatically by pressing the Enter key
 document.addEventListener('keydown', (e) => {
