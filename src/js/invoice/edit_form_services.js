@@ -189,8 +189,6 @@ const sumUpValues = (inputsArrSelectorAll, outputSpanSelector) => {
 	});
 
 	outputSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
-	changeValueInHiddenInput(sum.toFixed(2), '#total-net');
-
 	updateAllHiddenInputValues();
 };
 
