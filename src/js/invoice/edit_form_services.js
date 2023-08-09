@@ -35,6 +35,19 @@ const parseAmountToCount = (value) => {
 	return value;
 };
 
+/*
+convertNumtoAmount(number, string)
+This function takes a number, rounds it to two decimal places, 
+adds a currency notation and converts the period to a comma
+*/
+const convertNumtoAmount = (num, currencyString) => {
+	num = num.toFixed(2);
+	num += ' ' + currencyString;
+	num = num.replace('.', ',');
+
+	return num;
+};
+
 // ============================================================
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
