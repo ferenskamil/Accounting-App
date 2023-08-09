@@ -42,32 +42,8 @@ const servicesTbody = document.querySelector(
 	'.invoice-edit__form-box-services-table tbody'
 );
 const addNewServiceBtn = document.querySelector('.new-service-btn');
-
-const showEmptyInfo = () => {
-	const services = servicesTbody.querySelectorAll('tr');
-	const emptyInfo = servicesTbody.querySelector('.empty-info');
-	emptyInfo.style.display = services.length === 1 ? 'grid' : 'none';
-};
 // ============================================================
 // ADD SERVICE AFTER CLICK THE"ADD" BUTTON
-
-const updateItemsNumbers = () => {
-	const itemsNoSpans = document.querySelectorAll(
-		'.invoice-edit__form-box-services-table .service-item-number'
-	);
-
-	const positionHiddenInputs = document.querySelectorAll(
-		'.position-hidden-input'
-	);
-
-	for (let i = 0; i < itemsNoSpans.length; i++) {
-		itemsNoSpans[i].textContent = i + 1;
-	}
-
-	for (let i = 0; i < positionHiddenInputs.length; i++) {
-		positionHiddenInputs[i].value = i + 1;
-	}
-};
 
 let servicesLength = servicesTbody.querySelectorAll('tr').length;
 const createNewService = (e) => {
@@ -161,37 +137,6 @@ const calculateItemTotalGross = (serviceTr) => {
 	calculateTableSummary();
 };
 
-const updateAllHiddenInputValues = () => {
-	const totalGross = document.querySelector('.invoice-total-gross');
-	const totalGrossNum = parseAmountToCount(totalGross.textContent);
-
-	const totalNet = document.querySelector('.invoice-total-net');
-	const totalNetNum = parseAmountToCount(totalNet.textContent);
-
-	changeValueInHiddenInput(totalGrossNum, '#total-gross');
-	changeValueInHiddenInput(totalGrossNum, '#to-pay-numeric');
-	changeValueInHiddenInput(verbalNotation(totalGrossNum), '#to-pay-verbal');
-	changeValueInHiddenInput(totalNetNum, '#total-net');
-};
-
-const sumUpValues = (inputsArrSelectorAll, outputSpanSelector) => {
-	const inputsArr = document.querySelectorAll(inputsArrSelectorAll);
-	const outputSpan = document.querySelector(outputSpanSelector);
-
-	let sum = 0;
-	inputsArr.forEach((el) => {
-		sum += parseFloat(el.value.replace(',', '.'));
-	});
-
-	outputSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
-	updateAllHiddenInputValues();
-};
-
-const calculateTableSummary = () => {
-	sumUpValues('.service-item-net-sum', '.invoice-total-net');
-	sumUpValues('.service-item-gross-sum', '.invoice-total-gross');
-};
-
 document.addEventListener('input', (e) => {
 	if (
 		e.target.classList.contains('service-item-amount') ||
@@ -219,16 +164,75 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// UPDATE SERVICES TABLE AFTER LOAD PAGE
-const updateServicesTable = () => {
-	updateItemsNumbers();
-	showEmptyInfo();
-	calculateTableSummary();
-};
-// ============================================================
 // Block the form from being sent automatically by pressing the Enter key
 document.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter' && e.target.localName !== 'textarea') {
 		e.preventDefault();
 	}
 });
+
+// ============================================================
+// UPDATE DATA IN SERVICE TABLE
+
+const updateServicesTable = () => {
+	updateItemsNumbers();
+	showEmptyInfo();
+	calculateTableSummary();
+};
+
+const updateItemsNumbers = () => {
+	const itemsNoSpans = document.querySelectorAll(
+		'.invoice-edit__form-box-services-table .service-item-number'
+	);
+
+	const positionHiddenInputs = document.querySelectorAll(
+		'.position-hidden-input'
+	);
+
+	for (let i = 0; i < itemsNoSpans.length; i++) {
+		itemsNoSpans[i].textContent = i + 1;
+	}
+
+	for (let i = 0; i < positionHiddenInputs.length; i++) {
+		positionHiddenInputs[i].value = i + 1;
+	}
+};
+
+const showEmptyInfo = () => {
+	const services = servicesTbody.querySelectorAll('tr');
+	const emptyInfo = servicesTbody.querySelector('.empty-info');
+	emptyInfo.style.display = services.length === 1 ? 'grid' : 'none';
+};
+
+const calculateTableSummary = () => {
+	sumUpValues('.service-item-net-sum', '.invoice-total-net');
+	sumUpValues('.service-item-gross-sum', '.invoice-total-gross');
+};
+
+const sumUpValues = (inputsArrSelectorAll, outputSpanSelector) => {
+	const inputsArr = document.querySelectorAll(inputsArrSelectorAll);
+	const outputSpan = document.querySelector(outputSpanSelector);
+
+	let sum = 0;
+	inputsArr.forEach((el) => {
+		sum += parseFloat(el.value.replace(',', '.'));
+	});
+
+	outputSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
+	updateAllHiddenInputValues();
+};
+
+const updateAllHiddenInputValues = () => {
+	const totalGross = document.querySelector('.invoice-total-gross');
+	const totalGrossNum = parseAmountToCount(totalGross.textContent);
+
+	const totalNet = document.querySelector('.invoice-total-net');
+	const totalNetNum = parseAmountToCount(totalNet.textContent);
+
+	changeValueInHiddenInput(totalGrossNum, '#total-gross');
+	changeValueInHiddenInput(totalGrossNum, '#to-pay-numeric');
+	changeValueInHiddenInput(verbalNotation(totalGrossNum), '#to-pay-verbal');
+	changeValueInHiddenInput(totalNetNum, '#total-net');
+};
+
+document.addEventListener('DOMContentLoaded', updateServicesTable);
