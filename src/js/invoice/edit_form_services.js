@@ -104,21 +104,21 @@ addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
 // ============================================================
 // CALCULATE VALUES IN SERVICE ITEM
 
-const calculateItemTotalNet = (e) => {
-	const item = e.target.parentElement.parentElement;
-	const amount = item.querySelector('.service-item-amount').value;
-	const netPerOnePiece = item.querySelector('.service-item-net-value').value;
-	const net = item.querySelector('.service-item-net-sum');
+const calculateItemTotalNet = (serviceTr) => {
+	const amount = serviceTr.querySelector('.service-item-amount').value;
+	const netPerOnePiece = serviceTr.querySelector(
+		'.service-item-net-value'
+	).value;
+	const net = serviceTr.querySelector('.service-item-net-sum');
 
 	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`.replace('.', ',');
-	calculateItemTotalGross(e, (amount * netPerOnePiece).toFixed(2));
+	calculateItemTotalGross(serviceTr);
 };
 
-const calculateItemTotalGross = (e) => {
-	const item = e.target.parentElement.parentElement;
-	const tax = item.querySelector('.service-item-tax').value;
-	const netValue = item.querySelector('.service-item-net-sum').value;
-	const sumGross = item.querySelector('.service-item-gross-sum');
+const calculateItemTotalGross = (serviceTr) => {
+	const tax = serviceTr.querySelector('.service-item-tax').value;
+	const netValue = serviceTr.querySelector('.service-item-net-sum').value;
+	const sumGross = serviceTr.querySelector('.service-item-gross-sum');
 
 	const totalGross =
 		parseFloat(tax) * parseFloat(netValue.replace(',', '.')) +
@@ -179,11 +179,11 @@ document.addEventListener('input', (e) => {
 		e.target.classList.contains('service-item-amount') ||
 		e.target.classList.contains('service-item-net-value')
 	) {
-		calculateItemTotalNet(e);
+		calculateItemTotalNet(e.target.parentElement.parentElement);
 	}
 
 	if (e.target.classList.contains('service-item-tax')) {
-		calculateItemTotalGross(e);
+		calculateItemTotalGross(e.target.parentElement.parentElement);
 	}
 });
 
