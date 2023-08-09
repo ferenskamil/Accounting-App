@@ -49,11 +49,8 @@ const convertNumtoAmount = (num, currencyString) => {
 };
 
 // ============================================================
-// DISPLAY INFO WHEN TBODY IS EMPTY
-
+// ADD NEW SERVICE TR IN TABLE
 const addNewServiceBtn = document.querySelector('.new-service-btn');
-// ============================================================
-// ADD SERVICE AFTER CLICK THE"ADD" BUTTON
 
 const createNewService = (e) => {
 	e.preventDefault();
@@ -121,8 +118,7 @@ const createNewService = (e) => {
 addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
 
 // ============================================================
-// CALCULATE VALUES IN SERVICE ITEM
-
+// UPDATE VALUES IN SERVICE TR AFTER CHANGES IN INPUT
 const updateServiceTr = (serviceTr) => {
 	const quantity = serviceTr.querySelector('.service-item-amount').value;
 	const netPerOnePiece = serviceTr.querySelector(
@@ -157,7 +153,7 @@ document.addEventListener('input', (e) => {
 });
 
 // ============================================================
-// DELETE SERVICE ITEM
+// DELETE SERVICE TR FROM TABLE
 const deleteServiceItem = (serviceTr) => {
 	serviceTr.outerHTML = '';
 	updateServicesTable();
@@ -170,7 +166,7 @@ document.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// Block the form from being sent automatically by pressing the Enter key
+// BLOCK THE FORM BEING SENT AUTOMATICALLY AFTER PRESS ENTER IN TEXTAREA
 document.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter' && e.target.localName !== 'textarea') {
 		e.preventDefault();
@@ -179,7 +175,6 @@ document.addEventListener('keydown', (e) => {
 
 // ============================================================
 // UPDATE DATA IN SERVICE TABLE
-
 const updateServicesTable = () => {
 	updateItemsNumbers();
 	showEmptyInfo();
