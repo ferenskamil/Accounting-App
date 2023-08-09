@@ -127,9 +127,7 @@ const createNewService = (e) => {
 	);
 	servicesTbody.append(newItem);
 
-	updateItemsNumbers();
-	showEmptyInfo();
-
+	updateServicesTable();
 	servicesLength++;
 };
 
