@@ -125,41 +125,36 @@ addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
 // ============================================================
 // CALCULATE VALUES IN SERVICE ITEM
 
-const calculateItemTotalNet = (serviceTr) => {
-	const amount = serviceTr.querySelector('.service-item-amount').value;
+const updateServiceTr = (serviceTr) => {
+	const quantity = serviceTr.querySelector('.service-item-amount').value;
 	const netPerOnePiece = serviceTr.querySelector(
 		'.service-item-net-value'
 	).value;
-	const net = serviceTr.querySelector('.service-item-net-sum');
-
-	net.value = `${(amount * netPerOnePiece).toFixed(2)} PLN`.replace('.', ',');
-	calculateItemTotalGross(serviceTr);
-};
-
-const calculateItemTotalGross = (serviceTr) => {
 	const tax = serviceTr.querySelector('.service-item-tax').value;
-	const netValue = serviceTr.querySelector('.service-item-net-sum').value;
-	const sumGross = serviceTr.querySelector('.service-item-gross-sum');
+	const net = serviceTr.querySelector('.service-item-net-sum');
+	const gross = serviceTr.querySelector('.service-item-gross-sum');
 
+	// Calculate total net for one serviceTr
+	net.value = convertNumtoAmount(quantity * netPerOnePiece, 'PLN');
+
+	// Calculate total gross for one serviceTr
 	const totalGross =
-		parseFloat(tax) * parseFloat(netValue.replace(',', '.')) +
-		parseFloat(netValue.replace(',', '.'));
+		parseAmountToCount(tax) * parseAmountToCount(net.value) +
+		parseAmountToCount(net.value);
 
-	sumGross.value = `${totalGross.toFixed(2)} PLN`.replace('.', ',');
+	gross.value = convertNumtoAmount(totalGross, 'PLN');
 
+	// Sum up the table
 	calculateTableSummary();
 };
 
 document.addEventListener('input', (e) => {
 	if (
 		e.target.classList.contains('service-item-amount') ||
-		e.target.classList.contains('service-item-net-value')
+		e.target.classList.contains('service-item-net-value') ||
+		e.target.classList.contains('service-item-tax')
 	) {
-		calculateItemTotalNet(e.target.parentElement.parentElement);
-	}
-
-	if (e.target.classList.contains('service-item-tax')) {
-		calculateItemTotalGross(e.target.parentElement.parentElement);
+		updateServiceTr(e.target.parentElement.parentElement);
 	}
 });
 
