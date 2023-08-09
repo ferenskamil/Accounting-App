@@ -1,4 +1,18 @@
 // ============================================================
+// GLOBAL FUNCTIONS
+
+/* 
+changeValueInHiddenInput(valueString, inputIdString)
+This function completes the value in the indicated inpute.
+In this application, the value from the hidden inputs will later 
+be passed via POST method to the PHP script.
+*/
+const changeValueInHiddenInput = (valueString, inputIdString) => {
+	const input = document.querySelector(inputIdString);
+	input.value = valueString;
+};
+
+// ============================================================
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
 const servicesTbody = document.querySelector(
@@ -127,11 +141,6 @@ const calculateItemTotalGross = (serviceTr) => {
 	sumGross.value = `${totalGross.toFixed(2)} PLN`.replace('.', ',');
 
 	calculateTableSummary();
-};
-
-const changeValueInHiddenInput = (valueString, inputIdString) => {
-	const input = document.querySelector(inputIdString);
-	input.value = valueString;
 };
 
 const calculateInvoiceTotalNet = () => {
