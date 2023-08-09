@@ -1,5 +1,5 @@
-userInfo = document.querySelector('.home__top-right-logged-user');
-userInfoSettings = document.querySelector(
+const userInfo = document.querySelector('.home__top-right-logged-user');
+const userInfoSettings = document.querySelector(
 	'.home__top-right-logged-user-settings'
 );
 
