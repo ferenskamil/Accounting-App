@@ -189,18 +189,14 @@ document.addEventListener('input', (e) => {
 
 // ============================================================
 // DELETE SERVICE ITEM
-const deleteServiceItem = (e) => {
-	e.preventDefault();
-
-	const item = e.target.parentElement.parentElement;
-	item.outerHTML = '';
-
+const deleteServiceItem = (serviceTr) => {
+	serviceTr.outerHTML = '';
 	updateServicesTable();
 };
 
 document.addEventListener('click', (e) => {
 	if (e.target.classList.contains('delete-btn')) {
-		deleteServiceItem(e);
+		deleteServiceItem(e.target.parentElement.parentElement);
 	}
 });
 
