@@ -51,16 +51,15 @@ const convertNumtoAmount = (num, currencyString) => {
 // ============================================================
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
-const servicesTbody = document.querySelector(
-	'.invoice-edit__form-box-services-table tbody'
-);
 const addNewServiceBtn = document.querySelector('.new-service-btn');
 // ============================================================
 // ADD SERVICE AFTER CLICK THE"ADD" BUTTON
 
-let servicesLength = servicesTbody.querySelectorAll('tr').length;
 const createNewService = (e) => {
 	e.preventDefault();
+
+	const servicesTbody = document.querySelector('#services-table tbody');
+	const servicesLength = servicesTbody.querySelectorAll('tr').length;
 
 	const newItem = document.createElement('tr');
 	const itemNoSpan = document.createElement('td');
@@ -117,7 +116,6 @@ const createNewService = (e) => {
 	servicesTbody.append(newItem);
 
 	updateServicesTable();
-	servicesLength++;
 };
 
 addNewServiceBtn.addEventListener('click', (e) => createNewService(e));
@@ -207,8 +205,8 @@ const updateItemsNumbers = () => {
 };
 
 const showEmptyInfo = () => {
-	const services = servicesTbody.querySelectorAll('tr');
-	const emptyInfo = servicesTbody.querySelector('.empty-info');
+	const services = document.querySelectorAll('#services-table tbody tr');
+	const emptyInfo = document.querySelector('#services-table tbody .empty-info');
 	emptyInfo.style.display = services.length === 1 ? 'grid' : 'none';
 };
 

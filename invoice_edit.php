@@ -252,7 +252,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-services">
                                         <h2>Services</h2>
-                                        <table class="invoice-edit__form-box-services-table">
+                                        <table class="invoice-edit__form-box-services-table" id="services-table">
                                                 <thead>
                                                         <tr>
                                                                 <th class="service-thead--mobile">Services
