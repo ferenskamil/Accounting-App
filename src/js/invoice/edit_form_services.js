@@ -200,9 +200,7 @@ const deleteServiceItem = (e) => {
 	const item = e.target.parentElement.parentElement;
 	item.outerHTML = '';
 
-	updateItemsNumbers();
-	showEmptyInfo();
-	calculateTableSummary();
+	updateServicesTable();
 };
 
 document.addEventListener('click', (e) => {
