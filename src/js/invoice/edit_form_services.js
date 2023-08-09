@@ -166,39 +166,6 @@ const calculateItemTotalGross = (serviceTr) => {
 	calculateTableSummary();
 };
 
-const calculateInvoiceTotalNet = () => {
-	const allNetValues = document.querySelectorAll('.service-item-net-sum');
-	const invoiceTotalNetSpan = document.querySelector('.invoice-total-net');
-	let sum = 0;
-
-	allNetValues.forEach((el) => {
-		sum += parseFloat(el.value.replace(',', '.'));
-	});
-
-	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
-
-	updateAllHiddenInputValues();
-};
-
-const calculateInvoiceTotalGross = () => {
-	const allGrossValues = document.querySelectorAll('.service-item-gross-sum');
-	const invoiceTotalGrossSpan = document.querySelector(
-		'.invoice-total-gross'
-	);
-	let sum = 0;
-
-	allGrossValues.forEach((el) => {
-		sum += parseFloat(el.value.replace(',', '.'));
-	});
-
-	invoiceTotalGrossSpan.textContent = `${sum.toFixed(2)} PLN`.replace(
-		'.',
-		','
-	);
-
-	updateAllHiddenInputValues();
-};
-
 const updateAllHiddenInputValues = () => {
 	const totalGross = document.querySelector('.invoice-total-gross');
 	const totalGrossNum = parseAmountToCount(totalGross.textContent);
@@ -212,9 +179,28 @@ const updateAllHiddenInputValues = () => {
 	changeValueInHiddenInput(totalNetNum, '#total-net');
 };
 
+const sumUpValues = (inputsArr, outputSpan) => {
+	let sum = 0;
+	inputsArr.forEach((el) => {
+		sum += parseFloat(el.value.replace(',', '.'));
+	});
+
+	outputSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
+	changeValueInHiddenInput(sum.toFixed(2), '#total-net');
+
+	updateAllHiddenInputValues();
+};
+
 const calculateTableSummary = () => {
-	calculateInvoiceTotalNet();
-	calculateInvoiceTotalGross();
+	const allNetValues = document.querySelectorAll('.service-item-net-sum');
+	const invoiceTotalNetSpan = document.querySelector('.invoice-total-net');
+	sumUpValues(allNetValues, invoiceTotalNetSpan);
+
+	const allGrossValues = document.querySelectorAll('.service-item-gross-sum');
+	const invoiceTotalGrossSpan = document.querySelector(
+		'.invoice-total-gross'
+	);
+	sumUpValues(allGrossValues, invoiceTotalGrossSpan);
 };
 
 document.addEventListener('input', (e) => {
