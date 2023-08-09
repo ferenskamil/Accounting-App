@@ -177,7 +177,7 @@ const calculateInvoiceTotalNet = () => {
 
 	invoiceTotalNetSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
 
-	changeValueInHiddenInput(sum.toFixed(2), '#total-net');
+	updateAllHiddenInputValues();
 };
 
 const calculateInvoiceTotalGross = () => {
@@ -196,9 +196,20 @@ const calculateInvoiceTotalGross = () => {
 		','
 	);
 
-	changeValueInHiddenInput(sum.toFixed(2), '#total-gross');
-	changeValueInHiddenInput(sum.toFixed(2), '#to-pay-numeric');
-	changeValueInHiddenInput(verbalNotation(sum.toFixed(2)), '#to-pay-verbal');
+	updateAllHiddenInputValues();
+};
+
+const updateAllHiddenInputValues = () => {
+	const totalGross = document.querySelector('.invoice-total-gross');
+	const totalGrossNum = parseAmountToCount(totalGross.textContent);
+
+	const totalNet = document.querySelector('.invoice-total-net');
+	const totalNetNum = parseAmountToCount(totalNet.textContent);
+
+	changeValueInHiddenInput(totalGrossNum, '#total-gross');
+	changeValueInHiddenInput(totalGrossNum, '#to-pay-numeric');
+	changeValueInHiddenInput(verbalNotation(totalGrossNum), '#to-pay-verbal');
+	changeValueInHiddenInput(totalNetNum, '#total-net');
 };
 
 const calculateTableSummary = () => {
