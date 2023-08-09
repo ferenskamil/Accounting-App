@@ -12,6 +12,29 @@ const changeValueInHiddenInput = (valueString, inputIdString) => {
 	input.value = valueString;
 };
 
+/* 
+parseAmountToCount(value)
+This function takes an amount (sring) and converts it to a number.
+E.g.. 
+'12.99 PLN' >>> 12.99
+'15 PLN' >>> 15
+*/
+const parseAmountToCount = (value) => {
+	// if string convert to number
+	if (typeof value === 'string') {
+		value = value.replace(',', '.');
+		value = parseFloat(value);
+	}
+
+	// round to two decimal places
+	if (value % 1 === 0) {
+		value = value.toFixed(2); // changes to string
+		value = parseFloat(value);
+	}
+
+	return value;
+};
+
 // ============================================================
 // DISPLAY INFO WHEN TBODY IS EMPTY
 
