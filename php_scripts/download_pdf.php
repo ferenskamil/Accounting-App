@@ -259,6 +259,7 @@ $html = <<<HTML
             .notes .comment {
                 font-family: inherit;
                 font-size: 11px;
+                white-space: pre-wrap;
             }
 
             .notes .footnote {
