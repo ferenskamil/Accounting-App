@@ -92,7 +92,7 @@ const threeDigitsToPhrase = (num) => {
 const verbalNotation = (num) => {
 	num = num.toString();
 	const threeDigitsPartsArr = [];
-	const currency = 'PLN';
+	const currency = '$';
 	let rest = '00';
 	let whole = (num - (num % 1)).toString();
 	let workNum = whole;
