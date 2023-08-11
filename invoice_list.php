@@ -150,6 +150,11 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                 </tr>
                         </thead>
                         <tbody class="invoice-list__table-tbody">
+                                <tr class="invoice-list__table-tbody-empty_info">
+                                        <td>You have not created any invoice yet. <a href="./invoice_edit.php">
+                                                Create one now
+                                        </a></td>
+                                </tr>
                                 <?php
                                       foreach ($user_invoices as $invoice) {
                                         $item = '
@@ -203,6 +208,8 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/popup_message.min.js"></script>
         <script src="./dist/js/confirm_popup.min.js"></script>
+        <script src="./dist/js/invoice_list.min.js"></script>
+
 </body>
 
 </html>

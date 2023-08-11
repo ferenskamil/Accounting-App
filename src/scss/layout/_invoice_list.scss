@@ -37,6 +37,26 @@
 		}
 
 		&-tbody {
+			&-empty_info {
+				display: none;
+
+				&--active {
+					display: flex;
+					justify-content: center;
+				}
+
+				td {
+					font-size: 1.2rem;
+					text-align: center;
+					padding: 1em;
+
+					a {
+						color: $second-color;
+						text-decoration: underline;
+					}
+				}
+			}
+
 			&-item {
 				display: flex;
 				flex-direction: column;
