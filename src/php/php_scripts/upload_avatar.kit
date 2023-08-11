@@ -37,11 +37,11 @@ if (isset($_FILES['change-avatar-btn']['name'])) {
                 $old_img_name = $db_user_arr['avatar_file_img'];
 
                 if ($old_img_name !== 'default_avatar.png') {
-                        unlink('../dist/img/avatars/'.$old_img_name);
+                        unlink('../assets/img/avatars/'.$old_img_name);
                 }
 
                 // save new file in server 
-                if (move_uploaded_file($tmp_name, "../dist/img/avatars/".$new_img_name)) {
+                if (move_uploaded_file($tmp_name, "../assets/img/avatars/".$new_img_name)) {
 
                         // Set new file name (with extension) in db 
                         $db_update_user_img_name = $db->prepare("UPDATE users 

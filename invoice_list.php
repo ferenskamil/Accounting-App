@@ -97,7 +97,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

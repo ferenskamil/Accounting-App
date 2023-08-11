@@ -120,7 +120,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>
@@ -158,7 +158,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="invoice__container">
                         <div class="invoice__paper">
-                                <img class="invoice__paper-logo" src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>"
+                                <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $_SESSION['logo_img'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
                                 <h2 class="invoice__paper-title">Invoice no. <span><?php 
                                         echo $invoice['no'] 

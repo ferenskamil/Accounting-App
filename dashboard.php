@@ -75,7 +75,7 @@ redirect_if_user_not_logged_in('index.php');
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

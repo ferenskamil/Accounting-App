@@ -11,7 +11,7 @@
                 $account_options = '
                 <div class="home__top-right-logged-user"> 
                         <div class="home__top-right-logged-user-info">
-                                <img class="home__top-right-logged-user-avatar" src="./dist/img/avatars/'.$user_img.'" alt="user photo">
+                                <img class="home__top-right-logged-user-avatar" src="./assets/img/avatars/'.$user_img.'" alt="user photo">
                                 <div>
                                         <p><strong>'.$user_name.'</strong></p>
                                         <p>'.$user_email.'</p>

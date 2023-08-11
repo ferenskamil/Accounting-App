@@ -75,7 +75,7 @@ redirect_if_user_not_logged_in('index.php');
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>
@@ -86,7 +86,7 @@ redirect_if_user_not_logged_in('index.php');
                 <form action="./php_scripts/upload_avatar.php" method="post" enctype="multipart/form-data"class="settings__form-change-avatar">
                         <h2>User photo</h2>
                         <div>
-                                <img src="./dist/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
                                 <label for="change-avatar-btn" class="change-avatar-btn-label">
                                         <input type="file" id="change-avatar-btn" name="change-avatar-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->
@@ -100,7 +100,7 @@ redirect_if_user_not_logged_in('index.php');
                 <form action="./php_scripts/upload_logo.php" method="post" enctype="multipart/form-data"class="settings__form-change-company-logo">
                         <h2>Company logo</h2>
                         <div>
-                                <img src="./dist/img/logos/<?php echo $_SESSION['logo_img'] ?>" alt="company logo">
+                                <img src="./assets/img/logos/<?php echo $_SESSION['logo_img'] ?>" alt="company logo">
                                 <label for="change-logo-btn" class="change-logo-btn-label">
                                         <input type="file" id="change-logo-btn" name="change-logo-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->

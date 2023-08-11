@@ -31,11 +31,11 @@ if (isset($_FILES['change-logo-btn']['name'])) {
                 $old_img_name = $db_user_arr['company_logo_file_path'];
 
                 if ($old_img_name !== 'default_logo.png') {
-                        unlink('../dist/img/logos/'.$old_img_name);
+                        unlink('../assets/img/logos/'.$old_img_name);
                 }
 
                 // save new file in server 
-                if (move_uploaded_file($tmp_name, "../dist/img/logos/".$new_img_name)) {
+                if (move_uploaded_file($tmp_name, "../assets/img/logos/".$new_img_name)) {
 
                         // Set new file name (with extension) in db 
                         $db_update_user_img_name = $db->prepare("UPDATE users 
