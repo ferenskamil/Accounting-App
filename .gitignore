@@ -1,3 +1,9 @@
 node_modules
 notes
 test/
+
+# Ignore all files located in logos and avatars folders except default files
+assets/img/avatars/*
+assets/img/logos/*
+!assets/img/avatars/default_avatar.png
+!assets/img/logos/default_logo.png
