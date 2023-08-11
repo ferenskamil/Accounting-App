@@ -102,7 +102,7 @@ _To log in you can create a new account or log in with the following details:_\
 _**login:** testUser_\
 _**password:** qwerty1234_
 
-> Note: The data you enter into BD will be exclusively on your computer and will not be shared.
+> Note: The data you enter into database will be exclusively on your computer and will not be shared.
 
 Thank you for your interest in my application. I hope you will enjoy using it.
 Kamil :)
