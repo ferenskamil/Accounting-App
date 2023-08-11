@@ -44,9 +44,9 @@
                 <h1 class="welcome__title">Welcome</h1>
                 <div class="welcome__wrapper">
                         <p>Thank you for registering with Accounting App. Your account has been successfully created.</p>
-                        <p>An activation link has been sent to your email. If the message did not arrive, 
+                        <!-- <p>An activation link has been sent to your email. If the message did not arrive, 
                                 <a href="#" class="send-again">send the activation link again.</a>
-                        </p>
+                        </p> -->
                         <a href="./loginform.php">
                                 <button class="welcome__wrapper-btn">Log in</button>
                         </a>
