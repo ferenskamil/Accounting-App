@@ -194,7 +194,6 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                                                         Download
                                                                 </button>
                                                         </form>
-                                                        <button><i class="fa-solid fa-print"></i>Print</button>
                                                         <button class="delete-btn"><i
                                                                         class="fa-solid fa-trash"></i>Delete</button>
                                                 </td>

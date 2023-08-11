@@ -83,9 +83,11 @@
 						&.delete-btn {
 							@include button($red, $red-dark);
 							margin: 0;
+							margin-left: 0.3em;
 							align-self: end;
 						}
 						margin: 0;
+						margin-left: 0.3em;
 						align-self: end;
 					}
 				}
