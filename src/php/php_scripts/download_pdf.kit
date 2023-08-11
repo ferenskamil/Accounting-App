@@ -46,8 +46,8 @@ foreach ($services_arr as $service) {
                 <td>{$service['quantity']}</td>
                 <td>".number_format($service['item_net_price'], 2, ',',' ')."</td>
                 <td>{$service_tax}</td>
-                <td>".number_format($service['service_total_net'], 2, ',',' ')." PLN</td>
-                <td>".number_format($service['service_total_gross'], 2, ',',' ')." PLN</td>
+                <td>".number_format($service['service_total_net'], 2, ',',' ')." $</td>
+                <td>".number_format($service['service_total_gross'], 2, ',',' ')." $</td>
         </tr>";
 
         // Create $all_services_tr if it is first iteration
@@ -348,14 +348,14 @@ $html = <<<HTML
                                                 <td colspan="4"></td>
                                                 <td>TOTAL:</td>
                                                 <td></td>
-                                                <td>{$total_sum_net} PLN</td>
-                                                <td>{$total_sum_gross} PLN</td>
+                                                <td>{$total_sum_net} $</td>
+                                                <td>{$total_sum_gross} $</td>
                                         </tr>
                                 </tfoot>
                         </table>
                 </div>
                 <div class="row5 row">
-                        <p><b>To pay: </b>{$to_pay_numeric} PLN</p>
+                        <p><b>To pay: </b>{$to_pay_numeric} $</p>
                         <p><b>In words: </b>{$to_pay_verbal}</p>
                 </div>
                 <div class="row6 row">            
