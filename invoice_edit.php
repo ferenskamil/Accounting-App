@@ -57,7 +57,9 @@ if (isset($_POST['invoice_no_to_edit'])) {
         <ul class="nav__list">
                 <li>
                         <a href="./index.php" class="nav__item">
-                                <div class="nav__item-icon"><i class="fa-brands fa-apple"></i></div>
+                                <div class="nav__item-icon">
+                                        <img src="./dist/img/app_icon_white.png" alt="app logo">
+                                </div>
                                 <div class="nav__item-title">
                                         <h2>AccountingApp</h2>
                                 </div>

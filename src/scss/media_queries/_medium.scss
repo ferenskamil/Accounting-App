@@ -22,13 +22,14 @@
 				}
 
 				a {
-					i {
-						padding: 0.4em 0.5em 0.5em;
+					img {
+						margin: 0em 0.1em 0 0.9em;
 					}
 
 					h2 {
 						border-right: 1px solid $black-alpha;
 						padding-top: 0.15em;
+						font-size: 1.1em;
 					}
 				}
 			}
@@ -182,7 +183,7 @@
 			grid-column: 1 / 2;
 			grid-row: auto;
 		}
-		
+
 		&__form {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);

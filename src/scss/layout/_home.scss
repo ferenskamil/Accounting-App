@@ -5,6 +5,7 @@
 		background-color: $main-color;
 		color: $white;
 		overflow: hidden;
+		font-size: 2rem;
 
 		&-left {
 			display: flex;
@@ -31,14 +32,17 @@
 				align-items: center;
 				height: 60px;
 
-				i {
-					padding: 0 0.5em 0.2em;
-					font-size: 2.4rem;
+				img {
+					width: 35px;
+					height: 35px;
+					object-fit: contain;
+					margin: 0em 0.2em 0 0.9em;
+					padding: 0;
 				}
 
 				h2 {
 					padding-right: 0.5em;
-					font-size: 1.8rem;
+					font-size: 2rem;
 				}
 			}
 		}

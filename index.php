@@ -62,7 +62,7 @@
                         <div class="home__top">
                                 <div class="home__top-left">
                                         <a href="./dashboard.php">
-                                                <i class="fa-brands fa-apple"></i>
+                                                <img src="./dist/img/app_icon_white.png" alt="app logo">
                                                 <h2>AccountingApp</h2>
                                         </a>
                                         <button class="home__top-left-burger-btn"><i class="fa-solid fa-bars"></i></button>
