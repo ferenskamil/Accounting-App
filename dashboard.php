@@ -85,7 +85,7 @@ redirect_if_user_not_logged_in('index.php');
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">Total income</h2>
-                                        <p class="summary__card-text-value"><span class="income-value">21 159</span>zł
+                                        <p class="summary__card-text-value"><span class="income-value">21 159</span> $
                                         </p>
                                 </div>
                                 <i class="fa-solid fa-dollar-sign"></i>
@@ -100,7 +100,7 @@ redirect_if_user_not_logged_in('index.php');
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">Average value</h2>
-                                        <p class="summary__card-text-value"><span class="average-value">4 569</span>zł
+                                        <p class="summary__card-text-value"><span class="average-value">4 569</span> $
                                         </p>
                                 </div>
                                 <i class="fa-solid fa-calculator"></i>
@@ -109,7 +109,7 @@ redirect_if_user_not_logged_in('index.php');
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">After taxes</h2>
                                         <p class="summary__card-text-value"><span class="after-tax-value">16
-                                                        546</span>zł</p>
+                                                        546</span> $</p>
                                 </div>
                                 <i class="fa-solid fa-piggy-bank"></i>
                         </div>
@@ -132,8 +132,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -147,8 +147,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -162,8 +162,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -177,8 +177,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -192,8 +192,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -207,8 +207,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -222,8 +222,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -237,8 +237,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -252,8 +252,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -267,8 +267,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -282,8 +282,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
@@ -297,8 +297,8 @@ redirect_if_user_not_logged_in('index.php');
                                                 <tr>
                                                         <td>01/04/2023</td>
                                                         <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span>zł</td>
-                                                        <td><span>9999</span>zł</td>
+                                                        <td><span>11111</span> $</td>
+                                                        <td><span>9999</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
                                                                 <a href="#"><button><i
