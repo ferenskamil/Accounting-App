@@ -199,7 +199,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                 <th class="service-thead--large">Item / service</th>
                                                                 <th class="service-thead--large">Service code</th>
                                                                 <th class="service-thead--large">Quantity</th>
-                                                                <th class="service-thead--large">Net price (PLN)</th>
+                                                                <th class="service-thead--large">Net price ($)</th>
                                                                 <th class="service-thead--large">Tax</th>
                                                                 <th class="service-thead--large">Net sum</th>
                                                                 <th class="service-thead--large">Gross sum</th>
@@ -251,7 +251,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                                 <input type="number" value="'.$service['quantity'].'" min="0" class="service-item-amount" name="quantity['.$i.']">
                                                                         </td>
                                                                         <td>
-                                                                                <span class="service-title--mobile">Net price (PLN): </span>
+                                                                                <span class="service-title--mobile">Net price ($): </span>
                                                                                 <input type="number" min="0" value="'.$service['item_net_price'].'" class="service-item-net-value" name="item_net_price['.$i.']" step=".01">
                                                                         </td>
                                                                         <td>
@@ -261,12 +261,12 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                                 </select>
                                                                         </td>
                                                                         <td>
-                                                                                <span class="service-title--mobile">Net sum (PLN): </span>
-                                                                                <input type="text" value="'.number_format($service['service_total_net'],2,',',' ').' PLN" class="service-item-net-sum" name="service_total_net['.$i.']" readonly>
+                                                                                <span class="service-title--mobile">Net sum ($): </span>
+                                                                                <input type="text" value="'.number_format($service['service_total_net'],2,',',' ').' $" class="service-item-net-sum" name="service_total_net['.$i.']" readonly>
                                                                         </td>
                                                                         <td>
-                                                                                <span class="service-title--mobile">Gross sum (PLN): </span>
-                                                                                <input type="text" value="'.number_format($service['service_total_gross'],2,',',' ').' PLN" class="service-item-gross-sum" name="service_total_gross['.$i.']" readonly>
+                                                                                <span class="service-title--mobile">Gross sum ($): </span>
+                                                                                <input type="text" value="'.number_format($service['service_total_gross'],2,',',' ').' $" class="service-item-gross-sum" name="service_total_gross['.$i.']" readonly>
                                                                         </td>
                                                                         <td>
                                                                                 <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
@@ -284,19 +284,19 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                 <td><strong>TOTAL:</strong></td>
                                                                 <td><span class="service-title--mobile">
                                                                         <strong>Net:</strong></span>
-                                                                        <span class="invoice-total-net">0,00 PLN</span>
+                                                                        <span class="invoice-total-net">0,00 $</span>
                                                                         <input type="text" hidden name="total-net" id="total-net" value="0.00">
                                                                 </td>
                                                                 <td><span class="service-title--mobile">
                                                                         <strong>Gross:</strong></span>
-                                                                        <span class="invoice-total-gross">0.00 PLN</span>
+                                                                        <span class="invoice-total-gross">0.00 $</span>
                                                                         <input type="text" hidden name="total-gross" id="total-gross" value="0.00">
                                                                 </td>
                                                         </tr>
                                                 </tfoot>
                                         </table>
                                         <input type="text" hidden name="to-pay-numeric" id="to-pay-numeric" value="0.00">
-                                        <input type="text" hidden name="to-pay-verbal" id="to-pay-verbal" value="zero PLN 00/100">
+                                        <input type="text" hidden name="to-pay-verbal" id="to-pay-verbal" value="zero $ 00/100">
                                 </div>
                                 <div class="invoice-edit__form-box invoice-edit__form-box-comments">
                                         <label for="comment"><h2>Additional notes</h2></label>

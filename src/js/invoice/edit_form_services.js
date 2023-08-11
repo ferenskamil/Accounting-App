@@ -16,8 +16,8 @@ const changeValueInHiddenInput = (valueString, inputIdString) => {
 parseAmountToCount(value)
 This function takes an amount (sring) and converts it to a number.
 E.g.. 
-'12.99 PLN' >>> 12.99
-'15 PLN' >>> 15
+'12.99 $' >>> 12.99
+'15 $' >>> 15
 */
 const parseAmountToCount = (value) => {
 	// if string convert to number
@@ -94,7 +94,7 @@ const sumUpValues = (inputsArrSelectorAll, outputSpanSelector) => {
 		sum += parseFloat(el.value.replace(',', '.'));
 	});
 
-	outputSpan.textContent = `${sum.toFixed(2)} PLN`.replace('.', ',');
+	outputSpan.textContent = `${sum.toFixed(2)} $`.replace('.', ',');
 	updateAllHiddenInputValues();
 };
 
@@ -141,7 +141,7 @@ const createNewService = (e) => {
 <input type="number" value="1" min="0" class="service-item-amount" name="quantity[${servicesLength}]">`;
 
 	const netValue = document.createElement('td');
-	netValue.innerHTML = `<span class="service-title--mobile">Net price (PLN): </span>
+	netValue.innerHTML = `<span class="service-title--mobile">Net price ($): </span>
 <input type="number" min="0" value="0.00" class="service-item-net-value" name="item_net_price[${servicesLength}]" step=".01">`;
 
 	const taxValue = document.createElement('td');
@@ -153,12 +153,12 @@ const createNewService = (e) => {
 </select>`;
 
 	const netSum = document.createElement('td');
-	netSum.innerHTML = `<span class="service-title--mobile">Net sum (PLN): </span>
-<input type="text" value="0.00 PLN" class="service-item-net-sum" name="service_total_net[${servicesLength}]" readonly>`;
+	netSum.innerHTML = `<span class="service-title--mobile">Net sum ($): </span>
+<input type="text" value="0.00 $" class="service-item-net-sum" name="service_total_net[${servicesLength}]" readonly>`;
 
 	const grossSum = document.createElement('td');
-	grossSum.innerHTML = `<span class="service-title--mobile">Gross sum (PLN): </span>
-<input type="text" value="0.00 PLN" class="service-item-gross-sum" name="service_total_gross[${servicesLength}]" readonly>`;
+	grossSum.innerHTML = `<span class="service-title--mobile">Gross sum ($): </span>
+<input type="text" value="0.00 $" class="service-item-gross-sum" name="service_total_gross[${servicesLength}]" readonly>`;
 
 	const deleteBtn = document.createElement('td');
 	deleteBtn.innerHTML = `<button class="delete-btn">
@@ -194,14 +194,14 @@ const updateServiceTr = (serviceTr) => {
 	const gross = serviceTr.querySelector('.service-item-gross-sum');
 
 	// Calculate total net for one serviceTr
-	net.value = convertNumtoAmount(quantity * netPerOnePiece, 'PLN');
+	net.value = convertNumtoAmount(quantity * netPerOnePiece, '$');
 
 	// Calculate total gross for one serviceTr
 	const totalGross =
 		parseAmountToCount(tax) * parseAmountToCount(net.value) +
 		parseAmountToCount(net.value);
 
-	gross.value = convertNumtoAmount(totalGross, 'PLN');
+	gross.value = convertNumtoAmount(totalGross, '$');
 
 	// Sum up the table
 	calculateTableSummary();
