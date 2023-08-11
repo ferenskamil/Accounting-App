@@ -66,7 +66,7 @@ $total_sum_gross = number_format($invoice['sum_gross'], 2, ',',' ');
 // DOWLOAD DOMPDF LIBRARY
 
 // include autoloader
-require_once '../libs/dompdf/autoload.inc.php';
+require_once '../assets/dompdf/autoload.inc.php';
 
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
