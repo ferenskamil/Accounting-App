@@ -2,6 +2,9 @@
 
 session_start();
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 if (isset($_POST['settings-company-name'])) {
         require_once 'db_database.php';
 
@@ -25,18 +28,21 @@ if (isset($_POST['settings-company-name'])) {
         $db_query->bindvalue(':bank_name', $_POST['settings-invoice-bank'], PDO::PARAM_STR);
         $db_query->bindvalue(':account_no', $_POST['settings-invoice-account-no'], PDO::PARAM_STR);
         $db_query->bindvalue(':additional_info', $_POST['settings-additional-info'], PDO::PARAM_STR);
-        $db_query->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+        $db_query->bindvalue(':login', $user['login'], PDO::PARAM_STR);
         $db_query->execute();
 
-        // set session variables
-        $_SESSION['company_name'] = $_POST['settings-company-name'];
-        $_SESSION['address1'] = $_POST['settings-company-address1'];
-        $_SESSION['address2'] = $_POST['settings-company-address2'];
-        $_SESSION['company_number'] = $_POST['settings-company-number'];
-        $_SESSION['default_invoice_city'] = $_POST['settings-invoice-city'];
-        $_SESSION['default_invoice_bank_name'] = $_POST['settings-invoice-bank'];
-        $_SESSION['default_invoice_bank_account_no'] = $_POST['settings-invoice-account-no'];
-        $_SESSION['default_invoice_additional_info'] = $_POST['settings-additional-info'];
+        // Change data in $user assoc array
+        $user['company'] = $_POST['settings-company-name'];
+        $user['address1'] = $_POST['settings-company-address1'];
+        $user['address2'] = $_POST['settings-company-address2'];
+        $user['company_code'] = $_POST['settings-company-number'];
+        $user['city'] = $_POST['settings-invoice-city'];
+        $user['bank'] = $_POST['settings-invoice-bank'];
+        $user['account_no'] = $_POST['settings-invoice-account-no'];
+        $user['additional_info'] = $_POST['settings-additional-info'];
+
+        // Get changed data into $_SESSION['user']
+        $_SESSION['user'] = $user;
 }
 
 header('Location: ../settings.php');
