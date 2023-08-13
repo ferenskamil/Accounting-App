@@ -4,6 +4,9 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 require_once './php_scripts/suggest_invoice_no.php';
 
 if (isset($_SESSION['is_user_wants_edit'])) unset($_SESSION['is_user_wants_edit']);
@@ -14,14 +17,14 @@ if (isset($_POST['invoice_no_to_edit'])) {
 
         require_once './php_scripts/db_database.php';
         $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
-        $db_invoice_query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_invoice_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
         $db_invoice_query->bindvalue(':invoice_no', $_POST['invoice_no_to_edit'], PDO::PARAM_STR);
         $db_invoice_query->execute();
         $db_invoice_to_edit = $db_invoice_query->fetch(PDO::FETCH_ASSOC);
 
         // Download services from database to array
         $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-        $db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_services_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
         $db_services_query->bindvalue(':invoice_id', $db_invoice_to_edit['id'], PDO::PARAM_STR);
         $db_services_query->execute();
         $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
@@ -84,8 +87,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['city'];
                                                 } 
-                                                elseif(isset($_SESSION['default_invoice_city'])) {
-                                                        echo $_SESSION['default_invoice_city'];
+                                                elseif(isset($user['city'])) {
+                                                        echo $user['city'];
                                                 }
                                         ?>">
                                         <label for="bank">Bank: </label>
@@ -93,8 +96,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['bank'];
                                                 } 
-                                                elseif(isset($_SESSION['default_invoice_bank_name'])) {
-                                                        echo $_SESSION['default_invoice_bank_name'];
+                                                elseif(isset($user['bank'])) {
+                                                        echo $user['bank'];
                                                 }
                                         ?>">
                                         <label for="account-no">Account no.: </label>
@@ -102,8 +105,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['account_no'];
                                                 } 
-                                                elseif(isset($_SESSION['default_invoice_bank_account_no'])) {
-                                                        echo $_SESSION['default_invoice_bank_account_no'];
+                                                elseif(isset($user['account_no'])) {
+                                                        echo $user['account_no'];
                                                 }                                        
                                         ?>">
                                         <label for="term">Payment term: </label>
@@ -129,8 +132,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_name'];
                                                 } 
-                                                elseif(isset($_SESSION['company_name'])) {
-                                                        echo $_SESSION['company_name'];
+                                                elseif(isset($user['company'])) {
+                                                        echo $user['company'];
                                                 }
                                         ?>">
                                         <label for="seller-address1">Address: </label>
@@ -138,8 +141,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_address1'];
                                                 } 
-                                                elseif(isset($_SESSION['address1'])) {
-                                                        echo $_SESSION['address1'];
+                                                elseif(isset($user['address1'])) {
+                                                        echo $user['address1'];
                                                 }
                                         ?>">
                                         <label for="seller-address2">Address 2: </label>
@@ -147,8 +150,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_address2'];
                                                 } 
-                                                elseif(isset($_SESSION['address2'])) {
-                                                        echo $_SESSION['address2'];
+                                                elseif(isset($user['address2'])) {
+                                                        echo $user['address2'];
                                                 }
                                         ?>">
                                         <label for="seller-company-no">Company no.: </label>
@@ -156,8 +159,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $db_invoice_to_edit['seller_company_no'];
                                                 } 
-                                                elseif(isset($_SESSION['company_number'])) {
-                                                        echo $_SESSION['company_number'];
+                                                elseif(isset($user['company_code'])) {
+                                                        echo $user['company_code'];
                                                 }
                                         ?>">
                                 </div>
@@ -306,8 +309,8 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                         if (isset($_POST['invoice_no_to_edit'])){
                                                                 echo $db_invoice_to_edit['additional_notes'];
                                                         } 
-                                                        elseif(isset($_SESSION['default_invoice_city'])) {
-                                                                echo $_SESSION['default_invoice_additional_info'];
+                                                        elseif(isset($user['additional_info'])) {
+                                                                echo $user['additional_info'];
                                                         }
                                         ?></textarea>
                                 </div>
