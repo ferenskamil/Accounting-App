@@ -3,6 +3,9 @@ session_start();
 
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
+
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +27,7 @@ redirect_if_user_not_logged_in('index.php');
                 <form action="./php_scripts/upload_avatar.php" method="post" enctype="multipart/form-data"class="settings__form-change-avatar">
                         <h2>User photo</h2>
                         <div>
-                                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
                                 <label for="change-avatar-btn" class="change-avatar-btn-label">
                                         <input type="file" id="change-avatar-btn" name="change-avatar-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->
@@ -38,7 +41,7 @@ redirect_if_user_not_logged_in('index.php');
                 <form action="./php_scripts/upload_logo.php" method="post" enctype="multipart/form-data"class="settings__form-change-company-logo">
                         <h2>Company logo</h2>
                         <div>
-                                <img src="./assets/img/logos/<?php echo $_SESSION['logo_img'] ?>" alt="company logo">
+                                <img src="./assets/img/logos/<?php echo $user['logo'] ?>" alt="company logo">
                                 <label for="change-logo-btn" class="change-logo-btn-label">
                                         <input type="file" id="change-logo-btn" name="change-logo-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->
@@ -54,34 +57,34 @@ redirect_if_user_not_logged_in('index.php');
                                 <h2>Company info</h2>
                                 <label for="settings-company-name">Name: </label>
                                 <input type="text" id="settings-company-name" name="settings-company-name" value="<?php 
-                                        if (isset($_SESSION['company_name'])) echo $_SESSION['company_name'];
+                                        if (isset($user['company'])) echo $user['company'];
                                 ?>">
                                 <label for="settings-company-address1">Address: </label>
                                 <input type="text" id="settings-company-address1" name="settings-company-address1" value="<?php 
-                                        if (isset($_SESSION['address1'])) echo $_SESSION['address1'];
+                                        if (isset($user['address1'])) echo $user['address1'];
                                 ?>">
                                 <label for="settings-company-address2">Address 2: </label>
                                 <input type="text" id="settings-company-address2" name="settings-company-address2" value="<?php 
-                                        if (isset($_SESSION['address2'])) echo $_SESSION['address2'];
+                                        if (isset($user['address2'])) echo $user['address2'];
                                 ?>">
                                 <label for="settings-company-number">Company no.: </label>
                                 <input type="text" id="settings-company-number" name="settings-company-number" value="<?php 
-                                        if (isset($_SESSION['company_number'])) echo $_SESSION['company_number'];
+                                        if (isset($user['company_code'])) echo $user['company_code'];
                                 ?>">
                         </div>
                         <div class="settings__form-box">
                                 <h2>Invoice default info</h2>
                                 <label for="settings-invoice-city">City: </label>
                                 <input type="text" id="settings-invoice-city" name="settings-invoice-city" value="<?php 
-                                        if (isset($_SESSION['default_invoice_city'])) echo $_SESSION['default_invoice_city'];
+                                        if (isset($user['city'])) echo $user['city'];
                                 ?>">
                                 <label for="settings-invoice-bank">Bank: </label>
                                 <input type="text" id="settings-invoice-bank" name="settings-invoice-bank" value="<?php 
-                                        if (isset($_SESSION['default_invoice_bank_name'])) echo $_SESSION['default_invoice_bank_name'];
+                                        if (isset($user['bank'])) echo $user['bank'];
                                 ?>">
                                 <label for="settings-invoice-account-no">Account no.: </label>
                                 <input type="text" id="settings-invoice-account-no" name="settings-invoice-account-no" value="<?php 
-                                        if (isset($_SESSION['default_invoice_bank_account_no'])) echo $_SESSION['default_invoice_bank_account_no'];
+                                        if (isset($user['account_no'])) echo $user['account_no'];
                                 ?>">
                         </div>
                         <div class="settings__form-box settings__form-box-additional-info">
@@ -89,7 +92,7 @@ redirect_if_user_not_logged_in('index.php');
                                 <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 <textarea name="settings-additional-info" id="settings-additional-info" cols="30"
                                         rows="10"><?php 
-                                        if (isset($_SESSION['default_invoice_additional_info'])) echo $_SESSION['default_invoice_additional_info'];
+                                        if (isset($user['additional_info'])) echo $user['additional_info'];
                                         ?></textarea>
                         </div>
                         <div class="settings__form-submit-btn-box">
