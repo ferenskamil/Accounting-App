@@ -45,8 +45,11 @@ if (count($users) === 1) {
         // Check that the password entered by the user matches the password in the database 
         $db_password = $users[0]['password'];
         if (password_verify($_POST['password1'], $db_password)) {
+                // Session variables to unset after successful login
                 unset($_SESSION['log_error_pass']);
+                // unset($_SESSION['login']); // in the future after use assoc array $user
 
+                // Assign data to session variable (for later use)
                 $_SESSION['is_logged'] = true;
                 $_SESSION['login'] = $login;
                 $_SESSION['id'] = $user['id'];
@@ -63,6 +66,7 @@ if (count($users) === 1) {
                 $_SESSION['default_invoice_bank_account_no'] = $user['default_invoice_bank_account_no'];
                 $_SESSION['default_invoice_additional_info'] = $user['default_invoice_additional_info'];
 
+                // Redirection to app
                 header('Location: ../dashboard.php');
         } else {
                 $_SESSION['login'] = $login;
