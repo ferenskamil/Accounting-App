@@ -6,6 +6,9 @@ session_start();
 require_once './redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 // Exit the script if the user did not submit the form
 if (!isset($_POST['invoice-id'])) {
         $_SESSION['comment_download_error'] = "Something went wrong, the invoice was not found. Try again in a while. ";
@@ -19,14 +22,14 @@ require_once './db_database.php';
 
 // Dowload invoice data from database to array
 $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND id = :invoice_id");
-$db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+$db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
 $db_query->bindvalue(':invoice_id', $_POST['invoice-id'], PDO::PARAM_STR);
 $db_query->execute();
 $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
 
 // Download services from database to array
 $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_services_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
 $db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
 $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
@@ -89,7 +92,7 @@ $dompdf = new Dompdf([
 // PREPARE TO GENERATE PDF
 
 // add image path
-$logo_img_path = "../assets/img/logos/{$_SESSION['logo_img']}";
+$logo_img_path = "../assets/img/logos/{$user['logo']}";
 $dompdf->getOptions()->setChroot("$logo_img_path");
 
 $html = <<<HTML
@@ -390,7 +393,7 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$filename = $_SESSION['login']."_".str_replace('/', '_', $invoice['no']).".pdf";
+$filename = $user['login'] . "_".str_replace('/', '_', $invoice['no']) . ".pdf";
 $dompdf->stream($filename, [
         'compress' => true,
         'Attachment' => false, // 'Attachment' => false is only for testing. After test change to 'Attachment' => true
