@@ -4,6 +4,9 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 $invoice_no_to_display = '';
 if (isset($_POST['invoice-no'])) {
         $invoice_no_to_display = $_POST['invoice-no'];
@@ -20,14 +23,14 @@ if ($invoice_no_to_display !== '') {
         require_once './php_scripts/db_database.php';
         
         $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
-        $db_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+        $db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
         $db_query->bindvalue(':invoice_no', $invoice_no_to_display, PDO::PARAM_STR);
         $db_query->execute();
         $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
 } 
 // Download services from database to array
 $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-$db_services_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_services_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
 $db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
 $db_services_query->execute();
 $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
@@ -159,7 +162,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="invoice__container">
                         <div class="invoice__paper">
-                                <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $_SESSION['logo_img'] ?>"
+                                <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $user['logo'] ?>"
                                         alt="logo firmy wystawiającej fakturę">
                                 <h2 class="invoice__paper-title">Invoice no. <span><?php 
                                         echo $invoice['no'] 
