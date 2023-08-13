@@ -66,6 +66,9 @@ if (count($users) === 1) {
                 $_SESSION['default_invoice_bank_account_no'] = $user['account_no'];
                 $_SESSION['default_invoice_additional_info'] = $user['additional_info'];
 
+                // Put the $user assoc array in a session variable 
+                $_SESSION['user'] = $user;
+
                 // Redirection to app
                 header('Location: ../dashboard.php');
         } else {
