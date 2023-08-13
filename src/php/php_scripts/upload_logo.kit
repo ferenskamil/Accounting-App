@@ -2,6 +2,9 @@
 
 session_start();
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 if (isset($_FILES['change-logo-btn']['name'])) {
         $image_name = $_FILES['change-logo-btn']['name'];
         $image_size = $_FILES['change-logo-btn']['size'];
@@ -18,14 +21,14 @@ if (isset($_FILES['change-logo-btn']['name'])) {
         } elseif ($image_size > 25165824 ) {
                 $_SESSION['e_upload_logo'] = "Maximum photo size is 3mb";
         } else {
-                $new_img_name = $_SESSION['login']."_logo_".date("Y-m-d").".".$img_extension;
+                $new_img_name = $user['login']."_logo_".date("Y-m-d").".".$img_extension;
                 
                 // connect with database
                 require_once 'db_database.php';
                 
                 // delete old file from server 
                 $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");
-                $db_user->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+                $db_user->bindvalue(':login', $user['login'], PDO::PARAM_STR);
                 $db_user->execute();
                 $db_user_arr = $db_user->fetch(PDO::FETCH_ASSOC);
                 $old_img_name = $db_user_arr['company_logo_file_path'];
@@ -42,11 +45,13 @@ if (isset($_FILES['change-logo-btn']['name'])) {
                                 SET company_logo_file_path = :file_name 
                                 WHERE login = :login");
                         $db_update_user_img_name->bindvalue(':file_name', $new_img_name, PDO::PARAM_STR);
-                        $db_update_user_img_name->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+                        $db_update_user_img_name->bindvalue(':login', $user['login'], PDO::PARAM_STR);
                         $db_update_user_img_name->execute();
 
-                        // Set session variables
-                        $_SESSION['logo_img'] = $new_img_name;
+                        // update $_SESSION['user']
+                        $user['logo'] = $new_img_name;
+                        $_SESSION['user'] = $user;
+
                         $_SESSION['e_upload_logo'] = "";
                 } else {
                         $_SESSION['e_upload_logo'] = "Failure to save file";
