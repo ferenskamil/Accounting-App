@@ -11,11 +11,14 @@ function suggest_invoice_no(int $num = 0) {
 // Connect database
 require_once './php_scripts/db_database.php';
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 $db_invoices_nums = $db->prepare("
         SELECT invoices.no FROM `invoices`
         INNER JOIN users ON invoices.user_id = users.id
         WHERE users.login = :login");
-$db_invoices_nums->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+$db_invoices_nums->bindvalue(':login', $user['login'], PDO::PARAM_STR);
 $db_invoices_nums->execute();
 $db_invoices_nums_arr = $db_invoices_nums->fetchAll(PDO::FETCH_ASSOC);
 
