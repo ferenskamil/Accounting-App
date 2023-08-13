@@ -2,6 +2,13 @@
 
 The application, for issuing and cataloging invoices, which can be useful for homogeneous businesses and B2B employees who issue invoices of similar content every month.
 
+## Contents
+
+1. [Features](https://github.com/ferenskamil/Accounting-App#features)
+2. [Libraries](https://github.com/ferenskamil/Accounting-App#libraries)
+3. [Interesting scripts](https://github.com/ferenskamil/Accounting-App#interesting-scripts)
+4. [How to run](https://github.com/ferenskamil/Accounting-App#how-to-run)
+
 ## Features
 
 -   Login and registration.
