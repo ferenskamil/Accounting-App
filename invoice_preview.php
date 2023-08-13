@@ -9,10 +9,8 @@ if (isset($_POST['invoice-no'])) {
         $invoice_no_to_display = $_POST['invoice-no'];
 } elseif (isset($_SESSION['invoice_no_to_display'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_display'];
-        // unset($_SESSION['invoice_no_to_display']);
 } elseif(isset($_SESSION['invoice_no_to_edit'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_edit'];
-        // unset($_SESSION['invoice_no_to_edit']);
 } else {
         header('Location: invoice_list.php');
 }
