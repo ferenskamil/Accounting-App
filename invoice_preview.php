@@ -13,6 +13,7 @@ if (isset($_POST['invoice-no'])) {
         $invoice_no_to_display = $_SESSION['invoice_no_to_edit'];
 } else {
         header('Location: invoice_list.php');
+        exit();
 }
 
 if ($invoice_no_to_display !== '') {
