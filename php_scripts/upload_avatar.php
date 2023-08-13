@@ -8,6 +8,9 @@ session_start();
 // echo "<b>Error: </b>".$_FILES['change-avatar-btn']['error']."<br>";
 // echo "<b>Full path: </b>".$_FILES['change-avatar-btn']['full_path']."<br>";
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 if (isset($_FILES['change-avatar-btn']['name'])) {
         $image_name = $_FILES['change-avatar-btn']['name'];
         $image_size = $_FILES['change-avatar-btn']['size'];
@@ -24,14 +27,14 @@ if (isset($_FILES['change-avatar-btn']['name'])) {
         } elseif ($image_size > 25165824 ) {
                 $_SESSION['e_upload_avatar'] = "Maximum photo size is 3mb";
         } else {
-                $new_img_name = $_SESSION['login']."_avatar_".date("Y-m-d").".".$img_extension;
+                $new_img_name = $user['login']."_avatar_".date("Y-m-d").".".$img_extension;
                 
                 // connect with database
                 require_once 'db_database.php';
                 
                 // delete old file from server 
                 $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");
-                $db_user->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+                $db_user->bindvalue(':login', $user['login'], PDO::PARAM_STR);
                 $db_user->execute();
                 $db_user_arr = $db_user->fetch(PDO::FETCH_ASSOC);
                 $old_img_name = $db_user_arr['avatar_file_img'];
@@ -48,11 +51,13 @@ if (isset($_FILES['change-avatar-btn']['name'])) {
                                 SET avatar_file_img = :file_name 
                                 WHERE login = :login");
                         $db_update_user_img_name->bindvalue(':file_name', $new_img_name, PDO::PARAM_STR);
-                        $db_update_user_img_name->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+                        $db_update_user_img_name->bindvalue(':login', $user['login'], PDO::PARAM_STR);
                         $db_update_user_img_name->execute();
 
-                        // Set session variables
-                        $_SESSION['avatar_img'] = $new_img_name;
+                        // update $_SESSION['user']
+                        $user['avatar'] = $new_img_name;
+                        $_SESSION['user'] = $user;
+
                         $_SESSION['e_upload_avatar'] = "";
                 } else {
                         $_SESSION['e_upload_avatar'] = "Failure to save file";
