@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 // validation - checking number has the correct syntax
 function is_an_invoice_syntax_OK(string $invoice_no) {
         $is_OK = true;        
@@ -87,7 +90,7 @@ $db_invoices_query = $db->prepare("
         SELECT invoices.no FROM `invoices`
         INNER JOIN users ON invoices.user_id = users.id
         WHERE users.login = :login");
-$db_invoices_query->bindvalue(':login', $_SESSION['login'], PDO::PARAM_STR);
+$db_invoices_query->bindvalue(':login', $user['login'], PDO::PARAM_STR);
 $db_invoices_query->execute();
 $invoice_nums = $db_invoices_query->fetchAll(PDO::FETCH_ASSOC);
 $invoice_nums = array_column($invoice_nums, 'no');
@@ -134,7 +137,7 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
         $query->bindvalue(':customer_address1', $_POST['customer-address1'], PDO::PARAM_STR);
         $query->bindvalue(':customer_address2', $_POST['customer-address2'], PDO::PARAM_STR);
         $query->bindvalue(':customer_company_no', $_POST['customer-company-no'], PDO::PARAM_STR);
-        $query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_INT);
+        $query->bindvalue(':id', $user['id'], PDO::PARAM_INT);
         $query->bindvalue(':invoice_no', $_POST['invoice-no'], PDO::PARAM_STR);
         $query->execute();
 
@@ -184,7 +187,7 @@ if (isset($_SESSION['is_user_wants_edit']) && $_SESSION['is_user_wants_edit'] ==
                 :seller_address1,
                 :seller_address2,
                 :seller_company_no)");
-        $query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+        $query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
         $query->bindvalue(':no', $_POST['invoice-no'], PDO::PARAM_STR);
         $query->bindvalue(':date', $_POST['date'], PDO::PARAM_STR);
         $query->bindvalue(':sum_net', $_POST['total-net'], PDO::PARAM_STR);
@@ -218,7 +221,7 @@ $db_invoice_id_query = $db->prepare("SELECT id FROM invoices
         WHERE no = :invoice_no AND user_id = :user_id");
 
 $db_invoice_id_query->bindValue(':invoice_no',$_POST['invoice-no'], PDO::PARAM_STR);
-$db_invoice_id_query->bindValue(':user_id',$_SESSION['id'], PDO::PARAM_INT);
+$db_invoice_id_query->bindValue(':user_id',$user['id'], PDO::PARAM_INT);
 $db_invoice_id_query->execute();
 $invoice_id = $db_invoice_id_query->fetch();
 $invoice_id = $invoice_id['id'];
@@ -226,7 +229,7 @@ $invoice_id = $invoice_id['id'];
 // Remove services from database 
 $db_remove_services_query = $db->prepare("DELETE FROM services
 WHERE user_id = :user_id AND invoice_id = :invoice_id");
-$db_remove_services_query->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$db_remove_services_query->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
 $db_remove_services_query->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
 $db_remove_services_query->execute();
 
@@ -257,7 +260,7 @@ if (isset($services_arr)){
                         :service_total_net,
                         :service_total_gross
                 )");
-                $db_add_service_query->bindvalue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+                $db_add_service_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
                 $db_add_service_query->bindvalue(':invoice_id', $invoice_id, PDO::PARAM_INT);
                 $db_add_service_query->bindvalue(':position', $service['position'], PDO::PARAM_INT);
                 $db_add_service_query->bindvalue(':service_name', $service['service_name'], PDO::PARAM_STR);
