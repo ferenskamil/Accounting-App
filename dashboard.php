@@ -3,6 +3,9 @@ session_start();
 
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
+
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +31,9 @@ redirect_if_user_not_logged_in('index.php');
         <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {
                 session_start();
+
+                // Get user data to $user assoc array
+                if (isset($_SESSION['user'])) $user = $_SESSION['user'];
         }
 ?>
 <div class="nav">
@@ -77,7 +83,7 @@ redirect_if_user_not_logged_in('index.php');
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>
