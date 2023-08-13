@@ -51,20 +51,20 @@ if (count($users) === 1) {
 
                 // Assign data to session variable (for later use)
                 $_SESSION['is_logged'] = true;
-                $_SESSION['login'] = $login;
+                $_SESSION['login'] = $user['login'];
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['user_email'] = $user['email'];
-                $_SESSION['avatar_img'] = $user['avatar_file_img'];
-                $_SESSION['logo_img'] = $user['company_logo_file_path'];
+                $_SESSION['avatar_img'] = $user['avatar'];
+                $_SESSION['logo_img'] = $user['logo'];
 
-                $_SESSION['company_name'] = $user['company_name'];
+                $_SESSION['company_name'] = $user['company'];
                 $_SESSION['address1'] = $user['address1'];
                 $_SESSION['address2'] = $user['address2'];
-                $_SESSION['company_number'] = $user['company_number'];
-                $_SESSION['default_invoice_city'] = $user['default_invoice_city'];
-                $_SESSION['default_invoice_bank_name'] = $user['default_invoice_bank_name'];
-                $_SESSION['default_invoice_bank_account_no'] = $user['default_invoice_bank_account_no'];
-                $_SESSION['default_invoice_additional_info'] = $user['default_invoice_additional_info'];
+                $_SESSION['company_number'] = $user['company_code'];
+                $_SESSION['default_invoice_city'] = $user['city'];
+                $_SESSION['default_invoice_bank_name'] = $user['bank'];
+                $_SESSION['default_invoice_bank_account_no'] = $user['account_no'];
+                $_SESSION['default_invoice_additional_info'] = $user['additional_info'];
 
                 // Redirection to app
                 header('Location: ../dashboard.php');
