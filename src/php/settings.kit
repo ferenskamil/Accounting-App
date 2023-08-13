@@ -82,8 +82,8 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                                 <input type="text" id="settings-invoice-bank" name="settings-invoice-bank" value="<?php 
                                         if (isset($user['bank'])) echo $user['bank'];
                                 ?>">
-                                <label for="settings-invoice-account-no">Account no.: </label>
-                                <input type="text" id="settings-invoice-account-no" name="settings-invoice-account-no" value="<?php 
+                                <label for="account-no">Account no.: </label>
+                                <input type="text" id="account-no" name="settings-invoice-account-no" value="<?php 
                                         if (isset($user['account_no'])) echo $user['account_no'];
                                 ?>">
                         </div>
@@ -103,6 +103,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
         </main>
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/settings.min.js"></script>
+        <script src="./dist/js/invoice/sanitize_account_number.min.js"></script>
 </body>
 
 </html>
