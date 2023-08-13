@@ -4,9 +4,12 @@ session_start();
 require_once './php_scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 require_once './php_scripts/db_database.php';
 $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id");
-$db_query->bindvalue(':id', $_SESSION['id'], PDO::PARAM_STR);
+$db_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
 $db_query->execute();
 $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
