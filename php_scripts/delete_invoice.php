@@ -3,12 +3,15 @@ session_start();
 
 $invoice_no_to_delete = $_POST['pop-up-invoice-no-hidden-input'];
 
+// Get user data to $user assoc array
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
 require_once 'db_database.php';
 
 // Find invoice id
 $db_invoice_id_query = $db->prepare("SELECT id FROM invoices
         WHERE user_id = :user_id AND no = :invoice_no");
-$db_invoice_id_query->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+$db_invoice_id_query->bindValue(':user_id', $user['id'] , PDO::PARAM_STR);
 $db_invoice_id_query->bindValue(':invoice_no', $invoice_no_to_delete, PDO::PARAM_STR);
 $db_invoice_id_query->execute();
 $invoice_id = $db_invoice_id_query->fetch(PDO::FETCH_ASSOC);
