@@ -19,7 +19,7 @@ if (isset($_POST['settings-company-name'])) {
                 default_invoice_bank_account_no = :account_no,
                 default_invoice_additional_info = :additional_info
          WHERE 
-                login = :login");
+                id = :user_id");
         $db_query->bindvalue(':company_name', $_POST['settings-company-name'], PDO::PARAM_STR);
         $db_query->bindvalue(':address1', $_POST['settings-company-address1'], PDO::PARAM_STR);
         $db_query->bindvalue(':address2', $_POST['settings-company-address2'], PDO::PARAM_STR);
@@ -28,7 +28,7 @@ if (isset($_POST['settings-company-name'])) {
         $db_query->bindvalue(':bank_name', $_POST['settings-invoice-bank'], PDO::PARAM_STR);
         $db_query->bindvalue(':account_no', $_POST['settings-invoice-account-no'], PDO::PARAM_STR);
         $db_query->bindvalue(':additional_info', $_POST['settings-additional-info'], PDO::PARAM_STR);
-        $db_query->bindvalue(':login', $user['login'], PDO::PARAM_STR);
+        $db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
         $db_query->execute();
 
         // Change data in $user assoc array
