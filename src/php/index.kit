@@ -7,23 +7,24 @@
         if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
         if (isset($user) && $user['is_logged']) {
-                $account_options = '
+                $account_options = <<<HTML
                 <div class="home__top-right-logged-user"> 
                         <div class="home__top-right-logged-user-info">
-                                <img class="home__top-right-logged-user-avatar" src="./assets/img/avatars/'. $user['avatar'] .'" alt="user photo">
+                                <img class="home__top-right-logged-user-avatar" src="./assets/img/avatars/{$user['avatar']}" alt="user photo">
                                 <div>
-                                        <p><strong>' . $user['login'] . '</strong></p>
-                                        <p>' . $user['email'] . '</p>
+                                        <p><strong>{$user['login']}</strong></p>
+                                        <p>{$user['email']}</p>
                                 </div>
                         </div>
                         <div class="home__top-right-logged-user-settings">
                                 <a href="./dashboard.php"><button>App</button></a>
                                 <a href="./php_scripts/logout.php"><button>Log out</button></a>
                         </div>
-                </div>';
+                </div>
+                HTML;
                         
         } else {
-                $account_options = '
+                $account_options = <<<HTML
                 <div class="home__top-right-btns">
                         <a href="./loginform.php">
                                 <button class="home__top-right-btn login-btn">Sign in</button>
@@ -31,7 +32,8 @@
                         <a href="./registration.php">
                                 <button class="home__top-right-btn register-btn">Register</button>
                         </a>
-                </div>';
+                </div>
+                HTML;
         }
         
 ?>
