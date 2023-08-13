@@ -75,6 +75,9 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {
                 session_start();
+
+                // Get user data to $user assoc array
+                if (isset($_SESSION['user'])) $user = $_SESSION['user'];
         }
 ?>
 <div class="nav">
@@ -124,7 +127,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

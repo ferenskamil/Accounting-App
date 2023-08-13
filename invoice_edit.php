@@ -54,6 +54,9 @@ if (isset($_POST['invoice_no_to_edit'])) {
         <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {
                 session_start();
+
+                // Get user data to $user assoc array
+                if (isset($_SESSION['user'])) $user = $_SESSION['user'];
         }
 ?>
 <div class="nav">
@@ -103,7 +106,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./assets/img/avatars/<?php echo $_SESSION['avatar_img'] ?>" alt="user photo">
+                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>
