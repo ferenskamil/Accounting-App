@@ -561,7 +561,12 @@ try {
 
         /*
         Confirmation after successful mailing */
-        echo '<strong>Message has been sent</strong>';
+        $_SESSION['comment_after_email'] = "Invoice No. <b>" . $_POST['invoice_no_to_send'] . "</b> has been successfylly sent to <b>" . $user['company'] ."</b>.";
+        $_SESSION['invoice_no_to_display'] = $_POST['invoice_no_to_send'];
+
+        /*
+        Redirect to app*/
+        Header('Location: ../../invoice_preview.php');
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

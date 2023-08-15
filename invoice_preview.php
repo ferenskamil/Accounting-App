@@ -205,6 +205,18 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                 </div>');
 
                                 unset($_SESSION['comment_after_edit']);
+                        } else if (isset($_SESSION['comment_after_email'])) {
+                                echo('
+                                <div class="invoice__pop-up pop-up">
+                                        <div class="invoice__pop-up-box">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <p class="invoice__pop-up-text">'.$_SESSION['comment_after_email'].'</p>
+                                        </div>
+                                        <button class="close-pop-up">
+                                                <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                </div>');
+                                unset($_SESSION['comment_after_email']);
                         }
                 ?>
                 <div class="invoice__container">
