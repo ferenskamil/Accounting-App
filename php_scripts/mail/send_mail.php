@@ -17,9 +17,6 @@ require '../../assets/PHPMailer/src/SMTP.php';
 // Get user data to $user assoc array
 session_start();
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
-$invoice_no = $_POST['invoice_no_to_send'];
-print_r($invoice_no);
-print_r($_POST['invoice_no_to_send']);
 
 // - - - - - - - - - 
 // TEMPLATE - PREPARE FOR SENDING EMAIL
@@ -56,7 +53,7 @@ $body_html = <<<HTML
                     <div class=" content__message" style="padding: 10px;">
                         <img src="cid:logoimg" alt="logo" style="height: 50px; margin: 10px 0">
                         <h1 style="margin-top: 0">Hello!</h1>
-                        <p>User <b>{$user['company']}</b> has just issued you an invoice No. <b>{$invoice_no}</b> for its
+                        <p>User <b>{$user['company']}</b> has just issued you an invoice No. <b>{$_POST['invoice_no_to_send']}</b> for its
                                 services.</p>
                         <p>Pay it according to the deadline or contact the <b>{$user['company']}</b> for clarification.
                         </p>
@@ -150,7 +147,6 @@ try {
         $mail->Body    = $body_html;
         $mail->AltBody = $body_alt;
         
-
         /*
         SEND MESSAGE
         Send email after configuration */
