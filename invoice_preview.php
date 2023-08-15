@@ -100,14 +100,14 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                         </div>
                         <div class="confirm-send__pop-up-buttons">
                                 <form action="#" method="post">
-                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
+                                        <input hidden type="text" id="confirm-send-edit-btn-hidden-input" name="invoice-no">
                                         <button type="submit" class="confirm-send__pop-up-buttons-edit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                 Edit</button>
                                 </form>
                                 <form action="#" method="post">
-                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
-                                        <input hidden type="text" id="pop-up-email-hidden-input">
+                                        <input hidden type="text" id="confirm-send-send-btn-hidden-input" name="invoice-no">
+                                        <input hidden type="text" id="pop-up-email-hidden-input" name="recipient-email">
                                         <button type="submit" class="confirm-send__pop-up-buttons-send">
                                                 <i class="fa-solid fa-paper-plane"></i>
                                                 Send</button>

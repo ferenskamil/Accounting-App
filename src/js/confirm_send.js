@@ -35,6 +35,25 @@ const showSendConfirmMessage = () => {
 	copyValueToSpan('.invoice-address1', '.confirm-send-address1');
 	copyValueToSpan('.invoice-address2', '.confirm-send-address2');
 	copyValueToSpan('.invoice-company-code', '.confirm-send-company-code');
+
+	// Set invoice no. as values of hidden inputs
+	const invoiceNo = document.querySelector('.invoice-no');
+	const editBtnHiddenInput = document.querySelector(
+		'#confirm-send-edit-btn-hidden-input'
+	);
+	const sendBtnHiddenInput = document.querySelector(
+		'#confirm-send-send-btn-hidden-input'
+	);
+	const recipientEmailInput = document.querySelector(
+		'#confirm-send__pop-up-email'
+	);
+	const emailHiddenInput = document.querySelector(
+		'#pop-up-email-hidden-input'
+	);
+
+	editBtnHiddenInput.value = invoiceNo.textContent;
+	sendBtnHiddenInput.value = invoiceNo.textContent;
+	emailHiddenInput.value = recipientEmailInput.value;
 };
 sendBtn.addEventListener('click', showSendConfirmMessage);
 
