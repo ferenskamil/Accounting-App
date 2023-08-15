@@ -14,6 +14,13 @@ require '../../assets/PHPMailer/src/Exception.php';
 require '../../assets/PHPMailer/src/PHPMailer.php';
 require '../../assets/PHPMailer/src/SMTP.php';
 
+// Get user data to $user assoc array
+session_start();
+if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+$invoice_no = $_POST['invoice_no_to_send'];
+print_r($invoice_no);
+print_r($_POST['invoice_no_to_send']);
+
 // - - - - - - - - - 
 // TEMPLATE - PREPARE FOR SENDING EMAIL
 
@@ -26,6 +33,7 @@ $smtp_password = 'rhayhozrhthmtckg';
 
 $sender_mail = 'testowedev123@gmail.com';
 $sender_name = 'Accounting App';
+// $recipient_mail = $_POST['recipient_mail'];
 $recipient_mail = 'mr.kaam@gmail.com';
 $recipient_name = 'Kamil Ferens';  
 $reply_to_mail = 'testowedev123@gmail.com';
@@ -49,14 +57,14 @@ $body_html = <<<HTML
                     <div class=" content__message" style="padding: 10px;">
                         <img src="cid:logoimg" alt="logo" style="height: 50px; margin: 10px 0">
                         <h1 style="margin-top: 0">Hello!</h1>
-                        <p>User <b>HairDresser BeSmile</b> has just issued you an invoice No. <b>01/08/2023</b> for its
+                        <p>User <b>{$user['company']}</b> has just issued you an invoice No. <b>{$invoice_no}</b> for its
                                 services.</p>
-                        <p>Pay it according to the deadline or contact the <b>HairDresser BeSmile</b> for clarification.
+                        <p>Pay it according to the deadline or contact the <b>{$user['company']}</b> for clarification.
                         </p>
                         <p>An invoice is attached to this message as pdf file.</p>
                 </div>
                 <div class="content__footer" style="padding: 10px;background-color: #f7f7f7;">
-                        <p style="margin: 0;font-size: 11px;color: #88898c;">This message was sent to <span class="recipient__mail" style="text-decoration: underline;color: #003147;">test@gmail.com</span>. If you have
+                        <p style="margin: 0;font-size: 11px;color: #88898c;">This message was sent to <span class="recipient__mail" style="text-decoration: underline;color: #003147;">{$recipient_mail}</span>. If you have
                                 questions or complaints, please <b>contact us</b>.</p>
                         <br>
                         <p style="margin: 0;font-size: 11px;color: #88898c;">Accounting App, Poland. Thank you for using!</p>
@@ -69,13 +77,13 @@ $body_html = <<<HTML
 HTML;
 $body_alt = "Hello!\r\n\r\n
 
-    User Hairdresser BeSmile has just issued you an invoice No. 01/08/2023 for its services.\r\n
-    Pay it according to the deadline or contact the Hairdresser BeSmile for clarification. \r\n\r\n
+    User" . $user['company'] . "has just issued you an invoice No. " . $invoice_no . " for its services.\r\n
+    Pay it according to the deadline or contact the" . $user['company'] . "for clarification. \r\n\r\n
 
     An invoice should be attached to this message as pdf file.\r\n
     If the invoice is not attached to this email, please contact us and we will solve the problem as soon as possible. We apologize for the complication. \r\n\r\n
 
-    This message was sent to test@gmail.com. If it's not you, please ignore it and report it to us.\r\n\r\n 
+    This message was sent to" . $recipient_mail . ". If it's not you, please ignore it and report it to us.\r\n\r\n 
 
     Accounting App, Poland. Thank you for using!";
 
