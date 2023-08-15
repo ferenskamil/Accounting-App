@@ -44,16 +44,9 @@ const showSendConfirmMessage = () => {
 	const sendBtnHiddenInput = document.querySelector(
 		'#confirm-send-send-btn-hidden-input'
 	);
-	const recipientEmailInput = document.querySelector(
-		'#confirm-send__pop-up-email'
-	);
-	const emailHiddenInput = document.querySelector(
-		'#pop-up-email-hidden-input'
-	);
 
 	editBtnHiddenInput.value = invoiceNo.textContent;
 	sendBtnHiddenInput.value = invoiceNo.textContent;
-	emailHiddenInput.value = recipientEmailInput.value;
 };
 sendBtn.addEventListener('click', showSendConfirmMessage);
 
@@ -68,3 +61,18 @@ const hideSendConfirmMess = () => {
 };
 
 returnBtn.addEventListener('click', hideSendConfirmMess);
+
+// - - - - - - -
+// Update hidden input with recipient email
+const recipientEmailInput = document.querySelector(
+	'#confirm-send__pop-up-email'
+);
+
+const updateRecipientEmail = () => {
+	const emailHiddenInput = document.querySelector(
+		'#pop-up-email-hidden-input'
+	);
+	emailHiddenInput.value = recipientEmailInput.value;
+};
+
+recipientEmailInput.addEventListener('input', updateRecipientEmail);
