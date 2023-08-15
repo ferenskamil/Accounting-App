@@ -28,11 +28,10 @@ $sender_mail = 'testowedev123@gmail.com';
 $sender_name = 'Accounting App';
 $recipient_mail = 'mr.kaam@gmail.com';
 $recipient_name = 'Kamil Ferens';  
-$reply_to_mail = $sender_mail;
+$reply_to_mail = 'testowedev123@gmail.com';
 $reply_to_name = 'Customer Service | Accounting App';
 
-
-$subject = 'This is the subject';
+$subject = 'New Invoice | Accounting App';
 $body_html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
@@ -41,28 +40,44 @@ $body_html = <<<HTML
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mail Message</title>
-        <style>
-            .bold {
-                font-weight: 700;
-                text-decoration: underline;
-            }
-
-        </style>
-
-
+        
     </head>
 
     <body>
-        <h1 class="bold">Hello World Again</h1>
-        
-        <script src="test.js"></script>
+        <main>
+                <div class="content" " style="width: 100%;max-width: 480px;margin: 0 auto;color: #000000;">
+                    <div class=" content__message" style="padding: 10px;">
+                        <img src="cid:logoimg" alt="logo" style="height: 50px; margin: 10px 0">
+                        <h1 style="margin-top: 0">Hello!</h1>
+                        <p>User <b>HairDresser BeSmile</b> has just issued you an invoice No. <b>01/08/2023</b> for its
+                                services.</p>
+                        <p>Pay it according to the deadline or contact the <b>HairDresser BeSmile</b> for clarification.
+                        </p>
+                        <p>An invoice is attached to this message as pdf file.</p>
+                </div>
+                <div class="content__footer" style="padding: 10px;background-color: #f7f7f7;">
+                        <p style="margin: 0;font-size: 11px;color: #88898c;">This message was sent to <span class="recipient__mail" style="text-decoration: underline;color: #003147;">test@gmail.com</span>. If you have
+                                questions or complaints, please <b>contact us</b>.</p>
+                        <br>
+                        <p style="margin: 0;font-size: 11px;color: #88898c;">Accounting App, Poland. Thank you for using!</p>
+                </div>
+                </div>
+        </main>
     </body>
 
 </html>
 HTML;
-$body_alt = 'This is the body in plain text for non-HTML mail clients';
+$body_alt = "Hello!\r\n\r\n
 
+    User Hairdresser BeSmile has just issued you an invoice No. 01/08/2023 for its services.\r\n
+    Pay it according to the deadline or contact the Hairdresser BeSmile for clarification. \r\n\r\n
 
+    An invoice should be attached to this message as pdf file.\r\n
+    If the invoice is not attached to this email, please contact us and we will solve the problem as soon as possible. We apologize for the complication. \r\n\r\n
+
+    This message was sent to test@gmail.com. If it's not you, please ignore it and report it to us.\r\n\r\n 
+
+    Accounting App, Poland. Thank you for using!";
 
 // - - - - - - - - - 
 // SEND MAIL
@@ -109,7 +124,8 @@ try {
         ATTACHMENTS
         ->addAttachment('path', 'filename')     - add attachment (filename is optional) */
         // [code space]
-
+        // $mail->addAttachment('app_icon_dark.png');
+        $mail->addEmbeddedImage('../../assets/img/logos/default_logo.png', 'logoimg'); // opisz jak to działa
         /*
         CONTENT
         ->isHTML(true);         - inform that we will want to send email as html
