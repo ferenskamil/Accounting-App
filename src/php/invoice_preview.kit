@@ -62,11 +62,11 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                 </div>       
         </div>
-
+        <!-- @include './confirm_send' -->
         <!-- @include './nav_topbar' -->
         <main class="main invoice">
                 <div class="invoice__settings">
-                        <button><i class="fa-solid fa-paper-plane"></i>Send</button>
+                        <button class="send-btn"><i class="fa-solid fa-paper-plane"></i>Send</button>
                         <form action="./invoice_edit.php" method="post">
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
@@ -223,6 +223,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/popup_message.min.js"></script>
         <script src="./dist/js/confirm_popup.min.js"></script>
+        <script src="./dist/js/confirm_send.min.js"></script>
 </body>
 
 </html>

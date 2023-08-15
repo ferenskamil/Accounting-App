@@ -71,7 +71,51 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                 </div>       
         </div>
-
+        <!--
+The following popup requires a JS "confirm_send.js" file to be placed at the end of the target script. 
+ -->
+<div class="confirm-send__shadow">
+                <div class="confirm-send__pop-up">
+                        <div class="confirm-send__pop-up-message">
+                                <p>Are you sure you want to send invoice No.&nbsp;<span>01/01/2023</span>?</p>
+                                <div class="confirm-send__pop-up-message-preview">
+                                        <div>
+                                                <p><b>Invoice date: </b> 2023-08-11</p>
+                                                <p><b>City: </b>New York</p>
+                                                <p><b>Bank: </b>Citibank</p>
+                                                <p><b>Account no.: </b><br>00 1111 2222 3333 4444 5555 6666</p>
+                                                <p><b>Payment term.: </b>7 days</p>
+                                                <p><b>To pay: </b>30,98$</p>
+                                        </div>
+                                        <div>
+                                                <h3>Bill to:</h3>
+                                                <p>John Doe</p>
+                                                <p>address1</p>
+                                                <p>address2</p>
+                                                <p>Company_code</p>
+                                        </div>
+                                </div>
+                                <label for="confirm-send__pop-up-email">Send to</label>
+                                <input type="email" id="confirm-send__pop-up-email" placeholder="Enter the recipient's email address">
+                        </div>
+                        <div class="confirm-send__pop-up-buttons">
+                                <form action="#" method="post">
+                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
+                                        <button type="submit" class="confirm-send__pop-up-buttons-edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                Edit</button>
+                                </form>
+                                <form action="#" method="post">
+                                        <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
+                                        <input hidden type="text" id="pop-up-email-hidden-input">
+                                        <button type="submit" class="confirm-send__pop-up-buttons-send">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                                Send</button>
+                                </form>
+                                <button class="confirm-send__pop-up-buttons-return">Return</button>
+                        </div>
+                </div>
+        </div>
         <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {
                 session_start();
@@ -133,7 +177,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 </div>
         <main class="main invoice">
                 <div class="invoice__settings">
-                        <button><i class="fa-solid fa-paper-plane"></i>Send</button>
+                        <button class="send-btn"><i class="fa-solid fa-paper-plane"></i>Send</button>
                         <form action="./invoice_edit.php" method="post">
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
@@ -290,6 +334,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         <script src="./dist/js/index.min.js"></script>
         <script src="./dist/js/popup_message.min.js"></script>
         <script src="./dist/js/confirm_popup.min.js"></script>
+        <script src="./dist/js/confirm_send.min.js"></script>
 </body>
 
 </html>

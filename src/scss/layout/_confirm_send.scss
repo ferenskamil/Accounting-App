@@ -1,0 +1,118 @@
+@use '../utilities/' as *;
+
+.confirm-send {
+	&__shadow {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.3);
+		z-index: 100;
+
+		&--active {
+			display: flex;
+		}
+	}
+
+	&__pop-up {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 600px;
+		position: relative;
+		padding: 1em;
+		background-color: $white;
+		font-size: 1.3rem;
+		border: 1px solid $green;
+		border-top: 5px solid $green;
+		z-index: 1001;
+
+		&-message {
+			margin-bottom: 1em;
+
+			p {
+				margin: 1em 0;
+				font-size: 1.5rem;
+
+				span {
+					font-weight: 700;
+				}
+			}
+
+			p:first-child {
+				margin-top: 0;
+			}
+
+			label {
+				font-weight: 700;
+			}
+
+			input {
+				padding: 0.2em 0.3em;
+				width: 100%;
+			}
+
+			&-preview {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 2em;
+				margin: 1em 0;
+
+				div {
+					width: fit-content;
+
+					p {
+						font-size: 1.2rem;
+						margin: 0;
+						word-wrap: break-word;
+					}
+				}
+			}
+		}
+
+		&-buttons {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			gap: 1em;
+			max-width: 100%;
+			flex-wrap: wrap;
+
+			form {
+				margin: 0;
+				padding: 0;
+			}
+
+			&-edit {
+				@include button($second-color, $main-color);
+			}
+
+			&-send {
+				@include button($green, $green-dark);
+			}
+
+			&-return {
+				@include button($white, $red);
+				color: black;
+				border: 1px solid black;
+				&:active {
+					color: $white;
+				}
+			}
+
+			&-edit,
+			&-send,
+			&-return {
+				margin-bottom: 0;
+				align-self: start;
+			}
+		}
+	}
+}
