@@ -34,7 +34,7 @@ $smtp_password = 'rhayhozrhthmtckg';
 $sender_mail = 'testowedev123@gmail.com';
 $sender_name = 'Accounting App';
 $recipient_mail = $_POST['recipient_mail'];
-$recipient_name = 'Kamil Ferens';  
+$recipient_name = '';  
 $reply_to_mail = 'testowedev123@gmail.com';
 $reply_to_name = 'Customer Service | Accounting App';
 
