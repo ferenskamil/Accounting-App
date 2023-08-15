@@ -77,22 +77,22 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
 <div class="confirm-send__shadow">
                 <div class="confirm-send__pop-up">
                         <div class="confirm-send__pop-up-message">
-                                <p>Are you sure you want to send invoice No.&nbsp;<span>01/01/2023</span>?</p>
+                                <p>Are you sure you want to send invoice No.&nbsp;<span class="confirm-send-no"></span>?</p>
                                 <div class="confirm-send__pop-up-message-preview">
                                         <div>
-                                                <p><b>Invoice date: </b> 2023-08-11</p>
-                                                <p><b>City: </b>New York</p>
-                                                <p><b>Bank: </b>Citibank</p>
-                                                <p><b>Account no.: </b><br>00 1111 2222 3333 4444 5555 6666</p>
-                                                <p><b>Payment term.: </b>7 days</p>
-                                                <p><b>To pay: </b>30,98$</p>
+                                                <p><b>Invoice date: </b> <span class="confirm-send-date"></span></p>
+                                                <p><b>City: </b><span class="confirm-send-city"></span></p>
+                                                <p><b>Bank: </b><span class="confirm-send-bank"></span></p>
+                                                <p><b>Account no.: </b><br><span class="confirm-send-account-no">00 1111 2222 3333 4444 5555 6666</span></p>
+                                                <p><b>Payment term.: </b><span class="confirm-send-term"></span></p>
+                                                <p><b>To pay: </b><span class="confirm-send-to-pay"></span></p>
                                         </div>
                                         <div>
                                                 <h3>Bill to:</h3>
-                                                <p>John Doe</p>
-                                                <p>address1</p>
-                                                <p>address2</p>
-                                                <p>Company_code</p>
+                                                <p class="confirm-send-name">John Doe</p>
+                                                <p class="confirm-send-address1">address1</p>
+                                                <p class="confirm-send-address2">address2</p>
+                                                <p class="confirm-send-company-code">Company_code</p>
                                         </div>
                                 </div>
                                 <label for="confirm-send__pop-up-email">Send to</label>
@@ -211,23 +211,23 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $user['logo'] ?>"
                                         alt="company logo">
-                                <h2 class="invoice__paper-title">Invoice no. <span><?php 
+                                <h2 class="invoice__paper-title">Invoice no. <span class="invoice-no"><?php 
                                         echo $invoice['no'] 
                                 ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
-                                        <p><Strong>Invoice date: </Strong><span>
+                                        <p><Strong>Invoice date: </Strong><span class="invoice-date">
                                                 <?php echo $invoice['date'] ?>
                                         </span></p>
-                                        <p><Strong>City: </Strong><span>
+                                        <p><Strong>City: </Strong><span class="invoice-city">
                                                 <?php echo $invoice['city'] ?>
                                         </span></p>
-                                        <p><Strong>Bank: </Strong><span>
+                                        <p><Strong>Bank: </Strong><span class="invoice-bank">
                                                 <?php echo $invoice['bank'] ?>
                                         </span></p>
-                                        <p><Strong>Account no.: </Strong><span>
+                                        <p><Strong>Account no.: </Strong><span class="invoice-account-no">
                                                 <?php echo $invoice['account_no'] ?>
                                         </span></p>
-                                        <p><Strong>Payment term: </Strong><span>
+                                        <p><Strong>Payment term: </Strong><span class="invoice-term">
                                                 <?php echo $invoice['payment_term'] ?>
                                         </span></p>
                                 </div>
@@ -248,16 +248,16 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                 </div>
                                 <div class="invoice__paper-content invoice-customer">
                                         <h3>Bill to:</h3>
-                                        <p><span>
+                                        <p><span class="invoice-name">
                                                 <?php echo $invoice['customer_name'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-address1">
                                                 <?php echo $invoice['customer_address1'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-address2">
                                                 <?php echo $invoice['customer_address2'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-company-code">
                                                 <?php echo "NIP: ".$invoice['customer_company_no'] ?>
                                         </span></p>
                                 </div>
@@ -312,7 +312,7 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                         </table>
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
-                                        <p><Strong>To pay: </Strong><span>
+                                        <p><Strong>To pay: </Strong><span class="invoice-to-pay">
                                                 <?php echo number_format($invoice['to_pay'], 2, ',',' ')." $" ?>
                                         </span></p>
                                         <p><Strong>In words: </Strong><span>

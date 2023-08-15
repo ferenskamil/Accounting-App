@@ -100,23 +100,23 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $user['logo'] ?>"
                                         alt="company logo">
-                                <h2 class="invoice__paper-title">Invoice no. <span><?php 
+                                <h2 class="invoice__paper-title">Invoice no. <span class="invoice-no"><?php 
                                         echo $invoice['no'] 
                                 ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
-                                        <p><Strong>Invoice date: </Strong><span>
+                                        <p><Strong>Invoice date: </Strong><span class="invoice-date">
                                                 <?php echo $invoice['date'] ?>
                                         </span></p>
-                                        <p><Strong>City: </Strong><span>
+                                        <p><Strong>City: </Strong><span class="invoice-city">
                                                 <?php echo $invoice['city'] ?>
                                         </span></p>
-                                        <p><Strong>Bank: </Strong><span>
+                                        <p><Strong>Bank: </Strong><span class="invoice-bank">
                                                 <?php echo $invoice['bank'] ?>
                                         </span></p>
-                                        <p><Strong>Account no.: </Strong><span>
+                                        <p><Strong>Account no.: </Strong><span class="invoice-account-no">
                                                 <?php echo $invoice['account_no'] ?>
                                         </span></p>
-                                        <p><Strong>Payment term: </Strong><span>
+                                        <p><Strong>Payment term: </Strong><span class="invoice-term">
                                                 <?php echo $invoice['payment_term'] ?>
                                         </span></p>
                                 </div>
@@ -137,16 +137,16 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="invoice__paper-content invoice-customer">
                                         <h3>Bill to:</h3>
-                                        <p><span>
+                                        <p><span class="invoice-name">
                                                 <?php echo $invoice['customer_name'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-address1">
                                                 <?php echo $invoice['customer_address1'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-address2">
                                                 <?php echo $invoice['customer_address2'] ?>
                                         </span></p>
-                                        <p><span>
+                                        <p><span class="invoice-company-code">
                                                 <?php echo "NIP: ".$invoice['customer_company_no'] ?>
                                         </span></p>
                                 </div>
@@ -201,7 +201,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                         </table>
                                 </div>
                                 <div class="invoice__paper-content invoice-sum">
-                                        <p><Strong>To pay: </Strong><span>
+                                        <p><Strong>To pay: </Strong><span class="invoice-to-pay">
                                                 <?php echo number_format($invoice['to_pay'], 2, ',',' ')." $" ?>
                                         </span></p>
                                         <p><Strong>In words: </Strong><span>
