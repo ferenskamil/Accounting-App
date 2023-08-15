@@ -23,7 +23,12 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                         </div>
                                 </div>
                                 <label for="confirm-send__pop-up-email">Send to</label>
-                                <input type="email" id="confirm-send__pop-up-email" placeholder="Enter the recipient's email address">
+                                <input type="email" id="confirm-send__pop-up-email" placeholder="Enter the recipient's email address" value="<?php
+                                        if (isset($_SESSION['recipient_email_input_content']))
+                                        {
+                                                echo $_SESSION['recipient_email_input_content'];
+                                        }
+                                ?>">
                         </div>
                         <div class="confirm-send__pop-up-buttons">
                                 <form action="./invoice_edit.php" method="post">
@@ -34,7 +39,12 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                 </form>
                                 <form action="./php_scripts/mail/send_mail.php" method="post">
                                         <input hidden type="text" id="confirm-send-send-btn-hidden-input" name="invoice_no_to_send">
-                                        <input hidden type="text" id="pop-up-email-hidden-input" name="recipient_mail">
+                                        <input hidden type="text" id="pop-up-email-hidden-input" name="recipient_mail" value="<?php
+                                                if (isset($_SESSION['recipient_email_input_content']))
+                                                {
+                                                        echo $_SESSION['recipient_email_input_content'];
+                                                }
+                                        ?>">
                                         <button type="submit" class="confirm-send__pop-up-buttons-send">
                                                 <i class="fa-solid fa-paper-plane"></i>
                                                 Send</button>

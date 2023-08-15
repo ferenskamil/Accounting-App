@@ -6,6 +6,10 @@ session_start();
 require_once '../redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Set a variable to include the recipient's email. 
+// This email will be displayed in the input in case the script execution fails.  
+$_SESSION['recipient_email_input_content'] = $_POST['recipient_mail'];
+
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
@@ -563,6 +567,10 @@ try {
         Confirmation after successful mailing */
         $_SESSION['comment_after_email'] = "Invoice No. <b>" . $_POST['invoice_no_to_send'] . "</b> has been successfylly sent to <b>" . $user['company'] ."</b>.";
         $_SESSION['invoice_no_to_display'] = $_POST['invoice_no_to_send'];
+
+        /*
+        Delete recipient email input content after successful sending email*/
+        unset($_SESSION['recipient_email_input_content']);
 
         /*
         Redirect to app*/
