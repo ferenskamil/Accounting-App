@@ -3,9 +3,9 @@ const setLogoColor = () => {
 	const logo = document.querySelector('.home__top-left img');
 
 	if (window.innerWidth >= 768) {
-		logo.src = './dist/img/app_icon_dark.png';
+		logo.src = '../assets/app_img/icon_dark.png';
 	} else {
-		logo.src = './dist/img/app_icon_white.png';
+		logo.src = '../assets/app_img/icon_white.png';
 	}
 };
 
