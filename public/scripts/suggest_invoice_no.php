@@ -9,7 +9,7 @@ function suggest_invoice_no(int $num = 0) {
 };
 
 // Connect database
-require_once './php_scripts/db_database.php';
+require_once '../config/database/db_database.php';
 
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];

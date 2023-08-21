@@ -3,7 +3,7 @@
 // DOWNLOAD INVOICE DATA
 session_start();
 
-require_once './redirect_if_user_not_logged_in.php';
+require_once '../../public/scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
@@ -12,13 +12,13 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 // Exit the script if the user did not submit the form
 if (!isset($_POST['invoice-id'])) {
         $_SESSION['comment_download_error'] = "Something went wrong, the invoice was not found. Try again in a while. ";
-        header('Location: ../invoice_list.php');
+        header('Location: ../../public/list.php');
         exit();
 }
 
 // If invoice id was found...
 // connect with database
-require_once './db_database.php';
+require_once '../database/db_database.php';
 
 // Dowload invoice data from database to array
 $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND id = :invoice_id");
@@ -69,7 +69,7 @@ $total_sum_gross = number_format($invoice['sum_gross'], 2, ',',' ');
 // DOWLOAD DOMPDF LIBRARY
 
 // include autoloader
-require_once '../assets/dompdf/autoload.inc.php';
+require_once '../../libs/dompdf/autoload.inc.php';
 
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
@@ -92,7 +92,7 @@ $dompdf = new Dompdf([
 // PREPARE TO GENERATE PDF
 
 // add image path
-$logo_img_path = "../assets/img/logos/{$user['logo']}";
+$logo_img_path = "../../assets/user_img/logos/{$user['logo']}";
 $dompdf->getOptions()->setChroot("$logo_img_path");
 
 $html = <<<HTML

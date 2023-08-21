@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 
-require_once './php_scripts/redirect_if_user_not_logged_in.php';
+require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 <h1 class="settings__title">Settings</h1>
                 <p class="settings__description">Here you can set default information for all invoices you will issue in
                         the future. Later, too, you will be able to edit them from within a single invoice</p>
-                <form action="./php_scripts/upload_avatar.php" method="post" enctype="multipart/form-data"class="settings__form-change-avatar">
+                <form action="./scripts/upload_avatar.php" method="post" enctype="multipart/form-data"class="settings__form-change-avatar">
                         <h2>User photo</h2>
                         <div>
                                 <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
@@ -38,7 +38,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                                 ?></p>
                         </div>
                 </form>
-                <form action="./php_scripts/upload_logo.php" method="post" enctype="multipart/form-data"class="settings__form-change-company-logo">
+                <form action="./scripts/upload_logo.php" method="post" enctype="multipart/form-data"class="settings__form-change-company-logo">
                         <h2>Company logo</h2>
                         <div>
                                 <img src="./assets/img/logos/<?php echo $user['logo'] ?>" alt="company logo">
@@ -52,7 +52,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                                         ?></p>
                         </div>
                 </form>
-                <form action="./php_scripts/change_company_data.php" method="post" class="settings__form">
+                <form action="./scripts/change_company_data.php" method="post" class="settings__form">
                         <div class="settings__form-box">
                                 <h2>Company info</h2>
                                 <label for="settings-company-name">Name: </label>
@@ -101,9 +101,9 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 </form>
 
         </main>
-        <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/settings.min.js"></script>
-        <script src="./dist/js/invoice/sanitize_account_number.min.js"></script>
+        <script src="../assets/js/index.min.js"></script>
+        <script src="../assets/js/settings.min.js"></script>
+        <script src="../assets/js/invoice/sanitize_account_number.min.js"></script>
 </body>
 
 </html>

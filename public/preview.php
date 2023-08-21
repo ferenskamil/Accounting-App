@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require_once './php_scripts/redirect_if_user_not_logged_in.php';
+require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
@@ -20,7 +20,7 @@ if (isset($_POST['invoice-no'])) {
 }
 
 if ($invoice_no_to_display !== '') {
-        require_once './php_scripts/db_database.php';
+        require_once '../config/database/db_database.php';
         
         $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
         $db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
@@ -54,7 +54,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                                         <span>01/01/2023</span> ?</p>
                         </div>
                         <div class="confirm__pop-up-buttons">
-                                <form action="./php_scripts/delete_invoice.php" method="post">
+                                <form action="./scripts/delete_invoice.php" method="post">
                                         <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
                                         <button type="submit" class="confirm__pop-up-buttons-delete">Delete</button>
                                 </form>
@@ -69,11 +69,11 @@ require_once '../templates/nav_topbar.php';
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button class="send-btn"><i class="fa-solid fa-paper-plane"></i>Send</button>
-                        <form action="./invoice_edit.php" method="post">
+                        <form action="./add_edit_form.php" method="post">
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </form>
-                        <form action="./php_scripts/download_pdf.php" method="post">
+                        <form action="../config/dompdf/download_pdf.php" method="post">
                                 <input hidden type="text" value="<?php echo $invoice['id'] ?>" name="invoice-id">
                                 <button type="submit">
                                         <i class="fa-solid fa-download"></i>
@@ -112,7 +112,7 @@ require_once '../templates/nav_topbar.php';
                 ?>
                 <div class="invoice__container">
                         <div class="invoice__paper">
-                                <img class="invoice__paper-logo" src="./assets/img/logos/<?php echo $user['logo'] ?>"
+                                <img class="invoice__paper-logo" src="../assets/user_img/logos/<?php echo $user['logo'] ?>"
                                         alt="company logo">
                                 <h2 class="invoice__paper-title">Invoice no. <span class="invoice-no"><?php 
                                         echo $invoice['no'] 
@@ -234,10 +234,10 @@ require_once '../templates/nav_topbar.php';
                         </div>
                 </div>
         </main>
-        <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/popup_message.min.js"></script>
-        <script src="./dist/js/confirm_popup.min.js"></script>
-        <script src="./dist/js/confirm_send.min.js"></script>
+        <script src="../assets/js/index.min.js"></script>
+        <script src="../assets/js/popup_message.min.js"></script>
+        <script src="../assets/js/confirm_popup.min.js"></script>
+        <script src="../assets/js/confirm_send.min.js"></script>
 </body>
 
 </html>

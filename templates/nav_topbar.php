@@ -11,7 +11,7 @@
                 <li>
                         <a href="./index.php" class="nav__item">
                                 <div class="nav__item-icon">
-                                        <img src="./dist/img/app_icon_white.png" alt="app logo">
+                                        <img src="../assets/app_img/icon_white.png" alt="app logo">
                                 </div>
                                 <div class="nav__item-title">
                                         <h2>AccountingApp</h2>
@@ -25,7 +25,7 @@
                         </a>
                 </li>
                 <li>
-                        <a href="./invoice_list.php" class="nav__item">
+                        <a href="./list.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-users"></i></span>
                                 <span class="nav__item-title">Invoice list</span>
                         </a>
@@ -37,7 +37,7 @@
                         </a>
                 </li>
                 <li>
-                        <a href="./php_scripts/logout.php" class="nav__item">
+                        <a href="./scripts/logout.php" class="nav__item">
                                 <span class="nav__item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                                 <span class="nav__item-title">Logout</span>
                         </a>
@@ -53,7 +53,7 @@
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="topbar__avatar">
-                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
+                <img src="../assets/user_img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
         </div>
         <div class="shadow"></div>
 </div>

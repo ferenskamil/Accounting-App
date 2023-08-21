@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once './php_scripts/redirect_if_user_not_logged_in.php';
+require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-require_once './php_scripts/db_database.php';
+require_once '../config/database/db_database.php';
 $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id");
 $db_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
 $db_query->execute();
@@ -32,7 +32,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                         <span>01/01/2023</span> ?</p>
                         </div>
                         <div class="confirm__pop-up-buttons">
-                                <form action="./php_scripts/delete_invoice.php" method="post">
+                                <form action="./scripts/delete_invoice.php" method="post">
                                         <input hidden type="text" id="pop-up-invoice-no-hidden-input" name="pop-up-invoice-no-hidden-input">
                                         <button type="submit" class="confirm__pop-up-buttons-delete">Delete</button>
                                 </form>
@@ -43,7 +43,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
 
         <?php require_once '../templates/nav_topbar.php';?>
         <main class="main invoice-list">
-                <a href="./invoice_edit.php" class="invoice-list__add-new-btn">
+                <a href="./add_edit_form.php" class="invoice-list__add-new-btn">
                         <button>
                                 <i class="fa-solid fa-plus"></i>Add new invoice
                         </button>
@@ -92,7 +92,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                         </thead>
                         <tbody class="invoice-list__table-tbody">
                                 <tr class="invoice-list__table-tbody-empty_info">
-                                        <td>You have not created any invoice yet. <a href="./invoice_edit.php">
+                                        <td>You have not created any invoice yet. <a href="./add_edit_form.php">
                                                 Create one now
                                         </a></td>
                                 </tr>
@@ -124,11 +124,11 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                                         </span>
                                                         not-send</td>
                                                 <td class="invoice-list__table-tbody-item-btns">
-                                                        <form action="./invoice_preview.php" method="post">
+                                                        <form action="./preview.php" method="post">
                                                                 <input hidden class="invoice-no-hidden-input" name="invoice-no" type="text" value="'.$invoice['no'].'">
                                                                 <button class="preview-btn"><i class="fa-solid fa-magnifying-glass"></i>View</button>
                                                         </form>
-                                                        <form action="./php_scripts/download_pdf.php" method="post">
+                                                        <form action="../config/dompdf/download_pdf.php" method="post">
                                                                 <input hidden class="invoice-id-hidden-input" name="invoice-id" type="text" value="'.$invoice['id'].'">
                                                                 <button type="submit">
                                                                         <i class="fa-solid fa-download"></i>
@@ -145,10 +145,10 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                 </table>
         </main>
 
-        <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/popup_message.min.js"></script>
-        <script src="./dist/js/confirm_popup.min.js"></script>
-        <script src="./dist/js/invoice_list.min.js"></script>
+        <script src="../assets/js/index.min.js"></script>
+        <script src="../assets/js/popup_message.min.js"></script>
+        <script src="../assets/js/confirm_popup.min.js"></script>
+        <script src="../assets/js/invoice_list.min.js"></script>
 
 </body>
 

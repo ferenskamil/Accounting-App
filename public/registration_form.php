@@ -17,13 +17,13 @@ session_start();
         <main class="register">
                 <a href="./index.php">
                         <div class="register__top">
-                                <img src="./dist/img/app_icon_white.png" alt="app logo">
+                                <img src="./../assets/app_img/icon_white.png" alt="app logo">
                                 <h2>AccountingApp</h2>
                         </div>
                 </a>
                 <h1 class="register__title">Sign up</h1>
                 <div class="register__wrapper">
-                        <form action="./php_scripts/register.php" method="post" class="register__form">
+                        <form action="./scripts/register.php" method="post" class="register__form">
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="login">Login</label>
                                         <input class="register__form-input" type="text" name="login"
@@ -78,7 +78,7 @@ session_start();
                         </form>
                 </div>
                 <div class="register__info">
-                <p>Already have an account? <a href="./loginform.php">Log in</a></p>
+                <p>Already have an account? <a href="./login_form.php">Log in</a></p>
                         <p>By signing up with AccountingApp, you agree to our <a href="#">Terms of service</a></p>
                 </div>
         </main>

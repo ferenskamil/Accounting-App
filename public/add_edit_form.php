@@ -1,13 +1,13 @@
 <?php 
 session_start();
 
-require_once './php_scripts/redirect_if_user_not_logged_in.php';
+require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-require_once './php_scripts/suggest_invoice_no.php';
+require_once './scripts/suggest_invoice_no.php';
 
 if (isset($_SESSION['is_user_wants_edit'])) unset($_SESSION['is_user_wants_edit']);
 
@@ -15,7 +15,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
         $_SESSION['invoice_no_to_edit'] = $_POST['invoice_no_to_edit'];
         $_SESSION['is_user_wants_edit'] = true;
 
-        require_once './php_scripts/db_database.php';
+        require_once '../config/database/db_database.php';
         $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
         $db_invoice_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
         $db_invoice_query->bindvalue(':invoice_no', $_POST['invoice_no_to_edit'], PDO::PARAM_STR);
@@ -47,16 +47,16 @@ if (isset($_POST['invoice_no_to_edit'])) {
                 <div class="invoice-edit">
                         <a href="<?php 
                                 if (isset($_POST['invoice_no_to_edit'])) { 
-                                        echo "./invoice_preview.php"; 
+                                        echo "./preview.php"; 
                                 } else {
-                                        echo "./invoice_list.php";
+                                        echo "./list.php";
                                 }
                         ?>">
                                 <button class="invoice-edit__back">
                                         <i class="fa-sharp fa-solid fa-arrow-rotate-left"></i>Return
                                 </button>
                         </a>
-                        <form action="./php_scripts/update_invoice_in_db.php" method="post" class="invoice-edit__form">
+                        <form action="./scripts/update_invoice_in_db.php" method="post" class="invoice-edit__form">
                                 <div class="invoice-edit__form-box invoice-edit__form-box-details ">
                                         <h2>Details</h2>
                                         <label for="invoice-no">Invoice no.</label>
@@ -320,11 +320,11 @@ if (isset($_POST['invoice_no_to_edit'])) {
                         </form>
                 </div>
         </main>
-        <script src="./dist/js/index.min.js"></script>
-        <script src="./dist/js/invoice/num_to_word.min.js"></script>
-        <script src="./dist/js/invoice/edit_form_services.min.js"></script>
-        <script src="./dist/js/invoice/edit_form_validation.min.js"></script>
-        <script src="./dist/js/invoice/sanitize_account_number.min.js"></script>
+        <script src="../assets/js/index.min.js"></script>
+        <script src="../assets/js/invoice/num_to_word.min.js"></script>
+        <script src="../assets/js/invoice/edit_form_services.min.js"></script>
+        <script src="../assets/js/invoice/edit_form_validation.min.js"></script>
+        <script src="../assets/js/invoice/sanitize_account_number.min.js"></script>
 </body>
 
 </html>

@@ -81,7 +81,7 @@ if (isset($_POST['position'])) {
         }
 }
 // connect with database
-require_once 'db_database.php';
+require_once '../../config/database/db_database.php';
 
 ////////////////////////////////
 // ADD OR EDIT INVOICE IN DATABASE 
@@ -275,5 +275,5 @@ if (isset($services_arr)){
 }
 ////////////////////////////////
 // Redirect to preview
-header('Location: ../invoice_preview.php');
+header('Location: ../preview.php');
 ?>

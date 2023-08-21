@@ -30,7 +30,7 @@ if (isset($_FILES['change-avatar-btn']['name'])) {
                 $new_img_name = $user['login']."_avatar_".date("Y-m-d").".".$img_extension;
                 
                 // connect with database
-                require_once 'db_database.php';
+                require_once '../../config/database/db_database.php';
                 
                 // delete old file from server 
                 $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");

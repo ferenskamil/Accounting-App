@@ -1,8 +1,8 @@
 <?php 
 
-function redirect_if_user_not_logged_in ($file_directory) {
+function redirect_if_user_not_logged_in ($page_directory) {
         if (!isset($_SESSION['user'])) {
-                header('Location: '.$file_directory);
+                header('Location: '.$page_directory);
                 exit();
         }
 }

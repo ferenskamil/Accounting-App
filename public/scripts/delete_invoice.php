@@ -6,7 +6,7 @@ $invoice_no_to_delete = $_POST['pop-up-invoice-no-hidden-input'];
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-require_once 'db_database.php';
+require_once '../../config/database/db_database.php';
 
 // Find invoice id
 $db_invoice_id_query = $db->prepare("SELECT id FROM invoices
@@ -32,6 +32,6 @@ $db_delete_services_query->execute();
 // Create comment message
 $_SESSION['comment_after_delete'] = "Invoice No. <span>".$invoice_no_to_delete."</span> has been successfully deleted.";
 
-header('Location: ../invoice_list.php');
+header('Location: ../list.php');
 
 ?>

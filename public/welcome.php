@@ -38,7 +38,7 @@
                         <!-- <p>An activation link has been sent to your email. If the message did not arrive, 
                                 <a href="#" class="send-again">send the activation link again.</a>
                         </p> -->
-                        <a href="./loginform.php">
+                        <a href="./login_form.php">
                                 <button class="welcome__wrapper-btn">Log in</button>
                         </a>
                 </div>

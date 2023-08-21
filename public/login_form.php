@@ -17,13 +17,13 @@
         <main class="register">
                 <a href="./index.php">
                         <div class="register__top">
-                                <img src="./dist/img/app_icon_white.png" alt="app logo">
+                                <img src="./../assets/app_img/icon_white.png" alt="app logo">
                                 <h2>AccountingApp</h2>
                         </div>
                 </a>
                 <h1 class="register__title">Sign in</h1>
                 <div class="register__wrapper">
-                        <form action="./php_scripts/login.php" method="post" class="register__form">
+                        <form action="./scripts/login.php" method="post" class="register__form">
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="login">Login</label>
                                         <input class="register__form-input" type="text" name="login"
@@ -41,7 +41,7 @@
                 </div>
                 <div class="register__info">
                         <p>Forgot your password? <a href="#">Reset password</a></p>
-                        <p>No account? <a href="./registration.php">Create one</a></p>
+                        <p>No account? <a href="./registration_form.php">Create one</a></p>
                 </div>
         </main>
 </body>

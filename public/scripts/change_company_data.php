@@ -6,7 +6,7 @@ session_start();
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
 if (isset($_POST['settings-company-name'])) {
-        require_once 'db_database.php';
+        require_once '../../config/database/db_database.php';
 
         // Change user company values in db
         $db_query = $db->prepare("UPDATE users SET 

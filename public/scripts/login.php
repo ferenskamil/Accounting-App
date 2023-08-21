@@ -6,7 +6,7 @@ $login = $_POST['login'];
 $password = $_POST['password1'];
 
 // database connection
-require_once 'db_database.php';
+require_once '../../config/database/db_database.php';
 
 $user_query = $db->prepare("SELECT * FROM users
         WHERE login = :login");
@@ -60,10 +60,10 @@ if (count($users) === 1) {
         } else {
                 $_SESSION['login'] = $login;
                 $_SESSION['log_error_pass'] = 'Invalid password';
-                header('Location: ../loginform.php');
+                header('Location: ../login_form.php');
         }
 } else {
         $_SESSION['log_error_login'] = 'User not found';
-        header('Location: ../loginform.php');
+        header('Location: ../login_form.php');
 }
 ?>

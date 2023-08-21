@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once './php_scripts/redirect_if_user_not_logged_in.php';
+require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
@@ -260,11 +260,11 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 </div>
         </main>
 
-        <script src="./dist/js/index.min.js"></script>
+        <script src="../assets/js/index.min.js"></script>
 
         <!-- GRAPH.JS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="./dist/js/graphs/dashboard_invoices.min.js"></script>
+        <script src="../assets/js/graphs/dashboard_invoices.min.js"></script>
 </body>
 
 </html>

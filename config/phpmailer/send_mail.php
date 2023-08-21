@@ -3,7 +3,7 @@
 // DOWNLOAD INVOICE DATA
 session_start();
 
-require_once '../redirect_if_user_not_logged_in.php';
+require_once '../../public/scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Set a variable to include the recipient's email. 
@@ -16,13 +16,13 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 // Exit the script if the user did not submit the form
 if (!isset($_POST['invoice_no_to_send'])) {
         $_SESSION['comment_download_error'] = "Something went wrong, the invoice was not found. Try again in a while. ";
-        header('Location: ../invoice_list.php');
+        header('Location: ../list.php');
         exit();
 }
 
 // If invoice id was found...
 // connect with database
-require_once '../db_database.php';
+require_once '../database/db_database.php';
 
 // Dowload invoice data from database to array
 $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
@@ -73,7 +73,7 @@ $total_sum_gross = number_format($invoice['sum_gross'], 2, ',',' ');
 // DOWLOAD DOMPDF LIBRARY
 
 // include autoloader
-require_once '../../assets/dompdf/autoload.inc.php';
+require_once '../../libs/dompdf/autoload.inc.php';
 
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
@@ -96,7 +96,7 @@ $dompdf = new Dompdf([
 // PREPARE TO GENERATE PDF
 
 // add image path
-$logo_img_path = "../../assets/img/logos/{$user['logo']}";
+$logo_img_path = "../../assets/user_img/logos/{$user['logo']}";
 $dompdf->getOptions()->setChroot("$logo_img_path");
 
 $html = <<<HTML
@@ -398,7 +398,7 @@ $dompdf->render();
 
 // Output the generated PDF to Browser
 $filename = $user['login'] . "_".str_replace('/', '_', $invoice['no']) . ".pdf";
-$target_path = '../../assets/pdf_files/' . $filename;
+$target_path = '../../assets/generated_pdf/' . $filename;
 file_put_contents($target_path, $dompdf->output());
 
 
@@ -417,9 +417,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../assets/PHPMailer/src/Exception.php';
-require '../../assets/PHPMailer/src/PHPMailer.php';
-require '../../assets/PHPMailer/src/SMTP.php';
+require '../../libs/PHPMailer/src/Exception.php';
+require '../../libs/PHPMailer/src/PHPMailer.php';
+require '../../libs/PHPMailer/src/SMTP.php';
 
 // Get user data to $user assoc array
 // session_start();
@@ -535,8 +535,9 @@ try {
         ATTACHMENTS
         ->addAttachment('path', 'filename')     - add attachment (filename is optional) */
         // [code space]
-        $mail->addAttachment('../../assets/pdf_files/' . $filename);
-        $mail->addEmbeddedImage('../../assets/img/logos/default_logo.png', 'logoimg'); // opisz jak to działa
+        $mail->addAttachment('../../assets/generated_pdf/' . $filename);
+        $mail->addEmbeddedImage('../../assets/user_img/logos/default_logo.png', 'logoimg');
+
         /*
         CONTENT
         ->isHTML(true);         - inform that we will want to send email as html
@@ -575,7 +576,7 @@ try {
 
 /*
 Delete pdf file from server */
-unlink('../../assets/pdf_files/' . $filename);
+unlink('../../assets/generated_pdf/' . $filename);
 
 /*
 Prepare invoice no. for redirection to invoice_preview.php file */
@@ -583,6 +584,6 @@ $_SESSION['invoice_no_to_display'] = $_POST['invoice_no_to_send'];
 
 /*
 Redirect to app*/
-Header('Location: ../../invoice_preview.php');
+Header('Location: ../../public/preview.php');
 exit();
 ?>

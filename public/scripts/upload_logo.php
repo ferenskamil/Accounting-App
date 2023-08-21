@@ -24,7 +24,7 @@ if (isset($_FILES['change-logo-btn']['name'])) {
                 $new_img_name = $user['login']."_logo_".date("Y-m-d").".".$img_extension;
                 
                 // connect with database
-                require_once 'db_database.php';
+                require_once '../../config/database/db_database.php';
                 
                 // delete old file from server 
                 $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");
@@ -34,11 +34,11 @@ if (isset($_FILES['change-logo-btn']['name'])) {
                 $old_img_name = $db_user_arr['company_logo_file_path'];
 
                 if ($old_img_name !== 'default_logo.png') {
-                        unlink('../assets/img/logos/'.$old_img_name);
+                        unlink('../../assets/user_img/logos/'.$old_img_name);
                 }
 
                 // save new file in server 
-                if (move_uploaded_file($tmp_name, "../assets/img/logos/".$new_img_name)) {
+                if (move_uploaded_file($tmp_name, "../../assets/user_img/logos/".$new_img_name)) {
 
                         // Set new file name (with extension) in db 
                         $db_update_user_img_name = $db->prepare("UPDATE users 

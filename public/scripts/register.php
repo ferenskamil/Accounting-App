@@ -74,7 +74,7 @@ if (isset($_POST['login'])) {
 
 // After succeded validation
 if ($everything_OK) {
-        require_once 'db_database.php';
+        require_once '../../config/database/db_database.php';
 
         // A flag that checks whether the user is located, already in the database
         $user_already_exist = false;
@@ -87,7 +87,7 @@ if ($everything_OK) {
         if ($how_many_logins->rowCount() !== 0) {
                 $user_already_exist = true;
                 $_SESSION['e_login'] = "Login already exist";
-                header('Location: ../registration.php');
+                header('Location: ../registration_form.php');
                 exit();
         } 
 
@@ -99,7 +99,7 @@ if ($everything_OK) {
         if ($how_many_emails->rowCount() !== 0) {
                 $user_already_exist = true;
                 $_SESSION['e_email'] = "Email already exist";
-                header('Location: ../registration.php');
+                header('Location: ../registration_form.php');
                 exit();
         } 
 
@@ -129,7 +129,7 @@ if ($everything_OK) {
         exit();
         } 
 } else {
-        header('Location: ../registration.php');
+        header('Location: ../registration_form.php');
         exit();
 }
 
