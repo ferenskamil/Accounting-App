@@ -3,7 +3,7 @@ notes
 test/
 
 # Ignore all files located in logos and avatars folders except default files
-assets/img/avatars/*
-assets/img/logos/*
-!assets/img/avatars/default_avatar.png
-!assets/img/logos/default_logo.png
+assets/user_img/avatars/*
+assets/user_img/logos/*
+!assets/user_img/avatars/default_avatar.png
+!assets/user_img/logos/default_logo.png
