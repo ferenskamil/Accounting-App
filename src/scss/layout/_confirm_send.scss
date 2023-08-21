@@ -114,5 +114,11 @@
 				align-self: start;
 			}
 		}
+
+		.send-error {
+			margin: 0.2em 0;
+			font-size: 1rem;
+			color: $red;
+		}
 	}
 }
