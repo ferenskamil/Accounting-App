@@ -192,7 +192,6 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </form>
-                        <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                         <form action="./php_scripts/download_pdf.php" method="post">
                                 <input hidden type="text" value="<?php echo $invoice['id'] ?>" name="invoice-id">
                                 <button type="submit">
@@ -200,6 +199,7 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                         Download
                                 </button>
                         </form>
+                        <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                 </div>
                 <?php
                         if (isset($_SESSION['comment_after_edit'])) {
