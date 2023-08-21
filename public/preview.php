@@ -42,7 +42,7 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- @include './head_links -->
+        <?php require_once '../templates/head_links.php'; ?>
         <title>Invoice preview</title>
 </head>
 
@@ -62,8 +62,10 @@ $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                 </div>       
         </div>
-        <!-- @include './confirm_send' -->
-        <!-- @include './nav_topbar' -->
+<?php
+require_once '../templates/confirm_send.php';
+require_once '../templates/nav_topbar.php';
+?>
         <main class="main invoice">
                 <div class="invoice__settings">
                         <button class="send-btn"><i class="fa-solid fa-paper-plane"></i>Send</button>

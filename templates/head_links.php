@@ -7,4 +7,4 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- CSS stylesheet -->
-<link rel="stylesheet" href="./dist/css/main.min.css">
+<link rel="stylesheet" href="../assets/css/main.min.css">

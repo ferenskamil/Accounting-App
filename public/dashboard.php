@@ -14,12 +14,12 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- @include './head_links -->
+        <?php require_once '../templates/head_links.php'; ?>
         <title>Dashboard</title>
 </head>
 
 <body>
-        <!-- @include './nav_topbar' -->
+        <?php require_once '../templates/nav_topbar.php'; ?>
 
         <main class="main">
                 <div class="summary">
