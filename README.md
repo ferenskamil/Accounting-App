@@ -101,7 +101,7 @@ _You can download the project in two ways. The first way is to traditionally dow
 ### Now you can use the application
 
 1. Make sure XAMPP is enabled (point 1)
-2. In your browser, type `http://localhost/accountingApp-main/index.php`.\
+2. In your browser, type `http://localhost/accountingApp-main/public/index.php`.\
    At this point you should find yourself on the application's home page. The home page is not quite built yet, but you can log in to test the application.
 3. log in to the application
 
