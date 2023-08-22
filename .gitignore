@@ -1,6 +1,7 @@
 node_modules
 notes
 test/
+vendor/
 
 # Ignore all files located in logos and avatars folders except default files
 assets/user_img/avatars/*

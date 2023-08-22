@@ -1,0 +1,14 @@
+{
+    "name": "mrkaa/accounting-app",
+    "autoload": {
+        "psr-4": {
+            "Mrkaa\\AccountingApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kamil",
+            "email": "mr.kaam@gmail.com"
+        }
+    ]
+}
