@@ -27,14 +27,32 @@
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="login">Login</label>
                                         <input class="register__form-input" type="text" name="login"
-                                                placeholder="Login" value="<?php if(isset($_SESSION['login'])) echo $_SESSION['login'] ?>">
-                                        <p class="error"><?php if (isset($_SESSION['log_error_login'])) echo $_SESSION['log_error_login'] ?></p>
+                                                placeholder="Login" value="<?php
+                                                if(isset($_SESSION['login']))
+                                                {
+                                                        echo $_SESSION['login'];
+                                                        unset($_SESSION['login']);
+                                                }
+                                                ?>">
+                                        <p class="error"><?php
+                                                if (isset($_SESSION['e_login']))
+                                                {
+                                                        echo $_SESSION['e_login'];
+                                                        unset($_SESSION['e_login']);
+                                                }
+                                                ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password1">Password</label>
                                         <input class="register__form-input" type="password" name="password1"
                                                 placeholder="Password">
-                                        <p class="error"><?php if (isset($_SESSION['log_error_pass'])) echo $_SESSION['log_error_pass'] ?></p>
+                                        <p class="error"><?php
+                                                if (isset($_SESSION['e_pass']))
+                                                {
+                                                         echo $_SESSION['e_pass'];
+                                                         unset($_SESSION['e_pass']);
+                                                }
+                                                ?></p>
                                 </div>
                                 <button class="register__form-submit" type="submit" name="submit">sign in</button>
                         </form>

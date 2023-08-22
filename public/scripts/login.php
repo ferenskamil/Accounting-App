@@ -1,69 +1,59 @@
 <?php
 session_start();
 
-// data from login form
-$login = $_POST['login'];
-$password = $_POST['password1'];
+// Check if the user tried to log in. The data should be forwarded
+// by the POST method from the "login_form.php" form, which is located
+// in the "public" directory. If it is not, redirect to the login form.
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (strpos($referer, 'public/login_form.php') !== false &&
+        $_SERVER["REQUEST_METHOD"] == "POST")
+{
+        // Create an instance of the User class.
+        require_once '../../class/user.class.php';
+        $user_obj = new User();
 
-// database connection
-require_once '../../config/database/db_database.php';
+        // Use the 'login' method to try to log in and assign the returned
+        // value (an array) to the $login_result variable.
+        $login_result = $user_obj->login($_POST['login'] , $_POST['password1']);
 
-$user_query = $db->prepare("SELECT * FROM users
-        WHERE login = :login");
-$user_query->bindValue(':login', $login, PDO::PARAM_STR);
-$user_query->execute();
-$users = $user_query->fetchAll(PDO::FETCH_ASSOC);
+        // If errors occurred during login, assign appropriate error messages to session variables.
+        // Such messages will be displayed to the user when he returns to the login form.
+        if (array_key_exists('e_login' , $login_result))
+        {
+                // Assign the entered login to a session variable to display to the user.
+                $_SESSION['login'] = $_POST['login'];
 
-// If on user was found in database, we can proceed to login
-if (count($users) === 1) {
-        unset($_SESSION['log_error_login']);
+                // Assign error message and redirect to login form.
+                $_SESSION['e_login'] = 'User not found.';
+                header('Location: ../login_form.php');
+                exit();
+        }
+        elseif(array_key_exists('e_pass' , $login_result))
+        {
+                // Assign the entered login to a session variable to display to the user in the form.
+                $_SESSION['login'] = $_POST['login'];
 
-
-
-        // Check that the password entered by the user matches the password in the database 
-        $db_password = $users[0]['password'];
-        if (password_verify($_POST['password1'], $db_password)) {
-                // Session variables to unset after successful login
-                unset($_SESSION['log_error_pass']);
-                unset($_SESSION['login']);
-
-                // Create assoc array with all basic information about user 
-                $user = [
-                        // Flag whether user is logged in
-                        'is_logged' => true,
-        
-                        // Basic information about account 
-                        'id' => $users[0]['id'],
-                        'login'=> $users[0]['login'],
-                        'email'=> $users[0]['email'],
-        
-                        // Information about users's company. Will be insert to new invoice as default.
-                        'company'=> $users[0]['company_name'],
-                        'address1'=> $users[0]['address1'],
-                        'address2'=> $users[0]['address2'],
-                        'company_code'=> $users[0]['company_number'],
-                        'city'=> $users[0]['default_invoice_city'],
-                        'bank'=> $users[0]['default_invoice_bank_name'],
-                        'account_no'=> $users[0]['default_invoice_bank_account_no'],
-                        'additional_info'=> $users[0]['default_invoice_additional_info'],
-        
-                        // Information about the file names of a specific user 
-                        'avatar' => $users[0]['avatar_file_img'],
-                        'logo' => $users[0]['company_logo_file_path'],
-                ];
-
-                // Put the $user assoc array in a session variable 
-                $_SESSION['user'] = $user;
+                // Assign error message and redirect to login form.
+                $_SESSION['e_pass'] = 'Invalid password';
+                header('Location: ../login_form.php');
+                exit();
+        }
+        // If the login was successful, an array of user information should be returned.
+        else
+        {
+                // Assign above array to a session variable.
+                $_SESSION['user'] = $login_result;
 
                 // Redirection to app
                 header('Location: ../dashboard.php');
-        } else {
-                $_SESSION['login'] = $login;
-                $_SESSION['log_error_pass'] = 'Invalid password';
-                header('Location: ../login_form.php');
+                exit();
         }
-} else {
-        $_SESSION['log_error_login'] = 'User not found';
+}
+// If variables passed by the POST method are not detected, it may mean that 
+// the user did not fill out the form and ran the script in another way. 
+else
+{
         header('Location: ../login_form.php');
+        exit();
 }
 ?>
