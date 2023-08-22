@@ -11,6 +11,9 @@ try {
                 PDO::ATTR_EMULATE_PREPARES => false,  
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
         ]);
+
+        // Return a variable that can later be used when you import this script into some method or function, for example.
+        return $db;
 } catch (PDOException $error) {
         echo $error->getMessage();
         exit('Database error');
