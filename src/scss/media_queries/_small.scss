@@ -9,6 +9,7 @@
 			flex-direction: column;
 			justify-content: space-between;
 			height: 100%;
+
 			li:last-child {
 				margin-top: auto;
 
@@ -16,6 +17,17 @@
 					height: 9em;
 					display: flex;
 					align-items: center;
+				}
+			}
+		}
+
+		&__item {
+			&-icon {
+				&:nth-child(1) {
+					img {
+						width: $app-logo-width-large;
+						height: $app-logo-height-large;
+					}
 				}
 			}
 		}

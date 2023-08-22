@@ -16,8 +16,13 @@
 	}
 
 	&__list {
+		li {
+			height: $nav-icon-height;
+		}
+
 		li:nth-child(1) {
-			margin-bottom: 2em;
+			margin-bottom: 1em;
+			height: $topbar-height;
 
 			.nav__item:hover {
 				background-color: transparent;
@@ -33,7 +38,7 @@
 
 	&__item {
 		display: flex;
-		height: 60px;
+		height: $nav-icon-height;
 		width: 100%;
 		cursor: pointer;
 
@@ -42,31 +47,41 @@
 		}
 
 		&-icon {
-			color: $white;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 60px;
-			height: 60px;
+			width: $nav-width;
+			height: $nav-icon-height;
+			color: $white;
 
 			i {
-				font-size: 2.4rem;
+				font-size: $nav-icon-fz;
+				line-height: $nav-icon-height;
 				text-align: center;
-				line-height: 60px;
+				height: $topbar-height; // no make sense but works
 			}
 
-			img {
-				width: 40px;
-				height: 40px;
-				object-fit: contain;
+			&:nth-child(1) {
+				height: $topbar-height;
+
+				img {
+					width: $app-logo-width-small;
+					height: $app-logo-height-small;
+					margin: $app-logo-margin;
+					object-fit: contain;
+				}
 			}
 		}
 
 		&-title {
 			color: $white;
-			font-size: 1.6rem;
 			text-align: center;
-			line-height: 60px;
+			line-height: $nav-icon-height;
+		}
+
+		h2 {
+			font-size: $app-logo-fz-small;
+			line-height: $topbar-height;
 		}
 
 		a {
@@ -81,12 +96,12 @@
 	align-items: center;
 	padding-right: 1em;
 	width: 100%;
-	height: 60px;
+	height: $topbar-height;
 
 	.burger-btn-container {
 		.burger-btn {
 			width: 60px;
-			height: 60px;
+			height: $topbar-height;
 			color: $main-color;
 			background-color: transparent;
 			border: 1px solid transparent;
@@ -102,7 +117,7 @@
 			}
 
 			i {
-				font-size: 2.4rem;
+				font-size: $burger-btn-fz;
 			}
 		}
 	}
