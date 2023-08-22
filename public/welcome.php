@@ -1,16 +1,11 @@
 <?php 
         session_start();
 
-        if (!isset($_SESSION['is_registered_success']) && !$_SESSION['is_registered_success']) {
+        if (!isset($_SESSION['registration_success']) && !$_SESSION['registration_success']) {
                 header('Location: ./registration.php');
                 exit();
         } else {
-                unset($_SESSION['is_registered_success']);
-                
-                unset($_SESSION['login']);
-                unset($_SESSION['email']);
-                unset($_SESSION['pass1']);
-                unset($_SESSION['term-of-services']);
+                unset($_SESSION['registration_success']);
         }
 ?>
 <!DOCTYPE html>

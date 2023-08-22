@@ -28,30 +28,53 @@ session_start();
                                         <label class="register__form-label" for="login">Login</label>
                                         <input class="register__form-input" type="text" name="login"
                                                 placeholder="Login" value="<?php 
-                                                        if (isset($_SESSION['login'])) echo $_SESSION['login'];
+                                                        if (isset($_SESSION['login']))
+                                                        {
+                                                                echo $_SESSION['login'];
+                                                                unset($_SESSION['login']);
+                                                        }
                                                 ?>">
                                         <p class="error"><?php 
-                                                if (isset( $_SESSION['e_login'])) echo $_SESSION['e_login'];
+                                                if (isset( $_SESSION['e_login']))
+                                                {
+                                                        echo $_SESSION['e_login'];
+                                                        unset($_SESSION['e_login']);
+                                                }
                                         ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="email">Email</label>
                                         <input class="register__form-input" type="email" name="email"
                                                 placeholder="email" value="<?php 
-                                                        if (isset($_SESSION['email'])) echo $_SESSION['email'];
-                                                ?>">
+                                                        if (isset($_SESSION['email']))
+                                                        {
+                                                                echo $_SESSION['email'];
+                                                                unset($_SESSION['email']);
+                                                        }?>">
                                         <p class="error"><?php 
-                                                if (isset( $_SESSION['e_email'])) echo $_SESSION['e_email'];
+                                                if (isset( $_SESSION['e_email']))
+                                                {
+                                                        echo $_SESSION['e_email'];
+                                                        unset($_SESSION['e_email']);
+                                                }
                                         ?></p>
                                 </div>
                                 <div class="register__form-box">
                                         <label class="register__form-label" for="password1">Password</label>
                                         <input class="register__form-input" type="password" name="password1"
                                                 placeholder="Password" value="<?php 
-                                                        if (isset($_SESSION['pass1'])) echo $_SESSION['pass1'];
+                                                        if (isset($_SESSION['password1']))
+                                                        {
+                                                                echo $_SESSION['password1'];
+                                                                unset($_SESSION['password1']);
+                                                        }
                                                 ?>">
                                         <p class="error"><?php 
-                                                if (isset( $_SESSION['e_pass1'])) echo $_SESSION['e_pass1'];
+                                                if (isset( $_SESSION['e_pass1']))
+                                                {
+                                                        echo $_SESSION['e_pass1'];
+                                                        unset($_SESSION['e_pass1']);
+                                                }
                                         ?></p>
                                 </div>
                                 <div class="register__form-box">
@@ -59,19 +82,29 @@ session_start();
                                         <input class="register__form-input" type="password" name="password2"
                                                 placeholder="Repeat password">
                                         <p class="error"><?php 
-                                                if (isset( $_SESSION['e_pass2'])) echo $_SESSION['e_pass2'];
+                                                if (isset( $_SESSION['e_pass2']))
+                                                {
+                                                        echo $_SESSION['e_pass2'];
+                                                        unset($_SESSION['e_pass2']);
+                                                }
                                         ?></p>                                
                                 </div>
-                                <div class="register__form-box term-of-services-box">
-                                        <label for="term-of-services">
-                                        <input type="checkbox" name="term-of-services" id="term-of-services" <?php 
-                                                if (isset($_SESSION['term-of-services']) && $_SESSION['term-of-services']) {
+                                <div class="register__form-box regulations-box">
+                                        <label for="regulations">
+                                        <input type="checkbox" name="regulations" id="regulations"<?php
+                                                if (isset($_SESSION['regulations']) && $_SESSION['regulations']) {
                                                         echo 'checked';
-                                                } ?>>
-                                        I agree with the term of services
+                                                        unset($_SESSION['regulations']);
+                                                }
+                                                ?>>
+                                        I agree with the regulations
                                         </label>  
-                                        <p class="error"><?php 
-                                                if (isset($_SESSION['e_term_of_services'])) echo $_SESSION['e_term_of_services'];
+                                        <p class="error"><?php
+                                                if (isset($_SESSION['e_regulations']))
+                                                {
+                                                        echo $_SESSION['e_regulations'];
+                                                        unset($_SESSION['e_regulations']);
+                                                }
                                         ?></p>                               
                                 </div>
                                 <button class="register__form-submit" type="submit">Sign up</button>

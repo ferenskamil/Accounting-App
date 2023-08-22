@@ -1,135 +1,58 @@
 <?php 
 session_start();
 
-$login = $_POST['login'];
-$email = $_POST['email'];
-$pass1 = $_POST['password1'];
-$pass2 = $_POST['password2'];
-if (isset($_POST['term-of-services'])) {
-        $term_is_accepted =  true;
-} else {
-        $term_is_accepted =  false;
-};
+// Assign a value to the $regulations_checkbox variable depending on whether the regulations have been accepted.
+$regulations_checkbox = isset($_POST['regulations']) && $_POST['regulations'] === 'on' ? true : false;
 
-// Sava data as session variables
-$_SESSION['login'] = $login;
-$_SESSION['email'] = $email;
-$_SESSION['pass1'] = $pass1;
-$_SESSION['term-of-services'] = $term_is_accepted;
+// Check if the user tried to register. The data should be forwarded 
+// by the POST method from the "registration_form.php" form, which is located 
+// in the "public" directory. If it is not, redirect to the registration form.
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (strpos($referer, 'public/registration_form.php') !== false &&
+        $_SERVER["REQUEST_METHOD"] == "POST")
+{
+        // Create an instance of the User class.
+        require_once '../../class/user.class.php';
+        $user_obj = new User();
 
-// validation
-if (isset($_POST['login'])) {
-        $everything_OK = true;
-
-        // LOGIN - login length
-        if (strlen($login) >=5 && strlen($login) <= 15) {
-                $_SESSION['e_login'] = "";
-        } else {
-                $everything_OK = false;
-                $_SESSION['e_login'] = "Login must consist of 5-15 letters and numbers";
-        }
-
-        // LOGIN - are every characters alphanumeric?
-        if(ctype_alnum($login) === false) {
-                $everything_OK = false;
-                $_SESSION['e_login'] = "Login can only contain letters and numbers";
-        }
-
-        // EMAIL - is email correct?
-        $email_sanitized = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-        if(filter_var($email_sanitized, FILTER_VALIDATE_EMAIL) && $email_sanitized === $email) {
-                $_SESSION['e_email'] = "";
-        } else {
-                $everything_OK = false;
-                $_SESSION['e_email'] = "Invalid email";
-        }
+        // Use the 'register' method to try to register and assign the returned 
+        // value (an array) to the $registration_result variable.
+        $registration_result = $user_obj->register($_POST['login'] , $_POST['email'] , $_POST['password1'] , $_POST['password2'] , $regulations_checkbox);
         
-        // PASSWORD - is password contain special character?
-        if (preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/' 
-        , $pass1)) {
-                $_SESSION['e_pass1'] = "";
-        } else {
-                $_SESSION['e_pass1'] = "The password must consist, of 8-20 characters and at least one letter and one number";
+        // If the registry is successful, $registration_result should contain an array with one element 'successfull_registration' with a value of 1 or 'true'.
+        if (array_key_exists('successfull_registration', $registration_result))
+        {
+                // Redirect to the welcome page
+                $_SESSION['registration_success'] = true;
+                header('Location: ../welcome.php');
+                exit();
         }
+        // If the registration was not successful, $registration_result should contain a one-element array with an error message.
+        else
+        {
+                // Assign appropriate message to the session variable
+                $key = array_key_first($registration_result);
+                $value = $registration_result[$key];
+                $_SESSION[$key] = $value;
 
-        // PASSWORD - are two passwords the same?
-        if ($pass1 !== $pass2) {
-                $everything_OK = false;
-                $_SESSION['e_pass2'] = "Passwords must be identical";
-        } else {
-                $_SESSION['e_pass2'] = "";
-        }
+                // Assign the entered login to a session variable to display to the user in the form.
+                $_SESSION['login'] = $_POST['login'];
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['password1'] = $_POST['password1'];
+                $_SESSION['password2'] = $_POST['password2'];
+                $_SESSION['regulations'] = $regulations_checkbox;
 
-        $password_hash = password_hash($pass1, PASSWORD_DEFAULT);
-
-        // CHECKBOX - is input "term of services" accepted?
-        if (!$term_is_accepted) {
-                $everything_OK = false;
-                $_SESSION['e_term_of_services'] = "Accept term of services";
-        } else {
-                $_SESSION['e_term_of_services'] = "";
-        }
-} 
-
-// After succeded validation
-if ($everything_OK) {
-        require_once '../../config/database/db_database.php';
-
-        // A flag that checks whether the user is located, already in the database
-        $user_already_exist = false;
-
-        // LOGIN - does the login exist in the database?
-        $how_many_logins = $db->prepare("SELECT * FROM `users` WHERE login = :login");
-        $how_many_logins->bindvalue(':login', $login, PDO::PARAM_STR);
-        $how_many_logins->execute();
-
-        if ($how_many_logins->rowCount() !== 0) {
-                $user_already_exist = true;
-                $_SESSION['e_login'] = "Login already exist";
+                // Redirect to the registration form, where the appropriate message will be displayed.
                 header('Location: ../registration_form.php');
                 exit();
-        } 
-
-        // EMAIL - does the email exist in database?
-        $how_many_emails = $db->prepare("SELECT * FROM `users` WHERE email = :email");
-        $how_many_emails->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
-        $how_many_emails->execute();
-
-        if ($how_many_emails->rowCount() !== 0) {
-                $user_already_exist = true;
-                $_SESSION['e_email'] = "Email already exist";
-                header('Location: ../registration_form.php');
-                exit();
-        } 
-
-        // If the user does not exist in the database, we add him to the database
-        if (!$user_already_exist) {
-        $query = $db->prepare("INSERT INTO `users`(
-                login,
-                password,
-                email,
-                avatar_file_img,
-                company_logo_file_path )
-            VALUES(
-                :login,
-                :pass,
-                :email,
-                :avatar_img,
-                :company_logo )");
-        $query->bindvalue(':login', $login, PDO::PARAM_STR);
-        $query->bindvalue(':pass', $password_hash, PDO::PARAM_STR);
-        $query->bindvalue(':email', $email_sanitized, PDO::PARAM_STR);
-        $query->bindvalue(':avatar_img', 'default_avatar.png', PDO::PARAM_STR);
-        $query->bindvalue(':company_logo', 'default_logo.png', PDO::PARAM_STR);
-        $query->execute();
-
-        $_SESSION['is_registered_success'] = true;
-        header('Location: ../welcome.php');
-        exit();
-        } 
-} else {
+        }
+}
+// If variables passed by the POST method are not detected, it may mean that
+// the user did not fill out the form and ran the script in another way.
+else 
+{
         header('Location: ../registration_form.php');
         exit();
 }
+?>
 
