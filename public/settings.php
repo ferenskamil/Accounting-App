@@ -55,42 +55,42 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 <form action="./scripts/change_company_data.php" method="post" class="settings__form">
                         <div class="settings__form-box">
                                 <h2>Company info</h2>
-                                <label for="settings-company-name">Name: </label>
-                                <input type="text" id="settings-company-name" name="settings-company-name" value="<?php 
+                                <label for="company">Name: </label>
+                                <input type="text" id="company" name="company" value="<?php
                                         if (isset($user['company'])) echo $user['company'];
                                 ?>">
-                                <label for="settings-company-address1">Address: </label>
-                                <input type="text" id="settings-company-address1" name="settings-company-address1" value="<?php 
+                                <label for="address1">Address: </label>
+                                <input type="text" id="address1" name="address1" value="<?php
                                         if (isset($user['address1'])) echo $user['address1'];
                                 ?>">
-                                <label for="settings-company-address2">Address 2: </label>
-                                <input type="text" id="settings-company-address2" name="settings-company-address2" value="<?php 
+                                <label for="address2">Address 2: </label>
+                                <input type="text" id="address2" name="address2" value="<?php
                                         if (isset($user['address2'])) echo $user['address2'];
                                 ?>">
-                                <label for="settings-company-number">Company no.: </label>
-                                <input type="text" id="settings-company-number" name="settings-company-number" value="<?php 
+                                <label for="company_code">Company code: </label>
+                                <input type="text" id="company_code" name="company_code" value="<?php
                                         if (isset($user['company_code'])) echo $user['company_code'];
                                 ?>">
                         </div>
                         <div class="settings__form-box">
                                 <h2>Invoice default info</h2>
-                                <label for="settings-invoice-city">City: </label>
-                                <input type="text" id="settings-invoice-city" name="settings-invoice-city" value="<?php 
+                                <label for="city">City: </label>
+                                <input type="text" id="city" name="city" value="<?php
                                         if (isset($user['city'])) echo $user['city'];
                                 ?>">
-                                <label for="settings-invoice-bank">Bank: </label>
-                                <input type="text" id="settings-invoice-bank" name="settings-invoice-bank" value="<?php 
+                                <label for="bank">Bank: </label>
+                                <input type="text" id="bank" name="bank" value="<?php
                                         if (isset($user['bank'])) echo $user['bank'];
                                 ?>">
                                 <label for="account-no">Account no.: </label>
-                                <input type="text" id="account-no" name="settings-invoice-account-no" value="<?php 
+                                <input type="text" id="account-no" name="account_no" value="<?php
                                         if (isset($user['account_no'])) echo $user['account_no'];
                                 ?>">
                         </div>
                         <div class="settings__form-box settings__form-box-additional-info">
                                 <h2>Additional info</h2>
                                 <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
-                                <textarea name="settings-additional-info" id="settings-additional-info" cols="30"
+                                <textarea name="additional_info" id="additional_info" cols="30"
                                         rows="10"><?php 
                                         if (isset($user['additional_info'])) echo $user['additional_info'];
                                         ?></textarea>

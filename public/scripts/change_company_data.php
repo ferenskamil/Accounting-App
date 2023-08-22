@@ -2,49 +2,36 @@
 
 session_start();
 
-// Get user data to $user assoc array
-if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+// Check if the user tried to change the data. The data should be passed from the 'settings.php' page using the 'POST' method.
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (strpos($referer, 'public/settings.php') !== false &&
+        $_SERVER["REQUEST_METHOD"] == "POST")
+{
+        // Get user data to $user assoc array
+        if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-if (isset($_POST['settings-company-name'])) {
-        require_once '../../config/database/db_database.php';
+        // Change data in local $user array
+        $user['company'] = $_POST['company'];
+        $user['address1'] = $_POST['address1'];
+        $user['address2'] = $_POST['address2'];
+        $user['company_code'] = $_POST['company_code'];
+        $user['city'] = $_POST['city'];
+        $user['bank'] = $_POST['bank'];
+        $user['account_no'] = $_POST['account_no'];
+        $user['additional_info'] = $_POST['additional_info'];
 
-        // Change user company values in db
-        $db_query = $db->prepare("UPDATE users SET 
-                company_name = :company_name,
-                address1 = :address1,
-                address2 = :address2,
-                company_number = :company_number,
-                default_invoice_city = :city,
-                default_invoice_bank_name = :bank_name,
-                default_invoice_bank_account_no = :account_no,
-                default_invoice_additional_info = :additional_info
-         WHERE 
-                id = :user_id");
-        $db_query->bindvalue(':company_name', $_POST['settings-company-name'], PDO::PARAM_STR);
-        $db_query->bindvalue(':address1', $_POST['settings-company-address1'], PDO::PARAM_STR);
-        $db_query->bindvalue(':address2', $_POST['settings-company-address2'], PDO::PARAM_STR);
-        $db_query->bindvalue(':company_number', $_POST['settings-company-number'], PDO::PARAM_STR);
-        $db_query->bindvalue(':city', $_POST['settings-invoice-city'], PDO::PARAM_STR);
-        $db_query->bindvalue(':bank_name', $_POST['settings-invoice-bank'], PDO::PARAM_STR);
-        $db_query->bindvalue(':account_no', $_POST['settings-invoice-account-no'], PDO::PARAM_STR);
-        $db_query->bindvalue(':additional_info', $_POST['settings-additional-info'], PDO::PARAM_STR);
-        $db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
-        $db_query->execute();
+        // Create an instance of the User class.
+        require_once '../../class/user.class.php';
+        $user_obj = new User();
 
-        // Change data in $user assoc array
-        $user['company'] = $_POST['settings-company-name'];
-        $user['address1'] = $_POST['settings-company-address1'];
-        $user['address2'] = $_POST['settings-company-address2'];
-        $user['company_code'] = $_POST['settings-company-number'];
-        $user['city'] = $_POST['settings-invoice-city'];
-        $user['bank'] = $_POST['settings-invoice-bank'];
-        $user['account_no'] = $_POST['settings-invoice-account-no'];
-        $user['additional_info'] = $_POST['settings-additional-info'];
+        // Update information about user in DB.
+        $user_obj->update_company_info($user);
 
-        // Get changed data into $_SESSION['user']
-        $_SESSION['user'] = $user;
+        // Get updated information from DB.
+        $_SESSION['user'] = $user_obj->get_user($user['id']);
 }
 
+// Redirect to settings.php
 header('Location: ../settings.php');
 exit();
 ?>
