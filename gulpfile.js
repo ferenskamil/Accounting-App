@@ -1,6 +1,8 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
 const clean = require('gulp-clean');
 
 const sass = require('gulp-sass')(require('sass'));
@@ -67,11 +69,7 @@ function cleanStuff(done) {
 	done();
 }
 
-const mainFunctions = parallel(
-	sassCompiler,
-	javaScript,
-	convertImages
-);
+const mainFunctions = parallel(sassCompiler, javaScript, convertImages);
 exports.default = series(
 	mainFunctions,
 	watchForChanges,
