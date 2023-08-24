@@ -10,5 +10,8 @@
             "name": "Kamil",
             "email": "mr.kaam@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
 }
