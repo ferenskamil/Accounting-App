@@ -417,9 +417,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../libs/PHPMailer/src/Exception.php';
-require '../../libs/PHPMailer/src/PHPMailer.php';
-require '../../libs/PHPMailer/src/SMTP.php';
+require '../../vendor/autoload.php';
 
 // Get user data to $user assoc array
 // session_start();
