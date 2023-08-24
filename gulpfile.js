@@ -18,6 +18,7 @@ const imagemin = require('gulp-imagemin');
 const paths = {
 	sass: './src/scss/**/*.scss',
 	js: './src/js/**/*.js',
+	jsException: '!src/js/tests/*.test.js',
 	img: './src/app_img/**/*',
 	sassDest: './assets/css',
 	jsDest: './assets/js',
@@ -38,7 +39,7 @@ function sassCompiler(done) {
 }
 
 function javaScript(done) {
-	src(paths.js)
+	src([paths.js, paths.jsException])
 		.pipe(sourcemaps.init())
 		.pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(uglify())
@@ -70,6 +71,15 @@ function cleanStuff(done) {
 	done();
 }
 
-const mainFunctions = parallel(sassCompiler, javaScript, convertImages);
-exports.default = series(mainFunctions, watchForChanges);
+const mainFunctions = parallel(
+	sassCompiler,
+	javaScript,
+	convertImages
+);
+
+exports.default = series(
+	mainFunctions,
+	watchForChanges,
+);
+
 exports.cleanStuff = cleanStuff;
