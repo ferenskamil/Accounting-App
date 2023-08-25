@@ -284,5 +284,20 @@ class User
                         return ['successfull_registration' => true];       
                 }
         }
+
+        /* GET ALL INVOICES
+         * This method returns basic information about all invoices assigned
+         * to a user in the form of an associative array. */
+        public function get_all_invoices(int $id) : array
+        {
+                // Get all invoices from DB
+                $invoices_query = $this->db->prepare("SELECT * FROM invoices
+                        WHERE user_id = :user_id");
+                $invoices_query->bindValue(':user_id' , $id , PDO::PARAM_INT);
+                $invoices_query->execute();
+
+                // Return invoices as associative array
+                return $invoices_query->fetchAll(PDO::FETCH_ASSOC);
+        }
 }
 ?>

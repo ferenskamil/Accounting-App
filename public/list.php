@@ -7,11 +7,12 @@ redirect_if_user_not_logged_in('index.php');
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-require_once '../config/database/db_database.php';
-$db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id");
-$db_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
-$db_query->execute();
-$user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
+// Create an instance of the User class.
+require_once '../class/user.class.php';
+$user_obj = new User();
+
+// Put invoice information in an associative array $invoices
+$invoices = $user_obj->get_all_invoices($user['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +98,7 @@ $user_invoices = $db_query->fetchAll(PDO::FETCH_ASSOC);
                                         </a></td>
                                 </tr>
                                 <?php
-                                      foreach ($user_invoices as $invoice) {
+                                      foreach ($invoices as $invoice) {
                                         $item = '
                                         <tr class="invoice-list__table-tbody-item">
                                                 <td><span class="invoice-list__table-tbody-item--mobile-title">Invoice No:
