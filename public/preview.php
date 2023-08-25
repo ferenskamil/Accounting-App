@@ -4,36 +4,36 @@ session_start();
 require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
-// Get user data to $user assoc array
-if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+// Check from where the invoice information was transferred for display.
+// They should come, either from the 'list.php' file and be passed via the POST method, or from the 'update_invoice_in_db.php' or 'scripts/update_invoice_in_db.php' files and be passed in the session variable $_SESSION['invoice_no_to_display'].
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (
+        (strpos($referer, 'public/list.php') !== false && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['invoice-no']))
+        || (strpos($referer, 'public/add_edit_form.php') !== false && isset($_SESSION['invoice_no_to_display']))
+        || (strpos($referer, 'public/scripts/update_invoice_in_db.php') !== false && isset($_SESSION['invoice_no_to_display']))
+)
+{
+        // Assign invoice number to variables depending of origin 
+        $invoice_no = $_POST['invoice-no'] ?? $_SESSION['invoice_no_to_display'];
 
-$invoice_no_to_display = '';
-if (isset($_POST['invoice-no'])) {
-        $invoice_no_to_display = $_POST['invoice-no'];
-} elseif (isset($_SESSION['invoice_no_to_display'])) {
-        $invoice_no_to_display = $_SESSION['invoice_no_to_display'];
-} elseif(isset($_SESSION['invoice_no_to_edit'])) {
-        $invoice_no_to_display = $_SESSION['invoice_no_to_edit'];
-} else {
-        header('Location: invoice_list.php');
+        // Unset  $_SESSION['invoice_no_to_display'] if exist
+        unset( $_SESSION['invoice_no_to_display']);
+
+        // Get user data and assign to $user assoc array
+        if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
+        // Get information about invoice and services and assign to variables
+        require_once '../class/invoice.class.php';
+        $invoice_obj = new Invoice($invoice_no , $user['id']);
+        $invoice = $invoice_obj->get_invoice();
+        $services = $invoice['services'];
+}
+else 
+{
+        // Redirect to invoice list
+        header('Location: list.php');
         exit();
 }
-
-if ($invoice_no_to_display !== '') {
-        require_once '../config/database/db_database.php';
-        
-        $db_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :user_id AND no = :invoice_no");
-        $db_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
-        $db_query->bindvalue(':invoice_no', $invoice_no_to_display, PDO::PARAM_STR);
-        $db_query->execute();
-        $invoice = $db_query->fetch(PDO::FETCH_ASSOC);
-} 
-// Download services from database to array
-$db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-$db_services_query->bindvalue(':user_id', $user['id'], PDO::PARAM_INT);
-$db_services_query->bindvalue(':invoice_id', $invoice['id'], PDO::PARAM_INT);
-$db_services_query->execute();
-$services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +180,7 @@ require_once '../templates/nav_topbar.php';
                                                 </thead>
                                                 <tbody>
                                                         <?php
-                                                        foreach ($services_arr as $service) {
+                                                        foreach ($services as $service) {
                                                                 if ($service['service_tax'] === '0.00') {
                                                                         $service_tax = "tax-free";
                                                                 } else {

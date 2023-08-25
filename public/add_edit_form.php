@@ -4,30 +4,40 @@ session_start();
 require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
+// Before starting the script, remove the flag that may not have been removed
+unset($_SESSION['edited_invoice_no']);
+
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-require_once './scripts/suggest_invoice_no.php';
+// Check if the user tried to edit the invoice. The data should be passed from the 'previw.php' page using the 'POST' method.
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (strpos($referer, 'public/preview.php') !== false  &&
+        $_SERVER["REQUEST_METHOD"] === "POST" &&
+        isset($_POST['invoice_no_to_edit']))
+{
+        // Set a flag, indicating that the user wants to edit (will be removed in the script "update_invoice_in_db.php")
+        $_SESSION['edited_invoice_no'] = $_POST['invoice_no_to_edit'];
 
-if (isset($_SESSION['is_user_wants_edit'])) unset($_SESSION['is_user_wants_edit']);
 
-if (isset($_POST['invoice_no_to_edit'])) {
-        $_SESSION['invoice_no_to_edit'] = $_POST['invoice_no_to_edit'];
-        $_SESSION['is_user_wants_edit'] = true;
+        // Create an instance of the Invoice class.
+        require_once '../class/invoice.class.php';
+        $invoice_obj = new Invoice($_POST['invoice_no_to_edit'] , $user['id']);
 
-        require_once '../config/database/db_database.php';
-        $db_invoice_query = $db->prepare("SELECT * FROM invoices WHERE user_id = :id AND no = :invoice_no");
-        $db_invoice_query->bindvalue(':id', $user['id'], PDO::PARAM_STR);
-        $db_invoice_query->bindvalue(':invoice_no', $_POST['invoice_no_to_edit'], PDO::PARAM_STR);
-        $db_invoice_query->execute();
-        $db_invoice_to_edit = $db_invoice_query->fetch(PDO::FETCH_ASSOC);
+        // Assign associative array with invoice information to $invoice variable
+        $invoice = $invoice_obj->get_invoice();
 
-        // Download services from database to array
-        $db_services_query = $db->prepare("SELECT * FROM services WHERE user_id = :user_id AND invoice_id = :invoice_id");
-        $db_services_query->bindvalue(':user_id', $user['id'], PDO::PARAM_STR);
-        $db_services_query->bindvalue(':invoice_id', $db_invoice_to_edit['id'], PDO::PARAM_STR);
-        $db_services_query->execute();
-        $services_arr = $db_services_query->fetchAll(PDO::FETCH_ASSOC);
+        // Assign services to $services variable
+        $services = $invoice['services'];
+
+        // Set $_SESSION['invoice_no_to_display'], if the user would like to return to preview
+        $_SESSION['invoice_no_to_display'] = $invoice['no'];
+}
+// If the user is not trying to edit then they probably want to create a new invoice
+else 
+{
+        // Suggest No. for new invoice
+        require_once './scripts/suggest_invoice_no.php';
 }
 ?>
 <!DOCTYPE html>
@@ -64,7 +74,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo '<input readonly type="text" name="invoice-no" id="invoice-no"
                                                         value='.$_POST['invoice_no_to_edit'].'>';
-                                                        
+                                                        echo '<input hidden checked type="checkbox" name="user-wants-edit" >';
                                                 } else if (isset($_SESSION['suggestion_invoice_no'])) {
                                                         echo '<input type="text" name="invoice-no" id="invoice-no"
                                                         value='.$_SESSION['suggestion_invoice_no'].'>';
@@ -76,7 +86,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="date">Invoice date: </label>
                                         <input class="test" type="date" name="date" id="date" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo $db_invoice_to_edit['date'];
+                                                        echo $invoice['date'];
                                                 } else {
                                                         echo date('Y-m-d');
                                                 }
@@ -85,7 +95,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="city">City: </label>
                                         <input type="text" name="city" id="city" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['city'];
+                                                        echo $invoice['city'];
                                                 } 
                                                 elseif(isset($user['city'])) {
                                                         echo $user['city'];
@@ -94,7 +104,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="bank">Bank: </label>
                                         <input type="text" name="bank" id="bank" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['bank'];
+                                                        echo $invoice['bank'];
                                                 } 
                                                 elseif(isset($user['bank'])) {
                                                         echo $user['bank'];
@@ -103,7 +113,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="account-no">Account no.: </label>
                                         <input type="text" name="account-no" id="account-no" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['account_no'];
+                                                        echo $invoice['account_no'];
                                                 } 
                                                 elseif(isset($user['account_no'])) {
                                                         echo $user['account_no'];
@@ -112,12 +122,12 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="term">Payment term: </label>
                                         <select name="term" id="term">
                                                 <option value="7 days" <?php 
-                                                        if (isset($_POST['invoice_no_to_edit']) && $db_invoice_to_edit === '7 days') {
+                                                        if (isset($_POST['invoice_no_to_edit']) && $invoice === '7 days') {
                                                                 echo 'selected';
                                                         }
                                                 ?>>7 days</option>
                                                 <option value="14 days" <?php 
-                                                        if (isset($_POST['invoice_no_to_edit']) && $db_invoice_to_edit === '14 days') {
+                                                        if (isset($_POST['invoice_no_to_edit']) && $invoice === '14 days') {
                                                                 echo 'selected';
                                                         } elseif (!isset($_POST['invoice_no_to_edit'])) {
                                                                 echo 'selected';
@@ -130,7 +140,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="seller-name">Name: </label>
                                         <input type="text" name="seller-name" id="seller-name" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['seller_name'];
+                                                        echo $invoice['seller_name'];
                                                 } 
                                                 elseif(isset($user['company'])) {
                                                         echo $user['company'];
@@ -139,7 +149,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="seller-address1">Address: </label>
                                         <input type="text" name="seller-address1" id="seller-address1" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['seller_address1'];
+                                                        echo $invoice['seller_address1'];
                                                 } 
                                                 elseif(isset($user['address1'])) {
                                                         echo $user['address1'];
@@ -148,7 +158,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="seller-address2">Address 2: </label>
                                         <input type="text" name="seller-address2" id="seller-address2" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['seller_address2'];
+                                                        echo $invoice['seller_address2'];
                                                 } 
                                                 elseif(isset($user['address2'])) {
                                                         echo $user['address2'];
@@ -157,7 +167,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="seller-company-no">Company no.: </label>
                                         <input type="text" name="seller-company-no" id="seller-company-no" placeholder="if none enter '---'" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
-                                                        echo $db_invoice_to_edit['seller_company_no'];
+                                                        echo $invoice['seller_company_no'];
                                                 } 
                                                 elseif(isset($user['company_code'])) {
                                                         echo $user['company_code'];
@@ -169,25 +179,25 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <label for="customer-name">Name: </label>
                                         <input type="text" name="customer-name" id="customer-name" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo $db_invoice_to_edit['customer_name'] ;
+                                                        echo $invoice['customer_name'] ;
                                                 }
                                         ?>">
                                         <label for="customer-address1">Address: </label>
                                         <input type="text" name="customer-address1" id="customer-address1" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo $db_invoice_to_edit['customer_address1'] ;
+                                                        echo $invoice['customer_address1'] ;
                                                 }
                                         ?>">
                                         <label for="customer-address2">Address 2: </label>
                                         <input type="text" name="customer-address2" id="customer-address2" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo $db_invoice_to_edit['customer_address2'] ;
+                                                        echo $invoice['customer_address2'] ;
                                                 }
                                         ?>">
                                         <label for="customer-company-no">Company no.: </label>
                                         <input type="text" name="customer-company-no" id="customer-company-no" value="<?php 
                                                 if (isset($_POST['invoice_no_to_edit'])) {
-                                                        echo $db_invoice_to_edit['customer_company_no'] ;
+                                                        echo $invoice['customer_company_no'] ;
                                                 }
                                         ?>" placeholder="if none enter '---'">
                                 </div>
@@ -214,9 +224,9 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                                                 <td>No items to display</td>
                                                         </tr>
                                                         <?php
-                                                        if (isset($_SESSION['is_user_wants_edit'])){
-                                                                for ($i=0; $i < count($services_arr) ; $i++) { 
-                                                                        $service = $services_arr[$i];
+                                                        if (isset($services)){
+                                                                for ($i=0; $i < count($services) ; $i++) { 
+                                                                        $service = $services[$i];
 
                                                                         if ($service['service_tax'] === '0.08') {
                                                                                 $tax_options = '
@@ -307,7 +317,7 @@ if (isset($_POST['invoice_no_to_edit'])) {
                                         <textarea name="comment" id="comment" cols="30"
                                                 rows="10"><?php 
                                                         if (isset($_POST['invoice_no_to_edit'])){
-                                                                echo $db_invoice_to_edit['additional_notes'];
+                                                                echo $invoice['additional_notes'];
                                                         } 
                                                         elseif(isset($user['additional_info'])) {
                                                                 echo $user['additional_info'];

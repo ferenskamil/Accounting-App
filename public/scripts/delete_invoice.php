@@ -1,37 +1,29 @@
 <?php
 session_start();
 
-$invoice_no_to_delete = $_POST['pop-up-invoice-no-hidden-input'];
+// Check if the user tried to delete the invoice. The data should be passed from the 'list.php' or 'preview.php' page using the 'POST' method.
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if ((strpos($referer, 'public/list.php') !== false || 
+        strpos($referer, 'public/preview.php') !== false ) &&
+        $_SERVER["REQUEST_METHOD"] === "POST")
+{
+        // Get user data to $user assoc array
+        if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-// Get user data to $user assoc array
-if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+        // Get invoice number to delete
+        $invoice_no_to_delete = $_POST['pop-up-invoice-no-hidden-input'];
 
-require_once '../../config/database/db_database.php';
+        // Create an instance of the Invoice class.
+        require_once '../../class/invoice.class.php';
+        $invoice_obj = new Invoice($invoice_no_to_delete , $user['id']);
 
-// Find invoice id
-$db_invoice_id_query = $db->prepare("SELECT id FROM invoices
-        WHERE user_id = :user_id AND no = :invoice_no");
-$db_invoice_id_query->bindValue(':user_id', $user['id'] , PDO::PARAM_STR);
-$db_invoice_id_query->bindValue(':invoice_no', $invoice_no_to_delete, PDO::PARAM_STR);
-$db_invoice_id_query->execute();
-$invoice_id = $db_invoice_id_query->fetch(PDO::FETCH_ASSOC);
-$invoice_id = $invoice_id['id'];
+        // Delete invoice
+        $invoice_obj->delete_invoice();
 
-// Delete invoice
-$db_delete_invoice_query = $db->prepare("DELETE FROM invoices
-        WHERE id = :id");
-$db_delete_invoice_query->bindValue(':id', $invoice_id, PDO::PARAM_INT);
-$db_delete_invoice_query->execute();
+        // Create comment message
+        $_SESSION['comment_after_delete'] = "Invoice No. <span>".$invoice_no_to_delete."</span> has been successfully deleted.";
+}
 
-// Delete services
-$db_delete_services_query = $db->prepare("DELETE FROM services
-        WHERE invoice_id = :invoice_id");
-$db_delete_services_query->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
-$db_delete_services_query->execute();
-
-// Create comment message
-$_SESSION['comment_after_delete'] = "Invoice No. <span>".$invoice_no_to_delete."</span> has been successfully deleted.";
-
+// Redirect to page with invoice list
 header('Location: ../list.php');
-
 ?>
