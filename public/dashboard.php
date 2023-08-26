@@ -260,11 +260,11 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 </div>
         </main>
 
-        <script src="../assets/js/index.min.js"></script>
+        <script src="../assets/js/common/nav.min.js"></script>
 
         <!-- GRAPH.JS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="../assets/js/graphs/dashboard_invoices.min.js"></script>
+        <script src="../assets/js/tools/graph_js/graph_dashboard.min.js"></script>
 </body>
 
 </html>
