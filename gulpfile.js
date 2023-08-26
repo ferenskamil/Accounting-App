@@ -19,7 +19,6 @@ const paths = {
 	sass: './src/scss/**/*.scss',
 	js: './src/js/**/*.js',
 	img: './src/app_img/**/*',
-	dist: './public',
 	sassDest: './assets/css',
 	jsDest: './assets/js',
 	imgDest: './assets/app_img',
@@ -65,13 +64,12 @@ function watchForChanges(done) {
 }
 
 function cleanStuff(done) {
-	src(paths.dist, { read: false }).pipe(clean());
+	src([paths.sassDest, paths.jsDest, paths.imgDest], { read: false }).pipe(
+		clean()
+	);
 	done();
 }
 
 const mainFunctions = parallel(sassCompiler, javaScript, convertImages);
-exports.default = series(
-	mainFunctions,
-	watchForChanges,
-);
+exports.default = series(mainFunctions, watchForChanges);
 exports.cleanStuff = cleanStuff;

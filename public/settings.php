@@ -101,9 +101,9 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 </form>
 
         </main>
-        <script src="../assets/js/index.min.js"></script>
-        <script src="../assets/js/settings.min.js"></script>
-        <script src="../assets/js/invoice/sanitize_account_number.min.js"></script>
+        <script src="../assets/js/common/nav.min.js"></script>
+        <script src="../assets/js/pages/settings/settings.min.js"></script>
+        <script src="../assets/js/common/sanitize_account_number.min.js"></script>
 </body>
 
 </html>

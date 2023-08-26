@@ -330,11 +330,11 @@ else
                         </form>
                 </div>
         </main>
-        <script src="../assets/js/index.min.js"></script>
-        <script src="../assets/js/invoice/num_to_word.min.js"></script>
-        <script src="../assets/js/invoice/edit_form_services.min.js"></script>
-        <script src="../assets/js/invoice/edit_form_validation.min.js"></script>
-        <script src="../assets/js/invoice/sanitize_account_number.min.js"></script>
+        <script src="../assets/js/common/nav.min.js"></script>
+        <script src="../assets/js/common/verbal_notation.min.js"></script>
+        <script src="../assets/js/pages/add_edit_form/edit_form_services.min.js"></script>
+        <script src="../assets/js/pages/add_edit_form/edit_form_validation.min.js"></script>
+        <script src="../assets/js/common/sanitize_account_number.min.js"></script>
 </body>
 
 </html>

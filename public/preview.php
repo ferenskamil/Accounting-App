@@ -234,10 +234,10 @@ require_once '../templates/nav_topbar.php';
                         </div>
                 </div>
         </main>
-        <script src="../assets/js/index.min.js"></script>
-        <script src="../assets/js/popup_message.min.js"></script>
-        <script src="../assets/js/confirm_popup.min.js"></script>
-        <script src="../assets/js/confirm_send.min.js"></script>
+        <script src="../assets/js/common/nav.min.js"></script>
+        <script src="../assets/js/common/popup_message.min.js"></script>
+        <script src="../assets/js/common/confirm_popup.min.js"></script>
+        <script src="../assets/js/common/confirm_send.min.js"></script>
 </body>
 
 </html>

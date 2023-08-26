@@ -84,7 +84,7 @@
                 </div>
         </main>
 
-        <script src="../assets/js/home.min.js"></script>
+        <script src="../assets/js/pages/home/home.min.js"></script>
 </body>
 
 </html>
