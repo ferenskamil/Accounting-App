@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest"
+		"test": "vitest --run --reporter verbose --globals",
+		"test:watch": "vitest"
 	},
 	"keywords": [],
 	"author": "Kamil Ferens",
@@ -26,7 +27,8 @@
 		"gulp-uglify": "^3.0.2",
 		"postcss": "^8.4.21",
 		"postcss-cli": "^10.1.0",
-		"sass": "^1.59.2"
+		"sass": "^1.59.2",
+		"vitest": "^0.34.3"
 	},
 	"description": "This is some description"
 }
