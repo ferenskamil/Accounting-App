@@ -1,5 +1,5 @@
 <!--
-The following popup requires a JS "confirm_send.js" file to be placed at the end of the target script. 
+The following popup requires a JS "confirm_send.js" file to be placed at the end of the target script.
  -->
 <div class="<?php
         if (isset($_SESSION['e_send'])) {
@@ -10,7 +10,7 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
 ?>">
                 <div class="confirm-send__pop-up">
                         <div class="confirm-send__pop-up-message">
-                                <p>Are you sure you want to send invoice No.&nbsp;<span class="confirm-send-no"><?php 
+                                <p>Are you sure you want to send invoice No.&nbsp;<span class="confirm-send-no"><?php
                                         echo $invoice['no']
                                 ?></span>?</p>
                                 <div class="confirm-send__pop-up-message-preview">
@@ -64,7 +64,7 @@ The following popup requires a JS "confirm_send.js" file to be placed at the end
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                 Edit</button>
                                 </form>
-                                <form action="../config/phpmailer/send_mail.php" method="post">
+                                <form action="../public/scripts/send_invoice.php" method="post">
                                         <input hidden type="text" id="confirm-send-send-btn-hidden-input" name="invoice_no_to_send"     value="<?php echo $invoice_no_to_display ?>">
                                         <input hidden type="text" id="pop-up-email-hidden-input" name="recipient_mail" value="<?php
                                                 if (isset($_SESSION['recipient_email_input_content']))

@@ -29,7 +29,7 @@ $invoices = $user_obj->get_all_invoices($user['id']);
         <div class="confirm__shadow">
                 <div class="confirm__pop-up">
                         <div class="confirm__pop-up-message">
-                                <p>Are you sure you want to delete invoice number 
+                                <p>Are you sure you want to delete invoice number
                                         <span>01/01/2023</span> ?</p>
                         </div>
                         <div class="confirm__pop-up-buttons">
@@ -39,7 +39,7 @@ $invoices = $user_obj->get_all_invoices($user['id']);
                                 </form>
                                 <button class="confirm__pop-up-buttons-return">Return</button>
                         </div>
-                </div>       
+                </div>
         </div>
 
         <?php require_once '../templates/nav_topbar.php';?>
@@ -129,8 +129,8 @@ $invoices = $user_obj->get_all_invoices($user['id']);
                                                                 <input hidden class="invoice-no-hidden-input" name="invoice-no" type="text" value="'.$invoice['no'].'">
                                                                 <button class="preview-btn"><i class="fa-solid fa-magnifying-glass"></i>View</button>
                                                         </form>
-                                                        <form action="../config/dompdf/download_pdf.php" method="post">
-                                                                <input hidden class="invoice-id-hidden-input" name="invoice-id" type="text" value="'.$invoice['id'].'">
+                                                        <form action="./scripts/download_pdf.php" method="post">
+                                                                <input hidden class="invoice-id-hidden-input" name="invoice-no" type="text" value="'.$invoice['no'].'">
                                                                 <button type="submit">
                                                                         <i class="fa-solid fa-download"></i>
                                                                         Download

@@ -1,19 +1,20 @@
-<?php 
+<?php
 session_start();
 
 require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
 
 // Check from where the invoice information was transferred for display.
-// They should come, either from the 'list.php' file and be passed via the POST method, or from the 'update_invoice_in_db.php' or 'scripts/update_invoice_in_db.php' files and be passed in the session variable $_SESSION['invoice_no_to_display'].
+// They should come, either from the 'list.php' file and be passed via the POST method, or from the 'update_invoice_in_db.php' or 'scripts/update_invoice_in_db.php' or 'preview.php' files and be passed in the session variable $_SESSION['invoice_no_to_display'].
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 if (
         (strpos($referer, 'public/list.php') !== false && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['invoice-no']))
         || (strpos($referer, 'public/add_edit_form.php') !== false && isset($_SESSION['invoice_no_to_display']))
         || (strpos($referer, 'public/scripts/update_invoice_in_db.php') !== false && isset($_SESSION['invoice_no_to_display']))
+        || (strpos($referer, 'public/preview.php') !== false && isset($_SESSION['invoice_no_to_display']))
 )
 {
-        // Assign invoice number to variables depending of origin 
+        // Assign invoice number to variables depending of origin
         $invoice_no = $_POST['invoice-no'] ?? $_SESSION['invoice_no_to_display'];
 
         // Unset  $_SESSION['invoice_no_to_display'] if exist
@@ -27,8 +28,11 @@ if (
         $invoice_obj = new Invoice($invoice_no , $user['id']);
         $invoice = $invoice_obj->get_invoice();
         $services = $invoice['services'];
+
+        // Assign $invoice to session variable
+        $_SESSION['invoice'] = $invoice;
 }
-else 
+else
 {
         // Redirect to invoice list
         header('Location: list.php');
@@ -50,7 +54,7 @@ else
         <div class="confirm__shadow">
                 <div class="confirm__pop-up">
                         <div class="confirm__pop-up-message">
-                                <p>Are you sure you want to delete invoice number 
+                                <p>Are you sure you want to delete invoice number
                                         <span>01/01/2023</span> ?</p>
                         </div>
                         <div class="confirm__pop-up-buttons">
@@ -60,7 +64,7 @@ else
                                 </form>
                                 <button class="confirm__pop-up-buttons-return">Return</button>
                         </div>
-                </div>       
+                </div>
         </div>
 <?php
 require_once '../templates/confirm_send.php';
@@ -73,8 +77,8 @@ require_once '../templates/nav_topbar.php';
                                 <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice_no_to_edit">
                                 <button type="submit" class="invoice__settings-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
                         </form>
-                        <form action="../config/dompdf/download_pdf.php" method="post">
-                                <input hidden type="text" value="<?php echo $invoice['id'] ?>" name="invoice-id">
+                        <form action="./scripts/download_pdf.php" method="post">
+                                <input hidden type="text" value="<?php echo $invoice['no'] ?>" name="invoice-no">
                                 <button type="submit">
                                         <i class="fa-solid fa-download"></i>
                                         Download
@@ -114,8 +118,8 @@ require_once '../templates/nav_topbar.php';
                         <div class="invoice__paper">
                                 <img class="invoice__paper-logo" src="../assets/user_img/logos/<?php echo $user['logo'] ?>"
                                         alt="company logo">
-                                <h2 class="invoice__paper-title">Invoice no. <span class="invoice-no"><?php 
-                                        echo $invoice['no'] 
+                                <h2 class="invoice__paper-title">Invoice no. <span class="invoice-no"><?php
+                                        echo $invoice['no']
                                 ?></span></h2>
                                 <div class="invoice__paper-content invoice-info">
                                         <p><Strong>Invoice date: </Strong><span class="invoice-date">
