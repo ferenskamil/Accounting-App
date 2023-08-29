@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once './scripts/redirect_if_user_not_logged_in.php';
@@ -34,7 +34,7 @@ if (strpos($referer, 'public/preview.php') !== false  &&
         $_SESSION['invoice_no_to_display'] = $invoice['no'];
 }
 // If the user is not trying to edit then they probably want to create a new invoice
-else 
+else
 {
         // Suggest No. for new invoice
         require_once './scripts/suggest_invoice_no.php';
@@ -55,9 +55,9 @@ else
         <?php require_once '../templates/nav_topbar.php'; ?>
         <main class="main">
                 <div class="invoice-edit">
-                        <a href="<?php 
-                                if (isset($_POST['invoice_no_to_edit'])) { 
-                                        echo "./preview.php"; 
+                        <a href="<?php
+                                if (isset($_POST['invoice_no_to_edit'])) {
+                                        echo "./preview.php";
                                 } else {
                                         echo "./list.php";
                                 }
@@ -80,32 +80,32 @@ else
                                                         value='.$_SESSION['suggestion_invoice_no'].'>';
                                                 }
                                         ?>
-                                        <p class="error"><?php 
+                                        <p class="error"><?php
                                                 if (isset($_SESSION['e_invoice_no_syntax'])) echo $_SESSION['e_invoice_no_syntax']
                                         ?></p>
                                         <label for="date">Invoice date: </label>
-                                        <input class="test" type="date" name="date" id="date" value="<?php 
+                                        <input class="test" type="date" name="date" id="date" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $invoice['date'];
                                                 } else {
                                                         echo date('Y-m-d');
                                                 }
-                                                
+
                                         ?>">
                                         <label for="city">City: </label>
-                                        <input type="text" name="city" id="city" value="<?php 
+                                        <input type="text" name="city" id="city" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['city'];
-                                                } 
+                                                }
                                                 elseif(isset($user['city'])) {
                                                         echo $user['city'];
                                                 }
                                         ?>">
                                         <label for="bank">Bank: </label>
-                                        <input type="text" name="bank" id="bank" value="<?php 
+                                        <input type="text" name="bank" id="bank" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['bank'];
-                                                } 
+                                                }
                                                 elseif(isset($user['bank'])) {
                                                         echo $user['bank'];
                                                 }
@@ -114,19 +114,19 @@ else
                                         <input type="text" name="account-no" id="account-no" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['account_no'];
-                                                } 
+                                                }
                                                 elseif(isset($user['account_no'])) {
                                                         echo $user['account_no'];
-                                                }                                        
+                                                }
                                         ?>">
                                         <label for="term">Payment term: </label>
                                         <select name="term" id="term">
-                                                <option value="7 days" <?php 
+                                                <option value="7 days" <?php
                                                         if (isset($_POST['invoice_no_to_edit']) && $invoice === '7 days') {
                                                                 echo 'selected';
                                                         }
                                                 ?>>7 days</option>
-                                                <option value="14 days" <?php 
+                                                <option value="14 days" <?php
                                                         if (isset($_POST['invoice_no_to_edit']) && $invoice === '14 days') {
                                                                 echo 'selected';
                                                         } elseif (!isset($_POST['invoice_no_to_edit'])) {
@@ -138,10 +138,10 @@ else
                                 <div class="invoice-edit__form-box invoice-edit__form-box-seller">
                                         <h2>Your data</h2>
                                         <label for="seller-name">Name: </label>
-                                        <input type="text" name="seller-name" id="seller-name" value="<?php 
+                                        <input type="text" name="seller-name" id="seller-name" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['seller_name'];
-                                                } 
+                                                }
                                                 elseif(isset($user['company'])) {
                                                         echo $user['company'];
                                                 }
@@ -150,7 +150,7 @@ else
                                         <input type="text" name="seller-address1" id="seller-address1" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['seller_address1'];
-                                                } 
+                                                }
                                                 elseif(isset($user['address1'])) {
                                                         echo $user['address1'];
                                                 }
@@ -159,7 +159,7 @@ else
                                         <input type="text" name="seller-address2" id="seller-address2" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['seller_address2'];
-                                                } 
+                                                }
                                                 elseif(isset($user['address2'])) {
                                                         echo $user['address2'];
                                                 }
@@ -168,7 +168,7 @@ else
                                         <input type="text" name="seller-company-no" id="seller-company-no" placeholder="if none enter '---'" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])){
                                                         echo $invoice['seller_company_no'];
-                                                } 
+                                                }
                                                 elseif(isset($user['company_code'])) {
                                                         echo $user['company_code'];
                                                 }
@@ -177,25 +177,25 @@ else
                                 <div class="invoice-edit__form-box invoice-edit__form-box-customer">
                                         <h2>Billed to</h2>
                                         <label for="customer-name">Name: </label>
-                                        <input type="text" name="customer-name" id="customer-name" value="<?php 
+                                        <input type="text" name="customer-name" id="customer-name" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $invoice['customer_name'] ;
                                                 }
                                         ?>">
                                         <label for="customer-address1">Address: </label>
-                                        <input type="text" name="customer-address1" id="customer-address1" value="<?php 
+                                        <input type="text" name="customer-address1" id="customer-address1" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $invoice['customer_address1'] ;
                                                 }
                                         ?>">
                                         <label for="customer-address2">Address 2: </label>
-                                        <input type="text" name="customer-address2" id="customer-address2" value="<?php 
+                                        <input type="text" name="customer-address2" id="customer-address2" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $invoice['customer_address2'] ;
                                                 }
                                         ?>">
                                         <label for="customer-company-no">Company no.: </label>
-                                        <input type="text" name="customer-company-no" id="customer-company-no" value="<?php 
+                                        <input type="text" name="customer-company-no" id="customer-company-no" value="<?php
                                                 if (isset($_POST['invoice_no_to_edit'])) {
                                                         echo $invoice['customer_company_no'] ;
                                                 }
@@ -225,7 +225,7 @@ else
                                                         </tr>
                                                         <?php
                                                         if (isset($services)){
-                                                                for ($i=0; $i < count($services) ; $i++) { 
+                                                                for ($i=0; $i < count($services) ; $i++) {
                                                                         $service = $services[$i];
 
                                                                         if ($service['service_tax'] === '0.08') {
@@ -284,8 +284,8 @@ else
                                                                         <td>
                                                                                 <button class="delete-btn"><i class="fa-solid fa-trash"></i>Delete</button>
                                                                         </td>
-                                                                </tr>'); 
-                                                                }; 
+                                                                </tr>');
+                                                                };
                                                         };
                                                         ?>
                                                 </tbody>
@@ -315,10 +315,10 @@ else
                                         <label for="comment"><h2>Additional notes</h2></label>
                                         <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                         <textarea name="comment" id="comment" cols="30"
-                                                rows="10"><?php 
+                                                rows="10"><?php
                                                         if (isset($_POST['invoice_no_to_edit'])){
                                                                 echo $invoice['additional_notes'];
-                                                        } 
+                                                        }
                                                         elseif(isset($user['additional_info'])) {
                                                                 echo $user['additional_info'];
                                                         }
@@ -334,7 +334,7 @@ else
         <script src="../assets/js/common/verbal_notation.min.js"></script>
         <script src="../assets/js/pages/add_edit_form/edit_form_services.min.js"></script>
         <script src="../assets/js/pages/add_edit_form/edit_form_validation.min.js"></script>
-        <script src="../assets/js/common/sanitize_account_number.min.js"></script>
+        <script type="module" src="../assets/js/common/sanitize_account_no_input.min.js"></script>
 </body>
 
 </html>
