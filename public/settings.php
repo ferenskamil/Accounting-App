@@ -1,5 +1,5 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 
 require_once './scripts/redirect_if_user_not_logged_in.php';
 redirect_if_user_not_logged_in('index.php');
@@ -27,13 +27,13 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 <form action="./scripts/upload_avatar.php" method="post" enctype="multipart/form-data"class="settings__form-change-avatar">
                         <h2>User photo</h2>
                         <div>
-                                <img src="./assets/img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
+                                <img src="../assets/user_img/avatars/<?php echo $user['avatar'] ?>" alt="user photo">
                                 <label for="change-avatar-btn" class="change-avatar-btn-label">
                                         <input type="file" id="change-avatar-btn" name="change-avatar-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->
                                         <i class="fa-sharp fa-solid fa-camera"></i>Change avatar
                                 </label>
-                                <p class="error"><?php 
+                                <p class="error"><?php
                                         if (isset($_SESSION['e_upload_avatar'])) echo $_SESSION['e_upload_avatar'];
                                 ?></p>
                         </div>
@@ -41,13 +41,13 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                 <form action="./scripts/upload_logo.php" method="post" enctype="multipart/form-data"class="settings__form-change-company-logo">
                         <h2>Company logo</h2>
                         <div>
-                                <img src="./assets/img/logos/<?php echo $user['logo'] ?>" alt="company logo">
+                                <img src="../assets/user_img/logos/<?php echo $user['logo'] ?>" alt="company logo">
                                 <label for="change-logo-btn" class="change-logo-btn-label">
                                         <input type="file" id="change-logo-btn" name="change-logo-btn" accept=".jpg, .jpeg, .png">
                                         <!-- <input type="submit" value="Send File" /> -->
                                         <i class="fa-sharp fa-solid fa-camera"></i>Change logo
                                 </label>
-                                <p class="error"><?php 
+                                <p class="error"><?php
                                         if (isset($_SESSION['e_upload_logo'])) echo $_SESSION['e_upload_logo'];
                                         ?></p>
                         </div>
@@ -91,7 +91,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                                 <h2>Additional info</h2>
                                 <p>*Fill in if the following applies to the good (service). For example, subject exemptions from tax.</p>
                                 <textarea name="additional_info" id="additional_info" cols="30"
-                                        rows="10"><?php 
+                                        rows="10"><?php
                                         if (isset($user['additional_info'])) echo $user['additional_info'];
                                         ?></textarea>
                         </div>
