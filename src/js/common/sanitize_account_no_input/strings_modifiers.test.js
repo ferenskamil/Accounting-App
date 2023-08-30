@@ -1,10 +1,10 @@
-import { it, expect, describe, should } from 'vitest';
+import { it, expect, describe } from 'vitest';
 import {
+	sanitizeAccountNo,
 	insertSpacesIntoString,
 	cleanNumberString,
-	sanitizeAccountNo,
-} from '../common/account_no_input/account_no_input_handler.js';
-import { checkSpacePositions } from '../utils/check_space_positions.js';
+} from './strings_modifiers.js';
+import { checkSpacePositions } from '../../utils/check_space_positions.js';
 
 describe('insertSpacesIntoString()', () => {
 	it('should thrown error if type of "string" parameter not be a string', () => {

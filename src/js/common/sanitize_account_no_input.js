@@ -4,7 +4,7 @@ import {
 	setMaxLengthInputValue,
 	outputResultInInput,
 	setCursorInTheRightPlaceOfInput,
-} from './account_no_input/account_no_input_handler.js';
+} from './sanitize_account_no_input/input_handlers.js';
 
 const accountNoInput = document.querySelector('#account-no');
 
