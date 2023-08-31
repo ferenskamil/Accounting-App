@@ -1,65 +1,30 @@
-<?php 
-
+<?php
 session_start();
 
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-if (isset($_FILES['change-logo-btn']['name'])) {
-        $image_name = $_FILES['change-logo-btn']['name'];
-        $image_size = $_FILES['change-logo-btn']['size'];
-        $tmp_name = $_FILES['change-logo-btn']['tmp_name'];
-        
-        // image validation
-        $valid_img_extension = ['jpg', 'jpeg', 'png'];
-        $img_extension = explode('.', $image_name);
-        $img_extension = strtolower(end($img_extension));
+// Create instance of Image class
+require '../../class/image.class.php';
+$avatar = new Image($user , $_FILES['change-logo-btn']);
 
-        if (!in_array($img_extension, $valid_img_extension)) {
-                $_SESSION['e_upload_logo'] = "File must be .jpg, .jpeg, .png";
-                
-        } elseif ($image_size > 25165824 ) {
-                $_SESSION['e_upload_logo'] = "Maximum photo size is 3mb";
-        } else {
-                $new_img_name = $user['login']."_logo_".date("Y-m-d").".".$img_extension;
-                
-                // connect with database
-                require_once '../../config/database/db_database.php';
-                
-                // delete old file from server 
-                $db_user = $db->prepare("SELECT * FROM users WHERE login = :login");
-                $db_user->bindvalue(':login', $user['login'], PDO::PARAM_STR);
-                $db_user->execute();
-                $db_user_arr = $db_user->fetch(PDO::FETCH_ASSOC);
-                $old_img_name = $db_user_arr['company_logo_file_path'];
+try
+{
+        // Change img in db
+        $avatar->upload_img('logo');
 
-                if ($old_img_name !== 'default_logo.png') {
-                        unlink('../../assets/user_img/logos/'.$old_img_name);
-                }
+        // Update avatar name in $user array
+        $user['logo'] = $avatar->get_file_name();
 
-                // save new file in server 
-                if (move_uploaded_file($tmp_name, "../../assets/user_img/logos/".$new_img_name)) {
+        // Unset error message after successfull upload
+        unset($_SESSION['e_upload_logo']);
 
-                        // Set new file name (with extension) in db 
-                        $db_update_user_img_name = $db->prepare("UPDATE users 
-                                SET company_logo_file_path = :file_name 
-                                WHERE login = :login");
-                        $db_update_user_img_name->bindvalue(':file_name', $new_img_name, PDO::PARAM_STR);
-                        $db_update_user_img_name->bindvalue(':login', $user['login'], PDO::PARAM_STR);
-                        $db_update_user_img_name->execute();
-
-                        // update $_SESSION['user']
-                        $user['logo'] = $new_img_name;
-                        $_SESSION['user'] = $user;
-
-                        $_SESSION['e_upload_logo'] = "";
-                } else {
-                        $_SESSION['e_upload_logo'] = "Failure to save file";
-                }
-        }
-
-        header('Location: ../settings.php');
-        exit();
+} catch (Exception $e)
+{
+        // Assign error message to session variable
+        $_SESSION['e_upload_logo'] = $e;
 }
 
+header('Location: ../settings.php');
+exit();
 ?>
