@@ -2,11 +2,11 @@ export function getValueFromInput(inputElement) {
 	return inputElement.value;
 }
 
-export function setMaxLengthInputValue(input, length) {
+export function setInputMaxLength(input, length) {
 	input.setAttribute('maxlength', length);
 }
 
-export function outputResultInInput(value, input) {
+export function outputResultInInput(input, value) {
 	input.value = value;
 }
 
