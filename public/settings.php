@@ -102,7 +102,7 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
         </main>
         <script src="../assets/js/common/nav.min.js"></script>
-        <script src="../assets/js/pages/settings/settings.min.js"></script>
+        <script type="module" src="../assets/js/pages/settings/settings.min.js"></script>
         <script type="module" src="../assets/js/common/sanitize_account_no_input.min.js"></script>
 </body>
 

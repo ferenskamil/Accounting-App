@@ -333,7 +333,7 @@ else
         <script src="../assets/js/common/nav.min.js"></script>
         <script src="../assets/js/common/verbal_notation.min.js"></script>
         <script src="../assets/js/pages/add_edit_form/edit_form_services.min.js"></script>
-        <script src="../assets/js/pages/add_edit_form/edit_form_validation.min.js"></script>
+        <script type="module "src="../assets/js/pages/add_edit_form/add_edit_form.min.js"></script>
         <script type="module" src="../assets/js/common/sanitize_account_no_input.min.js"></script>
 </body>
 
