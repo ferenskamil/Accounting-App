@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/./database.class.php';
 class Invoice
 {
         // The variable used in the constructor. An instance of the PDO object will be assigned to it.
@@ -16,7 +18,7 @@ class Invoice
         {
                 // Connect to database
                 // Assign the returned $db object (PDO instance) to the $this->db variable).
-                $this->db = require_once __DIR__ . '/../config/database/db_database.php';
+                $this->db = Database::getInstance()->getConnection();
 
                 // Assign values to private variables.
                 $this->invoice_no = $invoice_no;

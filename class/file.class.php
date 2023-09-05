@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/./database.class.php';
 class File {
 
         protected $db;
@@ -13,10 +14,9 @@ class File {
          * As a $fileinfo parameter pass $_FILES['file']  (only $_FILES could not work) */
         public function __construct(array $user , array $fileinfo)
         {
-
                 // Connect to database
                 // Assign the returned $db object (PDO instance) to the $this->db variable).
-                $this->db = require_once __DIR__ . '/../config/database/db_database.php';
+                $this->db = Database::getInstance()->getConnection();
 
                 // Assign data to private variables
                 $this->user = $user;
