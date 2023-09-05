@@ -69,8 +69,9 @@
 	&__invoices {
 		padding: 1em;
 		background-color: $grey-light;
-		// Dzięki temu tabela będzie nam się przesuwała na boki
+		// This will make the table move sideways
 		overflow-x: auto;
+		height: fit-content;
 
 		&-table {
 			width: 100%;
