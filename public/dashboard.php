@@ -6,6 +6,11 @@ redirect_if_user_not_logged_in('index.php');
 
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
+
+// Pobieramu Usera
+require_once '../class/user.class.php';
+$user_obj = new User();
+$invoices = $user_obj->get_all_invoices($user['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,193 +68,33 @@ if (isset($_SESSION['user'])) $user = $_SESSION['user'];
                                                 <tr>
                                                         <th>Invoice no.</th>
                                                         <th>Contractor</th>
-                                                        <th>Gross</th>
                                                         <th>Net</th>
+                                                        <th>Gross</th>
                                                         <th>Status</th>
                                                         <th>Other</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        foreach ($invoices as $invoice) {
+                                                echo <<<HTML
                                                 <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
+                                                        <td>{$invoice['no']}</td>
+                                                        <td>{$invoice['customer_name']}</td>
+                                                        <td><span>{$invoice['sum_net']}</span> $</td>
+                                                        <td><span>{$invoice['sum_gross']}</span> $</td>
                                                         <td>not-send</td>
                                                         <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
+                                                                <form action="./preview.php" method="POST">
+                                                                        <input hidden type="text" name="invoice-no" value="{$invoice['no']}">
+                                                                        <button><i class="fa-solid fa-magnifying-glass"></i>
+                                                                                View</button>
+                                                                </form>
                                                         </td>
                                                 </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>01/04/2023</td>
-                                                        <td>Lorem ipsum dolor es</td>
-                                                        <td><span>11111</span> $</td>
-                                                        <td><span>9999</span> $</td>
-                                                        <td>not-send</td>
-                                                        <td class="details__invoices-table-other">
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-pen-to-square"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-download"></i></button></a>
-                                                                <a href="#"><button><i
-                                                                                        class="fa-solid fa-share-from-square"></i></button></a>
-                                                        </td>
-                                                </tr>
+                                        HTML;
+                                        }
+                                        ?>
                                         </tbody>
                                 </table>
                         </div>

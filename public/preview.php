@@ -8,10 +8,13 @@ redirect_if_user_not_logged_in('index.php');
 // They should come, either from the 'list.php' file and be passed via the POST method, or from the 'update_invoice_in_db.php' or 'scripts/update_invoice_in_db.php' or 'preview.php' files and be passed in the session variable $_SESSION['invoice_no_to_display'].
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 if (
-        (strpos($referer, 'public/list.php') !== false && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['invoice-no']))
-        || (strpos($referer, 'public/add_edit_form.php') !== false && isset($_SESSION['invoice_no_to_display']))
-        || (strpos($referer, 'public/scripts/update_invoice_in_db.php') !== false && isset($_SESSION['invoice_no_to_display']))
-        || (strpos($referer, 'public/preview.php') !== false && isset($_SESSION['invoice_no_to_display']))
+        ((strpos($referer, 'public/list.php') !== false
+        || strpos($referer, 'public/dashboard.php') !== false)
+                && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['invoice-no']))
+        || ((strpos($referer, 'public/add_edit_form.php') !== false
+        || strpos($referer, 'public/scripts/update_invoice_in_db.php') !== false
+        || strpos($referer, 'public/preview.php') !== false)
+                && isset($_SESSION['invoice_no_to_display']))
 )
 {
         // Assign invoice number to variables depending of origin
