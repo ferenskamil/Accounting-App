@@ -7,10 +7,25 @@ redirect_if_user_not_logged_in('index.php');
 // Get user data to $user assoc array
 if (isset($_SESSION['user'])) $user = $_SESSION['user'];
 
-// Pobieramu Usera
+// Get info about invoices from DB
 require_once '../class/user.class.php';
 $user_obj = new User();
 $invoices = $user_obj->get_all_invoices($user['id']);
+
+// Set TOTAL INCOME
+$total_income = 0;
+foreach ($invoices as $invoice) $total_income += $invoice['sum_gross'];
+
+// Set INVOICES AMOUNT
+$invoices_amount = count($invoices);
+
+// Set TOTAL INCOME AFTER TAXES
+$after_taxes = 0;
+foreach ($invoices as $invoice) $after_taxes += $invoice['sum_net'];
+
+// Set AVERAGE VALUE
+$average_value = $total_income / $invoices_amount;
+$average_value = round($average_value, 2, PHP_ROUND_HALF_UP);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +40,12 @@ $invoices = $user_obj->get_all_invoices($user['id']);
 
 <body>
         <?php require_once '../templates/nav_topbar.php'; ?>
-
         <main class="main">
                 <div class="summary">
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">Total income</h2>
-                                        <p class="summary__card-text-value"><span class="income-value">21 159</span> $
+                                        <p class="summary__card-text-value"><span class="income-value"><?php echo $total_income ?></span> $
                                         </p>
                                 </div>
                                 <i class="fa-solid fa-dollar-sign"></i>
@@ -39,14 +53,14 @@ $invoices = $user_obj->get_all_invoices($user['id']);
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">Invoices amount</h2>
-                                        <p class="summary__card-text-value"><span class="invoices-amount">5</span></p>
+                                        <p class="summary__card-text-value"><span class="invoices-amount"><?php echo $invoices_amount ?></span></p>
                                 </div>
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
                         </div>
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">Average value</h2>
-                                        <p class="summary__card-text-value"><span class="average-value">4 569</span> $
+                                        <p class="summary__card-text-value"><span class="average-value"><?php echo $average_value ?></span> $
                                         </p>
                                 </div>
                                 <i class="fa-solid fa-calculator"></i>
@@ -54,8 +68,7 @@ $invoices = $user_obj->get_all_invoices($user['id']);
                         <div class="summary__card">
                                 <div class="summary__card-text">
                                         <h2 class="summary__card-text-title">After taxes</h2>
-                                        <p class="summary__card-text-value"><span class="after-tax-value">16
-                                                        546</span> $</p>
+                                        <p class="summary__card-text-value"><span class="after-tax-value"><?php echo $after_taxes ?></span> $</p>
                                 </div>
                                 <i class="fa-solid fa-piggy-bank"></i>
                         </div>
