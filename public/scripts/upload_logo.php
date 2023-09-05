@@ -15,6 +15,7 @@ try
 
         // Update avatar name in $user array
         $user['logo'] = $avatar->get_file_name();
+        $_SESSION['user'] = $user;
 
         // Unset error message after successfull upload
         unset($_SESSION['e_upload_logo']);

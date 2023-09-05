@@ -80,6 +80,9 @@ class Image extends File
                                 $db_update_user_img_name->bindvalue(':login', $this->user['login'], PDO::PARAM_STR);
                                 $db_update_user_img_name->execute();
                         }
+
+                        // Update filename in object
+                        $this->fileinfo['name'] = $new_sever_filename;
                 }
                 catch(Exception $e)
                 {
